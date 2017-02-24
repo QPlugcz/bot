@@ -318,14 +318,14 @@ API.sendChat("[@"+ from +"] Nemáš na to práva!");
 
 //                          UZIVATELIA                          //
 
-API.on(API.CHAT, version);
+/*API.on(API.CHAT, version);
 function version(data){
 var msg = data.message;
 
 if(msg === ""+ prefix +"verzia" || msg === ""+ prefix +"version"){
 API.sendChat("[ VERZIA ] Verzia našeho Systému je aktuálne "+ version +"!");
 }
-}
+}*/
 
 API.on(API.CHAT, web);
 function web(data){
@@ -529,7 +529,7 @@ API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + 
 } 
 }
 
-/*API.on(API.CHAT, vtip);
+API.on(API.CHAT, vtip);
 function vtip(data){
 var msg = data.message;
 var from = data.un;
@@ -549,4 +549,4 @@ var vtipy = [
 if(msg === ""+ prefix +"vtip" || msg === ""+ prefix +"vtipy"){
 API.sendChat(""+ vtipy[Math.floor(Math.random() * vtipy.length)] +"");
 }
-}*/
+}
