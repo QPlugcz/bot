@@ -556,3 +556,20 @@ if(msg === ""+ prefix +"vtip" || msg === ""+ prefix +"vtipy"){
 API.sendChat(""+ vtipy[Math.floor(Math.random() * vtipy.length)] +"");
 }
 }
+
+API.on(API.CHAT, meme);
+function meme(data){
+var msg = data.message;
+
+var memes = [
+"http://upload.emefka.sk:82/posts/new/orig/12/63/81263.jpg",
+"http://upload.emefka.sk:82/posts/new/orig/12/55/81255.jpg",
+"http://upload.emefka.sk:82/posts/new/orig/12/31/81231.jpg",
+"http://upload.emefka.sk:82/posts/new/orig/12/27/81227.jpg",
+"http://upload.emefka.sk:82/posts/new/orig/12/23/81223.png"
+];
+
+if(msg === ""+ prefix +"meme" || msg === ""+ prefix +"memes"){
+API.sendChat(""+ memes[Math.floor(Math.random() * memes.length)] +"");
+}
+}
