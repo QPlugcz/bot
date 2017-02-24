@@ -1,4 +1,4 @@
-COPYRIGHT»                         QPlug.cz 2017
+#COPYRIGHT»                         QPlug.cz 2017
 DEVELOPERS»                        Franta72, Hellbyte
 ROOM»                              https://plug.dj/qplug-czsk
 
