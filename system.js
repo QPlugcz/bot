@@ -12,6 +12,7 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
 */
 
 API.chatLog("[ QBot ] Systém je spustený!");
+var version = "Alpha 0.1";
 var prefix = "!";
 
 //                          FUNKCIE                          //
@@ -316,6 +317,15 @@ API.sendChat("[@"+ from +"] Nemáš na to práva!");
 }
 
 //                          UZIVATELIA                          //
+
+API.on(API.CHAT, version);
+function version(data){
+var msg = data.message;
+
+if(msg === ""+ prefix +"verzia" || msg === ""+ prefix +"version"){
+API.sendChat("[ VERZIA ] Verzia našeho Systému je aktuálne "+ version +"!");
+}
+}
 
 API.on(API.CHAT, web);
 function web(data){
