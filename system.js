@@ -475,3 +475,16 @@ if(msg === "plugdj"){
 API.sendChat("[@"+ from +"] Výborne! Vylúštil si slovo 'plugdj' ako prvý. Gratulujeme! :)");
 }
 }
+
+API.on(API.CHAT, dnes);
+function dnes(data){
+var msg = data.message;
+var from = data.un;
+var promenna = new Date(); // vytvoří proměnnou obsahující aktuální datum
+var mesic = promenna.getMonth() + 1; //leden je 0
+var denVMesici = promenna.getDate();
+
+if(msg === ""+ prefix +"id"){
+API.sendChat("["+ from +"] Dnes je "+ denVMesici +"."+ mesic +".2017!");
+}
+}
