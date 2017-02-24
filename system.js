@@ -492,7 +492,7 @@ var from = data.un;
 if(msg === ""+ prefix +"dnes" || msg === ""+ prefix +"today"){ 
 var datum = new Date(); // aktuální datum
 var denVTydnu = new Array("Nedeľa","Pondelok", "Utorok", "Streda", "Štvrtok", "konečne Piatok", "Sobota");
-var retezec = "["@+ from +"] Dnes je "; // postupně se k němu budou přičítat další řetězce
+var retezec = "[@"+ from +"] Dnes je "; // postupně se k němu budou přičítat další řetězce
 retezec += denVTydnu[datum.getDay()] + ", "; // Den v týždni
 retezec += datum.getDate() + "."; // Den v měsíci
 retezec += (1 + datum.getMonth()) + "."; // Měsíce jsou číslovány od nuly
