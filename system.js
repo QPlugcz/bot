@@ -542,7 +542,7 @@ var vtipy = [
 "Kedy utrpí chlap otras mozgu? Keď ho kopnú do rozkroku.",
 "Muži majú najmenšiu záhradku na svete. Jednu mrkvu, dva zemiačky a trošku petržlena!",
 "Ženy sú ako drogy. V mladosti s nimi začneš a do smrti ti ničia život.",
-"Mami, můžu jít ven?" "Je ti 25, nemusíš se vracet.",
+"Mami, můžu jít ven? Je ti 25, nemusíš se vracet.",
 "Málokdo ví, že slovo onanie pochází ze slovenštiny. Logicky vzniklo spojením slov ona-nie."
 ];
 
