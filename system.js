@@ -488,11 +488,20 @@ API.on(API.CHAT, dnes);
 function dnes(data){
 var msg = data.message;
 var from = data.un;
-var promenna = new Date(); // vytvoří proměnnou obsahující aktuální datum
-var mesic = promenna.getMonth() + 1; //leden je 0
-var denVMesici = promenna.getDate();
-
-if(msg === ""+ prefix +"id"){
-API.sendChat("["+ from +"] Dnes je "+ denVMesici +"."+ mesic +".2017!");
+ 
+if(msg === ""+ prefix +"dnes" || msg === ""+ prefix +"today"){ 
+var datum = new Date(); // aktuální datum
+var denVTydnu = new Array("Nedeľa","Pondelok", "Utorok", "Streda", "Štvrtok", "konečne Piatok", "Sobota");
+var retezec = "["@+ from +"] Dnes je "; // postupně se k němu budou přičítat další řetězce
+retezec += denVTydnu[datum.getDay()] + ", "; // Den v týždni
+retezec += datum.getDate() + "."; // Den v měsíci
+retezec += (1 + datum.getMonth()) + "."; // Měsíce jsou číslovány od nuly
+retezec += datum.getFullYear() + ". "; // Rok ve formátu 0000
+retezec += "Čas: " + datum.getHours() + ":"; // Hodiny
+retezec += datum.getMinutes(); // Minuty
+// retezec += ":" + datum.getSeconds(); // Sekundy
+retezec += ". "; // Tečka za větou
+retezec += "Prajeme pekne prežitý deň. <3";
+API.sendChat( retezec ); // Výpis řetězce do dokumentu
 }
 }
