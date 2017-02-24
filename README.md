@@ -3,6 +3,6 @@
 # ROOM»                              https://plug.dj/qplug-czsk
 
 # Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Administrátormi plug.dj!
-# - Marvin (xBytez)
-# - Dom (Origin)
-# - Brett (sinful)
+- Marvin (xBytez)
+- Dom (Origin)
+- Brett (sinful)
