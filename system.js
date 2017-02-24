@@ -489,19 +489,40 @@ function dnes(data){
 var msg = data.message;
 var from = data.un;
  
-if(msg === ""+ prefix +"dnes" || msg === ""+ prefix +"today"){ 
-var datum = new Date(); // aktuální datum
+if(msg === ""+ prefix +"dnes" || msg === ""+ prefix +"today" || msg === ""+ prefix +"teraz"){
+var datum = new Date();
 var denVTydnu = new Array("Nedeľa","Pondelok", "Utorok", "Streda", "Štvrtok", "konečne Piatok", "Sobota");
-var retezec = "[@"+ from +"] Dnes je "; // postupně se k němu budou přičítat další řetězce
-retezec += denVTydnu[datum.getDay()] + ", "; // Den v týždni
-retezec += datum.getDate() + "."; // Den v měsíci
-retezec += (1 + datum.getMonth()) + "."; // Měsíce jsou číslovány od nuly
-retezec += datum.getFullYear() + ". "; // Rok ve formátu 0000
-retezec += "Čas: " + datum.getHours() + ":"; // Hodiny
-retezec += datum.getMinutes(); // Minuty
-// retezec += ":" + datum.getSeconds(); // Sekundy
-retezec += ". "; // Tečka za větou
-retezec += "Prajeme pekne prežitý deň. <3";
-API.sendChat( retezec ); // Výpis řetězce do dokumentu
+var retazec = "[@"+ from +"] Dnes je ";
+retazec += denVTydnu[datum.getDay()] + ", ";
+retazec += datum.getDate() + ".";
+retazec += (1 + datum.getMonth()) + ".";
+retazec += datum.getFullYear() + ". ";
+retazec += "Čas: " + datum.getHours() + ":";
+retazec += datum.getMinutes();
+retazec += ". ";
+retazec += "Prajeme pekne prežitý deň. <3";
+API.sendChat( retazec );
 }
 }
+
+API.on(API.CHAT, ja);
+function ja(data){
+var msg = data.message;
+var from = data.un;
+
+var cicina = Math.floor((Math.random() * 40) + 1);
+var sexy = Math.floor((Math.random() * 100) + 1);
+var iq = Math.floor((Math.random() * 180) + 1);
+var nalada = ["Naštvaný/á.", "Kludný/á.", "Nadržený/á.", "Vzteklý/á.", "Bláznivý/á.", "Hodný/á.", "Radostný/á.", "Skleslý/á.", "Vtipný/á.", "Smutný/á."];
+ 
+if(msg === ""+ prefix +"ja" || msg === ""+ prefix +"cicina" || msg === ""+ prefix +"iq" || msg === ""+ prefix +"sexy" || msg === ""+ prefix +"nálada" || msg === ""+ prefix +"nalada"){
+API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
+} 
+}
+
+
+
+
+
+
+
