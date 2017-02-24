@@ -537,7 +537,13 @@ var from = data.un;
 var vtipy = [
 "Idú 2 babky po púšti a tá stredná odbočí doľava.",
 "Máš 10 rybiek, 1 sa utopila. Koľko máš?",
-"Peniaze vedia rozprávať. Napríklad moje mi každú chvíľu povedia: Zbohom!"
+"Peniaze vedia rozprávať. Napríklad moje mi každú chvíľu povedia: Zbohom!",
+"Milý Ježiško! Pod stromček si prosím tučnú peňaženku a štíhlu postavu. PS: Nepopleť to prosím ťa!",
+"Kedy utrpí chlap otras mozgu? Keď ho kopnú do rozkroku.",
+"Muži majú najmenšiu záhradku na svete. Jednu mrkvu, dva zemiačky a trošku petržlena!",
+"Ženy sú ako drogy. V mladosti s nimi začneš a do smrti ti ničia život.",
+"Mami, můžu jít ven?" "Je ti 25, nemusíš se vracet.",
+"Málokdo ví, že slovo onanie pochází ze slovenštiny. Logicky vzniklo spojením slov ona-nie."
 ];
 
 if(msg === ""+ prefix +"vtip" || msg === ""+ prefix +"vtipy"){
