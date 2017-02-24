@@ -543,7 +543,13 @@ var vtipy = [
 "Muži majú najmenšiu záhradku na svete. Jednu mrkvu, dva zemiačky a trošku petržlena!",
 "Ženy sú ako drogy. V mladosti s nimi začneš a do smrti ti ničia život.",
 "Mami, můžu jít ven? Je ti 25, nemusíš se vracet.",
-"Málokdo ví, že slovo onanie pochází ze slovenštiny. Logicky vzniklo spojením slov ona-nie."
+"Málokdo ví, že slovo onanie pochází ze slovenštiny. Logicky vzniklo spojením slov ona-nie.",
+"Viete, že človek je zo slivky? Zo slivky je slivovica, zo slivovice je opica a z opice je človek.",
+"Idú dva tanky jeden je ruský a druhý je tiež pokazený...",
+"Ide had na bicykli a spomenie si, že nemá nohy, a tak upadne a zlomí si koleno.",
+"Chobotnica má 8 chápadiel a jedno nechápe.",
+"Idú dve stíhačky a jedna nestíha.",
+"Bol raz jeden cigán... jedináčik..."
 ];
 
 if(msg === ""+ prefix +"vtip" || msg === ""+ prefix +"vtipy"){
