@@ -13,7 +13,6 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
 
 API.chatLog("[ QBot ] Systém je spustený!");
 var prefix = "!";
-var prefixinfo = "?";
 
 //                          FUNKCIE                          //
 
@@ -519,10 +518,3 @@ if(msg === ""+ prefix +"ja" || msg === ""+ prefix +"cicina" || msg === ""+ prefi
 API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
 } 
 }
-
-
-
-
-
-
-
