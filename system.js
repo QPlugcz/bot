@@ -528,3 +528,19 @@ if(msg === ""+ prefix +"ja" || msg === ""+ prefix +"cicina" || msg === ""+ prefi
 API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
 } 
 }
+
+API.on(API.CHAT, vtip);
+function vtip(data){
+var msg = data.message;
+var from = data.un;
+
+var vtipy = [
+"Idú 2 babky po púšti a tá stredná odbočí doľava.",
+"Máš 10 rybiek, 1 sa utopila. Koľko máš?",
+"Peniaze vedia rozprávať. Napríklad moje mi každú chvíľu povedia: Zbohom!"
+];
+
+if(msg === ""+ prefix "vtip" || msg === ""+ prefix +"vtipy"){
+API.sendChat(""+ vtipy[Math.floor(Math.random() * vtipy.length)] +"");
+}
+}
