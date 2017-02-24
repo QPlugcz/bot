@@ -540,7 +540,7 @@ var vtipy = [
 "Peniaze vedia rozprávať. Napríklad moje mi každú chvíľu povedia: Zbohom!"
 ];
 
-if(msg === ""+ prefix "vtip" || msg === ""+ prefix +"vtipy"){
+if(msg === ""+ prefix +"vtip" || msg === ""+ prefix +"vtipy"){
 API.sendChat(""+ vtipy[Math.floor(Math.random() * vtipy.length)] +"");
 }
 }
