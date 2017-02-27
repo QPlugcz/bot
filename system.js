@@ -12,7 +12,7 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
 */
 
 API.chatLog("[ QBot ] Systém je spustený!");
-var version = "Alpha 0.1";
+var verzia = "Alpha 0.1";
 var prefix = "!";
 
 //                          FUNKCIE                          //
@@ -318,14 +318,14 @@ API.sendChat("[@"+ from +"] Nemáš na to práva!");
 
 //                          UZIVATELIA                          //
 
-/*API.on(API.CHAT, version);
-function version(data){
+API.on(API.CHAT, qplugverzia);
+function qplugverzia(data){
 var msg = data.message;
 
 if(msg === ""+ prefix +"verzia" || msg === ""+ prefix +"version"){
-API.sendChat("[ VERZIA ] Verzia našeho Systému je aktuálne "+ version +"!");
+API.sendChat("[ QPlug.cz ] Verzia našej komunity je aktuálne "+ verzia +"!");
 }
-}*/
+}
 
 API.on(API.CHAT, web);
 function web(data){
