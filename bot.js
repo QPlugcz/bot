@@ -3330,7 +3330,7 @@ setTimeout(function(){ API.sendChat("!refresh"); }, 10000);
 },*/
 
 alertCommand: {
-command: ['alert'. 'a', 'say'],
+command: ['alert', 'a', 'say'],
 rank: 'manager',
 type: 'startsWith',
 functionality: function (chat, cmd) {
