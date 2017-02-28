@@ -3234,187 +3234,215 @@ setminihryCommand: {
                 }
             },
         
-        leavewlCommand: {
-                command: 'leavewl',
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        from = chat.uid;
-                        API.moderateRemoveDJ(from);
-                    }
-                }
-            },
-            
-            hereCommand: {
-                command: ['here', 'back'],
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        API.sendChat("[@" + chat.un + "] Sa vrátil!");
-                    }
-                }
-            },
-            
-            spamCommand: {
-                command: 'spam',
-                rank: 'manager',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        API.sendChat("@everyone !join");
-                        setTimeout(function(){ API.sendChat("[ RULETA | @everyone ] !join"); }, 2000);
-                        setTimeout(function(){ API.sendChat("@everyone !join"); }, 4000);
-                        setTimeout(function(){ API.sendChat("@everyone !join"); }, 6000);
-                    }
-                }
-            },
-            
-            skipCommand: {
-                command: 'skip',
-                rank: 'bouncer',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                    API.moderateForceSkip();
-                    }
-                }
-            },
-            
-            updateCommand: {
-                command: 'update',
-                rank: 'mod',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var msg = chat.message;
-                        API.sendChat("/me Nová verzia " + msg.substring(cmd.length + 1)+ " je dostupná!");
-                        setTimeout(function(){ API.sendChat("/me Reštart Systému!"); }, 5000); 
-                        setTimeout(function(){ API.sendChat("!refresh"); }, 10000);
-                    }
-                }
-            },
-        
-            sayCommand: {
-                command: 'say',
-                rank: 'manager',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var msg = chat.message;
-            var sprava = msg.substring(cmd.length + 1);
-                        
-            API.sendChat("[ OZNAM | @everyone ] "+ sprava +"");
-                    }
-                }
-            },
-            
-            saystaffCommand: {
-                command: 'saystaff',
-                rank: 'residentdj',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var msg = chat.message;
-            var sprava = msg.substring(cmd.length + 1);
-                        
-            API.sendChat("[ OZNAM | @staff ] "+ sprava +"");
-                    }
-                }
-            },
-        
-        discordCommand: {
-                command: 'discord',
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var from = chat.un;
-                        
-                        API.sendChat("/me Náš Discord server: https://bit.ly/MFECHAT!");
-                    }
-                }
-            },
-            
-            autowootCommand: {
-                command: ['autowoot', 'rcs'],
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var from = chat.un;
-                        
-                        API.sendChat("/me Najlepší AutoWoot na plug.dj: https://rcs.radiant.dj/install!");
-                    }
-                }
-            },
-            
-            startsystemCommand: {
-                command: 'startsystem',
-                rank: 'manager',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var from = chat.un;
-                        
-                        API.sendChat("/me Systém spustený! Verzia "+ basicBot.version +"!");
-                    }
-                }
-            },
-            
-            versionCommand: {
-                command: ['version', 'verzia'],
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var from = chat.un;
-                        
-                        API.sendChat("/me Systém je vo verzii "+ basicBot.version +"!");
-                    }
-                }
-            },
-            
-            prikazyCommand: {
-                command: ['prikazy', 'commands'],
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var from = chat.un;
-                        
-                        API.sendChat("/me Príkazy v našom Systéme: http://musicforeveryone.6f.sk/prikazy!");
-                    }
-                }
-            }
+leavewlCommand: {
+command: 'leavewl',
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
 
-        }
-    };
+fromid = chat.uid;
+API.moderateRemoveDJ(fromid);
 
-    loadChat(basicBot.startup);
+}
+}
+},
+            
+afkCommand: {
+command: ['preč', 'prec', 'pryč', 'pryc', 'afk', 'away'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else {
+
+var from = chat.un;
+var msg = chat.message;
+var dovod = msg.substring(cmd.length + 1);
+
+API.sendChat("[ AFK ] Užívateľ @"+ from +" je práve preč od klávesnice: "+ dovod +"");
+
+}
+}
+},
+
+backCommand: {
+command: ['späť', 'spet', 'zpět', 'zpet', 'back', 'here'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+API.sendChat("[ AFK ] Užívateľ @"+ from +" sa práve vrátil!");
+
+}
+}
+},
+
+/*spamCommand: {
+command: 'spam',
+rank: 'manager',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else {
+API.sendChat("@everyone !join");
+setTimeout(function(){ API.sendChat("[ RULETA | @everyone ] !join"); }, 2000);
+setTimeout(function(){ API.sendChat("@everyone !join"); }, 4000);
+setTimeout(function(){ API.sendChat("@everyone !join"); }, 6000);
+}
+}
+},*/
+
+/*skipCommand: {
+command: 'skip',
+rank: 'bouncer',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else {
+API.moderateForceSkip();
+}
+}
+},*/
+
+/*updateCommand: {
+command: 'update',
+rank: 'mod',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else {
+var msg = chat.message;
+API.sendChat("/me Nová verzia " + msg.substring(cmd.length + 1)+ " je dostupná!");
+setTimeout(function(){ API.sendChat("/me Reštart Systému!"); }, 5000); 
+setTimeout(function(){ API.sendChat("!refresh"); }, 10000);
+}
+}
+},*/
+
+alertCommand: {
+command: ['alert'. 'a', 'say'],
+rank: 'manager',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var msg = chat.message;
+var alert = msg.substring(cmd.length + 1);
+
+API.sendChat("[ OZNAM | @djs ] "+ alert +"");
+
+}
+}
+},
+
+alertstaffCommand: {
+command: ['alertstaff', 'as', 'saystaff'],
+rank: 'bouncer',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var msg = chat.message;
+var alert = msg.substring(cmd.length + 1);
+
+API.sendChat("[ OZNAM | @staff ] "+ alert +"");
+
+}
+}
+},
+
+discordCommand: {
+command: 'discord',
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+API.sendChat("[ DISCORD ] Odkaz na náš Discord je https://bit.ly/QPlugczDiscord!");
+
+}
+}
+},
+
+autowootCommand: {
+command: ['autowoot', 'aw', 'rcs'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+API.sendChat("[ AUTOWOOT ] Je program na automatické Wootovanie a pomocou neho uvidíte naše pozadie. Link https://rcs.radiant.dj/install!");
+
+}
+}
+},
+
+startsystemCommand: {
+command: 'startsystem',
+rank: 'manager',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+API.sendChat("[ QPlug.cz ] Systém spustený! Verzia "+ basicBot.version +"! Použite !prikazy pre zoznam príkazov.");
+
+}
+}
+},
+
+versionCommand: {
+command: ['verzia', 'verze', 'version'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+API.sendChat("[ QPlug.cz ] Verzia našeho systému je aktuálne "+ basicBot.version +"!");
+
+}
+}
+},
+
+prikazyCommand: {
+command: ['prikazy', 'príkazy', 'přikazy', 'příkazy', 'command', 'commands', 'cmd', 'cmds'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+/*API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na !");*/
+API.sendChat("[ CHYBA 404 ] Tento príkaz je vo vývoji.");
+
+}
+}
+}
+
+}
+};
+
+loadChat(basicBot.startup);
 }).call(this);
