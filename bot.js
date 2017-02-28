@@ -351,25 +351,25 @@
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 9) + 1);
                         basicBot.room.tipovacka.max = 10;
               
-            API.sendChat('[ LOTERIE ] Uhodněte zvolené číslo v rozmezí 1 až ' + basicBot.room.tipovacka.max + ' a vyhrajte 35€! Hraje se pomocí !los číslo. Los stojí 5 bodů!');  
+            API.sendChat('[ LOTERIE ] Uhodněte zvolené číslo v rozmezí 1 až ' + basicBot.room.tipovacka.max + ' a vyhrajte 60 QCoins! Hraje se pomocí !los číslo. Los stojí 10 QCoins.');  
                     }
                     if (basicBot.room.tipovacka.obtiznost == 2) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 24) + 1);
                         basicBot.room.tipovacka.max = 25;
-            API.sendChat('[ LOTERIE ] Uhodněte zvolené číslo v rozmezí 1 až ' + basicBot.room.tipovacka.max + ' a vyhrajte 70€! Hraje se pomocí !los číslo. Los stojí 5 bodů!'); 
+            API.sendChat('[ LOTERIE ] Uhodněte zvolené číslo v rozmezí 1 až ' + basicBot.room.tipovacka.max + ' a vyhrajte 150 QCoins! Hraje se pomocí !los číslo. Los stojí 10 QCoins.'); 
              
                     }
             if (basicBot.room.tipovacka.obtiznost == 3) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 49) + 1);
                         basicBot.room.tipovacka.max = 50;
              
-            API.sendChat('[ LOTERIE ] Uhodněte zvolené číslo v rozmezí 1 až ' + basicBot.room.tipovacka.max + ' a vyhrajte 140€! Hraje se pomocí !los číslo. Los stojí 5 bodů!'); 
+            API.sendChat('[ LOTERIE ] Uhodněte zvolené číslo v rozmezí 1 až ' + basicBot.room.tipovacka.max + ' a vyhrajte 400 QCoins! Hraje se pomocí !los číslo. Los stojí 10 QCoins.'); 
                     }
                     if (basicBot.room.tipovacka.obtiznost == 4) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 99) + 1);
                         basicBot.room.tipovacka.max = 100;
                     
-                    API.sendChat('[ LOTERIE ] Uhodněte zvolené číslo v rozmezí 1 až ' + basicBot.room.tipovacka.max + ' a vyhrajte 300€! Hraje se pomocí !los číslo. Los stojí 5 bodů!');
+                    API.sendChat('[ LOTERIE ] Uhodněte zvolené číslo v rozmezí 1 až ' + basicBot.room.tipovacka.max + ' a vyhrajte 900 QCoins! Hraje se pomocí !los číslo. Los stojí 10 QCoins.');
           }      
     },      
                 endNumberGameTime: function() {
@@ -393,33 +393,33 @@
                             basicBot.room.tipovacka.active = false;
                             basicBot.room.tipovacka.max = 0;
                 var receiverTokens = validateTokens(name);
-                    var penize = parseInt(receiverTokens, 10) + parseInt(35,10);
+                    var penize = parseInt(receiverTokens, 10) + parseInt(60,10);
                     localStorage.setItem(name, penize);
-                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 35€ s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
+                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 60 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
                             basicBot.room.tipovacka.currentNumber = 0;
             } else if (basicBot.room.tipovacka.obtiznost == 2) {
               basicBot.room.tipovacka.active = false;
                             basicBot.room.tipovacka.max = 0;
                 var receiverTokens = validateTokens(name);
-                    var penize2 = parseInt(receiverTokens, 10) + parseInt(70,10);
+                    var penize2 = parseInt(receiverTokens, 10) + parseInt(150,10);
                     localStorage.setItem(name, penize2);
-                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 70€ s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
+                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 150 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
                        
               } else if (basicBot.room.tipovacka.obtiznost == 3) {
               basicBot.room.tipovacka.active = false;
                             basicBot.room.tipovacka.max = 0;
                 var receiverTokens = validateTokens(name);
-                    var penize3 = parseInt(receiverTokens, 10) + parseInt(140,10);
+                    var penize3 = parseInt(receiverTokens, 10) + parseInt(400,10);
                     localStorage.setItem(name, penize3);
-                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 140€ s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
+                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 400 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
                        
             } else if (basicBot.room.tipovacka.obtiznost == 4) {
               basicBot.room.tipovacka.active = false;
                             basicBot.room.tipovacka.max = 0;
                 var receiverTokens = validateTokens(name);
-                    var penize3 = parseInt(receiverTokens, 10) + parseInt(300,10);
+                    var penize3 = parseInt(receiverTokens, 10) + parseInt(900,10);
                     localStorage.setItem(name, penize3);
-                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 300€ s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
+                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 900 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
                        }  
                     else {
                         return false; 
@@ -1783,8 +1783,8 @@ dclookupOnUserJoin: function (id) {
                 }
             }
         },
-      darekCommand: {
-            command: ['darek', 'darcek'],  //The command to be called. With the standard command literal this would be: !tip
+      poslatCommand: {
+            command: ['poslat'],  //The command to be called. With the standard command literal this would be: !tip
             rank: 'user', //Minimum user permission to use the command
             type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
             functionality: function (chat, cmd) {
@@ -1815,18 +1815,18 @@ dclookupOnUserJoin: function (id) {
                     var msg = chat.message; 
                     var space = msg.indexOf(' ');
             var lastSpace = msg.lastIndexOf(' ');
-                    var receiver = msg.substring(lastSpace + 2);
+                    var receiver = parseInt(msg.substring(cmd.length + 1, lastSpace)); 
                     var giverTokens = validateTokens(chat.un);
                     var receiverTokens = validateTokens(receiver);
-            var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
+            var strhnout = msg.substring(lastSpace + 2);
                     var currentDJ = API.getDJ().username; 
             var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
             
                     if (giverTokens < strhnout) {
-                        return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek bodů k zaslání dárku!"); 
+                        return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek QCoins k zaslání dárku!"); 
                     }
                          else if (receiver === chat.un) {
-                         return API.sendChat("[@" + chat.un + "] Nemůžeš posílat body sám sobě!");
+                         return API.sendChat("[@" + chat.un + "] Nemůžeš posílat QCoins sám sobě!");
                             
                     }
                     else {
@@ -1834,11 +1834,11 @@ dclookupOnUserJoin: function (id) {
                         localStorage.setItem(chat.un, giverTokens);
                         if (space === -1) { 
                             localStorage.setItem(currentDJ, cislo);
-                            return API.sendChat("/me [ DÁREK ] " + chat.un + " poslal/a " + strhnout + " bodů " + currentDJ + "");
+                            return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QCoins uživateli " + currentDJ + "");
                         }
                         else {
                             localStorage.setItem(receiver, cislo);
-                            return API.sendChat("/me [ DÁREK ] " + chat.un + " poslal/a " + strhnout + " bodů " + receiver + "");
+                            return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QCoins uživateli " + receiver + "");
                             
                         
         
@@ -1945,17 +1945,17 @@ dclookupOnUserJoin: function (id) {
                      var gni = parseInt(gn);
                     var giverTokens = validateTokens(chat.un);
             
-                    if (giverTokens < 5) {
-                        return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek bodů na zakoupení losu. Los stojí 5 bodů"); 
+                    if (giverTokens < 10) {
+                        return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek QCoins na zakoupení losu. Los stojí 10 QCoins."); 
                     }
                         if (gni === basicBot.room.tipovacka.currentNumber || gn === basicBot.room.tipovacka.currentNumber.toString()) {
                             basicBot.room.tipovacka.endNumberGame(chat.uid);
              
                   
                         } else {
-                 giverTokens -= 5;
+                 giverTokens -= 10;
                         localStorage.setItem(chat.un, giverTokens);
-                            API.sendChat('/me [@' + chat.un + '] Nevýherní los: ' + gni + '');
+                            API.sendChat('/me [@' + chat.un + '] Zakoupen nevýherní los: ' + gni + '');
                         
                         
             
@@ -2010,11 +2010,11 @@ dclookupOnUserJoin: function (id) {
                         localStorage.setItem(chat.un, giverTokens);
                         if (space === -1) { 
                             localStorage.setItem(currentDJ, cislo);
-                            return API.sendChat("/me [@" + currentDJ + "] Bylo vám přičteno na účet " + strhnout + " bodů administrátorem " + chat.un + " Nyní máte " + cislo + " bodů");
+                            return API.sendChat("/me [@" + currentDJ + "] Bylo vám přičteno na účet " + strhnout + " QCoins.");
                         }
                         else {
                             localStorage.setItem(receiver, cislo);
-                            return API.sendChat("/me [@" + receiver + "] Bylo vám přičteno na účet " + strhnout + " bodů administrátorem " + chat.un + ". Nyní máte " + cislo + " bodů");
+                            return API.sendChat("/me [@" + receiver + "] Bylo vám přičteno na účet " + strhnout + " QCoins.");
                             
                         
         
@@ -2074,11 +2074,11 @@ dclookupOnUserJoin: function (id) {
                         localStorage.setItem(chat.un, giverTokens);
                         if (space === -1) { 
                             localStorage.setItem(currentDJ, cislo);
-                            return API.sendChat("/me [@" + currentDJ + "] Bylo vám strženo z účtu " + strhnout + " bodů administrátorem " + chat.un + " Nyní máte " + cislo + " bodů");
+                            return API.sendChat("/me [@" + currentDJ + "] Bylo vám strženo z účtu " + strhnout + " QCoins.");
                         }
                         else {
                             localStorage.setItem(receiver, cislo);
-                            return API.sendChat("/me [@" + receiver + "] Bylo vám strženo z účtu " + strhnout + " bodů administrátorem " + chat.un + ". Nyní máte " + cislo + " bodů");
+                            return API.sendChat("/me [@" + receiver + "] Bylo vám strženo z účtu " + strhnout + " QCoins.");
                             
                         
         
@@ -2125,12 +2125,12 @@ dclookupOnUserJoin: function (id) {
                     var giverTokens = validateTokens(chat.un);
             
                     if (giverTokens <= 49) {
-                        return API.sendChat("[@" + chat.un + "] Nemáš dostatek bodů k zaplacení vlastního odznaku na přání. Nákup stojí 50 bodů"); 
+                        return API.sendChat("[@" + chat.un + "] Nemáš dostatek QCoins. k zaplacení vlastního odznaku na přání. Nákup stojí 50 QCoins."); 
                     }
                     else {
                         giverTokens -= 50;
                         localStorage.setItem(chat.un, giverTokens);
-                            return API.sendChat("[ OBCHOD ] " + chat.un + " si právě zakoupil/a vlastní odznak na přání. Napiš @♔Kevinko68♔ a domluv se na odznaku. Jestliže není online, vyscreenuj si platbu.");
+                            return API.sendChat("[ OBCHOD ] Uživatel " + chat.un + " si zakoupil vlastní odznak na přání.");
                     }
             }
         }, 
@@ -2188,12 +2188,12 @@ dclookupOnUserJoin: function (id) {
             
             
                     if (giverTokens <= 199) {
-                        return API.sendChat("[@" + zakaznik + "] Nemáš dostatek bodů k zaplacení 1. pozice ve frontě. Nákup stojí 200 bodů"); 
+                        return API.sendChat("[@" + zakaznik + "] Nemáš dostatek QCoins k zaplacení 1. pozice ve frontě. Nákup stojí 200 QCoins."); 
                     }
                     else {
                         giverTokens -= 200;
                         localStorage.setItem(chat.un, giverTokens);
-                            return API.sendChat("[ OBCHOD ] " + zakaznik + " si právě zakoupil/a 1. pozici ve frontě!");
+                            return API.sendChat("[ OBCHOD ] Uživatel " + zakaznik + " si zakoupil první pozici ve frontě.");
                 API.moderateMoveDJ(zakaznik, 1);
                     }
             }
@@ -2247,12 +2247,12 @@ dclookupOnUserJoin: function (id) {
                              receiverTokens -= 0;
                 
                             localStorage.setItem(currentDJ, receiverTokens);
-                            return API.sendChat("/me [@" + chat.un + "] Účet " + currentDJ + ": " + receiverTokens + " bodů"); 
+                            return API.sendChat("/me [@" + chat.un + "] Účet " + currentDJ + ": " + receiverTokens + " QCoins"); 
                         }
                         else {
                      receiverTokens -= 0;
                             localStorage.setItem(receiver, receiverTokens);
-                            return API.sendChat("/me [@" + chat.un + "] Účet " + receiver + ": " + receiverTokens + " bodů");
+                            return API.sendChat("/me [@" + chat.un + "] Účet " + receiver + ": " + receiverTokens + " QCoins");
                             
                    
                          
@@ -2275,7 +2275,7 @@ dclookupOnUserJoin: function (id) {
                     var user = chat.un;
                     var tokens = validateTokens(user);
                     
-                    API.sendChat("/me [@" + user + "] Máš " + tokens + " bodů");
+                    API.sendChat("/me [@" + user + "] Máš " + tokens + " QCoins");
             }
         
         //Validate Tokens
@@ -2312,7 +2312,7 @@ dclookupOnUserJoin: function (id) {
         else {
         
                         if (!basicBot.settings.minihry) {
-                return API.sendChat("/me [@" + chat.un + "] Minihry jsou vypnuté. Kontaktuj někoho z !admins"); 
+                return API.sendChat("/me [@" + chat.un + "] Automaty jsou vypnuté."); 
             }
                     var msg = chat.message; 
                     var space = msg.indexOf(' ');
