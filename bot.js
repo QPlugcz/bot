@@ -968,15 +968,14 @@ dclookupOnUserJoin: function (id) {
                 if (basicBot.room.users[i].id === obj.user.id) {
                     if (obj.vote === 1) {
                         basicBot.room.users[i].votes.woot++;
-            var receiverTokens = validateTokens(obj.user.username);
-           var wootpenize = parseInt(receiverTokens, 10) + parseInt(1,10);
-           localStorage.setItem(obj.user.username, wootpenize);
                     }
                     else {
                         basicBot.room.users[i].votes.meh++;
             var receiverTokens = validateTokens(obj.user.username);
            receiverTokens -= 1;
            localStorage.setItem(obj.user.username, receiverTokens);
+           API.sendChat("/me [" + obj.user.username + "] Ztratil/a jsi 1 QCoins za mehnutí písně!");
+           
                     }
                 }
             }
@@ -1015,7 +1014,7 @@ dclookupOnUserJoin: function (id) {
         
         if(obj.lastPlay != null)
             {           
-            var reward = (obj.lastPlay.score.positive * 1) + (obj.lastPlay.score.grabs * 5) - (obj.lastPlay.score.negative * 1);
+            var reward = (obj.lastPlay.score.positive * 1) + (obj.lastPlay.score.grabs * 2) - (obj.lastPlay.score.negative * 1);
             var lastdjplayed = basicBot.userUtilities.lookupUser(obj.lastPlay.dj.id);
             var msg = chat.message;
                     var receiverTokens = validateTokens(lastdjplayed.username);
@@ -1023,11 +1022,11 @@ dclookupOnUserJoin: function (id) {
             
             
 
-           if (Math.round(API.getWaitList().length * 1) >= 2) {
+           
        localStorage.setItem(lastdjplayed.username, cislo);
-           API.sendChat("/me [" + lastdjplayed.username + "] Získal/a jsi " + reward + " bodů za odehrání písně!");
-           } else { 
-        }
+           API.sendChat("/me [" + lastdjplayed.username + "] Získal/a jsi " + reward + " QCoins za odehrání písně!");
+           
+        
          }   
         
         if (basicBot.settings.autowoot) {
