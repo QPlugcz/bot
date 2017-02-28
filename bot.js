@@ -3114,112 +3114,134 @@ setminihryCommand: {
                 }
             },
             
-            rulesCommand: {
-                command: ['rules', 'pravidla'],
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var sprava = chat.message;
+rulesCommand: {
+command: ['pravidla', 'pravidlá', 'rules'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
 
-                        var medzera = sprava.indexOf(' ');
-                        if(medzera === -1) {
-                            API.sendChat("[@" + chat.un + "] Naše pravidlá: http://musicforeveryone.6f.sk/pravidla!");
-                            return false;
-                        }
-                        else {
-                            var meno = sprava.substring(medzera + 2);
-                            var user = basicBot.userUtilities.lookupUserName(meno);
-                            if(user === false || !user.inRoom) {
-                                return API.sendChat("[@" + chat.un + "] Nevidím tohto užívateľa v komunite!");
-                            }
-                            else if(user.username === chat.un) {
-                                return API.sendChat("[@" + chat.un + "] Naše pravidlá: http://musicforeveryone.6f.sk/pravidla!");
-                            }
-                            else {
-                                return API.sendChat("[@" + user.username + "] Naše pravidlá: http://musicforeveryone.6f.sk/pravidla!");
-                            }
-                        }
-                    }
-                }
-            },
-            
-            loveCommand: {
-                command: ['love', 'laska'],
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var random = Math.floor((Math.random() * 100) + 1);
-                        var sprava = chat.message;
+var from = chat.un;
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
 
-                        var medzera = sprava.indexOf(' ');
-                        if(medzera === -1) {
-                            API.sendChat("[@" + chat.un + "] Miluješ seba?");
-                            return false;
-                        }
-                        else {
-                            var meno = sprava.substring(medzera + 2);
-                            var user = basicBot.userUtilities.lookupUserName(meno);
-                            if(user === false || !user.inRoom) {
-                                return API.sendChat("[@" + chat.un + "] Nevidím tohto užívateľa v komunite!");
-                            }
-                            else if(user.username === chat.un) {
-                                return API.sendChat("[@" + chat.un + "] Miluješ seba?");
-                            }
-                            else {
-                                return API.sendChat("@" + chat.un + ", miluje @" + user.username + " na " + random + "%! :two_hearts:");
-                            }
-                        }
-                    }
-                }
-            },
+if(medzera === -1){
+API.sendChat("[@" + from + "] Naše pravidlá najdeš na http://musicforeveryone.6f.sk/pravidla!");
+return false;
+}
+
+else{
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if(user === false || !user.inRoom){
+return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
+}
+
+else if(user.username === chat.un){
+return API.sendChat("[@" + from + "] Naše pravidlá najdeš na http://musicforeveryone.6f.sk/pravidla!");
+}
+
+else{
+return API.sendChat("[@" + user.username + "] Naše pravidlá najdeš na http://musicforeveryone.6f.sk/pravidla!");
+}
+
+}
+
+}
+}
+},
             
-            naborCommand: {
-                command: 'nabor',
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        API.moderateDeleteChat(chat.cid);
-                        API.sendChat("/me Prihlášku na nábor posielajte tu: http://musicforeveryone.6f.sk/nabor!");
-                    }
-                }
-            },
+loveCommand: {
+command: ['love', 'laska', 'láska'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var from = chat.un;
+var random = Math.floor((Math.random() * 100) + 1);
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if(medzera === -1){
+API.sendChat("[@" + from + "] Miluješ sa?");
+return false;
+}
+
+else{
+
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if(user === false || !user.inRoom){
+return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
+}
+
+else if(user.username === from){
+return API.sendChat("[@" + from + "] Miluješ sa?");
+}
+
+else{
+return API.sendChat("@" + from + ", miluje @" + user.username + " na " + random + "%! :two_hearts:");
+}
+
+}
+
+}
+}
+},
+
+naborCommand: {
+command: ['nabor', 'nábor'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+API.sendChat("[ NÁBOR ] Aktuálne prebieha Nábor do týmu, ktorý najdeš na!");
+
+}
+}
+},
             
-            facebookCommand: {
-                command: ['facebook', 'fb'],
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        API.moderateDeleteChat(chat.cid);
-                        API.sendChat("/me Nájdete nás aj na Facebooku: https://bit.ly/MFEFB! Máme aj Facebook skupinu: https://bit.ly/MFEGROUP!");
-                    }
-                }
-            },
+facebookCommand: {
+command: ['facebook', 'fb'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+API.sendChat("[ FACEBOOK ] Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!");
+
+}
+}
+},
             
-            joinwlCommand: {
-                command: 'joinwl',
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        from = chat.uid;
-                        API.moderateAddDJ(from);
-                    }
-                }
-            },
+joinwlCommand: {
+command: 'joinwl',
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var fromid = chat.uid;
+
+API.moderateAddDJ(fromid);
+
+}
+}
+},
         
 leavewlCommand: {
 command: 'leavewl',
