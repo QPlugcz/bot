@@ -2979,43 +2979,58 @@ setminihryCommand: {
                 }
             },
 
-            swapCommand: {
-                command: 'swap',
-                rank: 'bouncer',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var msg = chat.message;
-                        if (msg.length === cmd.length) return API.sendChat(subChat(basicBot.chat.nouserspecified, {name: chat.un}));
-                        var firstSpace = msg.indexOf(' ');
-                        var lastSpace = msg.lastIndexOf(' ');
-                        var name1 = msg.substring(cmd.length + 2, lastSpace);
-                        var name2 = msg.substring(lastSpace + 2);
-                        var user1 = basicBot.userUtilities.lookupUserName(name1);
-                        var user2 = basicBot.userUtilities.lookupUserName(name2);
-                        if (typeof user1 === 'boolean' || typeof user2 === 'boolean') return API.sendChat(subChat(basicBot.chat.swapinvalid, {name: chat.un}));
-                        if (user1.id === basicBot.loggedInID || user2.id === basicBot.loggedInID) return API.sendChat(subChat(basicBot.chat.addbottowaitlist, {name: chat.un}));
-                        var p1 = API.getWaitListPosition(user1.id) + 1;
-                        var p2 = API.getWaitListPosition(user2.id) + 1;
-                        if (p1 < 0 || p2 < 0) return API.sendChat(subChat(basicBot.chat.swapwlonly, {name: chat.un}));
-                        API.sendChat(subChat(basicBot.chat.swapping, {'name1': name1, 'name2': name2}));
-                        if (p1 < p2) {
-                            basicBot.userUtilities.moveUser(user2.id, p1, false);
-                            setTimeout(function (user1, p2) {
-                                basicBot.userUtilities.moveUser(user1.id, p2, false);
-                            }, 2000, user1, p2);
-                        }
-                        else {
-                            basicBot.userUtilities.moveUser(user1.id, p2, false);
-                            setTimeout(function (user2, p1) {
-                                basicBot.userUtilities.moveUser(user2.id, p1, false);
-                            }, 2000, user2, p1);
-                        }
-                    }
-                }
-            },
+swapCommand: {
+command: ['prehodiť', 'prehodit', 'vymeniť', 'vymenit', 'swap'],
+rank: 'bouncer',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var msg = chat.message;
+
+if (msg.length === cmd.length) return API.sendChat(subChat(basicBot.chat.nouserspecified, {name: chat.un}));
+
+var firstSpace = msg.indexOf(' ');
+var lastSpace = msg.lastIndexOf(' ');
+var name1 = msg.substring(cmd.length + 2, lastSpace);
+var name2 = msg.substring(lastSpace + 2);
+var user1 = basicBot.userUtilities.lookupUserName(name1);
+var user2 = basicBot.userUtilities.lookupUserName(name2);
+
+if (typeof user1 === 'boolean' || typeof user2 === 'boolean') return API.sendChat(subChat(basicBot.chat.swapinvalid, {name: chat.un}));
+
+if (user1.id === basicBot.loggedInID || user2.id === basicBot.loggedInID) return API.sendChat(subChat(basicBot.chat.addbottowaitlist, {name: chat.un}));
+
+var p1 = API.getWaitListPosition(user1.id) + 1;
+var p2 = API.getWaitListPosition(user2.id) + 1;
+
+if (p1 < 0 || p2 < 0) return API.sendChat(subChat(basicBot.chat.swapwlonly, {name: chat.un}));
+
+API.sendChat(subChat(basicBot.chat.swapping, {'name1': name1, 'name2': name2}));
+
+if (p1 < p2){
+basicBot.userUtilities.moveUser(user2.id, p1, false);
+
+setTimeout(function (user1, p2){
+basicBot.userUtilities.moveUser(user1.id, p2, false);
+}, 2000, user1, p2);
+
+}
+
+else{
+basicBot.userUtilities.moveUser(user1.id, p2, false);
+
+setTimeout(function (user2, p1){
+basicBot.userUtilities.moveUser(user2.id, p1, false);
+}, 2000, user2, p1);
+
+}
+
+}
+}
+},
         
 lockchatCommand: {
 command: 'lockchat',
