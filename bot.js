@@ -2273,10 +2273,10 @@ dclookupOnUserJoin: function (id) {
                 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                 else {
                     
-                    var from = chat.un;
+                    var user = chat.un;
                     var tokens = validateTokens(user);
                     
-                    API.sendChat("[@" + from + "] Máš "+ tokens +" QCoins!");
+                    API.sendChat("[@"+ user +"] Máš "+ tokens +" QCoins!");
             }
         
         //Validate Tokens
