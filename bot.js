@@ -1777,7 +1777,7 @@ dclookupOnUserJoin: function (id) {
                 else {
                 var user = chat.un;
                     localStorage.clear();
-                    API.sendChat("[ OZNAM | @everyone ] Vedoucí administrátor " + user + " resetoval body celé komunitě.");
+                    API.sendChat("[ OZNAM | @everyone ] Vedení místnosti resetovalo QCoins všem uživatelům.");
                     
                     
                 }
@@ -1815,10 +1815,10 @@ dclookupOnUserJoin: function (id) {
                     var msg = chat.message; 
                     var space = msg.indexOf(' ');
             var lastSpace = msg.lastIndexOf(' ');
-                    var receiver = parseInt(msg.substring(cmd.length + 1, lastSpace)); 
+                    var receiver = msg.substring(lastSpace + 2);
                     var giverTokens = validateTokens(chat.un);
                     var receiverTokens = validateTokens(receiver);
-            var strhnout = msg.substring(lastSpace + 2);
+            var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
                     var currentDJ = API.getDJ().username; 
             var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
             
@@ -1897,19 +1897,19 @@ dclookupOnUserJoin: function (id) {
                         basicBot.room.tipovacka.obtiznost = gni;
                         var tos = "undefined";
                         if (gni === 1) {
-                            tos = "lehkou";
+                            tos = "lehkou obtížnost. (1-10)";
                         }
                         if (gni === 2) {
-                            tos = "střední";
+                            tos = "střední obtížnost. (1-25)";
                         }
                         if (gni === 3) {
-                            tos = "těžkou";
+                            tos = "těžkou obtížnost. (1-50)";
                         }
             
                         if (gni === 4) {
-                            tos = "extrémní";
+                            tos = "extrémní obtížnost. (1-100)";
                         }
-                        API.sendChat('/me [@' + from + '] Loterie nastavena na ' + tos + ' obtížnost');
+                        API.sendChat('/me [@' + from + '] Loterie nastavena na ' + tos + '');
                     }
                 },
         losCommand: {
