@@ -3048,8 +3048,8 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-var msg = data.message;
-var from = data.un;
+var msg = chat.message;
+var from = chat.un;
 
 var cicina = Math.floor((Math.random() * 40) + 1);
 var sexy = Math.floor((Math.random() * 100) + 1);
@@ -3071,8 +3071,8 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-var msg = data.message;
-var from = data.un;
+var msg = chat.message;
+var from = chat.un;
 
 var datum = new Date();
 var denVTydnu = new Array("Nedeľa","Pondelok", "Utorok", "Streda", "Štvrtok", "konečne Piatok", "Sobota");
