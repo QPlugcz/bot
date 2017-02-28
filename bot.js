@@ -2265,17 +2265,18 @@ dclookupOnUserJoin: function (id) {
                     
                     
         bodyCommand: {
-            command: ['body','points'],
+            command: ['qcoiny','qcoins', 'qc'],
             rank: 'user', //Minimum user permission to use the command
             type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
             functionality: function (chat, cmd) {
                 if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                 else {
-                    var user = chat.un;
+                    
+                    var from = chat.un;
                     var tokens = validateTokens(user);
                     
-                    API.sendChat("/me [@" + user + "] Máš " + tokens + " QCoins");
+                    API.sendChat("[@" + from + "] Máš "+ tokens +" QCoins!");
             }
         
         //Validate Tokens
