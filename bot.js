@@ -2758,7 +2758,7 @@ API.sendChat(subChat(basicBot.chat.roulettejoin, {name: chat.un}));
 
 
 jointimeCommand: {
-command: 'jointime',
+command: ['jointime', 'active'],
 rank: 'bouncer',
 type: 'startsWith',
 functionality: function (chat, cmd) {
@@ -2928,7 +2928,7 @@ return API.sendChat("/me [ OZNAM | @djs ] Minihry jsou nyní zapnuté.");
 },
             
 statusCommand: {
-command: 'status',
+command: ['status', 'funkcie'],
 rank: 'bouncer',
 type: 'exact',
 functionality: function (chat, cmd) {
