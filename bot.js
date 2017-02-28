@@ -2185,6 +2185,7 @@ dclookupOnUserJoin: function (id) {
                     var msg = chat.message; 
                     var giverTokens = validateTokens(chat.un);
             var zakaznik = chat.un;
+                var fromid = chat.uid;
             
             
                     if (giverTokens <= 199) {
@@ -2194,7 +2195,7 @@ dclookupOnUserJoin: function (id) {
                         giverTokens -= 200;
                         localStorage.setItem(chat.un, giverTokens);
                             return API.sendChat("[ OBCHOD ] Uživatel " + zakaznik + " si zakoupil první pozici ve frontě.");
-                API.moderateMoveDJ(zakaznik, 1);
+                API.moderateMoveDJ(fromid, 1);
                     }
             }
         }, 
