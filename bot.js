@@ -3016,103 +3016,80 @@ setminihryCommand: {
                     }
                 }
             },
+        
+lockchatCommand: {
+command: 'lockchat',
+rank: 'manager',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
 
-        
-            lockdownCommand: {
-                command: 'lockchat',
-                rank: 'mod',
-                type: 'exact',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var temp = basicBot.settings.lockdownEnabled;
-                        basicBot.settings.lockdownEnabled = !temp;
-                        if (basicBot.settings.lockdownEnabled) {
-                            return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.lockdown}));
-                        }
-                        else return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.lockdown}));
-                    }
-                }
-            },
+var temp = basicBot.settings.lockdownEnabled;
+basicBot.settings.lockdownEnabled = !temp;
 
-    
-        
-    
-            jaCommand: {
-                command: ['ja','já'],
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var sexy = Math.floor((Math.random() * 100) + 1);
-            var iq = Math.floor((Math.random() * 180) + 1);
-            var iqrohlik = Math.floor((Math.random() * 10000) + 740);
-            var cicina = Math.floor((Math.random() * 40) + 1);
-            var NALADAMsg = ['Naštvaný/á','Klidný/á','Nadržený/á','Vzteklý/á','Bláznivý/á','Hodný/á', "Vznětlivý/á","Skleslý/á","Vtipný/á"];
-                        var from = chat.un;
-            var msg = chat.message;
-                        var fromid = chat.uid;
- 
-                        if(msg.indexOf("!ja") !== -1){
-                        if(fromid == "13957324"){
-                        API.sendChat("[@" + from + "] Tvoje IQ: " + iq + " | Jsi sexy na " + sexy + "% | Aktuální nálada: " + NALADAMsg[Math.floor(Math.random() * NALADAMsg.length)]); 
-             }  
-                }
-            if(msg.indexOf("!ja") !== -1){
-                        if(fromid == "5032556"){
-                        API.sendChat("[@" + from + "] Tvoje IQ: " + iq + " | Jsi sexy na " + sexy + "% | Tvoja cicina má " + cicina  + " cm | Aktuální nálada: " + NALADAMsg[Math.floor(Math.random() * NALADAMsg.length)]);    
-             }  
-                } 
-            if(msg.indexOf("!ja") !== -1){
-                        if(fromid == "5351087"){
-                        API.sendChat("[@" + from + "] Tvoje IQ: " + iq + " | Jsi sexy na " + sexy + "% | Aktuální nálada: " + NALADAMsg[Math.floor(Math.random() * NALADAMsg.length)]); 
-             }  
-                }
-            if(msg.indexOf("!ja") !== -1){
-                        if(fromid == "6345878"){
-                        API.sendChat("[@" + from + "] Tvoje IQ: " + iq + " | Jsi sexy na " + sexy + "% | Aktuální nálada: " + NALADAMsg[Math.floor(Math.random() * NALADAMsg.length)]); 
-             }  
-                }
-            if(msg.indexOf("!ja") !== -1){
-                        if(fromid == "3821094"){
-                        API.sendChat("[@" + from + "] Tvoje IQ: " + iqrohlik + " | Jsi sexy na 69% | Tvoja cicina má " + cicina  + " km | Aktuální nálada: Na šéfa");
-            } else {    
-                        API.sendChat("[@" + from + "] Tvoje IQ: " + iq + " | Jsi sexy na " + sexy + "% | Tvoja cicina má " + cicina  + " cm | Aktuální nálada: " + NALADAMsg[Math.floor(Math.random() * NALADAMsg.length)]);
-             }  
-                    }
-                   }
-        }
-                },
-        
-            
-            kolostestiCommand: {
-                command: 'kolostesti',
-                rank: 'user',
-                type: 'exact',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        API.sendChat("/me Kolo štěstí probíhá každou hodinu. Náhodně vybraný uživatel bude posunut na 1. pozici ve frontě! Přejeme hodně štěstí!");
-                    }
-                }
-            },
-        
-       automatyhelpCommand: {
-                command: 'automatyhelp',
-                rank: 'user',
-                type: 'exact',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        API.sendChat("/me Do virtuálnych automatov sa môže vsadiť nahrané peniaze za hranie pesničiek len u nás! Príkazom !automat 'body' vsadíte do automatu.");
-                    }
-                }
-            },
+if (basicBot.settings.lockdownEnabled){
+return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.lockdown}));
+}
+
+else return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.lockdown}));
+
+}
+}
+},
+
+jaCommand: {
+command: ['ja','já', 'cicina', 'iq', 'sexy', 'nálada', 'nalada'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var msg = data.message;
+var from = data.un;
+
+var cicina = Math.floor((Math.random() * 40) + 1);
+var sexy = Math.floor((Math.random() * 100) + 1);
+var iq = Math.floor((Math.random() * 180) + 1);
+var nalada = ["Naštvaný/á.", "Kludný/á.", "Nadržený/á.", "Vzteklý/á.", "Bláznivý/á.", "Hodný/á.", "Radostný/á.", "Skleslý/á.", "Vtipný/á.", "Smutný/á."];
+
+API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
+
+}
+}
+},
+
+dayCommand: {
+command: ['dnes','today', 'teraz', 'now', 'deň', 'den', 'day'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var msg = data.message;
+var from = data.un;
+
+var datum = new Date();
+var denVTydnu = new Array("Nedeľa","Pondelok", "Utorok", "Streda", "Štvrtok", "konečne Piatok", "Sobota");
+var retazec = "[@"+ from +"] Dnes je ";
+retazec += denVTydnu[datum.getDay()] + ", ";
+retazec += datum.getDate() + ".";
+retazec += (1 + datum.getMonth()) + ".";
+retazec += datum.getFullYear() + ". ";
+retazec += "Čas: " + datum.getHours() + ":";
+retazec += datum.getMinutes();
+retazec += ". ";
+retazec += "Prajeme pekne prežitý deň. <3";
+API.sendChat( retazec );
+
+}
+}
+},
             
 rulesCommand: {
 command: ['pravidla', 'pravidlá', 'rules'],
