@@ -2195,7 +2195,7 @@ dclookupOnUserJoin: function (id) {
                         giverTokens -= 200;
                         localStorage.setItem(chat.un, giverTokens);
                             return API.sendChat("[ OBCHOD ] Uživatel " + zakaznik + " si zakoupil první pozici ve frontě.");
-                API.moderateMoveDJ(fromid, 1);
+                            basicBot.userUtilities.moveUser(zakaznik, 1, false);
                     }
             }
         }, 
