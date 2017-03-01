@@ -98,7 +98,7 @@
     var loadChat = function (cb) {
         if (!cb) cb = function () {
         };
-        $.get("https://raw.githubusercontent.com/FALSEYING/MFEBOT/master/langs.json", function (json) {
+        $.get("https://rawgit.com/QPlugcz/QBot/master/package/languages.json", function (json) {
             var link = basicBot.chatLink;
             if (json !== null && typeof json !== "undefined") {
                 langIndex = json;
@@ -260,15 +260,15 @@
         loggedInID: null,
         scriptLink: "https://rawgit.com/FALSEYING/MFEBOT/master/system.js",
         cmdLink: "https://musicforeveryone.6f.sk/prikazy",
-        chatLink: "https://raw.githubusercontent.com/FALSEYING/MFEBOT/master/en.json",
+        chatLink: "https://rawgit.com/QPlugcz/QBot/master/package/qplugcz.json",
         chat: null,
         loadChat: loadChat,
         retrieveSettings: retrieveSettings,
         retrieveFromStorage: retrieveFromStorage,
         settings: {
             botName: "MFEBOT",
-            language: "mfe",
-            chatLink: "https://raw.githubusercontent.com/FALSEYING/MFEBOT/master/en.json",
+            language: "qplugcz",
+            chatLink: "https://rawgit.com/QPlugcz/QBot/master/package/qplugcz.json",
             scriptLink: "https://rawgit.com/FALSEYING/MFEBOT/master/system.js",
             roomLock: false, // Requires an extension to re-load the script
             startupCap: 1, // 1-200
@@ -287,7 +287,7 @@
             usercommandsEnabled: true,
             thorCommand: true,
             thorCooldown: 5,
-        nahodaCommand: true,
+            nahodaCommand: true,
             nahodaCooldown: 30,
             skipPosition: 2,
             filterChat: true,
