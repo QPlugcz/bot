@@ -3506,3 +3506,168 @@ API.sendChat("[ CHYBA 404 ] Tento príkaz je vo vývoji.");
 
 loadChat(basicBot.startup);
 }).call(this);
+
+var msgs=[
+"/me Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!",
+"/me Nezabudnite nás zdielať po sociálnych sieťach! Za určitý počet dosiahnutých ľudí sa chystajú Eventy!",
+"/me Náš Discord server https://bit.ly/QPlugczDiscord!",
+"/me Získavajte pomocou DJovania jedinečné QCoiny za ktoré si môžete kupovať prvé pozície v zozname čakaní!"
+];
+var time=1800; // SEKUNDY
+var timer;
+API.on(API.CHAT_COMMAND, command);
+API.sendChat("/startmsg");
+ 
+function command(value){
+console.log("command called");
+var commandfunction = "";
+
+if (value.indexOf(" ") == -1){
+var commandfunction = value.substring(value.indexOf("/")+1,value.length);
+}
+
+else{
+var commandfunction = value.substring(value.indexOf("/")+1,value.indexOf(" "));
+}
+
+var commandcontent =  value.substring(value.indexOf(" ")+1,value.length);
+
+console.log("commandfunction: " + commandfunction);
+console.log("commandcontent: " + commandcontent);
+
+switch(commandfunction){
+
+case "msg":
+console.log("msg called");
+API.chatLog("SPRÁVA "+ commandcontent + "> \'" + msgs[parseInt(commandcontent)-1] +"\'", true);
+break;
+
+case "pausemsg":
+console.log("pausemsg called");
+stoptimer();
+API.chatLog("Správy sa teraz neodosielajú!",true);
+break;
+
+case "startmsg":
+console.log("startmsg called");
+refreshtimer();
+API.chatLog("Správy sa teraz odosielajú!",true);
+break;
+}
+}
+ 
+function postmsg(){
+var random = Math.floor((Math.random() * msgs.length));
+API.sendChat(msgs[random]);
+}
+ 
+function refreshtimer(){
+stoptimer(timer);
+timer = window.setInterval(postmsg, time*1000);
+}
+ 
+function stoptimer(){
+window.clearInterval(timer);
+timer = null;
+}
+
+API.on(API.CHAT, adremove);
+API.on(API.CHAT, bouncer);
+API.on(API.CHAT, unbouncer);
+API.on(API.CHAT, rdj);
+API.on(API.CHAT, unrdj);
+
+function adremove(a){
+var me = API.getUser();
+var msg = a.message;
+var from = a.uid;
+var from2 = a.un;
+if (from != me){
+if (msg.toLowerCase().indexOf("https://plug.dj/") > -1){
+API.moderateDeleteChat(a.cid);
+API.sendChat("[@"+ from2 +"] Budeš Mutnutý za spamovanie alebo zdielanie iných komunít v našej komunite!");          
+API.moderateMuteUser(from, 1, API.MUTE.MEDIUM);
+}
+
+}
+}
+
+function bouncer(data){
+var msg = data.message;
+var fromid = data.uid;
+var from = data.un;
+// STAFF
+var hellbyte2 = "24676587";
+
+if(msg === "!bouncer"){
+if(fromid == hellbyte2){
+API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
+setTimeout(function(){ API.moderateSetRole(fromid, 2); }, 500);
+}
+
+else{
+API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz je len pre trvalých Bouncerov.");
+}
+
+}
+}
+
+function unbouncer(data){
+var msg = data.message;
+var fromid = data.uid;
+var from = data.un;
+// STAFF
+var hellbyte2 = "24676587";
+
+if(msg === "!unbouncer"){
+if(fromid == hellbyte2){
+API.sendChat("[@"+ from +"] Použil si Demote funkciu!");
+setTimeout(function(){ API.moderateSetRole(fromid, 0); }, 500);
+}
+
+else{
+API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz je len pre Bouncerov.");
+}
+
+}
+}
+
+function rdj(data){
+var msg = data.message;
+var fromid = data.uid;
+var from = data.un;
+// STAFF
+var lemon = "5948294";
+
+if(msg === "!rdj"){
+if(fromid == lemon){
+API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
+setTimeout(function(){ API.moderateSetRole(fromid, 1); }, 500);
+}
+
+else{
+API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz je len pre Resident DJov.");
+}
+
+}
+}
+
+function unrdj(data){
+var msg = data.message;
+var fromid = data.uid;
+var from = data.un;
+// STAFF
+var lemon = "5948294";
+
+if(msg === "!unrdj"){
+if(fromid == lemon){
+API.sendChat("[@"+ from +"] Použil si Demote funkciu!");
+setTimeout(function(){ API.moderateSetRole(fromid, 0); }, 500);
+}
+
+else{
+API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz je len pre Resident DJov.");
+}
+
+}
+}
