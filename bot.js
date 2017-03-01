@@ -3125,10 +3125,10 @@ var nalada = ["Naštvaný/á.", "Kludný/á.", "Nadržený/á.", "Vzteklý/á.",
 
 API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
 
-if(msg.indexOf("!ja") !== -1){
+if(msg === "!ja" || msg === "!já" || msg === "!cicina" || msg === "iq" || msg === "!sexy" || msg === "!nálada" || msg === "!nalada"){
 if(fromid == "5477951"){
-API.sendChat("[@" + from + "] Tvoj obvod hrudníku: "+ tessi +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
-}	
+API.sendChat("[@" + from + "] Tvoj obvod hrudníku je: "+ tessi +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
+}
 }
     
 }
