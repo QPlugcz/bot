@@ -2784,7 +2784,6 @@ API.sendChat(subChat(basicBot.chat.roulettejoin, {name: chat.un}));
 }
 },
 
-
 jointimeCommand: {
 command: ['jointime', 'active'],
 rank: 'bouncer',
