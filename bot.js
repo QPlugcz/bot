@@ -3116,6 +3116,7 @@ else{
 var msg = chat.message;
 var from = chat.un;
 
+var tessi = Math.floor((Math.random() * 1000) + 500);
 var cicina = Math.floor((Math.random() * 40) + 1);
 var sexy = Math.floor((Math.random() * 100) + 1);
 var iq = Math.floor((Math.random() * 180) + 1);
@@ -3123,6 +3124,12 @@ var nalada = ["Naštvaný/á.", "Kludný/á.", "Nadržený/á.", "Vzteklý/á.",
 
 API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
 
+if(msg.indexOf("!ja") !== -1){
+if(fromid == "5477951"){
+API.sendChat("[@" + from + "] Tvoj obvod hrudníku: "+ tessi +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
+}	
+}
+    
 }
 }
 },
