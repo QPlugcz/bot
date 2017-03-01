@@ -2655,6 +2655,7 @@ functionality: function (chat, cmd) {
 if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
+
 var msg = chat.message;
 
 if (msg.length !== cmd.length){
@@ -2667,6 +2668,7 @@ $.getJSON(
 "rating": rating,
 "tag": fixedtag
 },
+
 function(response){
 func(response.data.id);
 }
@@ -2690,6 +2692,37 @@ API.sendChat(subChat(basicBot.chat.invalidgiftags, {name: chat.un, tags: commata
 }
 
 });
+}
+
+else{
+function get_random_id(api_key, func)
+{
+$.getJSON(
+"https://tv.giphy.com/v1/gifs/random?",
+{
+"format": "json",
+"api_key": api_key,
+"rating": rating
+},
+function(response)
+{
+func(response.data.id);
+}
+)
+}
+var api_key = "dc6zaTOxFJmzC"; // public beta key
+var rating = "pg-13"; // PG 13 gifs
+get_random_id(api_key, function(id) {
+if (typeof id !== 'undefined') {
+API.sendChat(subChat(basicBot.chat.validgifrandom, {name: chat.un, id: id}));
+} else {
+API.sendChat(subChat(basicBot.chat.invalidgifrandom, {name: chat.un}));
+}
+});
+}
+
+}
+}
 },
 
 historyskipCommand: {
