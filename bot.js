@@ -2690,7 +2690,7 @@ API.sendChat(subChat(basicBot.chat.invalidgiftags, {name: chat.un, tags: commata
 }
 
 });
-}
+},
 
 historyskipCommand: {
 command: 'historyskip',
