@@ -2134,8 +2134,8 @@ dclookupOnUserJoin: function (id) {
                     }
             }
         }, 
-        nakupCommand: {
-            command: ['nakup', 'buy', 'kupit'],  //The command to be called. With the standard command literal this would be: !tip
+        buyCommand: {
+            command: ['buy'],  //The command to be called. With the standard command literal this would be: !tip
             rank: 'user', //Minimum user permission to use the command
             type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
             functionality: function (chat, cmd) {
@@ -2195,7 +2195,7 @@ dclookupOnUserJoin: function (id) {
                         giverTokens -= 200;
                         localStorage.setItem(chat.un, giverTokens);
                             return API.sendChat("[ OBCHOD ] Uživatel " + zakaznik + " si zakoupil první pozici ve frontě.");
-                            basicBot.userUtilities.moveUser(zakaznik, 1, false);
+                             basicBot.userUtilities.moveUser(zakaznik, +2, true);
                     }
             }
         }, 
