@@ -3115,6 +3115,7 @@ else{
 
 var msg = chat.message;
 var from = chat.un;
+var fromid = chat.uid;
 
 var tessi = Math.floor((Math.random() * 1000) + 500);
 var cicina = Math.floor((Math.random() * 40) + 1);
