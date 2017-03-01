@@ -4,6 +4,7 @@
 "datarestored": "Previously stored data successfully retrieved.",
 "greyuser": "Only managers can run mfebot",
 "bouncer": "I cant be alive if i will run as a bouncer.",
+"online": "%%BOTNAME%%, verzia %%VERSION%% spustený!",
 "welcome": "Vitaj @%%NAME%% v QPlug.cz!",
 "welcomeback": "Vitaj späť @%%NAME%% v QPlug.cz!",
 "songknown": "[@%%NAME%%] Tento song je v histórií!",
