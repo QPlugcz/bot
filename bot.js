@@ -2200,301 +2200,297 @@ dclookupOnUserJoin: function (id) {
             }
         }, 
       
-            kontoCommand: {
-            command: ['konto'],  //The command to be called. With the standard command literal this would be: !tip
-            rank: 'bouncer', //Minimum user permission to use the command
-            type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-            functionality: function (chat, cmd) {
-                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                else {
-            }
-                        function validateTokens(user)
-                {
-            var tokens; 
-            
-            //Check for existing user tokens
-            if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "0");
-                 tokens = localStorage.getItem(user);
-            }
-            else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
-                 tokens = localStorage.getItem(user);
-            }
-            else {
-                 tokens = localStorage.getItem(user);
-            }
-            
-            return tokens;
-        
-                
-            }
-            
-          
-                    var msg = chat.message; 
-                    var space = msg.indexOf(' ');
-                    var receiver = msg.substring(space + 2); 
-                    var giverTokens = validateTokens(chat.un);
-                    var receiverTokens = validateTokens(receiver);
-                    var currentDJ = API.getDJ().username; 
-            
-                    if (giverTokens <= -999) {
-                        return API.sendChat("/me [@" + chat.un + "] Kód chyby 999"); 
-                    }
-                    else {
-                        giverTokens -= 0;
-                        localStorage.setItem(chat.un, giverTokens);
-                        if (space === -1) { 
-                             receiverTokens -= 0;
-                
-                            localStorage.setItem(currentDJ, receiverTokens);
-                            return API.sendChat("/me [@" + chat.un + "] Účet " + currentDJ + ": " + receiverTokens + " QCoins"); 
-                        }
-                        else {
-                     receiverTokens -= 0;
-                            localStorage.setItem(receiver, receiverTokens);
-                            return API.sendChat("/me [@" + chat.un + "] Účet " + receiver + ": " + receiverTokens + " QCoins");
-                            
-                   
-                         
-         
-                    }
-                    
-                }
-            }
-        },
-                    
-                    
-        bodyCommand: {
-            command: ['qcoiny','qcoins', 'qc'],
-            rank: 'user', //Minimum user permission to use the command
-            type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-            functionality: function (chat, cmd) {
-                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                else {
-                    
-                    var user = chat.un;
-                    var tokens = validateTokens(user);
-                    
-                    API.sendChat("[@"+ user +"] Máš "+ tokens +" QCoins!");
-            }
-        
-        //Validate Tokens
-        function validateTokens(user)
-                {
-            var tokens; 
-            
-            //Check for existing user tokens
-            if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "0");
-                 tokens = localStorage.getItem(user);
-            }
-            else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
-                 tokens = localStorage.getItem(user);
-            }
-            else {
-                 tokens = localStorage.getItem(user);
-            }
-            
-            return tokens;
-        
-                }
-            }
-        },
-   
-            
-        automatCommand: {  
-            command: ['automat', 'automaty'],  //The command to be called. With the standard command literal this would be: !slots
-            rank: 'user', 
-            type: 'startsWith',  
-            functionality: function (chat, cmd) { 
-                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0); 
-                if (!basicBot.commands.executable(this.rank, chat)) return void (0); 
-        else {
-        
-                        if (!basicBot.settings.minihry) {
-                return API.sendChat("/me [@" + chat.un + "] Automaty jsou vypnuté."); 
-            }
-                    var msg = chat.message; 
-                    var space = msg.indexOf(' ');
-                    var user = chat.un; 
-                    var updatedTokens;
-                    var bet = parseInt(msg.substring(space + 1));
-       
-                    //Fix bet if blank
-                    if (bet == null || isNaN(bet)) {
-                        bet = 1;
-                    }
-                    bet = Math.round(bet);      
-                                   
-                    var playerTokens = checkTokens(bet, user);  
-                    
-                    //Prevent invalid betting
-                    if (bet > playerTokens[0]) {
-                        if (playerTokens[0] === 0){
-                            return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Nemáš žádné body."); 
-                        } 
-                        else if (playerTokens[0] === 1) {
-                            return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Máš 1 bod."); 
-                        }
-                        else {
-                            return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Máš " + playerTokens[0] + " bodů."); 
-                        }
-                    }
-                    else if (bet < 0) {
-                        return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Zkus to bez nesmyslných částek!");
-                    }
-                    else if (bet === 0) { 
-                        return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit 0 bodů."); 
-                    }
-                    //Process valid bets
-                    else {
-                        var outcome = spinOutcome(bet);
-                        updatedTokens = slotWinnings(outcome[3], user);
-                    }
-                    
-                    //Display Slots
-                    if (space === -1 || bet == 1) { 
-                        //Start Slots
-                        API.sendChat("/me @" + chat.un + " vsadil/a 1 bod do vánočního automatu.");
-                        setTimeout(function() {API.sendChat("/me [ Automat ] " + outcome[0]  + outcome[1]  + outcome[2])}, 5000);
-                    } 
-                    else if (bet > 1) { 
-                        //Start Slots
-                        API.sendChat("/me @" + chat.un + " vsadil/a " + bet + " bodů do vánočního automatu.");
-                        setTimeout(function() {API.sendChat("/me [ Automat ] " + outcome[0]  + outcome[1]  + outcome[2])}, 5000);
-                    }  
-                    else {
-                        return false; 
-                    }
-                         
-                    //Display Outcome
-                    if (outcome[3] == 0) {
-                        if (updatedTokens === 1) {
-                            setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Prohrál/a jsi! Zbylo ti 1 bod.")}, 7000);   
-                        }  
-                        else if (updatedTokens === 0) {
-                            setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Prohrál/a jsi! Nemáš žádné body. Vydělávej hraním písní a poté přijď znovu!")}, 7000);
-                
-                        }
-                        else {
-                            setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Prohrál/a jsi! Zbylo ti " + updatedTokens + " bodů")}, 7000);
-                        }
-                    }
-                    else if (outcome[3] == (bet * 7)) {
-                        setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Vyhrál/a jsi vánoční jackpot " + outcome[3] + " bodů. Nyní máš " + updatedTokens + " bodů")}, 7000);
-                      
-                    }
-                    else {
-                        setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Vyhrál/a jsi! Tvá výhra je " + outcome[3] + " bodů. Nyní máš " + updatedTokens + " bodů ")}, 7000); 
-            }
-        
-        //Validate Tokens
-        function validateTokens(user)
-                {
-            var tokens; 
-            
-            //Check for existing user tokens
-            if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "0");
-                 tokens = localStorage.getItem(user);
-            }
-            else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
-                 tokens = localStorage.getItem(user);
-            }
-            else {
-                 tokens = localStorage.getItem(user);
-            }
-            
-            return tokens;
-        }
-        
-        //Slots---------------------------------------------------------------------------------------------------------------------------
-       function spinSlots() 
-        {
-            var slotArray = [':beer: -',
-             ':snowflake: - ',
-         ':gift: - ',
-                 ':snowman: - ',
-             ':santa: - ',
-             ':bell: - ',
-                 ':christmas_tree: - ',
-                 ':star: - '];
-            var slotValue = [6,
-                 6,
-                 6,
-                 6,
-                 6,
-                 6,
-                 6,
-                            20];    
-            var rand =  Math.floor(Math.random() * (slotArray.length));                
-            return [slotArray[rand], slotValue[rand]]; 
-        }
-        
-        function spinOutcome(bet) 
-    {
-            var winnings;
-            var outcome1 = spinSlots(); 
-            var outcome2 = spinSlots(); 
-            var outcome3 = spinSlots();
+kontoCommand: {
+command: ['konto'],
+rank: 'bouncer',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+}
 
-            
-            
+function validateTokens(user){
+var tokens; 
 
-            if (outcome1[0] == outcome2[0] && outcome1[0] == outcome3[0]) {
-                winnings = Math.round(bet * outcome1[1]);
-            }
-            else if (outcome1[0] == outcome2[0] && outcome1[0] != outcome3[0]) {
-                winnings = Math.round(bet * (.45 * outcome1[1]));
-            }
-            else if (outcome1[0] == outcome3[0] && outcome1[0] != outcome2[0]) {
-                winnings = Math.round(bet * (.5 * outcome1[1]));
-            }
-            else if (outcome2[0] == outcome3[0] && outcome2[0] != outcome1[0]) {
-                winnings = Math.round(bet * (.40 * outcome2[1]));
-                
-            }
-            else{
-                winnings = 0;  
-            }
-                        
-            return [outcome1[0], outcome2[0], outcome3[0], winnings];                      
-        }
-        function checkTokens(bet, user) 
-    {
-             var tokensPreBet = validateTokens(user);
-             var tokensPostBet;
-             var validBet = true;
+if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
+localStorage.setItem(user, "0");
+tokens = localStorage.getItem(user);
+}
 
-             //Adjust amount of tokens
-             if (bet > tokensPreBet || bet < 0) {
-                  validBet = false;
-                  tokensPostBet = tokensPreBet;
-             }
-             else {
-                  tokensPostBet = tokensPreBet - bet;
-             }
-             
-             localStorage.setItem(user, tokensPostBet);
-             return [tokensPreBet, tokensPostBet, validBet];
-        }
-        
-        function slotWinnings(winnings, user) 
-    {
-             var userTokens = parseInt(localStorage.getItem(user)) + winnings;
-             if (isNaN(userTokens)) {
-                 userTokens = winnings;
-             }
-             localStorage.setItem(user, userTokens);
-             return userTokens;
-             
-                    }
-                   
-         }
-        } 
-        },
+else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
+tokens = localStorage.getItem(user);
+}
+
+else{
+tokens = localStorage.getItem(user);
+}
+
+return tokens;
+
+}
+
+var msg = chat.message; 
+var space = msg.indexOf(' ');
+var receiver = msg.substring(space + 2); 
+var giverTokens = validateTokens(chat.un);
+var receiverTokens = validateTokens(receiver);
+var currentDJ = API.getDJ().username; 
+
+if (giverTokens <= -999){
+return API.sendChat("/me [@" + chat.un + "] Kód chyby 999"); 
+}
+
+else{
+giverTokens -= 0;
+localStorage.setItem(chat.un, giverTokens);
+
+if (space === -1){ 
+receiverTokens -= 0;
+localStorage.setItem(currentDJ, receiverTokens);
+return API.sendChat("/me [@"+ chat.un +"] Úžívateľ "+ currentDJ +" má na konte "+ receiverTokens +" QCoins!"); 
+}
+
+else{
+receiverTokens -= 0;
+localStorage.setItem(receiver, receiverTokens);
+return API.sendChat("/me [@"+ chat.un +"] Užívateľ "+ receiver +" má na konte "+ receiverTokens +" QCoins!");
+}
+
+}
+}
+},
+
+
+bodyCommand: {
+command: ['qcoiny','qcoins', 'qc'],
+rank: 'user',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var user = chat.un;
+var tokens = validateTokens(user);
+
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QCoins!");
+}
+
+function validateTokens(user){
+var tokens; 
+
+if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
+localStorage.setItem(user, "0");
+tokens = localStorage.getItem(user);
+}
+
+else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
+tokens = localStorage.getItem(user);
+}
+
+else{
+tokens = localStorage.getItem(user);
+}
+
+return tokens;
+
+}
+}
+},
+
+
+/*automatCommand: {  
+command: ['automat', 'automaty'],  //The command to be called. With the standard command literal this would be: !slots
+rank: 'user', 
+type: 'startsWith',  
+functionality: function (chat, cmd) { 
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0); 
+if (!basicBot.commands.executable(this.rank, chat)) return void (0); 
+else {
+
+if (!basicBot.settings.minihry) {
+return API.sendChat("/me [@" + chat.un + "] Automaty jsou vypnuté."); 
+}
+var msg = chat.message; 
+var space = msg.indexOf(' ');
+var user = chat.un; 
+var updatedTokens;
+var bet = parseInt(msg.substring(space + 1));
+
+//Fix bet if blank
+if (bet == null || isNaN(bet)) {
+bet = 1;
+}
+bet = Math.round(bet);      
+
+var playerTokens = checkTokens(bet, user);  
+
+//Prevent invalid betting
+if (bet > playerTokens[0]) {
+if (playerTokens[0] === 0){
+return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Nemáš žádné body."); 
+} 
+else if (playerTokens[0] === 1) {
+return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Máš 1 bod."); 
+}
+else {
+return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Máš " + playerTokens[0] + " bodů."); 
+}
+}
+else if (bet < 0) {
+return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Zkus to bez nesmyslných částek!");
+}
+else if (bet === 0) { 
+return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit 0 bodů."); 
+}
+//Process valid bets
+else {
+var outcome = spinOutcome(bet);
+updatedTokens = slotWinnings(outcome[3], user);
+}
+
+//Display Slots
+if (space === -1 || bet == 1) { 
+//Start Slots
+API.sendChat("/me @" + chat.un + " vsadil/a 1 bod do vánočního automatu.");
+setTimeout(function() {API.sendChat("/me [ Automat ] " + outcome[0]  + outcome[1]  + outcome[2])}, 5000);
+} 
+else if (bet > 1) { 
+//Start Slots
+API.sendChat("/me @" + chat.un + " vsadil/a " + bet + " bodů do vánočního automatu.");
+setTimeout(function() {API.sendChat("/me [ Automat ] " + outcome[0]  + outcome[1]  + outcome[2])}, 5000);
+}  
+else {
+return false; 
+}
+
+//Display Outcome
+if (outcome[3] == 0) {
+if (updatedTokens === 1) {
+setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Prohrál/a jsi! Zbylo ti 1 bod.")}, 7000);   
+}  
+else if (updatedTokens === 0) {
+setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Prohrál/a jsi! Nemáš žádné body. Vydělávej hraním písní a poté přijď znovu!")}, 7000);
+
+}
+else {
+setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Prohrál/a jsi! Zbylo ti " + updatedTokens + " bodů")}, 7000);
+}
+}
+else if (outcome[3] == (bet * 7)) {
+setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Vyhrál/a jsi vánoční jackpot " + outcome[3] + " bodů. Nyní máš " + updatedTokens + " bodů")}, 7000);
+
+}
+else {
+setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Vyhrál/a jsi! Tvá výhra je " + outcome[3] + " bodů. Nyní máš " + updatedTokens + " bodů ")}, 7000); 
+}
+
+//Validate Tokens
+function validateTokens(user)
+{
+var tokens; 
+
+//Check for existing user tokens
+if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
+localStorage.setItem(user, "0");
+tokens = localStorage.getItem(user);
+}
+else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
+tokens = localStorage.getItem(user);
+}
+else {
+tokens = localStorage.getItem(user);
+}
+
+return tokens;
+}
+
+//Slots---------------------------------------------------------------------------------------------------------------------------
+function spinSlots() 
+{
+var slotArray = [':beer: -',
+':snowflake: - ',
+':gift: - ',
+':snowman: - ',
+':santa: - ',
+':bell: - ',
+':christmas_tree: - ',
+':star: - '];
+var slotValue = [6,
+6,
+6,
+6,
+6,
+6,
+6,
+20];    
+var rand =  Math.floor(Math.random() * (slotArray.length));                
+return [slotArray[rand], slotValue[rand]]; 
+}
+
+function spinOutcome(bet) 
+{
+var winnings;
+var outcome1 = spinSlots(); 
+var outcome2 = spinSlots(); 
+var outcome3 = spinSlots();
+
+
+
+
+if (outcome1[0] == outcome2[0] && outcome1[0] == outcome3[0]) {
+winnings = Math.round(bet * outcome1[1]);
+}
+else if (outcome1[0] == outcome2[0] && outcome1[0] != outcome3[0]) {
+winnings = Math.round(bet * (.45 * outcome1[1]));
+}
+else if (outcome1[0] == outcome3[0] && outcome1[0] != outcome2[0]) {
+winnings = Math.round(bet * (.5 * outcome1[1]));
+}
+else if (outcome2[0] == outcome3[0] && outcome2[0] != outcome1[0]) {
+winnings = Math.round(bet * (.40 * outcome2[1]));
+
+}
+else{
+winnings = 0;  
+}
+
+return [outcome1[0], outcome2[0], outcome3[0], winnings];                      
+}
+function checkTokens(bet, user) 
+{
+var tokensPreBet = validateTokens(user);
+var tokensPostBet;
+var validBet = true;
+
+//Adjust amount of tokens
+if (bet > tokensPreBet || bet < 0) {
+validBet = false;
+tokensPostBet = tokensPreBet;
+}
+else {
+tokensPostBet = tokensPreBet - bet;
+}
+
+localStorage.setItem(user, tokensPostBet);
+return [tokensPreBet, tokensPostBet, validBet];
+}
+
+function slotWinnings(winnings, user) 
+{
+var userTokens = parseInt(localStorage.getItem(user)) + winnings;
+if (isNaN(userTokens)) {
+userTokens = winnings;
+}
+localStorage.setItem(user, userTokens);
+return userTokens;
+
+}
+
+}
+} 
+},*/
            
 mehcommand: {
 command: 'meh',
