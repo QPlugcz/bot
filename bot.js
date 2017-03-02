@@ -3116,7 +3116,6 @@ var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
 
-var tessi = Math.floor((Math.random() * 1000) + 500);
 var cicina = Math.floor((Math.random() * 40) + 1);
 var sexy = Math.floor((Math.random() * 100) + 1);
 var iq = Math.floor((Math.random() * 180) + 1);
@@ -3673,7 +3672,7 @@ API.on(API.CHAT, tessi);
 
 function tessi(data){
 var msg = data.message;
-var from = data.message;
+var from = data.un;
 var fromid = data.uid;
 
 var podprsy = Math.floor((Math.random() * 122) + 58);
