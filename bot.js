@@ -3672,8 +3672,8 @@ API.on(API.CHAT, tessi);
 
 function tessi(data){
 var msg = data.message;
-var from = data.un;
 var fromid = data.uid;
+var from = data.un;
 
 var podprsy = Math.floor((Math.random() * 122) + 58);
 var kosicek = ["A", "B", "C", "D", "E"];
@@ -3683,8 +3683,8 @@ var iq = Math.floor((Math.random() * 180) + 1);
 var nalada = ["Naštvaný/á.", "Kludný/á.", "Nadržený/á.", "Vzteklý/á.", "Bláznivý/á.", "Hodný/á.", "Radostný/á.", "Skleslý/á.", "Vtipný/á.", "Smutný/á."];
 
 if(msg === "!tessi"){
-if(fromid === "5477951"){
-API.sendChat("[@" + from + "] Tvoj obvod hrudníku je: "+ podprsy +" "+ kosicekrandom +" | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
+if(fromid == "5477951"){
+API.sendChat("[@" + from + "] Tvoj obvod hrudníku je: "+ podprsy +" "+ kosicekrandom +". | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
 }
 
 else{
