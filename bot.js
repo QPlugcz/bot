@@ -404,6 +404,7 @@
                             API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 60 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
                             basicBot.room.tipovacka.currentNumber = 0;
             } else if (basicBot.room.tipovacka.obtiznost == 2) {
+                name = basicBot.room.users[i].username;
               basicBot.room.tipovacka.active = false;
                             basicBot.room.tipovacka.max = 0;
                 var receiverTokens = validateTokens(name);
@@ -412,6 +413,7 @@
                             API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 150 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
                        
               } else if (basicBot.room.tipovacka.obtiznost == 3) {
+                  name = basicBot.room.users[i].username;
               basicBot.room.tipovacka.active = false;
                             basicBot.room.tipovacka.max = 0;
                 var receiverTokens = validateTokens(name);
@@ -419,6 +421,7 @@
                     localStorage.setItem(name, penize3);
                             API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 400 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
              } else if (basicBot.room.tipovacka.obtiznost == 5) {
+                 name = basicBot.room.users[i].username;
               basicBot.room.tipovacka.active = false;
                             basicBot.room.tipovacka.max = 0;
                 var receiverTokens = validateTokens(name);
@@ -426,6 +429,7 @@
                     localStorage.setItem(name, penize5);
                             API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 70 QCoins se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');          
             } else if (basicBot.room.tipovacka.obtiznost == 4) {
+                name = basicBot.room.users[i].username;
               basicBot.room.tipovacka.active = false;
                             basicBot.room.tipovacka.max = 0;
                 var receiverTokens = validateTokens(name);
