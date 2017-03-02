@@ -3678,7 +3678,7 @@ var fromid = data.uid;
 
 var podprsy = Math.floor((Math.random() * 122) + 58);
 var kosicek = ["A", "B", "C", "D", "E"];
-var kosicekrandom = kosicek[Math.floor(Math.random() * kosicek.length)]
+var kosicekrandom = kosicek[Math.floor(Math.random() * kosicek.length)];
 var sexy = Math.floor((Math.random() * 100) + 1);
 var iq = Math.floor((Math.random() * 180) + 1);
 var nalada = ["Naštvaný/á.", "Kludný/á.", "Nadržený/á.", "Vzteklý/á.", "Bláznivý/á.", "Hodný/á.", "Radostný/á.", "Skleslý/á.", "Vtipný/á.", "Smutný/á."];
