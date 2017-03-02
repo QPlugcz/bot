@@ -3654,7 +3654,7 @@ var lemon = "5948294";
 var tessi = "5477951";
 
 if(msg === "!rdj"){
-if(fromid == lemon || fromid === tessi){
+if(fromid == lemon || fromid == tessi){
 API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 1); }, 500);
 }
@@ -3675,7 +3675,7 @@ var lemon = "5948294";
 var tessi = "5477951";
 
 if(msg === "!unrdj"){
-if(fromid == lemon || fromid === tessi){
+if(fromid == lemon || fromid == tessi){
 API.sendChat("[@"+ from +"] Použil si Demote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 0); }, 500);
 }
@@ -3687,7 +3687,7 @@ API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz je len pre Resid
 }
 }
 
-// USERS COMMANDS
+// User Commands
 API.on(API.CHAT, tessi);
 
 function tessi(data){
