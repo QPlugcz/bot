@@ -3124,12 +3124,6 @@ var nalada = ["Naštvaný/á.", "Kludný/á.", "Nadržený/á.", "Vzteklý/á.",
 
 API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
 
-if(msg === "!ja" || msg === "!já" || msg === "!cicina" || msg === "iq" || msg === "!sexy" || msg === "!nálada" || msg === "!nalada"){
-if(fromid == "5477951"){
-API.sendChat("[@" + from + "] Tvoj obvod hrudníku je: "+ tessi +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
-}
-}
-    
 }
 }
 },
@@ -3638,9 +3632,10 @@ var fromid = data.uid;
 var from = data.un;
 // STAFF
 var lemon = "5948294";
+var tessi = "5477951";
 
 if(msg === "!rdj"){
-if(fromid == lemon){
+if(fromid == lemon || fromid === tessi){
 API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 1); }, 500);
 }
@@ -3658,9 +3653,10 @@ var fromid = data.uid;
 var from = data.un;
 // STAFF
 var lemon = "5948294";
+var tessi = "5477951";
 
 if(msg === "!unrdj"){
-if(fromid == lemon){
+if(fromid == lemon || fromid === tessi){
 API.sendChat("[@"+ from +"] Použil si Demote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 0); }, 500);
 }
@@ -3672,7 +3668,34 @@ API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz je len pre Resid
 }
 }
 
-// NONSPAM
+// USERS COMMANDS
+API.on(API.CHAT, tessi);
+
+function tessi(data){
+var msg = data.message;
+var from = data.message;
+var fromid = data.uid;
+
+var podprsy = Math.floor((Math.random() * 122) + 58);
+var kosicek = ["A", "B", "C", "D", "E"];
+var kosicekrandom = kosicek[Math.floor(Math.random() * kosicek.length)]
+var sexy = Math.floor((Math.random() * 100) + 1);
+var iq = Math.floor((Math.random() * 180) + 1);
+var nalada = ["Naštvaný/á.", "Kludný/á.", "Nadržený/á.", "Vzteklý/á.", "Bláznivý/á.", "Hodný/á.", "Radostný/á.", "Skleslý/á.", "Vtipný/á.", "Smutný/á."];
+
+if(msg === "!tessi"){
+if(fromid === "5477951"){
+API.sendChat("[@" + from + "] Tvoj obvod hrudníku je: "+ podprsy +" "+ kosicekrandom +" | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
+}
+
+else{
+API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz môže použiť iba Tessi Tess.");
+}
+
+}
+}
+
+// AntiSpam
 API.on(API.CHAT, welcome);
 API.on(API.CHAT, nonspam);
 
@@ -3684,7 +3707,7 @@ var fromid = chat.uid;
 if(
 msg.indexOf("v QPlug.cz! Za DJovanie získaš virtuálne peniaze, ktoré nazývame QCoins.") !== -1){
 if(fromid == "23843691"){
-setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 25000); // 25 000 milisekund = 25 sekund
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 30000); // 30 000 milisekund = 30 sekund
 }
 }
 }
@@ -3697,7 +3720,7 @@ var fromid = chat.uid;
 if(
 msg.indexOf("QCoins za odehrání písně!") !== -1){
 if(fromid == "23843691"){
-setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 15000); // 15 000 milisekund = 15 sekund
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 milisekund = 20 sekund
 }
 }
 }
