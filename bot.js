@@ -3682,9 +3682,9 @@ var from = chat.un;
 var fromid = chat.uid;
 
 if(
-msg.indexOf("v QPlug.cz! Za DJovanie získaš virtuálne peniaze, ktoré nazývame QCoins.") !== -1)
+msg.indexOf("v QPlug.cz! Za DJovanie získaš virtuálne peniaze, ktoré nazývame QCoins.") !== -1){
 if(fromid == "23843691"){
-setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 milisekund = 20 sekund
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 25000); // 25 000 milisekund = 25 sekund
 }
 }
 }
@@ -3697,7 +3697,7 @@ var fromid = chat.uid;
 if(
 msg.indexOf("QCoins za odehrání písně!") !== -1){
 if(fromid == "23843691"){
-setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 10000); // 10 000 milisekund = 10 sekund
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 15000); // 15 000 milisekund = 15 sekund
 }
 }
 }
