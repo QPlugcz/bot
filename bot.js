@@ -351,32 +351,38 @@
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 9) + 1);
                         basicBot.room.tipovacka.max = 10;
               
-            API.sendChat('[ LOTERIE ] Uhodněte zvolené číslo v rozmezí 1 až ' + basicBot.room.tipovacka.max + ' a vyhrajte 60 QCoins! Hraje se pomocí !los číslo. Los stojí 10 QCoins.');  
+            API.sendChat('[ LOTERIE ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Uhodněte zadané číslo pomocí !los číslo a vyhrajte 60 QCoins! Los stojí 10 QCoins.');  
                     }
                     if (basicBot.room.tipovacka.obtiznost == 2) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 24) + 1);
                         basicBot.room.tipovacka.max = 25;
-            API.sendChat('[ LOTERIE ] Uhodněte zvolené číslo v rozmezí 1 až ' + basicBot.room.tipovacka.max + ' a vyhrajte 150 QCoins! Hraje se pomocí !los číslo. Los stojí 10 QCoins.'); 
+            API.sendChat('[ LOTERIE ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Uhodněte zadané číslo pomocí !los číslo a vyhrajte 150 QCoins! Los stojí 10 QCoins.'); 
              
                     }
             if (basicBot.room.tipovacka.obtiznost == 3) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 49) + 1);
                         basicBot.room.tipovacka.max = 50;
+              API.sendChat('[ LOTERIE ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Uhodněte zadané číslo pomocí !los číslo a vyhrajte 400 QCoins! Los stojí 10 QCoins.'); 
              
-            API.sendChat('[ LOTERIE ] Uhodněte zvolené číslo v rozmezí 1 až ' + basicBot.room.tipovacka.max + ' a vyhrajte 400 QCoins! Hraje se pomocí !los číslo. Los stojí 10 QCoins.'); 
+                    }
+            if (basicBot.room.tipovacka.obtiznost == 5) {
+                        var barvy = ["red","yellow","orange","blue","green","purple","brown","black","pink"];
+                        basicBot.room.tipovacka.currentNumber = barvy[Math.floor(Math.random() * barvy.length)];
+                        basicBot.room.tipovacka.max = "white";
+            API.sendChat('[ LOTERIE ] Myslím sí barvu v angličtině. Uhodněte zadanou barvu pomocí !los text a vyhrajte 70 QCoins! Los stojí 10 QCoins.'); 
                     }
                     if (basicBot.room.tipovacka.obtiznost == 4) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 99) + 1);
-                        basicBot.room.tipovacka.max = 100;
+                        basicBot.room.tipovacka.max = 100; 
                     
-                    API.sendChat('[ LOTERIE ] Uhodněte zvolené číslo v rozmezí 1 až ' + basicBot.room.tipovacka.max + ' a vyhrajte 900 QCoins! Hraje se pomocí !los číslo. Los stojí 10 QCoins.');
+                    API.sendChat('[ LOTERIE ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Uhodněte zadané číslo pomocí !los číslo a vyhrajte 900 QCoins! Los stojí 10 QCoins.');
           }      
     },      
                 endNumberGameTime: function() {
                     if (basicBot.room.tipovacka.active) {
                         basicBot.room.tipovacka.active = false;
                         basicBot.room.tipovacka.max = 0;
-                        API.sendChat('[ LOTERIE ] Nikdo neuhodl zadané číslo. Výherní los byl ' + basicBot.room.tipovacka.currentNumber + '');
+                        API.sendChat('[ LOTERIE ] Nikdo neuhodl správně. Správná odpověď byla ' + basicBot.room.tipovacka.currentNumber + '');
                         basicBot.room.tipovacka.currentNumber = 0;
                     }
                 },
@@ -412,13 +418,19 @@
                     var penize3 = parseInt(receiverTokens, 10) + parseInt(400,10);
                     localStorage.setItem(name, penize3);
                             API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 400 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
-                       
+             } else if (basicBot.room.tipovacka.obtiznost == 5) {
+              basicBot.room.tipovacka.active = false;
+                            basicBot.room.tipovacka.max = 0;
+                var receiverTokens = validateTokens(name);
+                    var penize5 = parseInt(receiverTokens, 10) + parseInt(70,10);
+                    localStorage.setItem(name, penize5);
+                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 70 QCoins se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');          
             } else if (basicBot.room.tipovacka.obtiznost == 4) {
               basicBot.room.tipovacka.active = false;
                             basicBot.room.tipovacka.max = 0;
                 var receiverTokens = validateTokens(name);
-                    var penize3 = parseInt(receiverTokens, 10) + parseInt(900,10);
-                    localStorage.setItem(name, penize3);
+                    var penize4 = parseInt(receiverTokens, 10) + parseInt(900,10);
+                    localStorage.setItem(name, penize4);
                             API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 900 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
                        }  
                     else {
@@ -1909,6 +1921,10 @@ dclookupOnUserJoin: function (id) {
                         if (gni === 4) {
                             tos = "extrémní obtížnost. (1-100)";
                         }
+                        
+                        if (gni === 5) {
+                            tos = "hadání barev v angličtině.";
+                        }
                         API.sendChat('/me [@' + from + '] Loterie nastavena na ' + tos + '');
                     }
                 },
@@ -1955,7 +1971,7 @@ dclookupOnUserJoin: function (id) {
                         } else {
                  giverTokens -= 10;
                         localStorage.setItem(chat.un, giverTokens);
-                            API.sendChat('/me [@' + chat.un + '] Zakoupen nevýherní los: ' + gni + '');
+                            API.sendChat('/me [@' + chat.un + '] Zakoupen los se špatnou odpovědi: ' + gni + '');
                         
                         
             
