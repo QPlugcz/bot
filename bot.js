@@ -3576,7 +3576,6 @@ API.on(API.CHAT, bouncer);
 API.on(API.CHAT, unbouncer);
 API.on(API.CHAT, rdj);
 API.on(API.CHAT, unrdj);
-API.on(API.CHAT, nonspam);
 
 function adremove(a){
 var me = API.getUser();
@@ -3673,14 +3672,29 @@ API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz je len pre Resid
 }
 }
 
+// NONSPAM
+API.on(API.CHAT, welcome);
 API.on(API.CHAT, nonspam);
+
+function welcome(chat){
+var msg = chat.message;
+var from = chat.un;
+var fromid = chat.uid;
+
+if(
+msg.indexOf("v QPlug.cz! Za DJovanie získaš virtuálne peniaze, ktoré nazývame QCoins.") !== -1)
+if(fromid == "23843691"){
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 milisekund = 20 sekund
+}
+}
+}
+
 function nonspam(chat){
 var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
 
 if(
-msg.indexOf("v QPlug.cz! Za DJovanie získaš virtuálne peniaze, ktoré nazývame QCoins.") !== -1 ||
 msg.indexOf("QCoins za odehrání písně!") !== -1){
 if(fromid == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 10000); // 10 000 milisekund = 10 sekund
