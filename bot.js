@@ -1917,21 +1917,21 @@ dclookupOnUserJoin: function (id) {
                         basicBot.room.tipovacka.obtiznost = gni;
                         var tos = "undefined";
                         if (gni === 1) {
-                            tos = "lehkou obtížnost. (1-10)";
+                            tos = "číselnou loterii. (1 až 10)";
                         }
                         if (gni === 2) {
-                            tos = "střední obtížnost. (1-25)";
+                            tos = "číselnou loterii. (1 až 25)";
                         }
                         if (gni === 3) {
-                            tos = "těžkou obtížnost. (1-50)";
+                            tos = "číselnou loterii. (1 až 50)";
                         }
             
                         if (gni === 4) {
-                            tos = "extrémní obtížnost. (1-100)";
+                            tos = "číselnou loterii. (1 až 100)";
                         }
                         
                         if (gni === 5) {
-                            tos = "hadání barev v angličtině.";
+                            tos = "barvy v angličtině.";
                         }
                         API.sendChat('/me [@' + from + '] Loterie nastavena na ' + tos + '');
                     }
@@ -1974,12 +1974,17 @@ dclookupOnUserJoin: function (id) {
                     }
                         if (gni === basicBot.room.tipovacka.currentNumber || gn === basicBot.room.tipovacka.currentNumber.toString()) {
                             basicBot.room.tipovacka.endNumberGame(chat.uid);
-             
+             }
+            else if (basicBot.room.tipovacka.obtiznost == 5) {
+            giverTokens -= 10;
+            localStorage.setItem(chat.un, giverTokens);
+            API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gn + '');    
+                
                   
                         } else {
                  giverTokens -= 10;
                         localStorage.setItem(chat.un, giverTokens);
-                            API.sendChat('/me [@' + chat.un + '] Zakoupen los se špatnou odpovědi: ' + gni + '');
+                            API.sendChat('/me [@' + chat.un + '] Nevýherní los: ' + gni + '');
                         
                         
             
