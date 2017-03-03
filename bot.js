@@ -2119,8 +2119,50 @@ dclookupOnUserJoin: function (id) {
             }
         }, 
                
-          
-        odznakCommand: {
+         odznakCommand: {
+            command: ['badge','odznak'],  //The command to be called. With the standard command literal this would be: !tip
+            rank: 'user', //Minimum user permission to use the command
+            type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+            functionality: function (chat, cmd) {
+                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+                else {
+            }
+                        function validateTokens(user)
+                {
+            var tokens; 
+            
+            //Check for existing user tokens
+            if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
+                 localStorage.setItem(user, "0");
+                 tokens = localStorage.getItem(user);
+            }
+            else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
+                 tokens = localStorage.getItem(user);
+            }
+            else {
+                 tokens = localStorage.getItem(user);
+            }
+            
+            return tokens;
+        
+                
+            }
+
+                    var msg = chat.message; 
+                    var giverTokens = validateTokens(chat.un);
+            
+                    if (giverTokens < 1000) {
+                        return API.sendChat("[@" + chat.un + "] Chceš mít jedinečný odznak dle tvého přání? Zakup si vlastní odznak za 1000 QCoins, kteří uvidí všichni uživatelé s RCS!"); 
+                    }
+                    else {
+                        giverTokens -= 1000;
+                        localStorage.setItem(chat.un, giverTokens);
+                            return API.sendChat("["+ chat.un +"] Zakoupil jste si vlastní odznak. Kontaktujte nyní @Tessi Tess a domluvte se.");
+                    }
+            }
+        },  
+        vipCommand: {
             command: ['vip'],  //The command to be called. With the standard command literal this would be: !tip
             rank: 'user', //Minimum user permission to use the command
             type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
@@ -2153,13 +2195,13 @@ dclookupOnUserJoin: function (id) {
                     var msg = chat.message; 
                     var giverTokens = validateTokens(chat.un);
             
-                    if (giverTokens < 3000) {
-                        return API.sendChat("[@" + chat.un + "] Aktivuj si VIP u nás za 3000 QCoins a získej spoustu výhod! Skvělý odznak a ikonu, kteří vidí uživatelé s RCS, automatické grabování tvých písní botem nebo příkazy jen pro VIP!"); 
+                    if (giverTokens < 5000) {
+                        return API.sendChat("[@" + chat.un + "] Aktivuj si VIP u nás za 5000 QCoins a získej spoustu výhod! Skvělý odznak a ikonu, kteří vidí uživatelé s RCS, automatické grabování tvých písní botem nebo příkazy jen pro VIP!"); 
                     }
                     else {
-                        giverTokens -= 3000;
+                        giverTokens -= 5000;
                         localStorage.setItem(chat.un, giverTokens);
-                            return API.sendChat("[ OBCHOD ] Gratulujeme @" + chat.un +"! Nyní patříte mezi VIP členy!");
+                            return API.sendChat("[ VIP ] Gratulujeme @" + chat.un +"! Nyní patříte mezi VIP členy! Všechny vaše výhody budou aktivovány v nejblížších dnech!");
                     }
             }
         }, 
@@ -2223,7 +2265,7 @@ dclookupOnUserJoin: function (id) {
                         giverTokens -= 500;
                         localStorage.setItem(chat.un, giverTokens);
                         API.moderateMoveDJ(uid, 1); 
-                            return API.sendChat("[ OBCHOD ] Uživatel @" + zakaznik + " si právě zakoupil pozici ve frontě! ");
+                            return API.sendChat("[" + zakaznik + "] Zakoupil jste si posun dopředu ve frontě. ");
                     }
             }
         }, 
@@ -3150,6 +3192,24 @@ var iq = Math.floor((Math.random() * 180) + 1);
 var nalada = ["Naštvaný/á.", "Kludný/á.", "Nadržený/á.", "Vzteklý/á.", "Bláznivý/á.", "Hodný/á.", "Radostný/á.", "Skleslý/á.", "Vtipný/á.", "Smutný/á."];
 
 API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
+
+}
+}
+},
+//VIP Příkaz
+pribehCommand: {
+command: ['pribeh', 'story'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var msg = chat.message;
+var from = chat.un;
+
+API.sendChat("[@" + from + "] Tento příkaz je pouze pro VIP!");
 
 }
 }
