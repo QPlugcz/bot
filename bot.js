@@ -13,6 +13,8 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
 
 // This is a remastered version of the original Basicbot, made by Benzi. All rights are reserved for the author and he may change some of the bot features if he wants or not.
 
+(function () {
+    
     API.getWaitListPosition = function(id){
         if(typeof id === 'undefined' || id === null){
             id = API.getUser().id;
