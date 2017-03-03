@@ -2116,7 +2116,7 @@ dclookupOnUserJoin: function (id) {
                
           
         odznakCommand: {
-            command: ['odznak'],  //The command to be called. With the standard command literal this would be: !tip
+            command: ['vip'],  //The command to be called. With the standard command literal this would be: !tip
             rank: 'user', //Minimum user permission to use the command
             type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
             functionality: function (chat, cmd) {
@@ -2148,13 +2148,13 @@ dclookupOnUserJoin: function (id) {
                     var msg = chat.message; 
                     var giverTokens = validateTokens(chat.un);
             
-                    if (giverTokens <= 49) {
-                        return API.sendChat("[@" + chat.un + "] Nemáš dostatek QCoins. k zaplacení vlastního odznaku na přání. Nákup stojí 50 QCoins."); 
+                    if (giverTokens < 3000) {
+                        return API.sendChat("[@" + chat.un + "] Aktivuj si VIP u nás za 3000 QCoins a získej spoustu výhod! Skvělý odznak a ikonu, kteří vidí uživatelé s RCS, automatické grabování tvých písní botem nebo příkazy jen pro VIP!"); 
                     }
                     else {
-                        giverTokens -= 50;
+                        giverTokens -= 3000;
                         localStorage.setItem(chat.un, giverTokens);
-                            return API.sendChat("[ OBCHOD ] Uživatel " + chat.un + " si zakoupil vlastní odznak na přání.");
+                            return API.sendChat("[ OBCHOD ] Gratulujeme @" + chat.un +"! Nyní patříte mezi VIP členy!");
                     }
             }
         }, 
@@ -2209,17 +2209,16 @@ dclookupOnUserJoin: function (id) {
                     var msg = chat.message; 
                     var giverTokens = validateTokens(chat.un);
             var zakaznik = chat.un;
-                var uid = chat.uid;
+                 var uid = chat.uid;
             
-            
-                    if (giverTokens <= 199) {
-                        return API.sendChat("[@" + zakaznik + "] Nemáš dostatek QCoins k zaplacení 1. pozice ve frontě. Nákup stojí 200 QCoins."); 
+                    if (giverTokens < 500) {
+                        return API.sendChat("[@" + zakaznik + "] Nemáš dostatek QCoins k zaplacení 1. pozice ve frontě. Nákup stojí 500 QCoins."); 
                     }
                     else {
-                        giverTokens -= 200;
+                        giverTokens -= 500;
                         localStorage.setItem(chat.un, giverTokens);
-                            return API.sendChat("[ OBCHOD ] Uživatel " + zakaznik + " si zakoupil první pozici ve frontě.");
-                             basicBot.userUtilities.moveUser(uid, +1, true);
+                            return API.sendChat("[ OBCHOD ] Uživatel @" + zakaznik + " si právě zakoupil pozici ve frontě! ");
+                             basicBot.userUtilities.moveUser(chat.uid, +1, true);
                     }
             }
         }, 
