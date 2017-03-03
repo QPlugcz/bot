@@ -1,15 +1,17 @@
-//    COPYRIGHT»                         MUSIC FOR EVERYONE 2016
-//    CURRENT DEVELOPERS»                FALSEYING, Franta72
-//    ROOM»                              https://plug.dj/m-f-e
-//    COMMANDS»                          http://musicforeveryone.6f.sk/prikazy
+/*
+
+COPYRIGHT»                         QPlug.cz 2017
+DEVELOPERS»                        Franta72, Hellbyte
+ROOM»                              https://plug.dj/qplug-czsk
+
+Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Administrátormi plug.dj!
+- Marvin (xBytez)
+- Dom (Origin)
+- Brett (sinful)
+
+*/
 
 // This is a remastered version of the original Basicbot, made by Benzi. All rights are reserved for the author and he may change some of the bot features if he wants or not.
-
-(function () {
-    /*window.onerror = function() {
-        var room = JSON.parse(localStorage.getItem("basicBotRoom"));
-        window.location = 'https://plug.dj' + room.name;
-    };*/
 
     API.getWaitListPosition = function(id){
         if(typeof id === 'undefined' || id === null){
@@ -3175,7 +3177,47 @@ API.sendChat( retazec );
 }
 }
 },
-            
+
+startCommand: {
+command: ['start', 'začať', 'začat', 'zacať', 'zacat'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var from = chat.un;
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if(medzera === -1){
+API.sendChat("[@" + from + "] Získavaj pomocou DJovania jedinečné QCoins za ktoré sa bude dať kúpiť prve miesto v zozname čakaní! Za každý 1 Woot ktorý dostaneš máš 1 QCoins. Za každý Grab dostaneš 2 QCoiny. Ak ti niekto dá Meh na tvoju pesničku jemu to odčíta z QCoins. Na konci každej pesničky zistíš koľko získal DJ QCoins.");
+return false;
+}
+
+else{
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if(user === false || !user.inRoom){
+return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
+}
+
+else if(user.username === chat.un){
+return API.sendChat("[@" + from + "] Získavaj pomocou DJovania jedinečné QCoins za ktoré sa bude dať kúpiť prve miesto v zozname čakaní! Za každý 1 Woot ktorý dostaneš máš 1 QCoins. Za každý Grab dostaneš 2 QCoiny. Ak ti niekto dá Meh na tvoju pesničku jemu to odčíta z QCoins. Na konci každej pesničky zistíš koľko získal DJ QCoins.");
+}
+
+else{
+return API.sendChat("[@" + user.username + "] Získavaj pomocou DJovania jedinečné QCoins za ktoré sa bude dať kúpiť prve miesto v zozname čakaní! Za každý 1 Woot ktorý dostaneš máš 1 QCoins. Za každý Grab dostaneš 2 QCoiny. Ak ti niekto dá Meh na tvoju pesničku jemu to odčíta z QCoins. Na konci každej pesničky zistíš koľko získal DJ QCoins.");
+}
+
+}
+
+}
+}
+},
+
 rulesCommand: {
 command: ['pravidla', 'pravidlá', 'rules'],
 rank: 'user',
@@ -3507,8 +3549,7 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-/*API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na !");*/
-API.sendChat("[ CHYBA 404 ] Tento príkaz je vo vývoji.");
+API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/prikazy!");
 
 }
 }
@@ -3522,7 +3563,7 @@ loadChat(basicBot.startup);
 
 var msgs=[
 "/me Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!",
-"/me Nezabudnite nás zdielať po sociálnych sieťach! Za určitý počet dosiahnutých ľudí sa chystajú Eventy!",
+"/me Nezabudnite nás zdielať po sociálnych sieťach! Za určitý počet dosiahnutých ľudí sa chystajú Eventy o hromadu QCoins!",
 "/me Náš Discord server https://bit.ly/QPlugczDiscord!",
 "/me Získavajte pomocou DJovania jedinečné QCoiny za ktoré si môžete kupovať prvé pozície v zozname čakaní!"
 ];
