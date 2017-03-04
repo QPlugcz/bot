@@ -3339,7 +3339,7 @@ API.sendChat("[ NÁBOR ] Aktuálne prebieha Nábor do týmu, ktorý najdeš na!"
 }
 }
 },
- loveCommand: {
+loveCommand: {
     command: ['love', 'laska', 'láska'],
     rank: 'user',
     type: 'startsWith',
@@ -3366,7 +3366,7 @@ API.sendChat("[ NÁBOR ] Aktuálne prebieha Nábor do týmu, ktorý najdeš na!"
                 } else if (user.username === from.un) {
                     return API.sendChat("[@" + from.un + "] Miluješ sa?");
                 } else {
-                    if((from.id == 4183729 && user.id == 5477951) || (from.id == 5477951 && user.id == 4183729))
+                    if((from.uid == 4183729 && user.id == 5477951) || (from.uid == 5477951 && user.id == 4183729))
                         random = 250; 
                 
                     return API.sendChat("@" + from.un + ", miluje @" + user.username + " na " + random + "%! :two_hearts:");
@@ -3376,7 +3376,7 @@ API.sendChat("[ NÁBOR ] Aktuálne prebieha Nábor do týmu, ktorý najdeš na!"
 
         }
     }
-},           
+},
 facebookCommand: {
 command: ['facebook', 'fb'],
 rank: 'user',
