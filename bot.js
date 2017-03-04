@@ -2264,8 +2264,8 @@ dclookupOnUserJoin: function (id) {
                     else {
                         giverTokens -= 500;
                         localStorage.setItem(chat.un, giverTokens);
-                        API.moderateMoveDJ(uid, 1); 
-                            return API.sendChat("[" + zakaznik + "] Zakoupil jste si posun dopředu ve frontě. ");
+                            API.sendChat("[" + zakaznik + "] Zakoupil jste si posun dopředu ve frontě. ");
+                            basicBot.userUtilities.moveUser(uid, +1, true);
                     }
             }
         }, 
@@ -3217,7 +3217,7 @@ var cislo2 = Math.floor((Math.random() * uzivatel2.length) + 1);
 var cislo3 = Math.floor((Math.random() * uzivatel3.length) + 1);
 var jaky = ["úchylný","hloupý","zamilovaný","retardovaný","pošahaný","chytrý","mocný","sexy","nemocný","vožralý"];
 var jake = ["úchylné","hloupé","zamilované","retardované","pošahané","chytré","mocné","sexy","nemocné","vožralé"];
-var kam = ["na zahradu","do popelnice","ven","na záchod","do sprchy","na Měsíc","do hospody","do vesmíru","na hřiště","do auta","do letadla","do ponorky","pod zem","do rakve","do garáže","na půdu","do sklepa","domů","na intr","do školy"];
+var kam = ["do hotelu","na zahradu","do popelnice","ven","na záchod","do sprchy","na Měsíc","do hospody","do vesmíru","na hřiště","do auta","do letadla","do ponorky","pod zem","do rakve","do garáže","na půdu","do sklepa","domů","na intr","do školy"];
 var co = ["lovit křečky","nahánět holky","nahánět kluky","zkoušet létat","čistit latrýnu","mazlit se","fingovat sebevraždy","chlastat","žrát čokoládu","jezdit výtahem","klouzat se po zábradlí"];
 var co2 = ["lovili křečky","naháněli holky","naháněli kluky","zkoušeli létat","čistili latrýnu","mazlili se","fingovali sebevraždy","chlastali","žrali čokoládu","jezdili výtahem","klouzali se po zábradlí"];
 var jak = ["úplně vypatlaně","bez rozmyšlení","sebejistě","sebevražedně","maniacky","pedofilně","vychytrale","velmi rychle","docela pomalu","vožrale"];
