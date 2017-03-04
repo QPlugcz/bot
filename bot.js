@@ -355,31 +355,31 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 9) + 1);
                         basicBot.room.tipovacka.max = 10;
               
-            API.sendChat('[ LOTERIE ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Uhodněte zadané číslo pomocí !los číslo a vyhrajte 60 QCoins! Los stojí 10 QCoins.');  
+            API.sendChat('[ LOTERIE ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Uhodněte zadané číslo pomocí !los číslo a vyhrajte 60 QPoints! Los stojí 10 QPoints.');  
                     }
                     if (basicBot.room.tipovacka.obtiznost == 2) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 24) + 1);
                         basicBot.room.tipovacka.max = 25;
-            API.sendChat('[ LOTERIE ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Uhodněte zadané číslo pomocí !los číslo a vyhrajte 150 QCoins! Los stojí 10 QCoins.'); 
+            API.sendChat('[ LOTERIE ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Uhodněte zadané číslo pomocí !los číslo a vyhrajte 150 QPoints! Los stojí 10 QPoints.'); 
              
                     }
             if (basicBot.room.tipovacka.obtiznost == 3) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 49) + 1);
                         basicBot.room.tipovacka.max = 50;
-              API.sendChat('[ LOTERIE ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Uhodněte zadané číslo pomocí !los číslo a vyhrajte 400 QCoins! Los stojí 10 QCoins.'); 
+              API.sendChat('[ LOTERIE ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Uhodněte zadané číslo pomocí !los číslo a vyhrajte 400 QPoints! Los stojí 10 QPoints.'); 
              
                     }
             if (basicBot.room.tipovacka.obtiznost == 5) {
                         var barvy = ["red","yellow","orange","blue","green","purple","brown","black","pink"];
                         basicBot.room.tipovacka.currentNumber = barvy[Math.floor(Math.random() * barvy.length)];
                         basicBot.room.tipovacka.max = "white";
-            API.sendChat('[ LOTERIE ] Myslím sí barvu v angličtině. Uhodněte zadanou barvu pomocí !los text a vyhrajte 70 QCoins! Los stojí 10 QCoins.'); 
+            API.sendChat('[ LOTERIE ] Myslím sí barvu v angličtině. Uhodněte zadanou barvu pomocí !los text a vyhrajte 70 QPoints! Los stojí 10 QPoints.'); 
                     }
                     if (basicBot.room.tipovacka.obtiznost == 4) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 99) + 1);
                         basicBot.room.tipovacka.max = 100; 
                     
-                    API.sendChat('[ LOTERIE ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Uhodněte zadané číslo pomocí !los číslo a vyhrajte 900 QCoins! Los stojí 10 QCoins.');
+                    API.sendChat('[ LOTERIE ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Uhodněte zadané číslo pomocí !los číslo a vyhrajte 900 QPoints! Los stojí 10 QPoints.');
           }      
     },      
                 endNumberGameTime: function() {
@@ -405,7 +405,7 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
                 var receiverTokens = validateTokens(name);
                     var penize = parseInt(receiverTokens, 10) + parseInt(60,10);
                     localStorage.setItem(name, penize);
-                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 60 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
+                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 60 QPoints s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
                             basicBot.room.tipovacka.currentNumber = 0;
             } else if (basicBot.room.tipovacka.obtiznost == 2) {
                 name = basicBot.room.users[i].username;
@@ -414,7 +414,7 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
                 var receiverTokens = validateTokens(name);
                     var penize2 = parseInt(receiverTokens, 10) + parseInt(150,10);
                     localStorage.setItem(name, penize2);
-                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 150 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
+                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 150 QPoints s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
                        
               } else if (basicBot.room.tipovacka.obtiznost == 3) {
                   name = basicBot.room.users[i].username;
@@ -423,7 +423,7 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
                 var receiverTokens = validateTokens(name);
                     var penize3 = parseInt(receiverTokens, 10) + parseInt(400,10);
                     localStorage.setItem(name, penize3);
-                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 400 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
+                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 400 QPoints s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
              } else if (basicBot.room.tipovacka.obtiznost == 5) {
                  name = basicBot.room.users[i].username;
               basicBot.room.tipovacka.active = false;
@@ -431,7 +431,7 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
                 var receiverTokens = validateTokens(name);
                     var penize5 = parseInt(receiverTokens, 10) + parseInt(70,10);
                     localStorage.setItem(name, penize5);
-                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 70 QCoins se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');          
+                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 70 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');          
             } else if (basicBot.room.tipovacka.obtiznost == 4) {
                 name = basicBot.room.users[i].username;
               basicBot.room.tipovacka.active = false;
@@ -439,7 +439,7 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
                 var receiverTokens = validateTokens(name);
                     var penize4 = parseInt(receiverTokens, 10) + parseInt(900,10);
                     localStorage.setItem(name, penize4);
-                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 900 QCoins s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
+                            API.sendChat('/me [ LOTERIE ] Uživatel @' + name + ' vyhrál 900 QPoints s výherním losem ' + basicBot.room.tipovacka.currentNumber + '');
                        }  
                     else {
                         return false; 
@@ -994,7 +994,7 @@ dclookupOnUserJoin: function (id) {
             var receiverTokens = validateTokens(obj.user.username);
            receiverTokens -= 1;
            localStorage.setItem(obj.user.username, receiverTokens);
-           API.sendChat("/me [" + obj.user.username + "] Ztratil/a jsi 1 QCoins za mehnutí písně!");
+           API.sendChat("/me [" + obj.user.username + "] Ztratil/a jsi 1 QPoints za mehnutí písně!");
            
                     }
                 }
@@ -1044,7 +1044,7 @@ dclookupOnUserJoin: function (id) {
 
            
        localStorage.setItem(lastdjplayed.username, cislo);
-           API.sendChat("/me [" + lastdjplayed.username + "] Získal/a jsi " + reward + " QCoins za odehrání písně!");
+           API.sendChat("/me [" + lastdjplayed.username + "] Získal/a jsi " + reward + " QPoints za odehrání písně!");
            
         
          }   
@@ -1797,7 +1797,7 @@ dclookupOnUserJoin: function (id) {
                 else {
                 var user = chat.un;
                     localStorage.clear();
-                    API.sendChat("[ OZNAM | @everyone ] Vedení místnosti resetovalo QCoins všem uživatelům.");
+                    API.sendChat("[ OZNAM | @everyone ] Vedení místnosti resetovalo QPoints všem uživatelům.");
                     
                     
                 }
@@ -1843,10 +1843,10 @@ dclookupOnUserJoin: function (id) {
             var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
             
                     if (giverTokens < strhnout) {
-                        return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek QCoins k zaslání dárku!"); 
+                        return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek QPoints k zaslání dárku!"); 
                     }
                          else if (receiver === chat.un) {
-                         return API.sendChat("[@" + chat.un + "] Nemůžeš posílat QCoins sám sobě!");
+                         return API.sendChat("[@" + chat.un + "] Nemůžeš posílat QPoints sám sobě!");
                             
                     }
                     else {
@@ -1854,11 +1854,11 @@ dclookupOnUserJoin: function (id) {
                         localStorage.setItem(chat.un, giverTokens);
                         if (space === -1) { 
                             localStorage.setItem(currentDJ, cislo);
-                            return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QCoins uživateli " + currentDJ + "");
+                            return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateli " + currentDJ + "");
                         }
                         else {
                             localStorage.setItem(receiver, cislo);
-                            return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QCoins uživateli " + receiver + "");
+                            return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateli " + receiver + "");
                             
                         
         
@@ -1970,7 +1970,7 @@ dclookupOnUserJoin: function (id) {
                     var giverTokens = validateTokens(chat.un);
             
                     if (giverTokens < 10) {
-                        return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek QCoins na zakoupení losu. Los stojí 10 QCoins."); 
+                        return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek QPoints na zakoupení losu. Los stojí 10 QPoints."); 
                     }
                         if (gni === basicBot.room.tipovacka.currentNumber || gn === basicBot.room.tipovacka.currentNumber.toString()) {
                             basicBot.room.tipovacka.endNumberGame(chat.uid);
@@ -2039,11 +2039,11 @@ dclookupOnUserJoin: function (id) {
                         localStorage.setItem(chat.un, giverTokens);
                         if (space === -1) { 
                             localStorage.setItem(currentDJ, cislo);
-                            return API.sendChat("/me [@" + currentDJ + "] Bylo vám přičteno na účet " + strhnout + " QCoins.");
+                            return API.sendChat("/me [@" + currentDJ + "] Bylo vám přičteno na účet " + strhnout + " QPoints.");
                         }
                         else {
                             localStorage.setItem(receiver, cislo);
-                            return API.sendChat("/me [@" + receiver + "] Bylo vám přičteno na účet " + strhnout + " QCoins.");
+                            return API.sendChat("/me [@" + receiver + "] Bylo vám přičteno na účet " + strhnout + " QPoints.");
                             
                         
         
@@ -2103,11 +2103,11 @@ dclookupOnUserJoin: function (id) {
                         localStorage.setItem(chat.un, giverTokens);
                         if (space === -1) { 
                             localStorage.setItem(currentDJ, cislo);
-                            return API.sendChat("/me [@" + currentDJ + "] Bylo vám strženo z účtu " + strhnout + " QCoins.");
+                            return API.sendChat("/me [@" + currentDJ + "] Bylo vám strženo z účtu " + strhnout + " QPoints.");
                         }
                         else {
                             localStorage.setItem(receiver, cislo);
-                            return API.sendChat("/me [@" + receiver + "] Bylo vám strženo z účtu " + strhnout + " QCoins.");
+                            return API.sendChat("/me [@" + receiver + "] Bylo vám strženo z účtu " + strhnout + " QPoints.");
                             
                         
         
@@ -2153,7 +2153,7 @@ dclookupOnUserJoin: function (id) {
                     var giverTokens = validateTokens(chat.un);
             
                     if (giverTokens < 1000) {
-                        return API.sendChat("[@" + chat.un + "] Chceš mít jedinečný odznak dle tvého přání? Zakup si vlastní odznak za 1000 QCoins, kteří uvidí všichni uživatelé s RCS!"); 
+                        return API.sendChat("[@" + chat.un + "] Chceš mít jedinečný odznak dle tvého přání? Zakup si vlastní odznak za 1000 QPoints, kteří uvidí všichni uživatelé s RCS!"); 
                     }
                     else {
                         giverTokens -= 1000;
@@ -2196,7 +2196,7 @@ dclookupOnUserJoin: function (id) {
                     var giverTokens = validateTokens(chat.un);
             
                     if (giverTokens < 5000) {
-                        return API.sendChat("[@" + chat.un + "] Aktivuj si VIP u nás za 5000 QCoins a získej spoustu výhod! Skvělý odznak a ikonu, kteří vidí uživatelé s RCS, automatické grabování tvých písní botem nebo příkazy jen pro VIP!"); 
+                        return API.sendChat("[@" + chat.un + "] Aktivuj si VIP u nás za 5000 QPoints a získej spoustu výhod! Skvělý odznak a ikonu, kteří vidí uživatelé s RCS, automatické grabování tvých písní botem nebo příkazy jen pro VIP!"); 
                     }
                     else {
                         giverTokens -= 5000;
@@ -2259,7 +2259,7 @@ dclookupOnUserJoin: function (id) {
                  var uid = chat.uid;
             
                     if (giverTokens < 500) {
-                        return API.sendChat("[@" + zakaznik + "] Nemáš dostatek QCoins k zaplacení 1. pozice ve frontě. Nákup stojí 500 QCoins."); 
+                        return API.sendChat("[@" + zakaznik + "] Nemáš dostatek QPoints k zaplacení 1. pozice ve frontě. Nákup stojí 500 QPoints."); 
                     }
                     else {
                         giverTokens -= 500;
@@ -2318,13 +2318,13 @@ localStorage.setItem(chat.un, giverTokens);
 if (space === -1){ 
 receiverTokens -= 0;
 localStorage.setItem(currentDJ, receiverTokens);
-return API.sendChat("/me [@"+ chat.un +"] Úžívateľ "+ currentDJ +" má na konte "+ receiverTokens +" QCoins!"); 
+return API.sendChat("/me [@"+ chat.un +"] Úžívateľ "+ currentDJ +" má na konte "+ receiverTokens +" QPoints!"); 
 }
 
 else{
 receiverTokens -= 0;
 localStorage.setItem(receiver, receiverTokens);
-return API.sendChat("/me [@"+ chat.un +"] Užívateľ "+ receiver +" má na konte "+ receiverTokens +" QCoins!");
+return API.sendChat("/me [@"+ chat.un +"] Užívateľ "+ receiver +" má na konte "+ receiverTokens +" QPoints!");
 }
 
 }
@@ -2333,7 +2333,7 @@ return API.sendChat("/me [@"+ chat.un +"] Užívateľ "+ receiver +" má na kont
 
 
 bodyCommand: {
-command: ['qcoiny','qcoins', 'qc'],
+command: ['qcoiny','QPoints', 'qc'],
 rank: 'user',
 type: 'exact',
 functionality: function (chat, cmd) {
@@ -2344,7 +2344,7 @@ else{
 var user = chat.un;
 var tokens = validateTokens(user);
 
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QCoins!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints!");
 }
 
 function validateTokens(user){
@@ -3258,7 +3258,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[@" + from + "] Získavaj pomocou DJovania jedinečné QCoins za ktoré sa bude dať kúpiť prve miesto v zozname čakaní! Za každý 1 Woot ktorý dostaneš máš 1 QCoins. Za každý Grab dostaneš 2 QCoiny. Ak ti niekto dá Meh na tvoju pesničku jemu to odčíta z QCoins. Na konci každej pesničky zistíš koľko získal DJ QCoins.");
+API.sendChat("[@" + from + "] Získavaj pomocou DJovania jedinečné QPoints za ktoré sa bude dať kúpiť prve miesto v zozname čakaní! Za každý 1 Woot ktorý dostaneš máš 1 QPoints. Za každý Grab dostaneš 2 QCoiny. Ak ti niekto dá Meh na tvoju pesničku jemu to odčíta z QPoints. Na konci každej pesničky zistíš koľko získal DJ QPoints.");
 return false;
 }
 
@@ -3271,11 +3271,11 @@ return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@" + from + "] Získavaj pomocou DJovania jedinečné QCoins za ktoré sa bude dať kúpiť prve miesto v zozname čakaní! Za každý 1 Woot ktorý dostaneš máš 1 QCoins. Za každý Grab dostaneš 2 QCoiny. Ak ti niekto dá Meh na tvoju pesničku jemu to odčíta z QCoins. Na konci každej pesničky zistíš koľko získal DJ QCoins.");
+return API.sendChat("[@" + from + "] Získavaj pomocou DJovania jedinečné QPoints za ktoré sa bude dať kúpiť prve miesto v zozname čakaní! Za každý 1 Woot ktorý dostaneš máš 1 QPoints. Za každý Grab dostaneš 2 QCoiny. Ak ti niekto dá Meh na tvoju pesničku jemu to odčíta z QPoints. Na konci každej pesničky zistíš koľko získal DJ QPoints.");
 }
 
 else{
-return API.sendChat("[@" + user.username + "] Získavaj pomocou DJovania jedinečné QCoins za ktoré sa bude dať kúpiť prve miesto v zozname čakaní! Za každý 1 Woot ktorý dostaneš máš 1 QCoins. Za každý Grab dostaneš 2 QCoiny. Ak ti niekto dá Meh na tvoju pesničku jemu to odčíta z QCoins. Na konci každej pesničky zistíš koľko získal DJ QCoins.");
+return API.sendChat("[@" + user.username + "] Získavaj pomocou DJovania jedinečné QPoints za ktoré sa bude dať kúpiť prve miesto v zozname čakaní! Za každý 1 Woot ktorý dostaneš máš 1 QPoints. Za každý Grab dostaneš 2 QCoiny. Ak ti niekto dá Meh na tvoju pesničku jemu to odčíta z QPoints. Na konci každej pesničky zistíš koľko získal DJ QPoints.");
 }
 
 }
@@ -3324,47 +3324,6 @@ return API.sendChat("[@" + user.username + "] Naše pravidlá najdeš na http://
 }
 },
             
-loveCommand: {
-command: ['love', 'laska', 'láska'],
-rank: 'user',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var from = chat.un;
-var random = Math.floor((Math.random() * 100) + 1);
-var msg = chat.message;
-var medzera = msg.indexOf(' ');
-
-if(medzera === -1){
-API.sendChat("[@" + from + "] Miluješ sa?");
-return false;
-}
-
-else{
-
-var meno = msg.substring(medzera + 2);
-var user = basicBot.userUtilities.lookupUserName(meno);
-
-if(user === false || !user.inRoom){
-return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
-}
-
-else if(user.username === from){
-return API.sendChat("[@" + from + "] Miluješ sa?");
-}
-
-else{
-return API.sendChat("@" + from + ", miluje @" + user.username + " na " + random + "%! :two_hearts:");
-}
-
-}
-
-}
-}
-},
 
 naborCommand: {
 command: ['nabor', 'nábor'],
@@ -3380,7 +3339,44 @@ API.sendChat("[ NÁBOR ] Aktuálne prebieha Nábor do týmu, ktorý najdeš na!"
 }
 }
 },
-            
+ loveCommand: {
+    command: ['love', 'laska', 'láska'],
+    rank: 'user',
+    type: 'startsWith',
+    functionality: function(chat, cmd) {
+        if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
+        if (!basicBot.commands.executable(this.rank, chat)) return void(0);
+        else {
+
+            var from = chat;
+            var random = Math.floor((Math.random() * 100) + 1);
+            var msg = chat.message;
+            var medzera = msg.indexOf(' ');
+
+            if (medzera === -1) {
+                API.sendChat("[@" + from.un + "] Miluješ sa?");
+                return false;
+            } else {
+
+                var meno = msg.substring(medzera + 2);
+                var user = basicBot.userUtilities.lookupUserName(meno);
+
+                if (user === false || !user.inRoom) {
+                    return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!");
+                } else if (user.username === from.un) {
+                    return API.sendChat("[@" + from.un + "] Miluješ sa?");
+                } else {
+                    if((from.id == 4183729 && user.id == 5477951) || (from.id == 5477951 && user.id == 4183729))
+                        random = 250; 
+                
+                    return API.sendChat("@" + from.un + ", miluje @" + user.username + " na " + random + "%! :two_hearts:");
+                }
+
+            }
+
+        }
+    }
+},           
 facebookCommand: {
 command: ['facebook', 'fb'],
 rank: 'user',
@@ -3629,7 +3625,7 @@ loadChat(basicBot.startup);
 
 var msgs=[
 "/me Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!",
-"/me Nezabudnite nás zdielať po sociálnych sieťach! Za určitý počet dosiahnutých ľudí sa chystajú Eventy o hromadu QCoins!",
+"/me Nezabudnite nás zdielať po sociálnych sieťach! Za určitý počet dosiahnutých ľudí sa chystajú Eventy o hromadu QPoints!",
 "/me Náš Discord server https://bit.ly/QPlugczDiscord!",
 "/me Získavajte pomocou DJovania jedinečné QCoiny za ktoré si môžete kupovať prvé pozície v zozname čakaní!"
 ];
@@ -3831,7 +3827,7 @@ var from = chat.un;
 var fromid = chat.uid;
 
 if(
-msg.indexOf("v QPlug.cz! Za DJovanie získaš virtuálne peniaze, ktoré nazývame QCoins.") !== -1){
+msg.indexOf("v QPlug.cz! Za DJovanie získaš virtuálne peniaze, ktoré nazývame QPoints.") !== -1){
 if(fromid == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 30000); // 30 000 milisekund = 30 sekund
 }
@@ -3844,7 +3840,7 @@ var from = chat.un;
 var fromid = chat.uid;
 
 if(
-msg.indexOf("QCoins za odehrání písně!") !== -1){
+msg.indexOf("QPoints za odehrání písně!") !== -1){
 if(fromid == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 milisekund = 20 sekund
 }
