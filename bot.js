@@ -3214,21 +3214,21 @@ var cislo = Math.floor((Math.random() * uzivatel.length) + 1);
 var herec = uzivatel[(cislo - 1)].username;
 var herec2 = uzivatel[(cislo - 1)].username;
 var herec3 = uzivatel[(cislo - 1)].username;
-var jaky = ["úchylný","hloupý","zamilovaný","retardovaný","pošahaný","chytrý","mocný","sexy","nemocný","vožralý"];
+var jaky = ["úchylný/á","hloupý/á","zamilovaný/á","retardovaný/á","pošahaný/á","chytrý/á","mocný/á","sexy","nemocný/á","vožralý/á"];
 var jake = ["úchylné","hloupé","zamilované","retardované","pošahané","chytré","mocné","sexy","nemocné","vožralé"];
 var kam = ["na zahradu.","do popelnice.","ven.","na záchod.","do sprchy.","na Měsíc.","do hospody.","do vesmíru.","na hřiště.","do auta.","do letadla.","do ponorky.","pod zem.","do rakve.","do garáže.","na půdu.","do sklepa.","domů.","na intr.","do školy."];
 var co = ["lovit křečky","nahánět holky","nahánět kluky","zkoušet létat","čistit latrýnu","mazlit se","fingovat sebevraždy","chlastat","žrát čokoládu","jezdit výtahem","klouzat se po zábradlí"];
 var co2 = ["lovili křečky","naháněli holky","naháněli kluky","zkoušeli létat","čistili latrýnu","mazlili se","fingovali sebevraždy","chlastali","žrali čokoládu","jezdili výtahem","klouzali se po zábradlí"];
 var jak = ["úplně vypatlaně","bez rozmyšlení","sebejistě","sebevražedně","maniacky","pedofilně","vychytrale","velmi rychle","docela pomalu","vožrale"];
-var proc = ["protože jsou prostě retardi.","protože je nikdo nemá rád.","protože jsou do sebe zamilovaní.","protože jsou zhulený.","protože chcou více drog.","protože jsou vožralý.","protože banán.","protože když máš 4 jablka a 3 hrušky, nemůžeš mít švestkový kompot."];
-var proc2 = ["protože jste prostě retardi.","protože vás nikdo nemá rád.","protože jste do sebe zamilovaní.","protože jste zhulený.","protože chcete více drog.","protože jste vožralý.","protože banán.","protože když máte 4 jablka a 3 hrušky, nemůžete mít švestkový kompot."];
+var proc = ["protože jsou prostě retardi.","protože bagr","protože je nikdo nemá rád.","protože jsou do sebe zamilovaní.","protože jsou zhulený.","protože chcou více drog.","protože jsou vožralý.","protože banán.","protože když máš 4 jablka a 3 hrušky, nemůžeš mít švestkový kompot."];
+var proc2 = ["protože jste prostě retardi.","protože bagr","protože vás nikdo nemá rád.","protože jste do sebe zamilovaní.","protože jste zhulený.","protože chcete více drog.","protože jste vožralý.","protože banán.","protože když máte 4 jablka a 3 hrušky, nemůžete mít švestkový kompot."];
 //VIP
 var franta = "5032556";
 var tessi = "5477951";
 
 if(fromid == franta || fromid == tessi){
-API.sendChat("[@"+ from +"] Jednoho večera zazvonil u tebe tvůj " + jaky[Math.floor(Math.random() * jaky.length)] + " kamarád/ka "+ herec +" s tím, ať jdete " + kam[Math.floor(Math.random() * kam.length)] + " Odpověděl/a jsi, že ne, radši půjdeš " + co[Math.floor(Math.random() * co.length)] + ". Nakonec tě přemluvil/a.");
-setTimeout(function(){ API.sendChat("Cestou jste potkali " + jake[Math.floor(Math.random() * jake.length)] + " kamarády "+ herec2 +" a "+ herec3 +". Zeptal/a ses, jestli chtějí jít s vámi. Na to ti " + jak[Math.floor(Math.random() * jak.length)] + " odpověděli, ať na to zapomeneš " + proc[Math.floor(Math.random() * proc.length)] + ""); }, 1000);
+API.sendChat("[@"+ from +"] Jednoho večera zazvonil/a u tebe tvůj/tvoje " + jaky[Math.floor(Math.random() * jaky.length)] + " kamarád/ka " + uzivatel[(cislo - 1)].username + " s tím, ať jdete " + kam[Math.floor(Math.random() * kam.length)] + " Odpověděl/a jsi, že ne, radši půjdeš " + co[Math.floor(Math.random() * co.length)] + ". Nakonec tě přemluvil/a.");
+setTimeout(function(){ API.sendChat("Cestou jste potkali " + jake[Math.floor(Math.random() * jake.length)] + " kamarády " + uzivatel[(cislo - 1)].username + " a " + uzivatel[(cislo - 1)].username + ". Zeptal/a ses, jestli chtějí jít s vámi. Na to ti " + jak[Math.floor(Math.random() * jak.length)] + " odpověděli, ať na to zapomeneš " + proc[Math.floor(Math.random() * proc.length)] + ""); }, 1000);
 setTimeout(function(){ API.sendChat("Tak jsi jen pokrčil/a rameny a pokračovali jste v cestě " + kam[Math.floor(Math.random() * kam.length)] + " abyste " + jak[Math.floor(Math.random() * jak.length)] + " " + co2[Math.floor(Math.random() * co2.length)] + " " + proc2[Math.floor(Math.random() * proc2.length)] + ""); }, 2000);
 }
 else {
