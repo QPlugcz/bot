@@ -3251,8 +3251,9 @@ var proc2 = ["protože jste prostě retardi.","protože bagr","protože vás nik
 var franta = "5032556";
 var tessi = "5477951";
 var hellbyte = "4635487";
+var Dave = "343188";
 
-if(fromid == franta || fromid == tessi || fromid == hellbyte){
+if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == Dave){
 API.sendChat("[@"+ from +"] Jednoho večera zazvonil u tebe tvůj " + jaky[Math.floor(Math.random() * jaky.length)] + " kamarád " + uzivatel[(cislo - 1)].username + " s tím, ať jdete " + kam[Math.floor(Math.random() * kam.length)] + ". Odpověděl jsi, že ne, radši půjdeš " + co[Math.floor(Math.random() * co.length)] + ". Nakonec tě přemluvil.");
 setTimeout(function(){ API.sendChat("Cestou jste potkali " + jake[Math.floor(Math.random() * jake.length)] + " kamarády " + uzivatel2[(cislo2 - 1)].username + " a " + uzivatel3[(cislo3 - 1)].username + ". Zeptal ses, jestli chtějí jít s vámi. Na to ti " + jak[Math.floor(Math.random() * jak.length)] + " odpověděli, ať na to zapomeneš " + proc[Math.floor(Math.random() * proc.length)] + ""); }, 700);
 setTimeout(function(){ API.sendChat("Tak jsi jen pokrčil rameny a pokračovali jste v cestě " + kam[Math.floor(Math.random() * kam.length)] + ", abyste " + jak[Math.floor(Math.random() * jak.length)] + " " + co2[Math.floor(Math.random() * co2.length)] + " " + proc2[Math.floor(Math.random() * proc2.length)] + ""); }, 1500);
@@ -3606,7 +3607,20 @@ API.sendChat("[ DISCORD ] Odkaz na náš Discord je https://bit.ly/QPlugczDiscor
 }
 }
 },
+vipsCommand: {
+command: 'vips',
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
 
+API.sendChat("[ VIP Členové ] Dave");
+
+}
+}
+},
 autowootCommand: {
 command: ['autowoot', 'aw', 'rcs'],
 rank: 'user',
