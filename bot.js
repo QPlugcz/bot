@@ -2293,7 +2293,72 @@ dclookupOnUserJoin: function (id) {
                     }
             }
         }, 
-      
+      umelecCommand: {
+				command: 'umelec',  //The command to be called.
+				rank: 'user', //Minimum user permission to use the command
+				type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+                    else {
+
+					simpleAJAXLib = {
+						
+								init: function () {
+									var artist = API.getMedia().author;
+									var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=b3cb78999a38750fc3d76c51ba2bf6bb&artist=' + artist.replace(/&/g,"%26").replace(/ /g,"%20") + '&autocorrect=1'
+									this.fetchJSON(url);
+								},
+						 
+								fetchJSON: function (url) {
+									var root = 'https://query.yahooapis.com/v1/public/yql?q=';
+									var yql = 'select * from xml where url="' + url + '"';
+									var proxy_url = root + encodeURIComponent(yql) + '&format=json&diagnostics=false&callback=simpleAJAXLib.display';
+									document.getElementsByTagName('body')[0].appendChild(this.jsTag(proxy_url));
+								},
+						 
+								jsTag: function (url) {
+									var script = document.createElement('script');
+									script.setAttribute('type', 'text/javascript');
+									script.setAttribute('src', url);
+									return script;
+								},
+						 
+								display: function (results) {
+									setTimeout(function() {
+										try {
+											var name;
+											name = results.query.results.lfm.artist.name;
+											
+											var picture;
+											picture = results.query.results.lfm.artist.image[3].content
+											
+											var genres;
+											genres = results.query.results.lfm.artist.tags.tag[0].name;
+											genres += ", ";
+											genres += results.query.results.lfm.artist.tags.tag[1].name;
+											genres += ", ";
+											genres += results.query.results.lfm.artist.tags.tag[2].name;
+											
+											var similar;
+											similar = results.query.results.lfm.artist.similar.artist[0].name;
+											similar += ", ";
+											similar += results.query.results.lfm.artist.similar.artist[1].name;
+											similar += ", ";
+											similar += results.query.results.lfm.artist.similar.artist[2].name;
+											
+											API.sendChat("/me [@" + chat.un + "] Jméno: " + name + " | Žánr: " + genres + " | Podobné skupiny: " + similar + " | Obrázek: " + picture);
+										} catch (e) {
+											API.sendChat("/me [@" + chat.un + "] Omlouváme se, ale server nenalezl žádné informace o tomto zpěvákovi či hudební skupině.");
+										}
+									},100);
+								}
+						}
+						simpleAJAXLib.init();	
+					}
+				}
+			},
+			
 kontoCommand: {
 command: ['konto'],
 rank: 'bouncer',
