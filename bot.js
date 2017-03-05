@@ -3251,7 +3251,7 @@ var proc2 = ["protože jste prostě retardi.","protože bagr","protože vás nik
 var franta = "5032556";
 var tessi = "5477951";
 var hellbyte = "4635487";
-var Dave = "343188";
+var Dave = "3431885";
 
 if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == Dave){
 API.sendChat("[@"+ from +"] Jednoho večera zazvonil u tebe tvůj " + jaky[Math.floor(Math.random() * jaky.length)] + " kamarád " + uzivatel[(cislo - 1)].username + " s tím, ať jdete " + kam[Math.floor(Math.random() * kam.length)] + ". Odpověděl jsi, že ne, radši půjdeš " + co[Math.floor(Math.random() * co.length)] + ". Nakonec tě přemluvil.");
