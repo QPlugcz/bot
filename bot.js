@@ -454,7 +454,7 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
                     var penize6 = parseInt(receiverTokens, 10) + parseInt(100,10);
                     localStorage.setItem(name, penize6);
                             API.sendChat('/me [ MINIHRA ] Uživatel @' + name + ' vyhrál 100 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');   
-                    else {
+                    }  else {
                         return false; 
                     }    
                         }
