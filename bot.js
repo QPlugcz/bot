@@ -2421,7 +2421,7 @@ return API.sendChat("/me [@"+ chat.un +"] Užívateľ "+ receiver +" má na kont
 },
 
 qcCommand: {
-command: ['qc'. 'qcoiny', 'qcoins'],
+command: ['qc', 'qcoiny', 'qcoins'],
 rank: 'user',
 type: 'exact',
 functionality: function (chat, cmd) {
