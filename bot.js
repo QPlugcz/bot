@@ -2288,7 +2288,7 @@ dclookupOnUserJoin: function (id) {
                     else {
                         giverTokens -= 500;
                         localStorage.setItem(chat.un, giverTokens);
-                            API.sendChat("[" + zakaznik + "] Zakoupil jste si posun dopředu ve frontě. ");
+                            API.sendChat("[" + zakaznik + "] Práve si si zakúpil prvé miesto v zozname čakaní za 500 QPoints!");
                             basicBot.userUtilities.moveUser(uid, +1, true);
                     }
             }
@@ -2420,9 +2420,25 @@ return API.sendChat("/me [@"+ chat.un +"] Užívateľ "+ receiver +" má na kont
 }
 },
 
+qcCommand: {
+command: ['qc'. 'qcoiny', 'qcoins'],
+rank: 'user',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
 
-bodyCommand: {
-command: ['qcoiny','QPoints', 'qc'],
+var from = chat.un;
+
+API.sendChat("[@"+ from +"] Príkaz !qc sa zmenil na !qp kvôli premenovaniu na QPoints. Ďakujeme za porozumenie.");
+
+}
+}
+},
+
+qpointsCommand: {
+command: ['qpointy','qpoints', 'qp'],
 rank: 'user',
 type: 'exact',
 functionality: function (chat, cmd) {
@@ -3285,6 +3301,7 @@ API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + 
 }
 }
 },
+
 //VIP Příkaz
 pribehCommand: {
 command: ['pribeh', 'story'],
@@ -3672,6 +3689,7 @@ API.sendChat("[ DISCORD ] Odkaz na náš Discord je https://bit.ly/QPlugczDiscor
 }
 }
 },
+
 vipsCommand: {
 command: 'vips',
 rank: 'user',
@@ -3681,11 +3699,12 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-API.sendChat("[ VIP Členové ] Dave");
+API.sendChat("[ VIP ČLENI ] Dave");
 
 }
 }
 },
+
 autowootCommand: {
 command: ['autowoot', 'aw', 'rcs'],
 rank: 'user',
@@ -3756,6 +3775,7 @@ var msgs=[
 "/me Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!",
 "/me Nezabudnite nás zdielať po sociálnych sieťach! Za určitý počet dosiahnutých ľudí sa chystajú Eventy o hromadu QPoints!",
 "/me Náš Discord server https://bit.ly/QPlugczDiscord!",
+"/me Piatok (10.3) sa usporiadá Event o hromadu QPoints! Viac informácii zistíte 6.3 o 19:30!",
 "/me Získavajte pomocou DJovania jedinečné QCoiny za ktoré si môžete kupovať prvé pozície v zozname čakaní!"
 ];
 var time=1800; // SEKUNDY
@@ -3842,10 +3862,10 @@ var msg = data.message;
 var fromid = data.uid;
 var from = data.un;
 // STAFF
-var hellbyte2 = "24676587";
+var tessi = "5477951";
 
 if(msg === "!bouncer"){
-if(fromid == hellbyte2){
+if(fromid == tessi){
 API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 2); }, 500);
 }
@@ -3862,10 +3882,10 @@ var msg = data.message;
 var fromid = data.uid;
 var from = data.un;
 // STAFF
-var hellbyte2 = "24676587";
+var tessi = "5477951";
 
 if(msg === "!unbouncer"){
-if(fromid == hellbyte2){
+if(fromid == tessi){
 API.sendChat("[@"+ from +"] Použil si Demote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 0); }, 500);
 }
@@ -3883,10 +3903,9 @@ var fromid = data.uid;
 var from = data.un;
 // STAFF
 var lemon = "5948294";
-var tessi = "5477951";
 
 if(msg === "!rdj"){
-if(fromid == lemon || fromid == tessi){
+if(fromid == lemon){
 API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 1); }, 500);
 }
@@ -3904,10 +3923,9 @@ var fromid = data.uid;
 var from = data.un;
 // STAFF
 var lemon = "5948294";
-var tessi = "5477951";
 
 if(msg === "!unrdj"){
-if(fromid == lemon || fromid == tessi){
+if(fromid == lemon){
 API.sendChat("[@"+ from +"] Použil si Demote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 0); }, 500);
 }
