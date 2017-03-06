@@ -3903,9 +3903,11 @@ var fromid = data.uid;
 var from = data.un;
 // STAFF
 var lemon = "5948294";
+var atti = "13505684";
+var bonki = "6345878";
 
 if(msg === "!rdj"){
-if(fromid == lemon){
+if(fromid == lemon || fromid == atti || fromid == bonki){
 API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 1); }, 500);
 }
@@ -3923,9 +3925,11 @@ var fromid = data.uid;
 var from = data.un;
 // STAFF
 var lemon = "5948294";
+var atti = "13505684";
+var bonki = "6345878";
 
 if(msg === "!unrdj"){
-if(fromid == lemon){
+if(fromid == lemon || fromid == atti || bonki){
 API.sendChat("[@"+ from +"] Použil si Demote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 0); }, 500);
 }
@@ -3966,7 +3970,7 @@ API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz môže použiť 
 
 // AntiSpam
 API.on(API.CHAT, welcome);
-API.on(API.CHAT, nonspam);
+API.on(API.CHAT, antispam);
 
 function welcome(chat){
 var msg = chat.message;
@@ -3981,7 +3985,7 @@ setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 30000); // 30 000 mi
 }
 }
 
-function nonspam(chat){
+function antispam(chat){
 var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
