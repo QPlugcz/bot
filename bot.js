@@ -3361,7 +3361,7 @@ var msg = chat.message;
 var from = chat.un;
 
 var datum = new Date();
-var denVTydnu = new Array("Nedeľa","Pondelok", "Utorok", "Streda", "Štvrtok", "konečne Piatok", "Sobota");
+var denVTydnu = new Array("nudná Nedeľa","Pondelok", "Utorok", "Streda", "Štvrtok", "konečne Piatok", "Sobota");
 var retazec = "[@"+ from +"] Dnes je ";
 retazec += denVTydnu[datum.getDay()] + ", ";
 retazec += datum.getDate() + ".";
@@ -3371,7 +3371,7 @@ retazec += "Čas: " + datum.getHours() + ":";
 retazec += datum.getMinutes();
 retazec += ". ";
 retazec += "Prajeme pekne prežitý deň. <3";
-API.sendChat( retazec );
+API.sendChat(retazec);
 
 }
 }
@@ -3457,7 +3457,6 @@ return API.sendChat("[@" + user.username + "] Naše pravidlá najdeš na http://
 }
 },
             
-
 naborCommand: {
 command: ['nabor', 'nábor'],
 rank: 'user',
@@ -3472,44 +3471,52 @@ API.sendChat("[ NÁBOR ] Aktuálne prebieha Nábor do týmu, ktorý najdeš na!"
 }
 }
 },
+
 loveCommand: {
-    command: ['love', 'laska', 'láska'],
-    rank: 'user',
-    type: 'startsWith',
-    functionality: function(chat, cmd) {
-        if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
-        if (!basicBot.commands.executable(this.rank, chat)) return void(0);
-        else {
+command: ['love', 'laska', 'láska'],
+rank: 'user',
+type: 'startsWith',
+functionality: function(chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
+if (!basicBot.commands.executable(this.rank, chat)) return void(0);
+else{
 
-            var from = chat;
-            var random = Math.floor((Math.random() * 100) + 1);
-            var msg = chat.message;
-            var medzera = msg.indexOf(' ');
+var from = chat;
+var random = Math.floor((Math.random() * 100) + 1);
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
 
-            if (medzera === -1) {
-                API.sendChat("[@" + from.un + "] Miluješ sa?");
-                return false;
-            } else {
+if (medzera === -1){
+API.sendChat("[@" + from.un + "] Miluješ sa?");
+return false;
+}
 
-                var meno = msg.substring(medzera + 2);
-                var user = basicBot.userUtilities.lookupUserName(meno);
+else{
 
-                if (user === false || !user.inRoom) {
-                    return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!");
-                } else if (user.username === from.un) {
-                    return API.sendChat("[@" + from.un + "] Miluješ sa?");
-                } else {
-                    if((from.uid == 4183729 && user.id == 5477951) || (from.uid == 5477951 && user.id == 4183729))
-                        random = 250; 
-                
-                    return API.sendChat("@" + from.un + ", miluje @" + user.username + " na " + random + "%! :two_hearts:");
-                }
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
 
-            }
+if (user === false || !user.inRoom){
+return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!");
+} 
 
-        }
-    }
+else if (user.username === from.un){
+return API.sendChat("[@" + from.un + "] Miluješ sa?");
+}
+
+else{
+if((from.uid == 4183729 && user.id == 5477951) || (from.uid == 5477951 && user.id == 4183729))
+random = 250; 
+
+return API.sendChat("@" + from.un + ", miluje @" + user.username + " na " + random + "%! :two_hearts:");
+}
+
+}
+
+}
+}
 },
+
 facebookCommand: {
 command: ['facebook', 'fb'],
 rank: 'user',
@@ -3775,7 +3782,7 @@ var msgs=[
 "/me Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!",
 "/me Nezabudnite nás zdielať po sociálnych sieťach! Za určitý počet dosiahnutých ľudí sa chystajú Eventy o hromadu QPoints!",
 "/me Náš Discord server https://bit.ly/QPlugczDiscord!",
-"/me Piatok (10.3) sa usporiadá Event o hromadu QPoints! Viac informácii zistíte 6.3 o 19:30!",
+"/me Piatok (10.3) sa usporiadá Event o hromadu QPoints!",
 "/me Získavajte pomocou DJovania jedinečné QCoiny za ktoré si môžete kupovať prvé pozície v zozname čakaní!"
 ];
 var time=1800; // SEKUNDY
