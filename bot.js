@@ -3623,6 +3623,64 @@ API.sendChat("[ AFK ] Užívateľ @"+ from +" sa práve vrátil!");
 }
 },
 
+vtipCommand: {
+command: ['vtip', 'vtipy'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+    
+var from = chat.un;
+var vtipy = [
+"Idú 2 babky po púšti a tá stredná odbočí doľava.",
+"Máš 10 rybiek, 1 sa utopila. Koľko máš?",
+"Peniaze vedia rozprávať. Napríklad moje mi každú chvíľu povedia: Zbohom!",
+"Milý Ježiško! Pod stromček si prosím tučnú peňaženku a štíhlu postavu. PS: Nepopleť to prosím ťa!",
+"Kedy utrpí chlap otras mozgu? Keď ho kopnú do rozkroku.",
+"Muži majú najmenšiu záhradku na svete. Jednu mrkvu, dva zemiačky a trošku petržlena!",
+"Ženy sú ako drogy. V mladosti s nimi začneš a do smrti ti ničia život.",
+"Mami, můžu jít ven? Je ti 25, nemusíš se vracet.",
+"Málokdo ví, že slovo onanie pochází ze slovenštiny. Logicky vzniklo spojením slov ona-nie.",
+"Viete, že človek je zo slivky? Zo slivky je slivovica, zo slivovice je opica a z opice je človek.",
+"Idú dva tanky jeden je ruský a druhý je tiež pokazený...",
+"Ide had na bicykli a spomenie si, že nemá nohy, a tak upadne a zlomí si koleno.",
+"Chobotnica má 8 chápadiel a jedno nechápe.",
+"Idú dve stíhačky a jedna nestíha.",
+"Bol raz jeden cigán... jedináčik..."
+];
+
+API.sendChat(""+ vtipy[Math.floor(Math.random() * vtipy.length)] +"");
+
+}
+}
+},
+
+memeCommand: {
+command: ['meme', 'memes'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+    
+var from = chat.un;
+var memes = [
+"http://upload.emefka.sk:82/posts/new/orig/12/63/81263.jpg",
+"http://upload.emefka.sk:82/posts/new/orig/12/55/81255.jpg",
+"http://upload.emefka.sk:82/posts/new/orig/12/31/81231.jpg",
+"http://upload.emefka.sk:82/posts/new/orig/12/27/81227.jpg",
+"http://upload.emefka.sk:82/posts/new/orig/12/23/81223.png"
+];
+
+API.sendChat(""+ memes[Math.floor(Math.random() * memes.length)] +"");
+
+}
+}
+},
+
 /*spamCommand: {
 command: 'spam',
 rank: 'manager',
