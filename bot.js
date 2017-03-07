@@ -4077,6 +4077,7 @@ API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz môže použiť 
 // AntiSpam
 API.on(API.CHAT, welcome);
 API.on(API.CHAT, antispam);
+API.on(API.CHAT, antispam2);
 
 function welcome(chat){
 var msg = chat.message;
@@ -4088,6 +4089,7 @@ msg.indexOf("v QPlug.cz! Za DJovanie získaš virtuálne peniaze, ktoré nazýva
 if(fromid == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 30000); // 30 000 milisekund = 30 sekund
 }
+
 }
 }
 
@@ -4101,5 +4103,20 @@ msg.indexOf("QPoints za odehrání písně!") !== -1){
 if(fromid == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 milisekund = 20 sekund
 }
+
+}
+}
+
+function antispam2(chat){
+var msg = chat.message;
+var from = chat.un;
+var fromid = chat.uid;
+
+if(
+msg.indexOf("QPoints za mehnutí písně!") !== -1){
+if(fromid == "23843691"){
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 5000); // 5000 milisekund = 5 sekund
+}
+
 }
 }
