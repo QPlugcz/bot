@@ -1735,36 +1735,8 @@ dclookupOnUserJoin: function (id) {
                 }
             },
 
-            /*bouncerPlusCommand: {
-                command: 'bouncer+',
-                rank: 'manager',
-                type: 'exact',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var msg = chat.message;
-                        if (basicBot.settings.bouncerPlus) {
-                            basicBot.settings.bouncerPlus = false;
-                            return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': 'Bouncer+'}));
-                        }
-                        else {
-                            if (!basicBot.settings.bouncerPlus) {
-                                var id = chat.uid;
-                                var perm = basicBot.userUtilities.getPermission(id);
-                                if (perm > 2) {
-                                    basicBot.settings.bouncerPlus = true;
-                                    return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': 'Bouncer+'}));
-                                }
-                            }
-                            else return API.sendChat(subChat(basicBot.chat.bouncerplusrank, {name: chat.un}));
-                        }
-                    }
-                }
-            },*/
-
             clearchatCommand: {
-                command: 'clearchat',
+                command: ['clearchat', 'cc'],
                 rank: 'manager',
                 type: 'exact',
                 functionality: function (chat, cmd) {
@@ -2294,71 +2266,71 @@ dclookupOnUserJoin: function (id) {
             }
         }, 
       umelecCommand: {
-				command: 'umelec',  //The command to be called.
-				rank: 'user', //Minimum user permission to use the command
-				type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+                command: 'umelec',  //The command to be called.
+                rank: 'user', //Minimum user permission to use the command
+                type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                     if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                     else {
 
-					simpleAJAXLib = {
-						
-								init: function () {
-									var artist = API.getMedia().author;
-									var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=b3cb78999a38750fc3d76c51ba2bf6bb&artist=' + artist.replace(/&/g,"%26").replace(/ /g,"%20") + '&autocorrect=1'
-									this.fetchJSON(url);
-								},
-						 
-								fetchJSON: function (url) {
-									var root = 'https://query.yahooapis.com/v1/public/yql?q=';
-									var yql = 'select * from xml where url="' + url + '"';
-									var proxy_url = root + encodeURIComponent(yql) + '&format=json&diagnostics=false&callback=simpleAJAXLib.display';
-									document.getElementsByTagName('body')[0].appendChild(this.jsTag(proxy_url));
-								},
-						 
-								jsTag: function (url) {
-									var script = document.createElement('script');
-									script.setAttribute('type', 'text/javascript');
-									script.setAttribute('src', url);
-									return script;
-								},
-						 
-								display: function (results) {
-									setTimeout(function() {
-										try {
-											var name;
-											name = results.query.results.lfm.artist.name;
-											
-											var picture;
-											picture = results.query.results.lfm.artist.image[3].content
-											
-											var genres;
-											genres = results.query.results.lfm.artist.tags.tag[0].name;
-											genres += ", ";
-											genres += results.query.results.lfm.artist.tags.tag[1].name;
-											genres += ", ";
-											genres += results.query.results.lfm.artist.tags.tag[2].name;
-											
-											var similar;
-											similar = results.query.results.lfm.artist.similar.artist[0].name;
-											similar += ", ";
-											similar += results.query.results.lfm.artist.similar.artist[1].name;
-											similar += ", ";
-											similar += results.query.results.lfm.artist.similar.artist[2].name;
-											
-											API.sendChat("/me [@" + chat.un + "] Jméno: " + name + " | Žánr: " + genres + " | Podobné skupiny: " + similar + " | Obrázek: " + picture);
-										} catch (e) {
-											API.sendChat("/me [@" + chat.un + "] Omlouváme se, ale server nenalezl žádné informace o tomto zpěvákovi či hudební skupině.");
-										}
-									},100);
-								}
-						}
-						simpleAJAXLib.init();	
-					}
-				}
-			},
-			
+                    simpleAJAXLib = {
+                        
+                                init: function () {
+                                    var artist = API.getMedia().author;
+                                    var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=b3cb78999a38750fc3d76c51ba2bf6bb&artist=' + artist.replace(/&/g,"%26").replace(/ /g,"%20") + '&autocorrect=1'
+                                    this.fetchJSON(url);
+                                },
+                         
+                                fetchJSON: function (url) {
+                                    var root = 'https://query.yahooapis.com/v1/public/yql?q=';
+                                    var yql = 'select * from xml where url="' + url + '"';
+                                    var proxy_url = root + encodeURIComponent(yql) + '&format=json&diagnostics=false&callback=simpleAJAXLib.display';
+                                    document.getElementsByTagName('body')[0].appendChild(this.jsTag(proxy_url));
+                                },
+                         
+                                jsTag: function (url) {
+                                    var script = document.createElement('script');
+                                    script.setAttribute('type', 'text/javascript');
+                                    script.setAttribute('src', url);
+                                    return script;
+                                },
+                         
+                                display: function (results) {
+                                    setTimeout(function() {
+                                        try {
+                                            var name;
+                                            name = results.query.results.lfm.artist.name;
+                                            
+                                            var picture;
+                                            picture = results.query.results.lfm.artist.image[3].content
+                                            
+                                            var genres;
+                                            genres = results.query.results.lfm.artist.tags.tag[0].name;
+                                            genres += ", ";
+                                            genres += results.query.results.lfm.artist.tags.tag[1].name;
+                                            genres += ", ";
+                                            genres += results.query.results.lfm.artist.tags.tag[2].name;
+                                            
+                                            var similar;
+                                            similar = results.query.results.lfm.artist.similar.artist[0].name;
+                                            similar += ", ";
+                                            similar += results.query.results.lfm.artist.similar.artist[1].name;
+                                            similar += ", ";
+                                            similar += results.query.results.lfm.artist.similar.artist[2].name;
+                                            
+                                            API.sendChat("/me [@" + chat.un + "] Jméno: " + name + " | Žánr: " + genres + " | Podobné skupiny: " + similar + " | Obrázek: " + picture);
+                                        } catch (e) {
+                                            API.sendChat("/me [@" + chat.un + "] Omlouváme se, ale server nenalezl žádné informace o tomto zpěvákovi či hudební skupině.");
+                                        }
+                                    },100);
+                                }
+                        }
+                        simpleAJAXLib.init();   
+                    }
+                }
+            },
+            
 kontoCommand: {
 command: ['konto'],
 rank: 'bouncer',
@@ -3377,7 +3349,7 @@ API.sendChat(retazec);
 }
 },
 
-startCommand: {
+/*startCommand: {
 command: ['start', 'začať', 'začat', 'zacať', 'zacat'],
 rank: 'user',
 type: 'startsWith',
@@ -3415,7 +3387,7 @@ return API.sendChat("[@" + user.username + "] Získavaj pomocou DJovania jedine�
 
 }
 }
-},
+},*/
 
 rulesCommand: {
 command: ['pravidla', 'pravidlá', 'rules'],
@@ -3431,7 +3403,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[@" + from + "] Naše pravidlá najdeš na http://musicforeveryone.6f.sk/pravidla!");
+API.sendChat("[@" + from + "] Naše pravidlá najdeš na http://qplug.funsite.cz/pravidla!");
 return false;
 }
 
@@ -3444,11 +3416,11 @@ return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@" + from + "] Naše pravidlá najdeš na http://musicforeveryone.6f.sk/pravidla!");
+return API.sendChat("[@" + from + "] Naše pravidlá najdeš na http://qplug.funsite.cz/pravidla!");
 }
 
 else{
-return API.sendChat("[@" + user.username + "] Naše pravidlá najdeš na http://musicforeveryone.6f.sk/pravidla!");
+return API.sendChat("[@" + user.username + "] Naše pravidlá najdeš na http://qplug.funsite.cz/pravidla!");
 }
 
 }
@@ -3456,7 +3428,7 @@ return API.sendChat("[@" + user.username + "] Naše pravidlá najdeš na http://
 }
 }
 },
-            
+
 naborCommand: {
 command: ['nabor', 'nábor'],
 rank: 'user',
@@ -3466,7 +3438,32 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-API.sendChat("[ NÁBOR ] Aktuálne prebieha Nábor do týmu, ktorý najdeš na!");
+var from = chat.un;
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if(medzera === -1){
+API.sendChat("[ NÁBOR ] Aktuálne prebieha Nábor do týmu, ktorý najdeš na https://bit.ly/QPlugczNabor!");
+return false;
+}
+
+else{
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if(user === false || !user.inRoom){
+return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
+}
+
+else if(user.username === chat.un){
+return API.sendChat("[ NÁBOR ] Aktuálne prebieha Nábor do týmu, ktorý najdeš na https://bit.ly/QPlugczNabor!");
+}
+
+else{
+return API.sendChat("[@"+ user.username +"] Aktuálne prebieha Nábor do týmu, ktorý najdeš na https://bit.ly/QPlugczNabor!");
+}
+
+}
 
 }
 }
@@ -3526,7 +3523,32 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
+var from = chat.un;
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if(medzera === -1){
 API.sendChat("[ FACEBOOK ] Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!");
+return false;
+}
+
+else{
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if(user === false || !user.inRoom){
+return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
+}
+
+else if(user.username === chat.un){
+return API.sendChat("[ FACEBOOK ] Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!");
+}
+
+else{
+return API.sendChat("[@"+ user.username +"] Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!");
+}
+
+}
 
 }
 }
@@ -3691,7 +3713,32 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
+var from = chat.un;
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if(medzera === -1){
 API.sendChat("[ DISCORD ] Odkaz na náš Discord je https://bit.ly/QPlugczDiscord!");
+return false;
+}
+
+else{
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if(user === false || !user.inRoom){
+return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
+}
+
+else if(user.username === chat.un){
+return API.sendChat("[ DISCORD ] Odkaz na náš Discord je https://bit.ly/QPlugczDiscord!");
+}
+
+else{
+return API.sendChat("[@"+ user.username +"] Odkaz na náš Discord je https://bit.ly/QPlugczDiscord!");
+}
+
+}
 
 }
 }
@@ -3721,7 +3768,32 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-API.sendChat("[ AUTOWOOT ] Je program na automatické Wootovanie a pomocou neho uvidíte naše pozadie. Link https://rcs.radiant.dj/install!");
+var from = chat.un;
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if(medzera === -1){
+API.sendChat("[ AUTOWOOT ] Je program na automatické Wootovanie a pomocou neho uvidíte naše pozadie. Ale obsahuje aj dalšie užitočné funkcie. Link https://rcs.radiant.dj/install!");
+return false;
+}
+
+else{
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if(user === false || !user.inRoom){
+return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
+}
+
+else if(user.username === chat.un){
+return API.sendChat("[ AUTOWOOT ] Je program na automatické Wootovanie a pomocou neho uvidíte naše pozadie. Ale obsahuje aj dalšie užitočné funkcie. Link https://rcs.radiant.dj/install!");
+}
+
+else{
+return API.sendChat("[@"+ user.username +"] AutoWoot je program na automatické Wootovanie a pomocou neho uvidíte naše pozadie. Ale obsahuje aj dalšie užitočné funkcie. Link https://rcs.radiant.dj/install!");
+}
+
+}
 
 }
 }
@@ -3766,7 +3838,32 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
+var from = chat.un;
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if(medzera === -1){
 API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/prikazy!");
+return false;
+}
+
+else{
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if(user === false || !user.inRoom){
+return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
+}
+
+else if(user.username === chat.un){
+return API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/prikazy!");
+}
+
+else{
+return API.sendChat("[@"+ user.username +"] Príkazy našeho systému najdeš na http://qplug.funsite.cz/prikazy!");
+}
+
+}
 
 }
 }
