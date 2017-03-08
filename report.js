@@ -95,13 +95,7 @@
 			};
 		})();
 
-		var reportcas = (function() {
-			return function() {
-				setInterval(napsatreport, 6000000000000)
-			};
-		})();
 
-		setTimeout(reportcas, 300000)
 
 
 
