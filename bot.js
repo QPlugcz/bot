@@ -1047,7 +1047,7 @@ dclookupOnUserJoin: function (id) {
         
         if(obj.lastPlay != null)
             {           
-            var reward = (obj.lastPlay.score.positive * 1) + (obj.lastPlay.score.grabs * 10) - (obj.lastPlay.score.negative * 1);
+            var reward = (obj.lastPlay.score.positive * 1) + (obj.lastPlay.score.grabs * 2) - (obj.lastPlay.score.negative * 1);
             var lastdjplayed = basicBot.userUtilities.lookupUser(obj.lastPlay.dj.id);
             var msg = chat.message;
                     var receiverTokens = validateTokens(lastdjplayed.username);
