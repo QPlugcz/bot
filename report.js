@@ -44,7 +44,7 @@
 					} else {
 						poznamka1.push(chat.un);
 						poznamka2.push(zprava);
-            API.sendChat("@" + chat.un + "] Nahlášení bylo úspěšně uloženo do databáze!");
+            API.sendChat("@" + chat.un + "] Nahlášeno! Zprávu budou řešit členové staff týmu v nejblížší době!");
 					}
 				}
 			}
@@ -97,7 +97,7 @@
 
 		var reportcas = (function() {
 			return function() {
-				setInterval(napsatreport, 60000)
+				setInterval(napsatreport, 6000000000000)
 			};
 		})();
 
