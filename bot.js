@@ -3936,7 +3936,7 @@ var msgs=[
 "/me Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!",
 "/me Nezabudnite nás zdielať po sociálnych sieťach! Za určitý počet dosiahnutých ľudí sa chystajú Eventy o hromadu QPoints!",
 "/me Náš Discord server https://bit.ly/QPlugczDiscord!",
-"/me Piatok (10.3) sa usporiadá Event o hromadu QPoints!",
+"/me Zajtra 10.3.2017 o 19:00 sa usporiadá Event! Čaká vás výhra o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!",
 "/me Získavajte pomocou DJovania jedinečné QCoiny za ktoré si môžete kupovať prvé pozície v zozname čakaní!"
 ];
 var time=1800; // SEKUNDY
