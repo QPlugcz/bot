@@ -36,7 +36,7 @@
 				else {
 					var zprava = chat.message.substr(cmd.length + 1)
 					if (zprava.length == 0) {
-						API.sendChat("[@" + chat.un + "] Tento příkaz slouží k nahlášení problému v místnosti! Používejte pouze tehdy, když nikdo z členu staff týmu není přítomen!");
+						API.sendChat("[@" + chat.un + "] Tento příkaz slouží k nahlášení problému v místnosti! Používejte pouze tehdy, když nikdo z členu Staff Týmu není přítomen!");
 					} else if (zprava[0] == "!" || zprava.includes(" !")) {
 						API.sendChat("@" + chat.un + "] Omlouváme se, ale nahlášení nesmí obsahovat vykřičníky.");
 					} else if ((zprava.includes("jeb") || zprava.includes("kokot") || zprava.includes("piča") || zprava.includes("debil")) && (zprava.includes("idiot") || zprava.includes("kurva") || zprava.includes("retard"))) {
@@ -61,9 +61,9 @@
 					var cislo = chat.message.substr(cmd.length + 1)
 					if (cislo.length == 0) {
 						if (poznamka1.length == 1) {
-							API.sendChat("@" + chat.un + ", Dnes byl nahlášen 1 případ. Přečti si zprávu pomocí !reporty 1");
+							API.sendChat("[@" + chat.un + "] Dnes byl nahlášen 1 případ. Přečti si zprávu pomocí !reporty 1");
 						} else {
-							API.sendChat("@" + chat.un + "] Dnes bylo nahlášeno " + poznamka1.length + " případů. Přečtěte si je pomocí !reporty ČÍSLO!");
+							API.sendChat("[@" + chat.un + "] Dnes bylo nahlášeno " + poznamka1.length + " případů. Přečtěte si je pomocí !reporty 'číslo'!");
 						}
 					} else if (isNaN(cislo) == true) {
 						API.sendChat("[@" + chat.un + "] \"" + cislo + "\" není číslo!");
