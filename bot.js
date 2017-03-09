@@ -3513,6 +3513,47 @@ return API.sendChat("@" + from.un + ", miluje @" + user.username + " na " + rand
 }
 },
 
+eventCommand: {
+command: 'event',
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var from = chat.un;
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if(medzera === -1){
+// API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+API.sendChat("[@"+ from +"] Zajtra 10.3.2017 o 19:00 sa usporiadá Event! Čaká vás výhra o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!");
+return false;
+}
+
+else{
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if(user === false || !user.inRoom){
+return API.sendChat("[@"+ from +"] Nevidím tohto užívateľa v komunite!");
+}
+
+else if(user.username === chat.un){
+return API.sendChat("[@"+ from +"] Zajtra 10.3.2017 o 19:00 sa usporiadá Event! Čaká vás výhra o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!");
+}
+
+else{
+return API.sendChat("[@"+ user.username +"] Zajtra 10.3.2017 o 19:00 sa usporiadá Event! Čaká vás výhra o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!");
+}
+
+}
+
+}
+}
+},
+
 facebookCommand: {
 command: ['facebook', 'fb'],
 rank: 'user',
