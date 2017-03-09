@@ -4,10 +4,6 @@ COPYRIGHT»                         QPlug.cz 2017
 DEVELOPERS»                        Franta72, Hellbyte
 ROOM»                              https://plug.dj/qplug-czsk
 
-Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Administrátormi plug.dj!
-- Marvin (xBytez)
-- Dom (Origin)
-- Brett (sinful)
 
 */
 
@@ -378,19 +374,32 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
             if (basicBot.room.tipovacka.obtiznost == 5) {
                         var barvy = ["red","yellow","orange","blue","green","purple","brown","black","pink"];
                         basicBot.room.tipovacka.currentNumber = barvy[Math.floor(Math.random() * barvy.length)];
-                        basicBot.room.tipovacka.max = "white";
+                        basicBot.room.tipovacka.max = "white"; 
             API.sendChat('[ MINIHRA ] Myslím si barvu v angličtině. Tipněte zadanou barvu pomocí !tip text a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.'); 
                     }
-            if (basicBot.room.tipovacka.obtiznost == 6) { 
-                        var staff = ["-PinguiN-","Franta72","Tessi Tess","-Λttι-","Bonkı","Lemon"];
-                        basicBot.room.tipovacka.currentNumber = staff[Math.floor(Math.random() * staff.length)];
-                        basicBot.room.tipovacka.max = "Hellbyte";
-            API.sendChat('[ MINIHRA ] Myslím si jméno člena staff týmu. Tipněte si jméno pomocí !tip text a vyhrajte 25 QPoints! Pokus stojí 5 QPoints. Tip uvádějte v přesném názvu jména.'); 
-                    }
-            }, 
+if (basicBot.room.tipovacka.obtiznost == 6) {
+    var vysledek = 100 + ~~(Math.random() * 5000);
+    var a = 50 + ~~(Math.random() * (vysledek / 3));
+    var b = vysledek - a;
+    
+    var priklad = a + " + " + b + " = ";
+
+    if (Date.now() % 2) {
+        var tmp = a;
+        a = vysledek;
+        vysledek = tmp;
+        priklad = a + " - " + b + " = ";
+    }
+    
+    basicBot.room.tipovacka.currentNumber = vysledek;
+    API.sendChat('[ MINIHRA ] Myslím si příklad ' + priklad + ' :question: Vypočítejte ho pomocí !tip číslo a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.');
+}
+                    },
+                    
+
                 endNumberGameTime: function() {
                     if (basicBot.room.tipovacka.active) {
-                        basicBot.room.tipovacka.active = false;
+                       basicBot.room.tipovacka.active = false;
                         basicBot.room.tipovacka.max = 0;
                         API.sendChat('[ MINIHRA ] Nikdo neuhodl správně. Správná odpověď byla ' + basicBot.room.tipovacka.currentNumber + '');
                         basicBot.room.tipovacka.currentNumber = 0;
@@ -451,9 +460,9 @@ Akékoľvek kopírovanie tohoto obsahu alebo dokumentu sa bude riešiť s Admini
               basicBot.room.tipovacka.active = false;
                             basicBot.room.tipovacka.max = 0;
                 var receiverTokens = validateTokens(name);
-                    var penize6 = parseInt(receiverTokens, 10) + parseInt(25,10);
+                    var penize6 = parseInt(receiverTokens, 10) + parseInt(30,10);
                     localStorage.setItem(name, penize6);
-                            API.sendChat('/me [ MINIHRA ] Uživatel @' + name + ' vyhrál 25 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');   
+                            API.sendChat('/me [ MINIHRA ] Uživatel @' + name + ' vyhrál 30 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');   
                     }  else {
                         return false; 
                     }    
@@ -1921,7 +1930,7 @@ dclookupOnUserJoin: function (id) {
                          
                         
                         if (gni === 6) {
-                            tos = "hádaní jmén členů staff týmu.";
+                            tos = "matematiku.";
                         }
                         API.sendChat('/me [@' + from + '] Minihra nastavena na ' + tos + '');
                     }
@@ -1974,7 +1983,7 @@ dclookupOnUserJoin: function (id) {
             else if (basicBot.room.tipovacka.obtiznost == 6) {
             giverTokens -= 5;
             localStorage.setItem(chat.un, giverTokens);
-            API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gn + '');    
+            API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gni + '');    
                       
                         } else {
                  giverTokens -= 5;
