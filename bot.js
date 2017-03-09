@@ -3975,10 +3975,9 @@ loadChat(basicBot.startup);
 
 var msgs=[
 "/me Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!",
-"/me Nezabudnite nás zdielať po sociálnych sieťach! Za určitý počet dosiahnutých ľudí sa chystajú Eventy o hromadu QPoints!",
+"/me QPoints sú virtuálne peniaze za ktoré si môžeš kúpiť prvú pozíciu v zozname čakaní. Alebo s nimi môžeš hrať Minihry.",
 "/me Náš Discord server https://bit.ly/QPlugczDiscord!",
 "/me Zajtra 10.3.2017 o 19:00 sa usporiadá Event! Čaká vás výhra o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!",
-"/me Získavajte pomocou DJovania jedinečné QCoiny za ktoré si môžete kupovať prvé pozície v zozname čakaní!"
 ];
 var time=1800; // SEKUNDY
 var timer;
