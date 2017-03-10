@@ -3537,7 +3537,7 @@ var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
 // API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
-API.sendChat("[@"+ from +"] Dnes o 19:00 sa usporiadá Event o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy! Viac na http://qplug.funsite.cz/eventy!");
+API.sendChat("[@"+ from +"] Dnes o 19:00 sa usporiadá Event o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!");
 return false;
 }
 
