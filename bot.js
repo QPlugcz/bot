@@ -4191,7 +4191,7 @@ var from = chat.un;
 var fromid = chat.uid;
 
 if(
-msg.indexOf("Dnes o 19:00 sa usporiadá Event o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!") !== -1){
+msg.indexOf("Dnes o 19:00 sa usporiadá Event o veľké množstvo QPoints!") !== -1){
 if(fromid == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 milisekund = 40 sekund
 }
