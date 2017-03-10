@@ -3537,7 +3537,7 @@ var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
 // API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
-API.sendChat("[@"+ from +"] Zajtra 10.3.2017 o 19:00 sa usporiadá Event! Čaká vás výhra o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!");
+API.sendChat("[@"+ from +"] Dnes o 19:00 sa usporiadá Event o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy! Viac na http://qplug.funsite.cz/eventy!");
 return false;
 }
 
@@ -3550,11 +3550,11 @@ return API.sendChat("[@"+ from +"] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@"+ from +"] Zajtra 10.3.2017 o 19:00 sa usporiadá Event! Čaká vás výhra o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!");
+return API.sendChat("[@"+ from +"] Dnes o 19:00 sa usporiadá Event o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Zajtra 10.3.2017 o 19:00 sa usporiadá Event! Čaká vás výhra o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!");
+return API.sendChat("[@"+ user.username +"] Dnes o 19:00 sa usporiadá Event o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!");
 }
 
 }
@@ -3986,7 +3986,7 @@ var msgs=[
 "/me Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!",
 "/me QPoints sú virtuálne peniaze za ktoré si môžeš kúpiť prvú pozíciu v zozname čakaní. Alebo s nimi môžeš hrať Minihry.",
 "/me Náš Discord server https://bit.ly/QPlugczDiscord!",
-"/me Zajtra 10.3.2017 o 19:00 sa usporiadá Event! Čaká vás výhra o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!",
+"/me ZDnes o 19:00 sa usporiadá Event o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!",
 ];
 var time=1800; // SEKUNDY
 var timer;
@@ -4191,7 +4191,7 @@ var from = chat.un;
 var fromid = chat.uid;
 
 if(
-msg.indexOf("Zajtra 10.3.2017 o 19:00 sa usporiadá Event! Čaká vás výhra o veľké množstvo QPoints!") !== -1){
+msg.indexOf("Dnes o 19:00 sa usporiadá Event o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!") !== -1){
 if(fromid == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 milisekund = 40 sekund
 }
