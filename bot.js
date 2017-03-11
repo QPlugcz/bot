@@ -1829,7 +1829,7 @@ dclookupOnUserJoin: function (id) {
                     var msg = chat.message; 
                     var space = msg.indexOf(' ');
             var lastSpace = msg.lastIndexOf(' ');
-                    var receiver = msg.substring(lastSpace + 2);
+                    var receiver = msg.substring(msg.indexOf("@") + 1);
                     var giverTokens = validateTokens(chat.un);
                     var receiverTokens = validateTokens(receiver);
             var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
