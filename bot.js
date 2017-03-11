@@ -2800,7 +2800,7 @@ API.sendChat(subChat(basicBot.chat.eta, {name: name, time: estimateString, posit
 }
 },
 
-/*filterCommand: {
+filterCommand: {
 command: 'filter',
 rank: 'bouncer',
 type: 'exact',
@@ -2818,7 +2818,7 @@ return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': 
 }
 }
 }
-},*/
+},
             
 gifCommand: {
 command: ['gif', 'giphy'],
@@ -3270,13 +3270,13 @@ else{
 var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
-
 var cicina = Math.floor((Math.random() * 40) + 1);
 var sexy = Math.floor((Math.random() * 100) + 1);
 var iq = Math.floor((Math.random() * 180) + 1);
+var gramatika = Math.floor((Math.random() * 100) + 1);
 var nalada = ["Naštvaný/á.", "Kludný/á.", "Nadržený/á.", "Vzteklý/á.", "Bláznivý/á.", "Hodný/á.", "Radostný/á.", "Skleslý/á.", "Vtipný/á.", "Smutný/á."];
 
-API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
+API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "%  | Umíš gramatiku na " + gramatika + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)] + "");
 
 }
 }
@@ -3298,30 +3298,36 @@ var fromid = chat.uid;
 var uzivatel = API.getUsers();
 var uzivatel2 = API.getUsers();
 var uzivatel3 = API.getUsers();
+var uzivatel4 = API.getUsers();
 var cislo = Math.floor((Math.random() * uzivatel.length) + 1);
 var cislo2 = Math.floor((Math.random() * uzivatel2.length) + 1);
 var cislo3 = Math.floor((Math.random() * uzivatel3.length) + 1);
+var cislo4 = Math.floor((Math.random() * uzivatel4.length) + 1);
+var zacatek = ["Když ses koupal, přišel tvůj","Když jsi vařil večeři, přišel tvůj","Uslyšel jsi zvonek a ve dveřích byl tvůj","Když jsi spal, přišel tvůj","Když jsi se díval na televizi, přišel tvůj"];
 var jaky = ["úchylný","hloupý","zamilovaný","retardovaný","pošahaný","chytrý","mocný","sexy","nemocný","vožralý"];
 var jake = ["úchylné","hloupé","zamilované","retardované","pošahané","chytré","mocné","sexy","nemocné","vožralé"];
-var kam = ["do hotelu","na zahradu","do popelnice","ven","na záchod","do sprchy","na Měsíc","do hospody","do vesmíru","na hřiště","do auta","do letadla","do ponorky","pod zem","do rakve","do garáže","na půdu","do sklepa","domů","na intr","do školy"];
-var co = ["lovit křečky","nahánět holky","nahánět kluky","zkoušet létat","čistit latrýnu","mazlit se","fingovat sebevraždy","chlastat","žrát čokoládu","jezdit výtahem","klouzat se po zábradlí"];
-var co2 = ["lovili křečky","naháněli holky","naháněli kluky","zkoušeli létat","čistili latrýnu","mazlili se","fingovali sebevraždy","chlastali","žrali čokoládu","jezdili výtahem","klouzali se po zábradlí"];
-var jak = ["úplně vypatlaně","bez rozmyšlení","sebejistě","sebevražedně","maniacky","pedofilně","vychytrale","velmi rychle","docela pomalu","vožrale"];
-var proc = ["protože bagr","protože je nikdo nemá rád.","protože jsou do sebe zamilovaní.","protože jsou zhulený.","protože chcou více drog.","protože jsou vožralý.","protože banán.","protože když máš 4 jablka a 3 hrušky, nemůžeš mít švestkový kompot."];
-var proc2 = ["protože jste prostě retardi.","protože bagr","protože vás nikdo nemá rád.","protože jste do sebe zamilovaní.","protože jste zhulený.","protože chcete více drog.","protože jste vožralý.","protože banán.","protože když máte 4 jablka a 3 hrušky, nemůžete mít švestkový kompot."];
-//VIP
+var kam = ["do hotelu","na zahradu","do popelnice","ven","na záchod","do sprchy","na Měsíc","do hospody","do vesmíru","za Zemanem","na hřiště","do auta","do letadla","do ponorky","pod zem","do rakve","do garáže","na půdu","do sklepa","domů","na intr","do školy"];
+var co = ["lovit křečky","nahánět holky","čumět na televizi","koukat z okna","hrát si na mobilu","stavět lego","sníst vše v lednici","chytat mouchy","povysávat byt","skládat puzzle","nahánět kluky","zkoušet létat","čistit latrýnu","mazlit se","fingovat sebevraždy","chlastat","žrát čokoládu","jezdit výtahem","klouzat se po zábradlí"];
+var co2 = ["rebelovali","opékali párky","naháněli kluky","naháněli holky","ožrali se","rybařili","stavěli sněhuláka","hecovali se","žrali kýbl zmrzliny"];
+var jak = ["úplně vypatlaně","bez rozmyšlení","sebejistě","maniacky","vychytrale","velmi rychle","docela pomalu","vožrale","opatrně"];
+var proc = ["protože bagr","protože je nikdo nemá rád.","protože to " + uzivatel4[(cislo4 - 1)].username + " přikazal.","protože jsou do sebe zamilovaní.","protože jsou zhulený.","protože chcou více drog.","protože jsou vožralý.","protože banán.","protože když máš 4 jablka a 3 hrušky, nemůžeš mít švestkový kompot."];
+var proc2 = ["protože jste retardi.","protože bagr neplave.","protože vás nikdo nemá rád.","protože jste do sebe zamilovaní.","protože jste zhulený.","protože chcete více drog.","protože jste vožralý.","protože banán.","protože když máte 4 jablka a 3 hrušky, nemůžete mít švestkový kompot."];
+//STAFF (vyhazovači a vyšší post)
 var franta = "5032556";
 var tessi = "5477951";
 var hellbyte = "4635487";
+var Pinguin = "4006230";
+var Atti = "13505684";
+//VIP    
 var Dave = "3431885";
 
-if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == Dave){
-API.sendChat("[@"+ from +"] Jednoho večera zazvonil u tebe tvůj " + jaky[Math.floor(Math.random() * jaky.length)] + " kamarád " + uzivatel[(cislo - 1)].username + " s tím, ať jdete " + kam[Math.floor(Math.random() * kam.length)] + ". Odpověděl jsi, že ne, radši půjdeš " + co[Math.floor(Math.random() * co.length)] + ". Nakonec tě přemluvil.");
-setTimeout(function(){ API.sendChat("Cestou jste potkali " + jake[Math.floor(Math.random() * jake.length)] + " kamarády " + uzivatel2[(cislo2 - 1)].username + " a " + uzivatel3[(cislo3 - 1)].username + ". Zeptal ses, jestli chtějí jít s vámi. Na to ti " + jak[Math.floor(Math.random() * jak.length)] + " odpověděli, ať na to zapomeneš " + proc[Math.floor(Math.random() * proc.length)] + ""); }, 700);
+if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == Dave || fromid == Atti || fromid == Pinguin){
+API.sendChat("[@"+ from +"] " + zacatek[Math.floor(Math.random() * zacatek.length)] + " " + jaky[Math.floor(Math.random() * jaky.length)] + " kamarád " + uzivatel[(cislo - 1)].username + " s tím, ať jdete " + kam[Math.floor(Math.random() * kam.length)] + ". Odpověděl jsi, že ne, radši půjdeš " + co[Math.floor(Math.random() * co.length)] + ".");
+setTimeout(function(){ API.sendChat("Nakonec tě přemluvil. Cestou jste potkali " + jake[Math.floor(Math.random() * jake.length)] + " kamarády " + uzivatel2[(cislo2 - 1)].username + " a " + uzivatel3[(cislo3 - 1)].username + ". Zeptal ses, jestli chtějí jít s vámi. Na to ti " + jak[Math.floor(Math.random() * jak.length)] + " odpověděli, ať na to zapomeneš " + proc[Math.floor(Math.random() * proc.length)] + ""); }, 700);
 setTimeout(function(){ API.sendChat("Tak jsi jen pokrčil rameny a pokračovali jste v cestě " + kam[Math.floor(Math.random() * kam.length)] + ", abyste " + jak[Math.floor(Math.random() * jak.length)] + " " + co2[Math.floor(Math.random() * co2.length)] + " " + proc2[Math.floor(Math.random() * proc2.length)] + ""); }, 1500);
 }
 else {
-API.sendChat("[@" + from + "] Tento příkaz je pouze pro VIP! Aktivovat jej můžeš pomocí !vip");
+API.sendChat("[@" + from + "] Tento příkaz je pouze pro VIP nebo členy staff týmu! Staň se VIP a získej plno výhod, aktivovat jej můžeš pomocí !vip.");
 
 }
 }
