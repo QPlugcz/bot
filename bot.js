@@ -3994,7 +3994,7 @@ var msgs=[
 "/me Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!",
 "/me QPoints sú virtuálne peniaze za ktoré si môžeš kúpiť prvú pozíciu v zozname čakaní. Alebo s nimi môžeš hrať Minihry.",
 "/me Náš Discord server https://bit.ly/QPlugczDiscord!",
-"/me Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!",
+"/me Pomocou DJovania získaš QPoints (virtuálne peniaze) za ktore si môžeš kúpiť prvú pozíciu v zozname čakaní! Príkaz pre zistenie QPoints je !qp :heart:",
 ];
 var time=1800; // SEKUNDY
 var timer;
@@ -4199,7 +4199,7 @@ var from = chat.un;
 var fromid = chat.uid;
 
 if(
-msg.indexOf("Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu:") !== -1){
+msg.indexOf("Pomocou DJovania získaš QPoints (virtuálne peniaze) za ktore si môžeš kúpiť prvú pozíciu v zozname čakaní! Príkaz pre zistenie QPoints je !qp ") !== -1){
 if(fromid == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 milisekund = 40 sekund
 }
