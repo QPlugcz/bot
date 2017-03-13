@@ -1191,6 +1191,18 @@ dclookupOnUserJoin: function (id) {
                 API.sendChat(subChat(basicBot.chat.permissionownsong, {name: user.username}));
                 user.ownSong = false;
             }
+            var msg = chat.message;
+var from = chat.un;
+var fromid = chat.uid;
+// VIP    
+var dave = "3431885";
+var repi = "5006795";
+
+if(fromid == repi || fromid == dave){
+$("#grab").click();
+$(".pop-menu ul li:first-child").mousedown();
+API.sendChat("[@"+ from +"] Bot si přidal tvojí píseň do playlistu!");
+}
             clearTimeout(basicBot.room.autoskipTimer);
             if (basicBot.settings.autoskip) {
                 var remaining = obj.media.duration * 1000;
