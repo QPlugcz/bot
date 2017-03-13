@@ -2817,87 +2817,9 @@ return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': 
 }
 }
 },
-            
-gifCommand: {
-command: ['gif', 'giphy'],
-rank: 'user',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var msg = chat.message;
-
-if (msg.length !== cmd.length){
-function get_id(api_key, fixedtag, func){
-$.getJSON(
-"https://tv.giphy.com/v1/gifs/random?",
-{
-"format": "json",
-"api_key": api_key,
-"rating": rating,
-"tag": fixedtag
-},
-
-function(response){
-func(response.data.id);
-}
-
-)
-}
-
-var api_key = "dc6zaTOxFJmzC"; // public beta key
-var rating = "pg-13"; // PG 13 gifs
-var tag = msg.substr(cmd.length + 1);
-var fixedtag = tag.replace(/ /g,"+");
-var commatag = tag.replace(/ /g,", ");
-
-get_id(api_key, tag, function(id){
-if (typeof id !== 'undefined'){
-API.sendChat(subChat(basicBot.chat.validgiftags, {name: chat.un, id: id, tags: commatag}));
-}
-
-else{
-API.sendChat(subChat(basicBot.chat.invalidgiftags, {name: chat.un, tags: commatag}));
-}
-
-});
-}
-
-else{
-function get_random_id(api_key, func)
-{
-$.getJSON(
-"https://tv.giphy.com/v1/gifs/random?",
-{
-"format": "json",
-"api_key": api_key,
-"rating": rating
-},
-function(response)
-{
-func(response.data.id);
-}
-)
-}
-var api_key = "dc6zaTOxFJmzC"; // public beta key
-var rating = "pg-13"; // PG 13 gifs
-get_random_id(api_key, function(id) {
-if (typeof id !== 'undefined') {
-API.sendChat(subChat(basicBot.chat.validgifrandom, {name: chat.un, id: id}));
-} else {
-API.sendChat(subChat(basicBot.chat.invalidgifrandom, {name: chat.un}));
-}
-});
-}
-
-}
-}
-},
 
 historyskipCommand: {
-command: 'historyskip',
+command: ['historyskip', 'hs'],
 rank: 'bouncer',
 type: 'exact',
 functionality: function (chat, cmd) {
@@ -3599,6 +3521,47 @@ return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do T�
 else{
 return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
 // API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
+}
+
+}
+
+}
+}
+},
+            
+sexCommand: {
+command: ['sex', 'lulu'],
+rank: 'user',
+type: 'startsWith',
+functionality: function(chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
+if (!basicBot.commands.executable(this.rank, chat)) return void(0);
+else{
+
+var from = chat;
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if (medzera === -1){
+API.sendChat("[@"+ from.un +"] Ty chceš sex sám so sebou? Tak si to uži! :smiling_imp:");
+return false;
+}
+
+else{
+
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if (user === false || !user.inRoom){
+return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!");
+} 
+
+else if (user.username === from.un){
+return API.sendChat("[@"+ from.un +"] Ty chceš sex sám so sebou? Tak si to uži! :smiling_imp:");
+}
+
+else{
+return API.sendChat("@" + from.un + ", si chceš užiť s @" + user.username + "! :smiling_imp");
 }
 
 }
