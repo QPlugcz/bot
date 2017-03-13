@@ -3219,7 +3219,46 @@ API.sendChat("[@" + from + "] Tvoja cicina má: "+ cicina +"cm. | Tvoje IQ: " + 
 }
 },
 
-//VIP Příkaz
+// VIP příkaz
+grabCommand: {
+command: 'grab',
+rank: 'user',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var msg = chat.message;
+var from = chat.un;
+var fromid = chat.uid;
+
+// Staff (Bouncer+)
+var franta = "5032556";
+var tessi = "5477951";
+var hellbyte = "4635487";
+var pinguin = "4006230";
+var atti = "13505684";
+var lemon = "5948294";
+
+// VIP    
+var lave = "3431885";
+var repi = "5006795";
+
+if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == dave || fromid == atti || fromid == pinguin || fromid == repi || fromid == lemon){
+$("#grab").click();
+$(".pop-menu ul li:first-child").mousedown();
+}
+
+else{ 
+API.sendChat("[@" + from + "] Tento příkaz je pouze pro VIP nebo členy Staff týmu! Staň se VIP a získej plno výhod, aktivovat jej můžeš pomocí !vip.");
+}
+
+}
+}
+},
+
+//VIP příkaz
 pribehCommand: {
 command: ['pribeh', 'story'],
 rank: 'user',
