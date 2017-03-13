@@ -3242,12 +3242,13 @@ var atti = "13505684";
 var lemon = "5948294";
 
 // VIP    
-var lave = "3431885";
+var dave = "3431885";
 var repi = "5006795";
 
 if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == dave || fromid == atti || fromid == pinguin || fromid == repi || fromid == lemon){
 $("#grab").click();
 $(".pop-menu ul li:first-child").mousedown();
+API.sendChat("[@"+ from +"] Bot grabol aktuálnu pesničku!");
 }
 
 else{ 
