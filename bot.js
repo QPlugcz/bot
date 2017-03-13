@@ -1021,10 +1021,9 @@ dclookupOnUserJoin: function (id) {
            localStorage.setItem(obj.user.username, cislo2);
            API.sendChat("/me [" + obj.user.username + "] Ztratil/a jsi 2 QPoints za mehnutí písně!");
 	   }	
-           if (Math.round(API.getWaitList().length * 1) >= 1) {
-	   localStorage.setItem(obj.user.username, cislo);
+			    else {	
+				    localStorage.setItem(obj.user.username, cislo);
            API.sendChat("/me [" + obj.user.username + "] Ztratil/a jsi 1 QPoints za mehnutí písně!");
-           } else {	
         }
            
                     }
@@ -1075,11 +1074,9 @@ dclookupOnUserJoin: function (id) {
            if (Math.round(API.getWaitList().length * 1) >= 15) {
            localStorage.setItem(lastdjplayed.username, cislo2);
            API.sendChat("/me [" + lastdjplayed.username + "] Získal/a jsi " + reward2 + " QPoints za odehrání písně!");
-	   }	
-           if (Math.round(API.getWaitList().length * 1) >= 1) {
-	   localStorage.setItem(lastdjplayed.username, cislo);
+           } else {	 
+         localStorage.setItem(lastdjplayed.username, cislo);
            API.sendChat("/me [" + lastdjplayed.username + "] Získal/a jsi " + reward + " QPoints za odehrání písně!");
-           } else {	
         }
          
         
