@@ -249,14 +249,14 @@ ROOM»                              https://plug.dj/qplug-czsk
         
                 
             };
-    var botCreator = "MFE STAFF";
-    var botMaintainer = "MFE"
-    var botCreatorIDs = ["4635487", "3821094", "5032556"];
+    var botCreator = "QPlug.cz Tým";
+    var botMaintainer = "QPlug.cz"
+    var botCreatorIDs = ["4635487", "5032556"];
 
     var basicBot = {
         version: "1.9",
         status: false,
-        name: "MFEBOT",
+        name: "QBot",
         loggedInID: null,
         scriptLink: "https://rawgit.com/FALSEYING/MFEBOT/master/system.js",
         cmdLink: "https://musicforeveryone.6f.sk/prikazy",
@@ -266,7 +266,7 @@ ROOM»                              https://plug.dj/qplug-czsk
         retrieveSettings: retrieveSettings,
         retrieveFromStorage: retrieveFromStorage,
         settings: {
-            botName: "MFEBOT",
+            botName: "QBot",
             language: "qplugcz",
             chatLink: "https://rawgit.com/QPlugcz/QBot/master/package/qplugcz.json",
             scriptLink: "https://rawgit.com/FALSEYING/MFEBOT/master/system.js",
@@ -279,7 +279,6 @@ ROOM»                              https://plug.dj/qplug-czsk
             smartSkip: true,
             cmdDeletion: true,
             maximumDc: 120,
-            bouncerPlus: false,
             lockdownEnabled: false,
             historySkip: false,
             maximumSongLength: 6,
@@ -525,7 +524,6 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
             };
             this.lastKnownPosition = null;
             
-        /*this.MFEBody = localStorage.getItem("0");*/
         this.better = null;
         this.offered = 0;
         this.isBetting = false;
@@ -3141,11 +3139,6 @@ if (basicBot.settings.autoskip) msg += 'ON';
 else msg += 'OFF';
 msg += '. ';
 
-msg += basicBot.chat.minihry + ': ';
-if (basicBot.settings.minihry) msg += 'ON';
-else msg += 'OFF';
-msg += '. ';
-
 msg += basicBot.chat.inteligence + ': ';
 if (basicBot.settings.inteligence) msg += 'ON';
 else msg += 'OFF';
@@ -3236,6 +3229,28 @@ basicBot.userUtilities.moveUser(user2.id, p1, false);
 }
 },
         
+lockchatCommand: {
+command: 'lockchat',
+rank: 'manager',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var temp = basicBot.settings.lockdownEnabled;
+basicBot.settings.lockdownEnabled = !temp;
+
+if (basicBot.settings.lockdownEnabled){
+return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.lockdown}));
+}
+
+else return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.lockdown}));
+
+}
+}
+},
+            
 lockchatCommand: {
 command: 'lockchat',
 rank: 'manager',
