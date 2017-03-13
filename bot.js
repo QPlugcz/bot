@@ -1012,19 +1012,9 @@ dclookupOnUserJoin: function (id) {
                     else {
                         basicBot.room.users[i].votes.meh++;
             var receiverTokens = validateTokens(obj.user.username);
-             var lastdjplayed = basicBot.userUtilities.lookupUser(obj.lastPlay.dj.id);
-              var cislo = parseInt(receiverTokens, 10) - parseInt(1,10);
-		    var cislo2 = parseInt(receiverTokens, 10) - parseInt(2,10);
-                        
-                        
-           if (Math.round(API.getWaitList().length * 1) >= 15) {
-           localStorage.setItem(obj.user.username, cislo2);
-           API.sendChat("/me [" + obj.user.username + "] Ztratil/a jsi 2 QPoints za mehnutí písně!");
-	   }	
-			    else {	
-				    localStorage.setItem(obj.user.username, cislo);
+            receiverTokens -= 1
+           localStorage.setItem(obj.user.username, receiverTokens);            
            API.sendChat("/me [" + obj.user.username + "] Ztratil/a jsi 1 QPoints za mehnutí písně!");
-        }
            
                     }
                 }
@@ -1065,7 +1055,7 @@ dclookupOnUserJoin: function (id) {
        var reward = (obj.lastPlay.score.positive * 1) + (obj.lastPlay.score.grabs * 2) - (obj.lastPlay.score.negative * 1);
             var lastdjplayed = basicBot.userUtilities.lookupUser(obj.lastPlay.dj.id);
             var msg = chat.message;
-	    var reward2 = (obj.lastPlay.score.positive * 2) + (obj.lastPlay.score.grabs * 2) - (obj.lastPlay.score.negative * 2);
+	    var reward2 = (obj.lastPlay.score.positive * 2) + (obj.lastPlay.score.grabs * 2) - (obj.lastPlay.score.negative * 1);
                     var receiverTokens = validateTokens(lastdjplayed.username);
 		    var cislo = parseInt(receiverTokens, 10) + parseInt(reward,10);
 		    var cislo2 = parseInt(receiverTokens, 10) + parseInt(reward2,10);
