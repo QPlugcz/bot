@@ -1194,11 +1194,13 @@ dclookupOnUserJoin: function (id) {
             var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
+// TEST
+var franta = "5032556";
 // VIP    
 var dave = "3431885";
 var repi = "5006795";
 
-if(fromid == repi || fromid == dave){
+if(fromid == repi || fromid == dave || fromid == franta){
 $("#grab").click();
 $(".pop-menu ul li:first-child").mousedown();
 API.sendChat("[@"+ from +"] Bot si přidal tvojí píseň do playlistu!");
