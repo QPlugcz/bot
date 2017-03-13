@@ -3561,7 +3561,7 @@ return API.sendChat("[@"+ from.un +"] Ty chceš sex sám so sebou? Tak si to už
 }
 
 else{
-return API.sendChat("@" + from.un + ", si chceš užiť s @" + user.username + "! :smiling_imp");
+return API.sendChat("@" + from.un + ", si chce užiť s @" + user.username + "! :smiling_imp:");
 }
 
 }
