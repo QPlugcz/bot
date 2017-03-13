@@ -3996,7 +3996,6 @@ loadChat(basicBot.startup);
 
 var msgs=[
 "/me Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!",
-"/me QPoints sú virtuálne peniaze za ktoré si môžeš kúpiť prvú pozíciu v zozname čakaní. Alebo s nimi môžeš hrať Minihry.",
 "/me Náš Discord server https://bit.ly/QPlugczDiscord!",
 "/me Pomocou DJovania získaš QPoints (virtuálne peniaze) za ktore si môžeš kúpiť prvú pozíciu v zozname čakaní! Príkaz pre zistenie QPoints je !qp :heart:",
 ];
