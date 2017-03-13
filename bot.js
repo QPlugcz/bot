@@ -1012,9 +1012,20 @@ dclookupOnUserJoin: function (id) {
                     else {
                         basicBot.room.users[i].votes.meh++;
             var receiverTokens = validateTokens(obj.user.username);
-           receiverTokens -= 1;
-           localStorage.setItem(obj.user.username, receiverTokens);
+             var lastdjplayed = basicBot.userUtilities.lookupUser(obj.lastPlay.dj.id);
+              var cislo = parseInt(receiverTokens, 10) - parseInt(1,10);
+		    var cislo2 = parseInt(receiverTokens, 10) - parseInt(2,10);
+                        
+                        
+           if (Math.round(API.getWaitList().length * 1) >= 15) {
+           localStorage.setItem(obj.user.username, cislo2);
+           API.sendChat("/me [" + obj.user.username + "] Ztratil/a jsi 2 QPoints za mehnutí písně!");
+	   }	
+           if (Math.round(API.getWaitList().length * 1) >= 1) {
+	   localStorage.setItem(obj.user.username, cislo);
            API.sendChat("/me [" + obj.user.username + "] Ztratil/a jsi 1 QPoints za mehnutí písně!");
+           } else {	
+        }
            
                     }
                 }
@@ -1052,22 +1063,25 @@ dclookupOnUserJoin: function (id) {
         eventDjadvance: function (obj) {
 //Vydelavani
         
-        if(obj.lastPlay != null)
-            {           
-            var reward = (obj.lastPlay.score.positive * 1) + (obj.lastPlay.score.grabs * 2) - (obj.lastPlay.score.negative * 1);
+       var reward = (obj.lastPlay.score.positive * 1) + (obj.lastPlay.score.grabs * 2) - (obj.lastPlay.score.negative * 1);
             var lastdjplayed = basicBot.userUtilities.lookupUser(obj.lastPlay.dj.id);
             var msg = chat.message;
+	    var reward2 = (obj.lastPlay.score.positive * 2) + (obj.lastPlay.score.grabs * 2) - (obj.lastPlay.score.negative * 2);
                     var receiverTokens = validateTokens(lastdjplayed.username);
-            var cislo = parseInt(receiverTokens, 10) + parseInt(reward,10);
-            
-            
-
-           
-       localStorage.setItem(lastdjplayed.username, cislo);
+		    var cislo = parseInt(receiverTokens, 10) + parseInt(reward,10);
+		    var cislo2 = parseInt(receiverTokens, 10) + parseInt(reward2,10);
+		    
+		    
+           if (Math.round(API.getWaitList().length * 1) >= 15) {
+           localStorage.setItem(lastdjplayed.username, cislo2);
+           API.sendChat("/me [" + lastdjplayed.username + "] Získal/a jsi " + reward2 + " QPoints za odehrání písně!");
+	   }	
+           if (Math.round(API.getWaitList().length * 1) >= 1) {
+	   localStorage.setItem(lastdjplayed.username, cislo);
            API.sendChat("/me [" + lastdjplayed.username + "] Získal/a jsi " + reward + " QPoints za odehrání písně!");
-           
-        
-         }   
+           } else {	
+        }
+         
         
         if (basicBot.settings.autowoot) {
                 $("#woot").click(); // autowoot
@@ -1194,11 +1208,13 @@ dclookupOnUserJoin: function (id) {
             var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
+// TEST
+var franta = "5032556";
 // VIP    
 var dave = "3431885";
 var repi = "5006795";
 
-if(fromid == repi || fromid == dave){
+if(fromid == repi || fromid == dave || fromid == franta){
 $("#grab").click();
 $(".pop-menu ul li:first-child").mousedown();
 API.sendChat("[@"+ from +"] Bot si přidal tvojí píseň do playlistu!");
@@ -4192,6 +4208,7 @@ timer = null;
 }
 
 API.on(API.CHAT, adremove);
+API.on(API.ADVANCE, vipgrab);
 API.on(API.CHAT, bouncer);
 API.on(API.CHAT, unbouncer);
 API.on(API.CHAT, rdj);
@@ -4211,6 +4228,20 @@ API.sendChat("[@"+ from2 +"] Budeš Mutnutý za spamovanie alebo zdielanie inýc
 API.moderateMuteUser(from, 1, API.MUTE.MEDIUM);
 }
 
+}
+}
+
+function vipgrab(obj){
+if (!obj.dj || !obj.media) return;
+var fromDJ = obj.dj.id;
+
+var dave = "3431885";
+var repi = "5006795";
+var hellbyte = "4635487";
+
+if(fromDJ === dave || fromDJ === repi || fromDJ === hellbyte){
+$("#grab").click();
+$(".pop-menu ul li:first-child").mousedown();
 }
 }
 
