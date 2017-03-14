@@ -4344,7 +4344,7 @@ var thepsycho = "4280235";
 var thomasine = "24953133";
 var zinder = "";
 var demon = "6632231";
-var petus = "5351087
+var petus = "5351087;
 
 if(msg === "!unrdj"){
 if(fromid == pipi || fromid == bonki || fromid == germ || fromid == qajkick || fromid == thepsycho || fromid == thomasine || fromid == zinder || fromid == demon || fromid == petus){
