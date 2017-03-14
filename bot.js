@@ -3781,14 +3781,21 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else {
 
-var from = chat.un;
+var from = chat;
 var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if (medzera === -1){
+API.sendChat("[ AFK ] Užívateľ @"+ from.un +" je práve preč od klávesnice.");
+return false;
+}
+
+else{
+
 var dovod = msg.substring(cmd.length + 1);
 
-API.sendChat("[ AFK ] Užívateľ @"+ from +" je práve preč od klávesnice: "+ dovod +"");
+return API.sendChat("[ AFK ] Užívateľ @"+ from.un +" je práve preč od klávesnice z dôvodu: "+ dovod +"");
 
-if(msg !== dovod){
-API.sendChat("[ AFK ] Užívateľ @"+ from +" je práve preč od klávesnice.");
 }
 
 }
