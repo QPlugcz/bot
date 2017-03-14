@@ -1055,16 +1055,16 @@ dclookupOnUserJoin: function (id) {
        var reward = (obj.lastPlay.score.positive * 1) + (obj.lastPlay.score.grabs * 2) - (obj.lastPlay.score.negative * 1);
             var lastdjplayed = basicBot.userUtilities.lookupUser(obj.lastPlay.dj.id);
             var msg = chat.message;
-	    var reward2 = (obj.lastPlay.score.positive * 2) + (obj.lastPlay.score.grabs * 2) - (obj.lastPlay.score.negative * 1);
+        var reward2 = (obj.lastPlay.score.positive * 2) + (obj.lastPlay.score.grabs * 2) - (obj.lastPlay.score.negative * 1);
                     var receiverTokens = validateTokens(lastdjplayed.username);
-		    var cislo = parseInt(receiverTokens, 10) + parseInt(reward,10);
-		    var cislo2 = parseInt(receiverTokens, 10) + parseInt(reward2,10);
-		    
-		    
+            var cislo = parseInt(receiverTokens, 10) + parseInt(reward,10);
+            var cislo2 = parseInt(receiverTokens, 10) + parseInt(reward2,10);
+            
+            
            if (Math.round(API.getWaitList().length * 1) >= 15) {
            localStorage.setItem(lastdjplayed.username, cislo2);
            API.sendChat("/me [" + lastdjplayed.username + "] Získal/a jsi " + reward2 + " QPoints za odehrání písně!");
-           } else {	 
+           } else {  
          localStorage.setItem(lastdjplayed.username, cislo);
            API.sendChat("/me [" + lastdjplayed.username + "] Získal/a jsi " + reward + " QPoints za odehrání písně!");
         }
@@ -1995,349 +1995,381 @@ dclookupOnUserJoin: function (id) {
                         }
                     }
                 },
-           pridelitbodyCommand: {
-            command: ['pridelitbody', 'give'],  //The command to be called. With the standard command literal this would be: !tip
-            rank: 'manager', //Minimum user permission to use the command
-            type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-            functionality: function (chat, cmd) {
-                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                else {
-            }
-                        function validateTokens(user)
-                {
-            var tokens; 
-            
-            //Check for existing user tokens
-            if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "0");
-                 tokens = localStorage.getItem(user);
-            }
-            else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
-                 tokens = localStorage.getItem(user);
-            }
-            else {
-                 tokens = localStorage.getItem(user);
-            }
-            
-            return tokens;
-        
-                
-            }
-                    var msg = chat.message; 
-                    var space = msg.indexOf(' ');
-                    var lastSpace = msg.lastIndexOf(' ');
-                    var receiver = msg.substring(msg.indexOf("@") + 1);
-                    var giverTokens = validateTokens(chat.un);
-                    var receiverTokens = validateTokens(receiver);
-            var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
-                    var currentDJ = API.getDJ().username; 
-            var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
-            
-                    if (giverTokens <= -999) {
-                        return API.sendChat("/me [@" + chat.un + "] Chyba v transakci."); 
-                    }
-  
-                    else {
-                        giverTokens -= 0;
-                        localStorage.setItem(chat.un, giverTokens);
-                        if (space === -1) { 
-                            localStorage.setItem(currentDJ, cislo);
-                            return API.sendChat("/me [@" + currentDJ + "] Bylo vám přičteno na účet " + strhnout + " QPoints.");
-                        }
-                        else {
-                            localStorage.setItem(receiver, cislo);
-                            return API.sendChat("/me [@" + receiver + "] Bylo vám přičteno na účet " + strhnout + " QPoints.");
-                            
-                        
-        
-                
-            
-                    }
-                    
-                }
-            }
-        }, 
+
+pridelitbodyCommand: {
+command: ['pridelitbody', 'give'],  //The command to be called. With the standard command literal this would be: !tip
+rank: 'manager', //Minimum user permission to use the command
+type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+}
+
+function validateTokens(user){
+
+var tokens; 
+
+//Check for existing user tokens
+if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
+localStorage.setItem(user, "0");
+tokens = localStorage.getItem(user);
+}
+
+else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
+tokens = localStorage.getItem(user);
+}
+
+else{
+tokens = localStorage.getItem(user);
+}
+
+return tokens;
+
+}
+
+var msg = chat.message; 
+var space = msg.indexOf(' ');
+var lastSpace = msg.lastIndexOf(' ');
+var receiver = msg.substring(msg.indexOf("@") + 1);
+var giverTokens = validateTokens(chat.un);
+var receiverTokens = validateTokens(receiver);
+var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
+var currentDJ = API.getDJ().username; 
+var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
+
+if (giverTokens <= -999){
+return API.sendChat("/me [@" + chat.un + "] Chyba v transakci."); 
+}
+
+else{
+giverTokens -= 0;
+localStorage.setItem(chat.un, giverTokens);
+
+if (space === -1){ 
+localStorage.setItem(currentDJ, cislo);
+return API.sendChat("/me [@" + currentDJ + "] Bylo vám přičteno na účet " + strhnout + " QPoints.");
+}
+
+else{
+localStorage.setItem(receiver, cislo);
+return API.sendChat("/me [@" + receiver + "] Bylo vám přičteno na účet " + strhnout + " QPoints.");
+}
+
+}
+
+}
+}, 
       
-           odebratbodyCommand: {
-            command: ['odebratbody', 'removeqp'],  //The command to be called. With the standard command literal this would be: !tip
-            rank: 'bouncer', //Minimum user permission to use the command
-            type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-            functionality: function (chat, cmd) {
-                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                else {
-            }
-                        function validateTokens(user)
-                {
-            var tokens; 
-            
-            //Check for existing user tokens
-            if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "0");
-                 tokens = localStorage.getItem(user);
-            }
-            else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
-                 tokens = localStorage.getItem(user);
-            }
-            else {
-                 tokens = localStorage.getItem(user);
-            }
-            
-            return tokens;
-        
-                
-            }
-                    var msg = chat.message; 
-                    var space = msg.indexOf(' ');
-                    var lastSpace = msg.lastIndexOf(' ');
-                    var receiver = msg.substring(msg.indexOf("@") + 1);
-                    var giverTokens = validateTokens(chat.un);
-                    var receiverTokens = validateTokens(receiver);
-            var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
-                    var currentDJ = API.getDJ().username; 
-            var cislo = parseInt(receiverTokens, 10) - parseInt(strhnout,10);
-            
-                    if (giverTokens <= -999) {
-                        return API.sendChat("/me [@" + chat.un + "] Chyba v transakci."); 
-                    }
+odebratbodyCommand: {
+command: ['odebratbody', 'removeqp'],  //The command to be called. With the standard command literal this would be: !tip
+rank: 'bouncer', //Minimum user permission to use the command
+type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else {
+}
 
-                    else {
-                        giverTokens -= 0;
-                        localStorage.setItem(chat.un, giverTokens);
-                        if (space === -1) { 
-                            localStorage.setItem(currentDJ, cislo);
-                            return API.sendChat("/me [@" + currentDJ + "] Bylo vám strženo z účtu " + strhnout + " QPoints.");
-                        }
-                        else {
-                            localStorage.setItem(receiver, cislo);
-                            return API.sendChat("/me [@" + receiver + "] Bylo vám strženo z účtu " + strhnout + " QPoints.");
-                            
-                        
-        
-                
-            
-                    }
-                    
-                }
-            }
-        }, 
+function validateTokens(user){
+
+var tokens; 
+
+//Check for existing user tokens
+if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
+localStorage.setItem(user, "0");
+tokens = localStorage.getItem(user);
+}
+
+else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
+tokens = localStorage.getItem(user);
+}
+
+else{
+tokens = localStorage.getItem(user);
+}
+
+return tokens;
+
+}
+
+var msg = chat.message; 
+var space = msg.indexOf(' ');
+var lastSpace = msg.lastIndexOf(' ');
+var receiver = msg.substring(msg.indexOf("@") + 1);
+var giverTokens = validateTokens(chat.un);
+var receiverTokens = validateTokens(receiver);
+var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
+var currentDJ = API.getDJ().username; 
+var cislo = parseInt(receiverTokens, 10) - parseInt(strhnout,10);
+
+if (giverTokens <= -999){
+return API.sendChat("/me [@" + chat.un + "] Chyba v transakci."); 
+}
+
+else{
+giverTokens -= 0;
+localStorage.setItem(chat.un, giverTokens);
+
+if (space === -1){ 
+localStorage.setItem(currentDJ, cislo);
+return API.sendChat("/me [@" + currentDJ + "] Bylo vám strženo z účtu " + strhnout + " QPoints.");
+}
+
+else{
+localStorage.setItem(receiver, cislo);
+return API.sendChat("/me [@" + receiver + "] Bylo vám strženo z účtu " + strhnout + " QPoints.");
+}
+
+}
+
+}
+},
                
-         odznakCommand: {
-            command: ['badge','odznak'],  //The command to be called. With the standard command literal this would be: !tip
-            rank: 'user', //Minimum user permission to use the command
-            type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-            functionality: function (chat, cmd) {
-                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                else {
-            }
-                        function validateTokens(user)
-                {
-            var tokens; 
-            
-            //Check for existing user tokens
-            if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "0");
-                 tokens = localStorage.getItem(user);
-            }
-            else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
-                 tokens = localStorage.getItem(user);
-            }
-            else {
-                 tokens = localStorage.getItem(user);
-            }
-            
-            return tokens;
-        
-                
-            }
+odznakCommand: {
+command: ['badge','odznak'],  //The command to be called. With the standard command literal this would be: !tip
+rank: 'user', //Minimum user permission to use the command
+type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else {
+}
 
-                    var msg = chat.message; 
-                    var giverTokens = validateTokens(chat.un);
-            
-                    if (giverTokens < 1000) {
-                        return API.sendChat("[@" + chat.un + "] Chceš mít jedinečný odznak dle tvého přání? Zakup si vlastní odznak za 1000 QPoints, kteří uvidí všichni uživatelé s RCS!"); 
-                    }
-                    else {
-                        giverTokens -= 1000;
-                        localStorage.setItem(chat.un, giverTokens);
-                            return API.sendChat("["+ chat.un +"] Zakoupil jste si vlastní odznak. Kontaktujte nyní @Tessi Tess a domluvte se.");
-                    }
-            }
-        },  
-        vipCommand: {
-            command: ['vip'],  //The command to be called. With the standard command literal this would be: !tip
-            rank: 'user', //Minimum user permission to use the command
-            type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-            functionality: function (chat, cmd) {
-                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                else {
-            }
-                        function validateTokens(user)
-                {
-            var tokens; 
-            
-            //Check for existing user tokens
-            if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "0");
-                 tokens = localStorage.getItem(user);
-            }
-            else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
-                 tokens = localStorage.getItem(user);
-            }
-            else {
-                 tokens = localStorage.getItem(user);
-            }
-            
-            return tokens;
-        
-                
-            }
+function validateTokens(user){
 
-                    var msg = chat.message; 
-                    var giverTokens = validateTokens(chat.un);
-            
-                    if (giverTokens < 5000) {
-                        return API.sendChat("[@" + chat.un + "] Aktivuj si VIP u nás za 5000 QPoints a získej spoustu výhod! Skvělý odznak a ikonu, kteří vidí uživatelé s RCS, automatické grabování tvých písní botem nebo příkazy jen pro VIP!"); 
-                    }
-                    else {
-                        giverTokens -= 5000;
-                        localStorage.setItem(chat.un, giverTokens);
-                            return API.sendChat("[ VIP ] Gratulujeme @" + chat.un +"! Nyní patříte mezi VIP členy! Všechny vaše výhody budou aktivovány v nejblížších dnech!");
-                    }
-            }
-        }, 
-        buyCommand: {
-            command: ['buy'],  //The command to be called. With the standard command literal this would be: !tip
-            rank: 'user', //Minimum user permission to use the command
-            type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-            functionality: function (chat, cmd) {
-                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                else {
-            }
-                        function validateTokens(user)
-                {
-            var tokens; 
-            
-            //Check for existing user tokens
-            if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "0");
-                 tokens = localStorage.getItem(user);
-            }
-            else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
-                 tokens = localStorage.getItem(user);
-            }
-            else {
-                 tokens = localStorage.getItem(user);
-            }
-            
-            return tokens;
-        
-                
-            }
-            function pozice(user)
-                {
-            var nakup; 
-            
-            //Check for existing user tokens
-            if (sessionStorage.getItem(user) == null || sessionStorage.getItem(user) == "undefined") {
-                 sessionStorage.setItem(user, "0");
-                 nakup = sessionStorage.getItem(user);
-            }
-            else if (sessionStorage.getItem(user) !== null  && sessionStorage.getItem(user) !== "undefined") {
-                 nakup = sessionStorage.getItem(user);
-            }
-            else {
-                 nakup = sessionStorage.getItem(user);
-            }
-            
-            return nakup;
-        
-                }
-                    var msg = chat.message; 
-                    var giverTokens = validateTokens(chat.un);
-            var zakaznik = chat.un;
-                 var uid = chat.uid;
-            
-                    if (giverTokens < 500) {
-                        return API.sendChat("[@" + zakaznik + "] Nemáš dostatek QPoints k zaplacení 1. pozice ve frontě. Nákup stojí 500 QPoints."); 
-                    }
-                    else {
-                        giverTokens -= 500;
-                        localStorage.setItem(chat.un, giverTokens);
-                            API.sendChat("[" + zakaznik + "] Práve si si zakúpil prvé miesto v zozname čakaní za 500 QPoints!");
-                            basicBot.userUtilities.moveUser(uid, +1, true);
-                    }
-            }
-        }, 
-      umelecCommand: {
-                command: 'umelec',  //The command to be called.
-                rank: 'user', //Minimum user permission to use the command
-                type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
+var tokens; 
 
-                    simpleAJAXLib = {
-                        
-                                init: function () {
-                                    var artist = API.getMedia().author;
-                                    var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=b3cb78999a38750fc3d76c51ba2bf6bb&artist=' + artist.replace(/&/g,"%26").replace(/ /g,"%20") + '&autocorrect=1'
-                                    this.fetchJSON(url);
-                                },
-                         
-                                fetchJSON: function (url) {
-                                    var root = 'https://query.yahooapis.com/v1/public/yql?q=';
-                                    var yql = 'select * from xml where url="' + url + '"';
-                                    var proxy_url = root + encodeURIComponent(yql) + '&format=json&diagnostics=false&callback=simpleAJAXLib.display';
-                                    document.getElementsByTagName('body')[0].appendChild(this.jsTag(proxy_url));
-                                },
-                         
-                                jsTag: function (url) {
-                                    var script = document.createElement('script');
-                                    script.setAttribute('type', 'text/javascript');
-                                    script.setAttribute('src', url);
-                                    return script;
-                                },
-                         
-                                display: function (results) {
-                                    setTimeout(function() {
-                                        try {
-                                            var name;
-                                            name = results.query.results.lfm.artist.name;
-                                            
-                                            var picture;
-                                            picture = results.query.results.lfm.artist.image[3].content
-                                            
-                                            var genres;
-                                            genres = results.query.results.lfm.artist.tags.tag[0].name;
-                                            genres += ", ";
-                                            genres += results.query.results.lfm.artist.tags.tag[1].name;
-                                            genres += ", ";
-                                            genres += results.query.results.lfm.artist.tags.tag[2].name;
-                                            
-                                            var similar;
-                                            similar = results.query.results.lfm.artist.similar.artist[0].name;
-                                            similar += ", ";
-                                            similar += results.query.results.lfm.artist.similar.artist[1].name;
-                                            similar += ", ";
-                                            similar += results.query.results.lfm.artist.similar.artist[2].name;
-                                            
-                                            API.sendChat("/me [@" + chat.un + "] Jméno: " + name + " | Žánr: " + genres + " | Podobné skupiny: " + similar + " | Obrázek: " + picture);
-                                        } catch (e) {
-                                            API.sendChat("/me [@" + chat.un + "] Omlouváme se, ale server nenalezl žádné informace o tomto zpěvákovi či hudební skupině.");
-                                        }
-                                    },100);
-                                }
-                        }
-                        simpleAJAXLib.init();   
-                    }
-                }
-            },
+//Check for existing user tokens
+if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
+localStorage.setItem(user, "0");
+tokens = localStorage.getItem(user);
+}
+
+else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
+tokens = localStorage.getItem(user);
+}
+
+else{
+tokens = localStorage.getItem(user);
+}
+
+return tokens;
+
+}
+
+var msg = chat.message; 
+var giverTokens = validateTokens(chat.un);
+
+if (giverTokens < 1000){
+return API.sendChat("[@" + chat.un + "] Chceš mít jedinečný odznak dle tvého přání? Zakup si vlastní odznak za 1000 QPoints, kteří uvidí všichni uživatelé s RCS!"); 
+}
+
+else{
+giverTokens -= 1000;
+localStorage.setItem(chat.un, giverTokens);
+return API.sendChat("["+ chat.un +"] Zakoupil jste si vlastní odznak. Kontaktujte nyní @Tessi Tess a domluvte se.");
+}
+
+}
+},
+
+vipCommand: {
+command: ['vip'],  //The command to be called. With the standard command literal this would be: !tip
+rank: 'user', //Minimum user permission to use the command
+type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+}
+
+function validateTokens(user){
+
+var tokens; 
+
+//Check for existing user tokens
+if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
+localStorage.setItem(user, "0");
+tokens = localStorage.getItem(user);
+}
+
+else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
+tokens = localStorage.getItem(user);
+}
+
+else{
+tokens = localStorage.getItem(user);
+}
+
+return tokens;
+
+}
+
+var msg = chat.message; 
+var giverTokens = validateTokens(chat.un);
+
+if (giverTokens < 5000){
+return API.sendChat("[@" + chat.un + "] Aktivuj si VIP u nás za 5000 QPoints a získej spoustu výhod! Skvělý odznak a ikonu, kteří vidí uživatelé s RCS, automatické grabování tvých písní botem nebo příkazy jen pro VIP!"); 
+}
+
+else{
+giverTokens -= 5000;
+localStorage.setItem(chat.un, giverTokens);
+return API.sendChat("[ VIP ] Gratulujeme @" + chat.un +"! Nyní patříte mezi VIP členy! Všechny vaše výhody budou aktivovány v nejblížších dnech!");
+}
+
+}
+}, 
+
+buyCommand: {
+command: ['buy'],  //The command to be called. With the standard command literal this would be: !tip
+rank: 'user', //Minimum user permission to use the command
+type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+}
+
+function validateTokens(user){
+
+var tokens; 
+
+//Check for existing user tokens
+if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
+localStorage.setItem(user, "0");
+tokens = localStorage.getItem(user);
+}
+
+else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
+tokens = localStorage.getItem(user);
+}
+
+else{
+tokens = localStorage.getItem(user);
+}
+
+return tokens;
+
+}
+
+function pozice(user){
+
+var nakup; 
+
+//Check for existing user tokens
+if (sessionStorage.getItem(user) == null || sessionStorage.getItem(user) == "undefined"){
+sessionStorage.setItem(user, "0");
+nakup = sessionStorage.getItem(user);
+}
+
+else if (sessionStorage.getItem(user) !== null  && sessionStorage.getItem(user) !== "undefined"){
+nakup = sessionStorage.getItem(user);
+}
+
+else{
+nakup = sessionStorage.getItem(user);
+}
+
+return nakup;
+
+}
+
+var msg = chat.message; 
+var giverTokens = validateTokens(chat.un);
+var zakaznik = chat.un;
+var uid = chat.uid;
+
+if (giverTokens < 500){
+return API.sendChat("[@" + zakaznik + "] Nemáš dostatek QPoints k zaplacení 1. pozice ve frontě. Nákup stojí 500 QPoints."); 
+}
+
+else{
+giverTokens -= 500;
+localStorage.setItem(chat.un, giverTokens);
+API.sendChat("[" + zakaznik + "] Práve si si zakúpil prvé miesto v zozname čakaní za 500 QPoints!");
+basicBot.userUtilities.moveUser(uid, +1, true);
+}
+
+}
+},
+
+umelecCommand: {
+command: 'umelec',  //The command to be called.
+rank: 'user', //Minimum user permission to use the command
+type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else {
+
+simpleAJAXLib ={
+
+init: function (){
+var artist = API.getMedia().author;
+var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=b3cb78999a38750fc3d76c51ba2bf6bb&artist=' + artist.replace(/&/g,"%26").replace(/ /g,"%20") + '&autocorrect=1'
+this.fetchJSON(url);
+},
+
+fetchJSON: function (url){
+var root = 'https://query.yahooapis.com/v1/public/yql?q=';
+var yql = 'select * from xml where url="' + url + '"';
+var proxy_url = root + encodeURIComponent(yql) + '&format=json&diagnostics=false&callback=simpleAJAXLib.display';
+document.getElementsByTagName('body')[0].appendChild(this.jsTag(proxy_url));
+},
+
+jsTag: function (url){
+var script = document.createElement('script');
+script.setAttribute('type', 'text/javascript');
+script.setAttribute('src', url);
+return script;
+},
+
+display: function (results){
+
+setTimeout(function(){
+
+try{
+var name;
+name = results.query.results.lfm.artist.name;
+
+var picture;
+picture = results.query.results.lfm.artist.image[3].content
+
+var genres;
+genres = results.query.results.lfm.artist.tags.tag[0].name;
+genres += ", ";
+genres += results.query.results.lfm.artist.tags.tag[1].name;
+genres += ", ";
+genres += results.query.results.lfm.artist.tags.tag[2].name;
+
+var similar;
+similar = results.query.results.lfm.artist.similar.artist[0].name;
+similar += ", ";
+similar += results.query.results.lfm.artist.similar.artist[1].name;
+similar += ", ";
+similar += results.query.results.lfm.artist.similar.artist[2].name;
+
+API.sendChat("/me [@" + chat.un + "] Jméno: " + name + " | Žánr: " + genres + " | Podobné skupiny: " + similar + " | Obrázek: " + picture);
+
+}
+
+catch (e){
+API.sendChat("/me [@" + chat.un + "] Omlouváme se, ale server nenalezl žádné informace o tomto zpěvákovi či hudební skupině.");
+}
+
+},100);
+
+}
+
+}
+
+simpleAJAXLib.init();   
+
+}
+}
+},
             
 kontoCommand: {
 command: ['konto'],
