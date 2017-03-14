@@ -1723,278 +1723,310 @@ dclookupOnUserJoin: function (id) {
                 },
              **/
 
-            autoskipCommand: {
-                command: 'autoskip',
-                rank: 'manager',
-                type: 'exact',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        if (basicBot.settings.autoskip) {
-                            basicBot.settings.autoskip = !basicBot.settings.autoskip;
-                            clearTimeout(basicBot.room.autoskipTimer);
-                            return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.autoskip}));
-                        }
-                        else {
-                            basicBot.settings.autoskip = !basicBot.settings.autoskip;
-                            return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.autoskip}));
-                        }
-                    }
-                }
-            },
+autoskipCommand: {
+command: 'autoskip',
+rank: 'manager',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
 
-            clearchatCommand: {
-                command: ['clearchat', 'cc'],
-                rank: 'manager',
-                type: 'exact',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var currentchat = $('#chat-messages').children();
-                        for (var i = 0; i < currentchat.length; i++) {
-                            API.moderateDeleteChat(currentchat[i].getAttribute("data-cid"));
-                        }
-                        return API.sendChat(subChat(basicBot.chat.chatcleared, {name: chat.un}));
-                    }
-                }
-            },
+if (basicBot.settings.autoskip){
+basicBot.settings.autoskip = !basicBot.settings.autoskip;
+clearTimeout(basicBot.room.autoskipTimer);
+return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.autoskip}));
+}
 
-            cmddeletionCommand: {
-                command: ['commanddeletion', 'cmddeletion', 'cmddel'],
-                rank: 'manager',
-                type: 'exact',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        if (basicBot.settings.cmdDeletion) {
-                            basicBot.settings.cmdDeletion = !basicBot.settings.cmdDeletion;
-                            API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.cmddeletion}));
-                        }
-                        else {
-                            basicBot.settings.cmdDeletion = !basicBot.settings.cmdDeletion;
-                            API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.cmddeletion}));
-                        }
-                    }
-                }
-            },
-        
-        resetbodyCommand: {
-        command: 'resetbody',  //The command to be called. With the standard command literal this would be: !cleartokens
-            rank: 'cohost', //Minimum user permission to use the command
-            type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-            functionality: function (chat, cmd) {
-                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                if (!bot.commands.executable(this.rank, chat)) return void (0);
-                else {
-                var user = chat.un;
-                    localStorage.clear();
-                    API.sendChat("[ OZNAM | @everyone ] Vedení místnosti resetovalo QPoints všem uživatelům.");
-                    
-                    
-                }
-            }
-        },
-      poslatCommand: {
-            command: ['poslat', 'send'],  //The command to be called. With the standard command literal this would be: !tip
-            rank: 'user', //Minimum user permission to use the command
-            type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-            functionality: function (chat, cmd) {
-                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                else {
-            }
-                        function validateTokens(user)
-                {
-            var tokens; 
-            
-            //Check for existing user tokens
-            if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "0");
-                 tokens = localStorage.getItem(user);
-            }
-            else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
-                 tokens = localStorage.getItem(user);
-            }
-            else {
-                 tokens = localStorage.getItem(user);
-            }
-            
-            return tokens;
-        
-                
-            }
-                    var msg = chat.message; 
-                    var space = msg.indexOf(' ');
-            var lastSpace = msg.lastIndexOf(' ');
-                    var receiver = msg.substring(msg.indexOf("@") + 1);
-                    var giverTokens = validateTokens(chat.un);
-                    var receiverTokens = validateTokens(receiver);
-            var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
-                    var currentDJ = API.getDJ().username; 
-            var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
-            
-                    if (giverTokens < strhnout) {
-                        return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek QPoints k zaslání dárku!"); 
-                    }
-                         else if (receiver === chat.un) {
-                         return API.sendChat("[@" + chat.un + "] Nemůžeš posílat QPoints sám sobě!");
-                            
-                    }
-                    else {
-                        giverTokens -= strhnout;
-                        localStorage.setItem(chat.un, giverTokens);
-                        if (space === -1) { 
-                            localStorage.setItem(currentDJ, cislo);
-                            return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateli " + currentDJ + "");
-                        }
-                        else {
-                            localStorage.setItem(receiver, cislo);
-                            return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateli " + receiver + "");
-                            
-                        
-        
-                
-            
-                    }
-                    
-                }
-            }
-        }, 
-        adminstatsCommand: {
-                    command: 'adminstats',
-                    rank: 'user',
-                    type: 'exact',
-                    functionality: function (chat, cmd) {
-                        if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                        if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                        else {
-                            var msg = chat.message;
-                            var id = chat.uid;
-                            var staffonline = 0;
-                            var users = API.getUsers();
-                            var len = users.length;
-                            for (var i = 0; i < len; ++i){
-                                if (basicBot.userUtilities.getPermission(users[i].id) > 1){
-                                    staffonline += 1;
-                                }
-                            }
+else{
+basicBot.settings.autoskip = !basicBot.settings.autoskip;
+return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.autoskip}));
+}
 
+}
+}
+},
 
-                            API.sendChat(subChat("/me Aktuálně je zde online " + staffonline + " členů staff týmu"));
-                        }
-                    }
-                },
-        spustitminihruCommand: {
-                    command: 'sm',
-                    rank: 'bouncer',
-                    type: 'exact',
-                    functionality: function (chat, cmd) {
-                        if (this.type === 'exact' && chat.message.length !== cmd.length) { return void (0); }
-                        if (!basicBot.commands.executable(this.rank, chat)) { return void (0); }
-                        basicBot.room.tipovacka.hrat();
-                    }
-                },
-        
-         minihraCommand: {
-                    command: 'minihra',
-                    rank: 'bouncer',
-                    type: 'startsWith',
-                    functionality: function (chat, cmd) {
-                        if (!basicBot.commands.executable(this.rank, chat)) { return void (0); }
-                        if (chat.message.length < 6) { return void (0); }
-                        var gn = chat.message.substring(cmd.length + 1);
-                        var gni = parseInt(gn);
-            var from = chat.un;
-                        basicBot.room.tipovacka.obtiznost = gni;
-                        var tos = "undefined";
-                        if (gni === 1) {
-                            tos = "hádaní čísel. (1 až 10)";
-                        }
-                        if (gni === 2) {
-                            tos = "hádaní čísel. (1 až 25)";
-                        }
-                        if (gni === 3) {
-                            tos = "hádaní čísel. (1 až 50)";
-                        }
-            
-                        if (gni === 4) {
-                            tos = "hádaní čísel. (1 až 100)";
-                        }
-                        
-                        if (gni === 5) {
-                            tos = "hádaní barev v angličtině.";
-                        }
-                         
-                        
-                        if (gni === 6) {
-                            tos = "matematiku.";
-                        }
-                        API.sendChat('/me [@' + from + '] Minihra nastavena na ' + tos + '');
-                    }
-                },
-        tipommand: {
-                    command: ['tip', 't'],
-                    rank: 'user',
-                    type: 'startsWith',
-                    functionality: function (chat, cmd) {
-                        if (chat.message.length < 5) { return void (0); }
-                        if (!basicBot.room.tipovacka.active) { return void (0); }
-    
-                        function validateTokens(user)
-                {
-            var tokens; 
-            
-            //Check for existing user tokens
-            if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "0");
-                 tokens = localStorage.getItem(user);
-            }
-            else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
-                 tokens = localStorage.getItem(user);
-            }
-            else {
-                 tokens = localStorage.getItem(user);
-            }
-            
-            return tokens;
-        
-                
-            }
+clearchatCommand: {
+command: ['clearchat', 'cc'],
+rank: 'manager',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
 
-            var gn = chat.message.substring(cmd.length + 1);
-                     var gni = parseInt(gn);
-                    var giverTokens = validateTokens(chat.un);
-                 if (giverTokens < 5) {
-                        return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek QPoints na hádaní odpovědí. Tip stojí 5 QPoints."); 
-                    }
-                        if (gni === basicBot.room.tipovacka.currentNumber || gn === basicBot.room.tipovacka.currentNumber.toString()) {
-                            basicBot.room.tipovacka.endNumberGame(chat.uid);
-                            giverTokens -= 5;
-             }
-            else if (basicBot.room.tipovacka.obtiznost == 5) {
-            giverTokens -= 5;
-            localStorage.setItem(chat.un, giverTokens);
-            API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gn + '');    
-                
-            }
-            else if (basicBot.room.tipovacka.obtiznost == 6) {
-            giverTokens -= 5;
-            localStorage.setItem(chat.un, giverTokens);
-            API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gni + '');    
-                      
-                        } else {
-                 giverTokens -= 5;
-                        localStorage.setItem(chat.un, giverTokens);
-                            API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gni + '');
-                        
-                        
-            
-                        }
-                    }
-                },
+var currentchat = $('#chat-messages').children();
+
+for (var i = 0; i < currentchat.length; i++){
+API.moderateDeleteChat(currentchat[i].getAttribute("data-cid"));
+}
+
+return API.sendChat(subChat(basicBot.chat.chatcleared, {name: chat.un}));
+
+}
+}
+},
+
+cmddeletionCommand: {
+command: ['commanddeletion', 'cmddeletion', 'cmddel'],
+rank: 'manager',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+if (basicBot.settings.cmdDeletion){
+basicBot.settings.cmdDeletion = !basicBot.settings.cmdDeletion;
+API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.cmddeletion}));
+}
+
+else{
+basicBot.settings.cmdDeletion = !basicBot.settings.cmdDeletion;
+API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.cmddeletion}));
+}
+
+}
+}
+},
+        
+resetbodyCommand: {
+command: 'resetbody',  //The command to be called. With the standard command literal this would be: !cleartokens
+rank: 'cohost', //Minimum user permission to use the command
+type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!bot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var user = chat.un;
+localStorage.clear();
+
+API.sendChat("[ OZNAM | @djs ] Vedenie komunity resetovalo QPoints všetkým užívateľom.");
+
+}
+}
+},
+
+poslatCommand: {
+command: ['poslat', 'send'],  //The command to be called. With the standard command literal this would be: !tip
+rank: 'user', //Minimum user permission to use the command
+type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+}
+
+function validateTokens(user){
+
+var tokens; 
+
+//Check for existing user tokens
+if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
+localStorage.setItem(user, "0");
+tokens = localStorage.getItem(user);
+}
+
+else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
+tokens = localStorage.getItem(user);
+}
+
+else{
+tokens = localStorage.getItem(user);
+}
+
+return tokens;
+
+}
+
+var msg = chat.message; 
+var space = msg.indexOf(' ');
+var lastSpace = msg.lastIndexOf(' ');
+var receiver = msg.substring(msg.indexOf("@") + 1);
+var giverTokens = validateTokens(chat.un);
+var receiverTokens = validateTokens(receiver);
+var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
+var currentDJ = API.getDJ().username; 
+var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
+
+if (giverTokens < strhnout){
+return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek QPoints k zaslání dárku!"); 
+}
+
+else if (receiver === chat.un){
+return API.sendChat("[@" + chat.un + "] Nemůžeš posílat QPoints sám sobě!");
+}
+
+else{
+giverTokens -= strhnout;
+localStorage.setItem(chat.un, giverTokens);
+
+if (space === -1){ 
+localStorage.setItem(currentDJ, cislo);
+return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateli " + currentDJ + "");
+}
+
+else{
+localStorage.setItem(receiver, cislo);
+return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateli " + receiver + "");
+}
+
+}
+
+}
+}, 
+
+adminstatsCommand: {
+command: 'adminstats',
+rank: 'user',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var from = chat.un;
+var msg = chat.message;
+var id = chat.uid;
+var staffonline = 0;
+var users = API.getUsers();
+var len = users.length;
+
+for (var i = 0; i < len; ++i){
+
+if (basicBot.userUtilities.getPermission(users[i].id) > 1){
+staffonline += 1;
+}
+
+}
+
+API.sendChat(subChat("[@"+ from +"] Aktuálně je zde online " + staffonline + " členov QPlug.cz Týmu!"));
+
+}
+}
+},
+
+spustitminihruCommand: {
+command: 'sm',
+rank: 'bouncer',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
+if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
+
+basicBot.room.tipovacka.hrat();
+
+}
+},
+        
+minihraCommand: {
+command: 'minihra',
+rank: 'bouncer',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
+if (chat.message.length < 6) {return void (0);}
+
+var gn = chat.message.substring(cmd.length + 1);
+var gni = parseInt(gn);
+var from = chat.un;
+basicBot.room.tipovacka.obtiznost = gni;
+var tos = "undefined";
+
+if (gni === 1){
+tos = "hádaní čísel. (1 až 10)";
+}
+
+if (gni === 2){
+tos = "hádaní čísel. (1 až 25)";
+}
+
+if (gni === 3){
+tos = "hádaní čísel. (1 až 50)";
+}
+
+if (gni === 4){
+tos = "hádaní čísel. (1 až 100)";
+}
+
+if (gni === 5){
+tos = "hádaní barev v angličtině.";
+}
+
+if (gni === 6){
+tos = "matematiku.";
+}
+
+API.sendChat('/me [@' + from + '] Minihra nastavena na ' + tos + '');
+
+}
+},
+
+tipommand: {
+command: ['tip', 't'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (chat.message.length < 5) { return void (0); }
+if (!basicBot.room.tipovacka.active) {return void (0);}
+
+function validateTokens(user){
+
+var tokens; 
+
+//Check for existing user tokens
+if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
+localStorage.setItem(user, "0");
+tokens = localStorage.getItem(user);
+}
+
+else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
+tokens = localStorage.getItem(user);
+}
+
+else{
+tokens = localStorage.getItem(user);
+}
+
+return tokens;
+
+}
+
+var gn = chat.message.substring(cmd.length + 1);
+var gni = parseInt(gn);
+var giverTokens = validateTokens(chat.un);
+
+if (giverTokens < 5){
+return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek QPoints na hádaní odpovědí. Tip stojí 5 QPoints."); 
+}
+
+if (gni === basicBot.room.tipovacka.currentNumber || gn === basicBot.room.tipovacka.currentNumber.toString()){
+basicBot.room.tipovacka.endNumberGame(chat.uid);
+giverTokens -= 5;
+}
+
+else if (basicBot.room.tipovacka.obtiznost == 5){
+giverTokens -= 5;
+localStorage.setItem(chat.un, giverTokens);
+API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gn + '');    
+}
+
+else if (basicBot.room.tipovacka.obtiznost == 6){
+giverTokens -= 5;
+localStorage.setItem(chat.un, giverTokens);
+API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gni + '');    
+}
+
+else{
+giverTokens -= 5;
+localStorage.setItem(chat.un, giverTokens);
+API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gni + '');
+}
+
+}
+},
 
 pridelitbodyCommand: {
 command: ['pridelitbody', 'give'],  //The command to be called. With the standard command literal this would be: !tip
