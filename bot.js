@@ -4195,7 +4195,7 @@ timer = null;
 }
 
 API.on(API.CHAT, adremove);
-// API.on(API.ADVANCE, vipgrab);
+API.on(API.ADVANCE, vipgrab);
 API.on(API.CHAT, bouncer);
 API.on(API.CHAT, unbouncer);
 API.on(API.CHAT, rdj);
@@ -4218,19 +4218,18 @@ API.moderateMuteUser(from, 1, API.MUTE.MEDIUM);
 }
 }
 
-// function vipgrab(obj){
-// if (!obj.dj || !obj.media) return;
-// var fromDJ = obj.dj.id;
+function vipgrab(obj){
+if (!obj.dj || !obj.media) return;
 
-// var dave = "3431885";
-// var repi = "5006795";
-// var hellbyte = "4635487";
+var repi = "5006795";
+var dave = "3431885";
+var hellbyte = "4635487";
 
-// if(fromDJ === dave || fromDJ === repi || fromDJ === hellbyte){
-// $("#grab").click();
-// $(".pop-menu ul li:first-child").mousedown();
-// }
-// }
+if(obj.dj.id === repi || obj.dj.id === dave || obj.dj.id === hellbyte){
+$("#grab").click();
+$(".pop-menu ul li:first-child").mousedown();
+}
+}
 
 function bouncer(data){
 var msg = data.message;
