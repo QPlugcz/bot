@@ -3787,7 +3787,7 @@ var dovod = msg.substring(cmd.length + 1);
 
 API.sendChat("[ AFK ] Užívateľ @"+ from +" je práve preč od klávesnice: "+ dovod +"");
 
-if(msg !=== dovod){
+if(msg !== dovod){
 API.sendChat("[ AFK ] Užívateľ @"+ from +" je práve preč od klávesnice.");
 }
 
