@@ -350,31 +350,31 @@ ROOM»                              https://plug.dj/qplug-czsk
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 9) + 1);
                         basicBot.room.tipovacka.max = 10;
               
-            API.sendChat('[ MINIHRA ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Tipněte zadané číslo pomocí !tip číslo a vyhrajte 25 QPoints! Pokus stojí 5 QPoints.');  
+            API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Tipněte zadané číslo pomocí !tip číslo a vyhrajte 25 QPoints! Pokus stojí 5 QPoints.');  
                     }
                     if (basicBot.room.tipovacka.obtiznost == 2) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 24) + 1);
                         basicBot.room.tipovacka.max = 25;
-            API.sendChat('[ MINIHRA ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Tipněte zadané číslo pomocí !tip číslo a vyhrajte 75 QPoints! Pokus stojí 5 QPoints.'); 
+            API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Tipněte zadané číslo pomocí !tip číslo a vyhrajte 75 QPoints! Pokus stojí 5 QPoints.'); 
              
                     }
             if (basicBot.room.tipovacka.obtiznost == 3) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 49) + 1);
                         basicBot.room.tipovacka.max = 50;
-              API.sendChat('[ MINIHRA ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Tipněte zadané číslo pomocí !tip číslo a vyhrajte 150 QPoints! Pokus stojí 5 QPoints.'); 
+              API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Tipněte zadané číslo pomocí !tip číslo a vyhrajte 150 QPoints! Pokus stojí 5 QPoints.'); 
              
                     }
                     if (basicBot.room.tipovacka.obtiznost == 4) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 99) + 1);
                         basicBot.room.tipovacka.max = 100; 
                     
-                    API.sendChat('[ MINIHRA ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Tipněte zadané číslo pomocí !tip číslo a vyhrajte 400 QPoints! Pokus stojí 5 QPoints.');
+                    API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Tipněte zadané číslo pomocí !tip číslo a vyhrajte 400 QPoints! Pokus stojí 5 QPoints.');
           }      
             if (basicBot.room.tipovacka.obtiznost == 5) {
                         var barvy = ["red","yellow","orange","blue","green","purple","brown","black","pink"];
                         basicBot.room.tipovacka.currentNumber = barvy[Math.floor(Math.random() * barvy.length)];
                         basicBot.room.tipovacka.max = "white"; 
-            API.sendChat('[ MINIHRA ] Myslím si barvu v angličtině. Tipněte zadanou barvu pomocí !tip text a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.'); 
+            API.sendChat('[ MINIHRA | @djs ] Myslím si barvu v angličtině. Tipněte zadanou barvu pomocí !tip text a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.'); 
                     }
 if (basicBot.room.tipovacka.obtiznost == 6) {
     var vysledek = 100 + ~~(Math.random() * 5000);
@@ -391,7 +391,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
     }
     
     basicBot.room.tipovacka.currentNumber = vysledek;
-    API.sendChat('[ MINIHRA ] Myslím si příklad ' + priklad + ' :question: Vypočítejte ho pomocí !tip číslo a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.');
+    API.sendChat('[ MINIHRA | @djs ] Myslím si příklad ' + priklad + ' :question: Vypočítejte ho pomocí !tip číslo a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.');
 }
                     },
                     
@@ -400,7 +400,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                     if (basicBot.room.tipovacka.active) {
                        basicBot.room.tipovacka.active = false;
                         basicBot.room.tipovacka.max = 0;
-                        API.sendChat('[ MINIHRA ] Nikdo neuhodl správně. Správná odpověď byla ' + basicBot.room.tipovacka.currentNumber + '');
+                        API.sendChat('[ MINIHRA ] Nikdo neuhodl správně. Správná odpověď byla ' + basicBot.room.tipovacka.currentNumber + '!');
                         basicBot.room.tipovacka.currentNumber = 0;
                     }
                 },
@@ -419,7 +419,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 var receiverTokens = validateTokens(name);
                     var penize = parseInt(receiverTokens, 10) + parseInt(25,10);
                     localStorage.setItem(name, penize);
-                            API.sendChat('/me [ MINIHRA ] Uživatel @' + name + ' vyhrál 25 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');
+                            API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 25 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');
                             basicBot.room.tipovacka.currentNumber = 0;
             } else if (basicBot.room.tipovacka.obtiznost == 2) {
                 name = basicBot.room.users[i].username;
@@ -428,7 +428,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 var receiverTokens = validateTokens(name);
                     var penize2 = parseInt(receiverTokens, 10) + parseInt(75,10);
                     localStorage.setItem(name, penize2);
-                            API.sendChat('/me [ MINIHRA ] Uživatel @' + name + ' vyhrál 75 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');
+                            API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 75 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');
                        
               } else if (basicBot.room.tipovacka.obtiznost == 3) {
                   name = basicBot.room.users[i].username;
@@ -437,7 +437,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 var receiverTokens = validateTokens(name);
                     var penize3 = parseInt(receiverTokens, 10) + parseInt(150,10);
                     localStorage.setItem(name, penize3);
-                            API.sendChat('/me [ MINIHRA ] Uživatel @' + name + ' vyhrál 150 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');
+                            API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 150 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');
             } else if (basicBot.room.tipovacka.obtiznost == 4) {
                 name = basicBot.room.users[i].username;
               basicBot.room.tipovacka.active = false;
@@ -445,7 +445,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 var receiverTokens = validateTokens(name);
                     var penize4 = parseInt(receiverTokens, 10) + parseInt(400,10);
                     localStorage.setItem(name, penize4);
-                            API.sendChat('/me [ MINIHRA ] Uživatel @' + name + ' vyhrál 400 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');
+                            API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 400 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');
                       } else if (basicBot.room.tipovacka.obtiznost == 5) {
                  name = basicBot.room.users[i].username;
               basicBot.room.tipovacka.active = false;
@@ -453,7 +453,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 var receiverTokens = validateTokens(name);
                     var penize5 = parseInt(receiverTokens, 10) + parseInt(30,10);
                     localStorage.setItem(name, penize5);
-                            API.sendChat('/me [ MINIHRA ] Uživatel @' + name + ' vyhrál 30 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');  
+                            API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 30 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');  
                           } else if (basicBot.room.tipovacka.obtiznost == 6) {
                  name = basicBot.room.users[i].username;
               basicBot.room.tipovacka.active = false;
@@ -461,7 +461,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 var receiverTokens = validateTokens(name);
                     var penize6 = parseInt(receiverTokens, 10) + parseInt(30,10);
                     localStorage.setItem(name, penize6);
-                            API.sendChat('/me [ MINIHRA ] Uživatel @' + name + ' vyhrál 30 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '');   
+                            API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 30 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');   
                     }  else {
                         return false; 
                     }    
@@ -1192,20 +1192,7 @@ dclookupOnUserJoin: function (id) {
                 API.sendChat(subChat(basicBot.chat.permissionownsong, {name: user.username}));
                 user.ownSong = false;
             }
-            var msg = chat.message;
-var from = chat.un;
-var fromid = chat.uid;
-// TEST
-var franta = "5032556";
-// VIP    
-var dave = "3431885";
-var repi = "5006795";
-
-if(fromid == repi || fromid == dave || fromid == franta){
-$("#grab").click();
-$(".pop-menu ul li:first-child").mousedown();
-API.sendChat("[@"+ from +"] Bot si přidal tvojí píseň do playlistu!");
-}
+            
             clearTimeout(basicBot.room.autoskipTimer);
             if (basicBot.settings.autoskip) {
                 var remaining = obj.media.duration * 1000;
@@ -1811,7 +1798,7 @@ API.sendChat("[@"+ from +"] Bot si přidal tvojí píseň do playlistu!");
             }
         },
       poslatCommand: {
-            command: ['poslat'],  //The command to be called. With the standard command literal this would be: !tip
+            command: ['poslat', 'send'],  //The command to be called. With the standard command literal this would be: !tip
             rank: 'user', //Minimum user permission to use the command
             type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
             functionality: function (chat, cmd) {
@@ -1949,7 +1936,7 @@ API.sendChat("[@"+ from +"] Bot si přidal tvojí píseň do playlistu!");
                     }
                 },
         tipommand: {
-                    command: 'tip',
+                    command: ['tip', 't'],
                     rank: 'user',
                     type: 'startsWith',
                     functionality: function (chat, cmd) {
@@ -2009,7 +1996,7 @@ API.sendChat("[@"+ from +"] Bot si přidal tvojí píseň do playlistu!");
                     }
                 },
            pridelitbodyCommand: {
-            command: ['pridelitbody'],  //The command to be called. With the standard command literal this would be: !tip
+            command: ['pridelitbody', 'give'],  //The command to be called. With the standard command literal this would be: !tip
             rank: 'manager', //Minimum user permission to use the command
             type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
             functionality: function (chat, cmd) {
@@ -2073,7 +2060,7 @@ API.sendChat("[@"+ from +"] Bot si přidal tvojí píseň do playlistu!");
         }, 
       
            odebratbodyCommand: {
-            command: ['odebratbody'],  //The command to be called. With the standard command literal this would be: !tip
+            command: ['odebratbody', 'removeqp'],  //The command to be called. With the standard command literal this would be: !tip
             rank: 'bouncer', //Minimum user permission to use the command
             type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
             functionality: function (chat, cmd) {
