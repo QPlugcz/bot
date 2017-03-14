@@ -4195,7 +4195,7 @@ timer = null;
 }
 
 API.on(API.CHAT, adremove);
-API.on(API.ADVANCE, vipgrab);
+API.on(API.ADVANCE, advance); // VIP Grabovanie
 API.on(API.CHAT, bouncer);
 API.on(API.CHAT, unbouncer);
 API.on(API.CHAT, rdj);
@@ -4218,14 +4218,14 @@ API.moderateMuteUser(from, 1, API.MUTE.MEDIUM);
 }
 }
 
-function vipgrab(obj){
+function advance(obj){
 if (!obj.dj || !obj.media) return;
 
 var repi = "5006795";
 var dave = "3431885";
 var hellbyte = "4635487";
 
-if(obj.dj.id === repi || obj.dj.id === dave || obj.dj.id === hellbyte){
+if(obj.dj.id === 5006795 || obj.dj.id === 3431885 || obj.dj.id === 4635487){
 $("#grab").click();
 $(".pop-menu ul li:first-child").mousedown();
 }
@@ -4235,11 +4235,12 @@ function bouncer(data){
 var msg = data.message;
 var fromid = data.uid;
 var from = data.un;
-// STAFF
-var tessi = "5477951";
+// Staff
+var atti = "13505684";
+var lemon = "5948294";
 
 if(msg === "!bouncer"){
-if(fromid == tessi){
+if(fromid == atti || fromid == lemon){
 API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 2); }, 500);
 }
@@ -4255,11 +4256,12 @@ function unbouncer(data){
 var msg = data.message;
 var fromid = data.uid;
 var from = data.un;
-// STAFF
-var tessi = "5477951";
+// Staff
+var atti = "13505684";
+var lemon = "5948294";
 
 if(msg === "!unbouncer"){
-if(fromid == tessi){
+if(fromid == atti || fromid == lemon){
 API.sendChat("[@"+ from +"] Použil si Demote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 0); }, 500);
 }
@@ -4275,13 +4277,19 @@ function rdj(data){
 var msg = data.message;
 var fromid = data.uid;
 var from = data.un;
-// STAFF
-var lemon = "5948294";
-var atti = "13505684";
+// Staff
+var pipi = "6045137";
 var bonki = "6345878";
+var germ = "";
+var qajkick = "";
+var thepsycho = "";
+var thomasine = "24953133";
+var zinder = "";
+var demon = "6632231";
+var petus = "";
 
 if(msg === "!rdj"){
-if(fromid == lemon || fromid == atti || fromid == bonki){
+if(fromid == pipi || fromid == bonki || fromid == germ || fromid == qajkick || fromid == thepsycho || fromid == thomasine || fromid == zinder || fromid == demon || fromid == petus){
 API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 1); }, 500);
 }
@@ -4297,13 +4305,19 @@ function unrdj(data){
 var msg = data.message;
 var fromid = data.uid;
 var from = data.un;
-// STAFF
-var lemon = "5948294";
-var atti = "13505684";
+// Staff
+var pipi = "6045137";
 var bonki = "6345878";
+var germ = "";
+var qajkick = "";
+var thepsycho = "";
+var thomasine = "24953133";
+var zinder = "";
+var demon = "6632231";
+var petus = "";
 
 if(msg === "!unrdj"){
-if(fromid == lemon || fromid == atti || bonki){
+if(fromid == pipi || fromid == bonki || fromid == germ || fromid == qajkick || fromid == thepsycho || fromid == thomasine || fromid == zinder || fromid == demon || fromid == petus){
 API.sendChat("[@"+ from +"] Použil si Demote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 0); }, 500);
 }
