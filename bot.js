@@ -3860,7 +3860,7 @@ var bot_name = API.getUser(bot_id).username;
 var bot_plug_points = API.getUser(bot_id).pp;
 var bot_plug_xp = API.getUser(bot_id).xp;
 
-API.chatLog("[ "+ bot_name +" ] Základy našeho Systému pochádzajú z pôvodného basicBota. Všetky ostatné príkazy sú tvorené nami. | plug.dj Body: "+ bot_plug_points +" | plug.dj XP: "+ bot_plug_xp +"!");
+API.sendChat("[ "+ bot_name +" ] Základy našeho Systému pochádzajú z pôvodného basicBota. Všetky ostatné príkazy sú tvorené nami. | plug.dj Body: "+ bot_plug_points +" | plug.dj XP: "+ bot_plug_xp +"!");
 
 }
 }
