@@ -3002,6 +3002,24 @@ API.sendChat(subChat(basicBot.chat.rouletteleave, {name: chat.un}));
 }
 },
 
+banlistCommand: {
+command: 'banlist',
+rank: 'user',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var banned_count = API.getBannedUsers().length;
+var banned_usernames = API.getBannedUsers().map(e => e.username).join(', ');
+
+API.sendChat("[ BANLIST ] Počet zabanových ľudí: "+ banned_count +" | "+ banned_usernames +"");
+
+}
+}
+},
+
 moveCommand: {
 command: 'move',
 rank: 'manager',
