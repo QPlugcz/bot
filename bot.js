@@ -4286,8 +4286,9 @@ if (!obj.dj || !obj.media) return;
 var repi = "5006795";
 var dave = "3431885";
 var hellbyte = "4635487";
+var tessitess = "5477951";
 
-if(obj.dj.id === 5006795 || obj.dj.id === 3431885 || obj.dj.id === 4635487){
+if(obj.dj.id === 5006795 || obj.dj.id === 3431885 || obj.dj.id === 4635487 || obj.dj.id === 5477951){
 $("#grab").click();
 $(".pop-menu ul li:first-child").mousedown();
 }
