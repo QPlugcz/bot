@@ -2035,7 +2035,7 @@ if (gn < basicBot.room.tipovacka.currentNumber) {
                 localStorage.setItem(chat.un, giverTokens);
 				API.sendChat('[@' + chat.un + '] Správné číslo je menší!');   
 
-
+}
 }
 }
 },
