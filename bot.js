@@ -3875,6 +3875,44 @@ API.moderateRemoveDJ(fromid);
 }
 }
 },
+
+botCommand: {
+command: ['bot', 'system'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var bot_id = "23843691";
+var bot_name = API.getUser(bot_id).username;
+var bot_plug_points = API.getUser(bot_id).pp;
+var bot_plug_xp = API.getUser(bot_id).xp;
+
+API.chatLog("[ "+ bot_name +" ] Základy našeho Systému pochádzajú z pôvodného basicBota. Všetky ostatné príkazy sú tvorené nami. | plug.dj Body: "+ bot_plug_points +" | plug.dj XP: "+ bot_plug_xp +"!");
+
+}
+}
+},
+		
+peopleCommand: {
+command: ['ludia', 'online', 'people'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var online_people_count = API.getUsers().length;
+var online_staff_count = API.getStaff().length;
+
+API.sendChat("[ QPlug.cz ] Aktuálne je v komunite online "+ online_people_count +" ludí a z toho "+ online_staff_count +" členov QPlug.cz Týmu.");
+
+}
+}
+},
             
 afkCommand: {
 command: ['preč', 'prec', 'pryč', 'pryc', 'afk', 'away'],
