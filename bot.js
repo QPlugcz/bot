@@ -2007,24 +2007,36 @@ basicBot.room.tipovacka.endNumberGame(chat.uid);
 giverTokens -= 5;
 }
 
-else if (basicBot.room.tipovacka.obtiznost == 5){
-giverTokens -= 5;
-localStorage.setItem(chat.un, giverTokens);
-API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gn + '');    
-}
-
 else if (basicBot.room.tipovacka.obtiznost == 6){
+if (gn < basicBot.room.tipovacka.currentNumber) {
+                giverTokens -= 5;
+                localStorage.setItem(chat.un, giverTokens);
+				API.sendChat('[@' + chat.un + '] Správný výsledek je větší!');
+			} else if (gn > basicBot.room.tipovacka.currentNumber) {
+                giverTokens -= 5;
+                localStorage.setItem(chat.un, giverTokens);
+				API.sendChat('[@' + chat.un + '] Správný výsledek je menší!');   
+
+}
+}
+else if (basicBot.room.tipovacka.obtiznost == 5){
 giverTokens -= 5;
 localStorage.setItem(chat.un, giverTokens);
 API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gni + '');    
 }
 
 else{
-giverTokens -= 5;
-localStorage.setItem(chat.un, giverTokens);
-API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gni + '');
-}
+if (gn < basicBot.room.tipovacka.currentNumber) {
+                giverTokens -= 5;
+                localStorage.setItem(chat.un, giverTokens);
+				API.sendChat('[@' + chat.un + '] Správné číslo je větší!');
+			} else if (gn > basicBot.room.tipovacka.currentNumber) {
+                giverTokens -= 5;
+                localStorage.setItem(chat.un, giverTokens);
+				API.sendChat('[@' + chat.un + '] Správné číslo je menší!');   
 
+
+}
 }
 },
 
