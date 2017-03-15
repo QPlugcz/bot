@@ -3006,15 +3006,24 @@ banlistCommand: {
 command: 'banlist',
 rank: 'user',
 type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
+functionality: function(chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
+if (!basicBot.commands.executable(this.rank, chat)) return void(0);
+else {
 
-var banned_count = API.getBannedUsers().length;
-var banned_usernames = API.getBannedUsers().map(e => e.username).join(', ');
+jQuery.ajax({
+url: 'https://plug.dj/_/bans',
+success: (_, body) => {
 
-API.sendChat("[ BANLIST ] Počet zabanových ľudí: "+ banned_count +" | "+ banned_usernames +"");
+var banned = body.data;
+
+var banned_count = banned.length;
+var banned_usernames = banned.map(e => e.username).join(', ');
+
+API.sendChat("[ BANLIST ] Počet zabanových ľudí: " + banned_count + " | " + banned_usernames + "");
+
+}
+});
 
 }
 }
