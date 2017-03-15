@@ -3310,6 +3310,7 @@ var lemon = "5948294";
 // VIP    
 var dave = "3431885";
 var repi = "5006795";
+var tessi = "5477951";
 
 if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == dave || fromid == atti || fromid == pinguin || fromid == repi || fromid == lemon){
 $("#grab").click();
@@ -4071,7 +4072,7 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-API.sendChat("[ VIP ČLENI ] Dave, Repi69");
+API.sendChat("[ VIP ČLENI ] Dave, Repi69, Tessi Tess");
 
 }
 }
@@ -4286,7 +4287,7 @@ if (!obj.dj || !obj.media) return;
 var repi = "5006795";
 var dave = "3431885";
 var hellbyte = "4635487";
-var tessitess = "5477951";
+var tessi = "5477951";
 
 if(obj.dj.id === 5006795 || obj.dj.id === 3431885 || obj.dj.id === 4635487 || obj.dj.id === 5477951){
 $("#grab").click();
