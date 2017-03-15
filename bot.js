@@ -1878,36 +1878,6 @@ return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnou
 }
 }, 
 
-adminstatsCommand: {
-command: 'adminstats',
-rank: 'user',
-type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var from = chat.un;
-var msg = chat.message;
-var id = chat.uid;
-var staffonline = 0;
-var users = API.getUsers();
-var len = users.length;
-
-for (var i = 0; i < len; ++i){
-
-if (basicBot.userUtilities.getPermission(users[i].id) > 1){
-staffonline += 1;
-}
-
-}
-
-API.sendChat(subChat("[@"+ from +"] Aktuálně je zde online " + staffonline + " členov QPlug.cz Týmu!"));
-
-}
-}
-},
-
 spustitminihruCommand: {
 command: 'sm',
 rank: 'bouncer',
@@ -3002,32 +2972,32 @@ API.sendChat(subChat(basicBot.chat.rouletteleave, {name: chat.un}));
 }
 },
 
-banlistCommand: {
-command: 'banlist',
-rank: 'user',
-type: 'exact',
-functionality: function(chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
-if (!basicBot.commands.executable(this.rank, chat)) return void(0);
-else {
+// banlistCommand: {
+// command: 'banlist',
+// rank: 'user',
+// type: 'exact',
+// functionality: function(chat, cmd) {
+// if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
+// if (!basicBot.commands.executable(this.rank, chat)) return void(0);
+// else {
 
-jQuery.ajax({
-url: 'https://plug.dj/_/bans',
-success: (_, body) => {
+// jQuery.ajax({
+// url: 'https://plug.dj/_/bans',
+// success: (_, body) => {
 
-var banned = body.data;
+// var banned = body.data;
 
-var banned_count = banned.length;
-var banned_usernames = banned.map(e => e.username).join(', ');
+// var banned_count = banned.length;
+// var banned_usernames = banned.map(e => e.username).join(', ');
 
-API.sendChat("[ BANLIST ] Počet zabanových ľudí: " + banned_count + " | " + banned_usernames + "");
+// API.sendChat("[ BANLIST ] Počet zabanových ľudí: " + banned_count + " | " + banned_usernames + "");
 
-}
-});
+// }
+// });
 
-}
-}
-},
+// }
+// }
+// },
 
 moveCommand: {
 command: 'move',
