@@ -153,14 +153,11 @@ ROOM»                              https://plug.dj/qplug-czsk
                     basicBot.settings[prop] = settings[prop];
                 }
                 basicBot.room.users = room.users;
-                basicBot.room.afkList = room.afkList;
                 basicBot.room.historyList = room.historyList;
                 basicBot.room.mutedUsers = room.mutedUsers;
-                //basicBot.room.autoskip = room.autoskip;
                 basicBot.room.roomstats = room.roomstats;
                 basicBot.room.messages = room.messages;
                 basicBot.room.queue = room.queue;
-                basicBot.room.newBlacklisted = room.newBlacklisted;
                 API.chatLog(basicBot.chat.datarestored);
             }
         }
@@ -333,9 +330,7 @@ room: {
                 id: [],
                 position: []
             },
-            blacklists: {
 
-            },
         tipovacka: {
                 currentNumber: 0,
                 obtiznost: 1,
@@ -811,79 +806,7 @@ dclookupOnUserJoin: function (id) {
                 }, 1000, id);
             },
 
-            intervalMessage: function () {
-                var interval;
-                if (basicBot.settings.motdEnabled) interval = basicBot.settings.motdInterval;
-                else interval = basicBot.settings.messageInterval;
-                if ((basicBot.room.roomstats.songCount % interval) === 0 && basicBot.status) {
-                    var msg;
-                    if (basicBot.settings.motdEnabled) {
-                        msg = basicBot.settings.motd;
-                    }
-                    else {
-                        if (basicBot.settings.intervalMessages.length === 0) return void (0);
-                        var messageNumber = basicBot.room.roomstats.songCount % basicBot.settings.intervalMessages.length;
-                        msg = basicBot.settings.intervalMessages[messageNumber];
-                    }
-                    API.sendChat('/me ' + msg);
-                }
-            },
-            
-           updateBlacklists: function () {
-               for (var bl in basicBot.settings.blacklists) {
-                     basicBot.room.blacklists[bl] = [];
-                     if (typeof basicBot.settings.blacklists[bl] === 'function') {
-                         basicBot.room.blacklists[bl] = basicBot.settings.blacklists();
-                     }
-                     else if (typeof basicBot.settings.blacklists[bl] === 'string') {
-                         if (basicBot.settings.blacklists[bl] === '') {
-                             continue;
-                         }
-                         try {
-                             (function (l) {
-                                 $.get(basicBot.settings.blacklists[l], function (data) {
-                                     if (typeof data === 'string') {
-                                         data = JSON.parse(data);
-                                     }
-                                     var list = [];
-                                     for (var prop in data) {
-                                         if (typeof data[prop].mid !== 'undefined') {
-                                             list.push(data[prop].mid);
-                                         }
-                                     }
-                                     basicBot.room.blacklists[l] = list;
-                                 })
-                             })(bl);
-                         }
-                         catch (e) {
-                             API.chatLog('Error setting' + bl + 'blacklist.');
-                             console.log('Error setting' + bl + 'blacklist.');
-                             console.log(e);
-                         }
-                     }
-                 }
-             },
-             logNewBlacklistedSongs: function () {
-                 if (typeof console.table !== 'undefined') {
-                     console.table(basicBot.room.newBlacklisted);
-                 }
-                 else {
-                     console.log(basicBot.room.newBlacklisted);
-                 }
-             },
-             exportNewBlacklistedSongs: function () {
-                 var list = {};
-                 for (var i = 0; i < basicBot.room.newBlacklisted.length; i++) {
-                     var track = basicBot.room.newBlacklisted[i];
-                     list[track.list] = [];
-                     list[track.list].push({
-                         title: track.title,
-                         author: track.author,
-                         mid: track.mid
-                     });
-                 }
-                 return list;
-             }
+
          },
         eventChat: function (chat) {
             chat.message = linkFixer(chat.message);
@@ -1022,10 +945,10 @@ dclookupOnUserJoin: function (id) {
             
            if (Math.round(API.getWaitList().length * 1) >= 15) {
            localStorage.setItem(lastdjplayed.username, cislo2);
-           API.sendChat("/me [" + lastdjplayed.username + "] Získal/a jsi " + reward2 + " QPoints za odehrání písně!");
+           API.sendChat("[" + lastdjplayed.username + "] Získal/a jsi " + reward2 + " QPoints za odehrání písně!");
            } else {  
          localStorage.setItem(lastdjplayed.username, cislo);
-           API.sendChat("/me [" + lastdjplayed.username + "] Získal/a jsi " + reward + " QPoints za odehrání písně!");
+           API.sendChat("[" + lastdjplayed.username + "] Získal/a jsi " + reward + " QPoints za odehrání písně!");
         }
          
         
@@ -1060,23 +983,6 @@ dclookupOnUserJoin: function (id) {
             basicBot.room.roomstats.songCount++;
             basicBot.roomUtilities.intervalMessage();
             basicBot.room.currentDJID = obj.dj.id;
-            
-            var blacklistSkip = setTimeout(function () {
-                 var mid = obj.media.format + ':' + obj.media.cid;
-                 for (var bl in basicBot.room.blacklists) {
-                     if (basicBot.settings.blacklistEnabled) {
-                         if (basicBot.room.blacklists[bl].indexOf(mid) > -1) {
-                             API.sendChat(subChat(basicBot.chat.isblacklisted, {blacklist: bl}));
-                             if (basicBot.settings.smartSkip){
-                                 return basicBot.roomUtilities.smartSkip();
-                             }
-                             else {
-                                 return API.moderateForceSkip();
-                             }
-                         }
-                     }
-                 }
-            }, 2000);
             
             var newMedia = obj.media;
             var timeLimitSkip = setTimeout(function () {
@@ -1565,10 +1471,7 @@ dclookupOnUserJoin: function (id) {
             retrieveSettings();
             retrieveFromStorage();
             window.bot = basicBot;
-            basicBot.roomUtilities.updateBlacklists();
-            setInterval(basicBot.roomUtilities.updateBlacklists, 60 * 60 * 1000);
-            basicBot.getNewBlacklistedSongs = basicBot.roomUtilities.exportNewBlacklistedSongs;
-            basicBot.logNewBlacklistedSongs = basicBot.roomUtilities.logNewBlacklistedSongs;
+
             if (basicBot.room.roomstats.launchTime === null) {
                 basicBot.room.roomstats.launchTime = Date.now();
             }
