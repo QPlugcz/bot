@@ -4328,7 +4328,7 @@ if (from != me){
 
 if(msg.indexOf("https://plug.dj/") > -1 || msg.indexOf("plug.dj/") > -1){
 API.moderateDeleteChat(a.cid);
-return API.sendChat("[@"+ from2 +"] Budeš Mutnutý za spamovanie alebo zdielanie iných komunít v našej komunite!");          
+API.sendChat("[@"+ from2 +"] Budeš Mutnutý za spamovanie alebo zdielanie iných komunít v našej komunite!"); return false;
 setTimeout(function(){ API.moderateMuteUser(from, 1, API.MUTE.MEDIUM); }, 5000);
 }
 
