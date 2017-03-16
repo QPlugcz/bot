@@ -472,8 +472,6 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
             },
 
 
-            newBlacklisted: [],
-            newBlacklistedSongFunction: null,
             roulette: {
                 rouletteStatus: false,
                 participants: [],
@@ -553,12 +551,6 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
             },
             getLastActivity: function (user) {
                 return user.lastActivity;
-            },
-            getWarningCount: function (user) {
-                return user.afkWarningCount;
-            },
-            setWarningCount: function (user, value) {
-                user.afkWarningCount = value;
             },
             lookupUser: function (id) {
                 for (var i = 0; i < basicBot.room.users.length; i++) {
@@ -784,24 +776,6 @@ dclookupOnUserJoin: function (id) {
                     return false;
                 }
             },
-            booth: {
-                lockTimer: setTimeout(function () {
-                }, 1000),
-                locked: false,
-                lockBooth: function () {
-                    API.moderateLockWaitList(!basicBot.roomUtilities.booth.locked);
-                    basicBot.roomUtilities.booth.locked = false;
-                    if (basicBot.settings.lockGuard) {
-                        basicBot.roomUtilities.booth.lockTimer = setTimeout(function () {
-                            API.moderateLockWaitList(basicBot.roomUtilities.booth.locked);
-                        }, basicBot.settings.maximumLocktime * 60 * 1000);
-                    }
-                },
-                unlockBooth: function () {
-                    API.moderateLockWaitList(basicBot.roomUtilities.booth.locked);
-                    clearTimeout(basicBot.roomUtilities.booth.lockTimer);
-                }
-            },
 
             smartSkip: function (reason) {
                 var dj = API.getDJ();
@@ -836,23 +810,7 @@ dclookupOnUserJoin: function (id) {
                     }, 1500, id);
                 }, 1000, id);
             },
-            changeDJCycle: function () {
-                var toggle = $(".cycle-toggle");
-                if (toggle.hasClass("disabled")) {
-                    toggle.click();
-                    if (basicBot.settings.cycleGuard) {
-                        basicBot.room.cycleTimer = setTimeout(function () {
-                            if (toggle.hasClass("enabled")) toggle.click();
-                        }, basicBot.settings.cycleMaxTime * 60 * 1000);
-                    }
-                }
-                else {
-                    toggle.click();
-                    clearTimeout(basicBot.room.cycleTimer);
-                }
 
-                // TODO: Use API.moderateDJCycle(true/false)
-            },
             intervalMessage: function () {
                 var interval;
                 if (basicBot.settings.motdEnabled) interval = basicBot.settings.motdInterval;
@@ -1982,11 +1940,11 @@ else if (basicBot.room.tipovacka.obtiznost == 6){
 if (gn < basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
                 localStorage.setItem(chat.un, giverTokens);
-				API.sendChat('[@' + chat.un + '] Správný výsledek je větší!');
-			} else if (gn > basicBot.room.tipovacka.currentNumber) {
+                API.sendChat('[@' + chat.un + '] Správný výsledek je větší!');
+            } else if (gn > basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
                 localStorage.setItem(chat.un, giverTokens);
-				API.sendChat('[@' + chat.un + '] Správný výsledek je menší!');   
+                API.sendChat('[@' + chat.un + '] Správný výsledek je menší!');   
 
 }
 }
@@ -2000,11 +1958,11 @@ else{
 if (gn < basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
                 localStorage.setItem(chat.un, giverTokens);
-				API.sendChat('[@' + chat.un + '] Správné číslo je větší!');
-			} else if (gn > basicBot.room.tipovacka.currentNumber) {
+                API.sendChat('[@' + chat.un + '] Správné číslo je větší!');
+            } else if (gn > basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
                 localStorage.setItem(chat.un, giverTokens);
-				API.sendChat('[@' + chat.un + '] Správné číslo je menší!');   
+                API.sendChat('[@' + chat.un + '] Správné číslo je menší!');   
 
 }
 }
@@ -3872,7 +3830,7 @@ API.sendChat("[ "+ bot_name +" ] Základy našeho Systému pochádzajú z pôvod
 }
 }
 },
-		
+        
 peopleCommand: {
 command: ['ludia', 'online', 'people'],
 rank: 'user',
