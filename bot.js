@@ -29,44 +29,6 @@ ROOM»                              https://plug.dj/qplug-czsk
         clearInterval(basicBot.room.afkInterval);
         basicBot.status = false;
     };
-
-    // This socket server is used solely for statistical and troubleshooting purposes.
-    // This server may not always be up, but will be used to get live data at any given time.
- 
-    var socket = function () {
-        function loadSocket() {
-            SockJS.prototype.msg = function(a){this.send(JSON.stringify(a))};
-            sock = new SockJS('https://benzi.io:4964/socket');
-            sock.onopen = function() {
-                console.log('Connected to socket!');
-                sendToSocket();
-            };
-            sock.onclose = function() {
-                console.log('Disconnected from socket, reconnecting every minute ..');
-                var reconnect = setTimeout(function(){ loadSocket() }, 60 * 1000);
-            };
-            sock.onmessage = function(broadcast) {
-                var rawBroadcast = broadcast.data;
-                var broadcastMessage = rawBroadcast.replace(/["\\]+/g, '');
-                API.chatLog(broadcastMessage);
-                console.log(broadcastMessage);
-            };
-        }
-        if (typeof SockJS == 'undefined') {
-            $.getScript('https://cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js', loadSocket);
-        } else loadSocket();
-    }
-
-    var sendToSocket = function () {
-        var basicBotSettings = basicBot.settings;
-        var basicBotRoom = basicBot.room;
-        var basicBotInfo = {
-            time: Date.now(),
-            version: basicBot.version
-        };
-        var data = {users:API.getUsers(),userinfo:API.getUser(),room:location.pathname,basicBotSettings:basicBotSettings,basicBotRoom:basicBotRoom,basicBotInfo:basicBotInfo};
-        return sock.msg(data);
-    };
  
     var storeToStorage = function () {
         localStorage.setItem("basicBotsettings", JSON.stringify(basicBot.settings));
@@ -153,18 +115,16 @@ ROOM»                              https://plug.dj/qplug-czsk
                     basicBot.settings[prop] = settings[prop];
                 }
                 basicBot.room.users = room.users;
-                basicBot.room.afkList = room.afkList;
                 basicBot.room.historyList = room.historyList;
                 basicBot.room.mutedUsers = room.mutedUsers;
-                //basicBot.room.autoskip = room.autoskip;
                 basicBot.room.roomstats = room.roomstats;
                 basicBot.room.messages = room.messages;
                 basicBot.room.queue = room.queue;
-                basicBot.room.newBlacklisted = room.newBlacklisted;
                 API.chatLog(basicBot.chat.datarestored);
             }
         }
-        var json_sett = null;
+        
+var json_sett = null;
         var roominfo = document.getElementById("room-settings");
         info = roominfo.textContent;
         var ref_bot = "@basicBot=";
@@ -472,8 +432,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
             },
 
 
-            newBlacklisted: [],
-            newBlacklistedSongFunction: null,
+
             roulette: {
                 rouletteStatus: false,
                 participants: [],
@@ -485,7 +444,8 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                     }, 60 * 1000);
                     API.sendChat(basicBot.chat.isopen);
                 },
-                endRoulette: function () {
+                
+endRoulette: function () {
                     basicBot.room.roulette.rouletteStatus = false;
                     var ind = Math.floor(Math.random() * basicBot.room.roulette.participants.length);
                     var winner = basicBot.room.roulette.participants[ind];
@@ -514,8 +474,6 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 curate: 0
             };
             this.lastEta = null;
-            this.afkWarningCount = 0;
-            this.afkCountdown = null;
             this.inRoom = true;
             this.isMuted = false;
             this.lastDC = {
@@ -785,23 +743,7 @@ dclookupOnUserJoin: function (id) {
                 }
             },
             booth: {
-                lockTimer: setTimeout(function () {
-                }, 1000),
-                locked: false,
-                lockBooth: function () {
-                    API.moderateLockWaitList(!basicBot.roomUtilities.booth.locked);
-                    basicBot.roomUtilities.booth.locked = false;
-                    if (basicBot.settings.lockGuard) {
-                        basicBot.roomUtilities.booth.lockTimer = setTimeout(function () {
-                            API.moderateLockWaitList(basicBot.roomUtilities.booth.locked);
-                        }, basicBot.settings.maximumLocktime * 60 * 1000);
-                    }
-                },
-                unlockBooth: function () {
-                    API.moderateLockWaitList(basicBot.roomUtilities.booth.locked);
-                    clearTimeout(basicBot.roomUtilities.booth.lockTimer);
-                }
-            },
+
 
             smartSkip: function (reason) {
                 var dj = API.getDJ();
@@ -836,97 +778,11 @@ dclookupOnUserJoin: function (id) {
                     }, 1500, id);
                 }, 1000, id);
             },
-            changeDJCycle: function () {
-                var toggle = $(".cycle-toggle");
-                if (toggle.hasClass("disabled")) {
-                    toggle.click();
-                    if (basicBot.settings.cycleGuard) {
-                        basicBot.room.cycleTimer = setTimeout(function () {
-                            if (toggle.hasClass("enabled")) toggle.click();
-                        }, basicBot.settings.cycleMaxTime * 60 * 1000);
-                    }
-                }
-                else {
-                    toggle.click();
-                    clearTimeout(basicBot.room.cycleTimer);
-                }
 
-                // TODO: Use API.moderateDJCycle(true/false)
-            },
-            intervalMessage: function () {
-                var interval;
-                if (basicBot.settings.motdEnabled) interval = basicBot.settings.motdInterval;
-                else interval = basicBot.settings.messageInterval;
-                if ((basicBot.room.roomstats.songCount % interval) === 0 && basicBot.status) {
-                    var msg;
-                    if (basicBot.settings.motdEnabled) {
-                        msg = basicBot.settings.motd;
-                    }
-                    else {
-                        if (basicBot.settings.intervalMessages.length === 0) return void (0);
-                        var messageNumber = basicBot.room.roomstats.songCount % basicBot.settings.intervalMessages.length;
-                        msg = basicBot.settings.intervalMessages[messageNumber];
-                    }
-                    API.sendChat('/me ' + msg);
-                }
-            },
-            
-           updateBlacklists: function () {
-               for (var bl in basicBot.settings.blacklists) {
-                     basicBot.room.blacklists[bl] = [];
-                     if (typeof basicBot.settings.blacklists[bl] === 'function') {
-                         basicBot.room.blacklists[bl] = basicBot.settings.blacklists();
-                     }
-                     else if (typeof basicBot.settings.blacklists[bl] === 'string') {
-                         if (basicBot.settings.blacklists[bl] === '') {
-                             continue;
-                         }
-                         try {
-                             (function (l) {
-                                 $.get(basicBot.settings.blacklists[l], function (data) {
-                                     if (typeof data === 'string') {
-                                         data = JSON.parse(data);
-                                     }
-                                     var list = [];
-                                     for (var prop in data) {
-                                         if (typeof data[prop].mid !== 'undefined') {
-                                             list.push(data[prop].mid);
-                                         }
-                                     }
-                                     basicBot.room.blacklists[l] = list;
-                                 })
-                             })(bl);
-                         }
-                         catch (e) {
-                             API.chatLog('Error setting' + bl + 'blacklist.');
-                             console.log('Error setting' + bl + 'blacklist.');
-                             console.log(e);
-                         }
-                     }
-                 }
-             },
-             logNewBlacklistedSongs: function () {
-                 if (typeof console.table !== 'undefined') {
-                     console.table(basicBot.room.newBlacklisted);
-                 }
-                 else {
-                     console.log(basicBot.room.newBlacklisted);
-                 }
-             },
-             exportNewBlacklistedSongs: function () {
-                 var list = {};
-                 for (var i = 0; i < basicBot.room.newBlacklisted.length; i++) {
-                     var track = basicBot.room.newBlacklisted[i];
-                     list[track.list] = [];
-                     list[track.list].push({
-                         title: track.title,
-                         author: track.author,
-                         mid: track.mid
-                     });
-                 }
-                 return list;
-             }
-         },
+
+
+
+
         eventChat: function (chat) {
             chat.message = linkFixer(chat.message);
             chat.message = decodeEntities(chat.message);
@@ -1015,7 +871,7 @@ dclookupOnUserJoin: function (id) {
             var receiverTokens = validateTokens(obj.user.username);
             receiverTokens -= 1
            localStorage.setItem(obj.user.username, receiverTokens);            
-           API.sendChat("/me [" + obj.user.username + "] Ztratil/a jsi 1 QPoints za mehnutí písně!");
+           API.sendChat("[" + obj.user.username + "] Ztratil/a jsi 1 QPoints za mehnutí písně!");
            
                     }
                 }
