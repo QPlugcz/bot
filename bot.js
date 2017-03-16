@@ -332,7 +332,10 @@ room: {
             queue: {
                 id: [],
                 position: []
+            },
+            blacklists: {
 
+            },
         tipovacka: {
                 currentNumber: 0,
                 obtiznost: 1,
@@ -469,6 +472,8 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
             },
 
 
+            newBlacklisted: [],
+            newBlacklistedSongFunction: null,
             roulette: {
                 rouletteStatus: false,
                 participants: [],
@@ -549,8 +554,12 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
             getLastActivity: function (user) {
                 return user.lastActivity;
             },
-
-
+            getWarningCount: function (user) {
+                return user.afkWarningCount;
+            },
+            setWarningCount: function (user, value) {
+                user.afkWarningCount = value;
+            },
             lookupUser: function (id) {
                 for (var i = 0; i < basicBot.room.users.length; i++) {
                     if (basicBot.room.users[i].id === id) {
@@ -775,7 +784,24 @@ dclookupOnUserJoin: function (id) {
                     return false;
                 }
             },
-
+            booth: {
+                lockTimer: setTimeout(function () {
+                }, 1000),
+                locked: false,
+                lockBooth: function () {
+                    API.moderateLockWaitList(!basicBot.roomUtilities.booth.locked);
+                    basicBot.roomUtilities.booth.locked = false;
+                    if (basicBot.settings.lockGuard) {
+                        basicBot.roomUtilities.booth.lockTimer = setTimeout(function () {
+                            API.moderateLockWaitList(basicBot.roomUtilities.booth.locked);
+                        }, basicBot.settings.maximumLocktime * 60 * 1000);
+                    }
+                },
+                unlockBooth: function () {
+                    API.moderateLockWaitList(basicBot.roomUtilities.booth.locked);
+                    clearTimeout(basicBot.roomUtilities.booth.lockTimer);
+                }
+            },
 
             smartSkip: function (reason) {
                 var dj = API.getDJ();
@@ -810,11 +836,96 @@ dclookupOnUserJoin: function (id) {
                     }, 1500, id);
                 }, 1000, id);
             },
+            changeDJCycle: function () {
+                var toggle = $(".cycle-toggle");
+                if (toggle.hasClass("disabled")) {
+                    toggle.click();
+                    if (basicBot.settings.cycleGuard) {
+                        basicBot.room.cycleTimer = setTimeout(function () {
+                            if (toggle.hasClass("enabled")) toggle.click();
+                        }, basicBot.settings.cycleMaxTime * 60 * 1000);
+                    }
+                }
+                else {
+                    toggle.click();
+                    clearTimeout(basicBot.room.cycleTimer);
+                }
 
-
+                // TODO: Use API.moderateDJCycle(true/false)
+            },
+            intervalMessage: function () {
+                var interval;
+                if (basicBot.settings.motdEnabled) interval = basicBot.settings.motdInterval;
+                else interval = basicBot.settings.messageInterval;
+                if ((basicBot.room.roomstats.songCount % interval) === 0 && basicBot.status) {
+                    var msg;
+                    if (basicBot.settings.motdEnabled) {
+                        msg = basicBot.settings.motd;
+                    }
+                    else {
+                        if (basicBot.settings.intervalMessages.length === 0) return void (0);
+                        var messageNumber = basicBot.room.roomstats.songCount % basicBot.settings.intervalMessages.length;
+                        msg = basicBot.settings.intervalMessages[messageNumber];
+                    }
+                    API.sendChat('/me ' + msg);
+                }
+            },
             
-
-
+           updateBlacklists: function () {
+               for (var bl in basicBot.settings.blacklists) {
+                     basicBot.room.blacklists[bl] = [];
+                     if (typeof basicBot.settings.blacklists[bl] === 'function') {
+                         basicBot.room.blacklists[bl] = basicBot.settings.blacklists();
+                     }
+                     else if (typeof basicBot.settings.blacklists[bl] === 'string') {
+                         if (basicBot.settings.blacklists[bl] === '') {
+                             continue;
+                         }
+                         try {
+                             (function (l) {
+                                 $.get(basicBot.settings.blacklists[l], function (data) {
+                                     if (typeof data === 'string') {
+                                         data = JSON.parse(data);
+                                     }
+                                     var list = [];
+                                     for (var prop in data) {
+                                         if (typeof data[prop].mid !== 'undefined') {
+                                             list.push(data[prop].mid);
+                                         }
+                                     }
+                                     basicBot.room.blacklists[l] = list;
+                                 })
+                             })(bl);
+                         }
+                         catch (e) {
+                             API.chatLog('Error setting' + bl + 'blacklist.');
+                             console.log('Error setting' + bl + 'blacklist.');
+                             console.log(e);
+                         }
+                     }
+                 }
+             },
+             logNewBlacklistedSongs: function () {
+                 if (typeof console.table !== 'undefined') {
+                     console.table(basicBot.room.newBlacklisted);
+                 }
+                 else {
+                     console.log(basicBot.room.newBlacklisted);
+                 }
+             },
+             exportNewBlacklistedSongs: function () {
+                 var list = {};
+                 for (var i = 0; i < basicBot.room.newBlacklisted.length; i++) {
+                     var track = basicBot.room.newBlacklisted[i];
+                     list[track.list] = [];
+                     list[track.list].push({
+                         title: track.title,
+                         author: track.author,
+                         mid: track.mid
+                     });
+                 }
+                 return list;
+             }
          },
         eventChat: function (chat) {
             chat.message = linkFixer(chat.message);
@@ -904,7 +1015,7 @@ dclookupOnUserJoin: function (id) {
             var receiverTokens = validateTokens(obj.user.username);
             receiverTokens -= 1
            localStorage.setItem(obj.user.username, receiverTokens);            
-           API.sendChat("[" + obj.user.username + "] Ztratil/a jsi 1 QPoints za mehnutí písně!");
+           API.sendChat("/me [" + obj.user.username + "] Ztratil/a jsi 1 QPoints za mehnutí písně!");
            
                     }
                 }
@@ -991,7 +1102,23 @@ dclookupOnUserJoin: function (id) {
             basicBot.room.roomstats.songCount++;
             basicBot.roomUtilities.intervalMessage();
             basicBot.room.currentDJID = obj.dj.id;
-        
+            
+            var blacklistSkip = setTimeout(function () {
+                 var mid = obj.media.format + ':' + obj.media.cid;
+                 for (var bl in basicBot.room.blacklists) {
+                     if (basicBot.settings.blacklistEnabled) {
+                         if (basicBot.room.blacklists[bl].indexOf(mid) > -1) {
+                             API.sendChat(subChat(basicBot.chat.isblacklisted, {blacklist: bl}));
+                             if (basicBot.settings.smartSkip){
+                                 return basicBot.roomUtilities.smartSkip();
+                             }
+                             else {
+                                 return API.moderateForceSkip();
+                             }
+                         }
+                     }
+                 }
+            }, 2000);
             
             var newMedia = obj.media;
             var timeLimitSkip = setTimeout(function () {
@@ -1739,12 +1866,12 @@ localStorage.setItem(chat.un, giverTokens);
 
 if (space === -1){ 
 localStorage.setItem(currentDJ, cislo);
-return API.sendChat("/me [ DARČEK ] Užívateľ @" + chat.un + " poslal " + strhnout + " QPoints užívateľovi @"+ currentDJ +"!");
+return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateli " + currentDJ + "");
 }
 
 else{
 localStorage.setItem(receiver, cislo);
-return API.sendChat("/me [ DARČEK ] Užívateľ @"+ chat.un +" poslal " + strhnout + " QPoints užívateľovi @"+ receiver +"!");
+return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateli " + receiver + "");
 }
 
 }
@@ -1803,7 +1930,7 @@ if (gni === 6){
 tos = "matematiku.";
 }
 
-API.sendChat('[@' + from + '] Minihra nastavena na ' + tos + '');
+API.sendChat('/me [@' + from + '] Minihra nastavena na ' + tos + '');
 
 }
 },
@@ -1855,11 +1982,11 @@ else if (basicBot.room.tipovacka.obtiznost == 6){
 if (gn < basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
                 localStorage.setItem(chat.un, giverTokens);
-                API.sendChat('[@' + chat.un + '] Správný výsledek je větší!');
-            } else if (gn > basicBot.room.tipovacka.currentNumber) {
+				API.sendChat('[@' + chat.un + '] Správný výsledek je větší!');
+			} else if (gn > basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
                 localStorage.setItem(chat.un, giverTokens);
-                API.sendChat('[@' + chat.un + '] Správný výsledek je menší!');   
+				API.sendChat('[@' + chat.un + '] Správný výsledek je menší!');   
 
 }
 }
@@ -1873,11 +2000,11 @@ else{
 if (gn < basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
                 localStorage.setItem(chat.un, giverTokens);
-                API.sendChat('[@' + chat.un + '] Správné číslo je větší!');
-            } else if (gn > basicBot.room.tipovacka.currentNumber) {
+				API.sendChat('[@' + chat.un + '] Správné číslo je větší!');
+			} else if (gn > basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
                 localStorage.setItem(chat.un, giverTokens);
-                API.sendChat('[@' + chat.un + '] Správné číslo je menší!');   
+				API.sendChat('[@' + chat.un + '] Správné číslo je menší!');   
 
 }
 }
@@ -3496,7 +3623,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý, hoď Like na Facebook https://bit.ly/QPlugcz!");
+API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
 // API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
 return false;
 }
@@ -3510,12 +3637,12 @@ return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý, hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
 // API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý, hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
 // API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
 }
 
@@ -3625,7 +3752,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý, hoď Like na Facebook https://bit.ly/QPlugcz!");
+API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
 /*API.sendChat("[@"+ from +"] Dnes o 19:00 sa usporiadá Event o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!");*/
 return false;
 }
@@ -3639,11 +3766,11 @@ return API.sendChat("[@"+ from +"] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý, hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako, prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
 }
 
 }
@@ -3745,7 +3872,7 @@ API.sendChat("[ "+ bot_name +" ] Základy našeho Systému pochádzajú z pôvod
 }
 }
 },
-        
+		
 peopleCommand: {
 command: ['ludia', 'online', 'people'],
 rank: 'user',
@@ -3999,7 +4126,7 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-API.sendChat("[ VIPS ČLENOVIA ] Dave, Repi69, Tessi Tess");
+API.sendChat("[ VIP ČLENI ] Dave, Repi69, Tessi Tess");
 
 }
 }
