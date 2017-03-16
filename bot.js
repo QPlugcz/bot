@@ -281,6 +281,7 @@ ROOM»                              https://plug.dj/qplug-czsk
             maximumDc: 120,
             lockdownEnabled: false,
             historySkip: false,
+	    timeguard: true,
             maximumSongLength: 6,
             commandCooldown: 5,
             usercommandsEnabled: true,
@@ -3121,6 +3122,11 @@ if (basicBot.settings.filterChat) msg += 'ON';
 else msg += 'OFF';
 msg += '. ';
 
+msg += basicBot.chat.timeguard + ': ';
+if (basicBot.settings.timeGuard) msg += 'ON';
+else msg += 'OFF';
+msg += '. ';
+
 msg += basicBot.chat.historyskip + ': ';
 if (basicBot.settings.historySkip) msg += 'ON';
 else msg += 'OFF';
@@ -3167,6 +3173,29 @@ func(i);
 
 else{
 return API.sendChat(msg);
+}
+
+}
+}
+},
+
+timeguardCommand: {
+command: 'timeguard',
+rank: 'bouncer',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+if (basicBot.settings.timeGuard){
+basicBot.settings.timeGuard = !basicBot.settings.timeGuard;
+return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.timeguard}));
+}
+
+else{
+basicBot.settings.timeGuard = !basicBot.settings.timeGuard;
+return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.timeguard}));
 }
 
 }
@@ -4299,7 +4328,7 @@ if (from != me){
 
 if(msg.indexOf("https://plug.dj/") > -1 || msg.indexOf("plug.dj/") > -1){
 API.moderateDeleteChat(a.cid);
-API.sendChat("[@"+ from2 +"] Budeš Mutnutý za spamovanie alebo zdielanie iných komunít v našej komunite!");          
+return API.sendChat("[@"+ from2 +"] Budeš Mutnutý za spamovanie alebo zdielanie iných komunít v našej komunite!");          
 setTimeout(function(){ API.moderateMuteUser(from, 1, API.MUTE.MEDIUM); }, 5000);
 }
 
