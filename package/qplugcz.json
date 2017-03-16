@@ -58,9 +58,11 @@
 
 "toggleoff": "[@%%NAME%%] Funkcia %%FUNCTION%% je práve vypnutá!",
 
-"cmddeletion": "Command Deletion",
+"cmddeletion": "CommandDeletion",
 
 "autoskip": "AutoSkip",
+
+"timeguard": "TimeGuard",
 
 "lockdown": "LockChat",
 
