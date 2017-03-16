@@ -3987,7 +3987,7 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-API.sendChat("[ VIP ČLENI ] Dave, Repi69, Tessi Tess");
+API.sendChat("[ VIP ČLENOVIA ] Dave, Repi69, Tessi Tess");
 
 }
 }
@@ -4187,7 +4187,7 @@ var from2 = a.un;
 
 if (from != me){
 
-if(msg.indexOf("https://plug.dj/") > -1 || msg.indexOf("plug.dj/") > -1){
+if(msg.indexOf("https://plug.dj/") > -1 || msg.indexOf("plug.dj/") > -1 || msg.indexOf("socket.dj") > -1 || msg.indexOf("http://socket.dj") > -1){
 API.moderateDeleteChat(a.cid);
 API.sendChat("[@"+ from2 +"] Budeš Mutnutý za spamovanie alebo zdielanie iných komunít v našej komunite!");
 setTimeout(function(){ API.moderateMuteUser(from, 1, API.MUTE.MEDIUM); }, 5000);
