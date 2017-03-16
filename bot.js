@@ -29,6 +29,44 @@ ROOM»                              https://plug.dj/qplug-czsk
         clearInterval(basicBot.room.afkInterval);
         basicBot.status = false;
     };
+
+    // This socket server is used solely for statistical and troubleshooting purposes.
+    // This server may not always be up, but will be used to get live data at any given time.
+ 
+    var socket = function () {
+        function loadSocket() {
+            SockJS.prototype.msg = function(a){this.send(JSON.stringify(a))};
+            sock = new SockJS('https://benzi.io:4964/socket');
+            sock.onopen = function() {
+                console.log('Connected to socket!');
+                sendToSocket();
+            };
+            sock.onclose = function() {
+                console.log('Disconnected from socket, reconnecting every minute ..');
+                var reconnect = setTimeout(function(){ loadSocket() }, 60 * 1000);
+            };
+            sock.onmessage = function(broadcast) {
+                var rawBroadcast = broadcast.data;
+                var broadcastMessage = rawBroadcast.replace(/["\\]+/g, '');
+                API.chatLog(broadcastMessage);
+                console.log(broadcastMessage);
+            };
+        }
+        if (typeof SockJS == 'undefined') {
+            $.getScript('https://cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js', loadSocket);
+        } else loadSocket();
+    }
+
+    var sendToSocket = function () {
+        var basicBotSettings = basicBot.settings;
+        var basicBotRoom = basicBot.room;
+        var basicBotInfo = {
+            time: Date.now(),
+            version: basicBot.version
+        };
+        var data = {users:API.getUsers(),userinfo:API.getUser(),room:location.pathname,basicBotSettings:basicBotSettings,basicBotRoom:basicBotRoom,basicBotInfo:basicBotInfo};
+        return sock.msg(data);
+    };
  
     var storeToStorage = function () {
         localStorage.setItem("basicBotsettings", JSON.stringify(basicBot.settings));
@@ -115,16 +153,18 @@ ROOM»                              https://plug.dj/qplug-czsk
                     basicBot.settings[prop] = settings[prop];
                 }
                 basicBot.room.users = room.users;
+                basicBot.room.afkList = room.afkList;
                 basicBot.room.historyList = room.historyList;
                 basicBot.room.mutedUsers = room.mutedUsers;
+                //basicBot.room.autoskip = room.autoskip;
                 basicBot.room.roomstats = room.roomstats;
                 basicBot.room.messages = room.messages;
                 basicBot.room.queue = room.queue;
+                basicBot.room.newBlacklisted = room.newBlacklisted;
                 API.chatLog(basicBot.chat.datarestored);
             }
         }
-        
-var json_sett = null;
+        var json_sett = null;
         var roominfo = document.getElementById("room-settings");
         info = roominfo.textContent;
         var ref_bot = "@basicBot=";
@@ -292,10 +332,7 @@ room: {
             queue: {
                 id: [],
                 position: []
-            },
-            blacklists: {
 
-            },
         tipovacka: {
                 currentNumber: 0,
                 obtiznost: 1,
@@ -432,7 +469,6 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
             },
 
 
-
             roulette: {
                 rouletteStatus: false,
                 participants: [],
@@ -444,8 +480,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                     }, 60 * 1000);
                     API.sendChat(basicBot.chat.isopen);
                 },
-                
-endRoulette: function () {
+                endRoulette: function () {
                     basicBot.room.roulette.rouletteStatus = false;
                     var ind = Math.floor(Math.random() * basicBot.room.roulette.participants.length);
                     var winner = basicBot.room.roulette.participants[ind];
@@ -474,6 +509,8 @@ endRoulette: function () {
                 curate: 0
             };
             this.lastEta = null;
+            this.afkWarningCount = 0;
+            this.afkCountdown = null;
             this.inRoom = true;
             this.isMuted = false;
             this.lastDC = {
@@ -512,12 +549,8 @@ endRoulette: function () {
             getLastActivity: function (user) {
                 return user.lastActivity;
             },
-            getWarningCount: function (user) {
-                return user.afkWarningCount;
-            },
-            setWarningCount: function (user, value) {
-                user.afkWarningCount = value;
-            },
+
+
             lookupUser: function (id) {
                 for (var i = 0; i < basicBot.room.users.length; i++) {
                     if (basicBot.room.users[i].id === id) {
@@ -742,7 +775,6 @@ dclookupOnUserJoin: function (id) {
                     return false;
                 }
             },
-            booth: {
 
 
             smartSkip: function (reason) {
@@ -780,9 +812,10 @@ dclookupOnUserJoin: function (id) {
             },
 
 
+            
 
 
-
+         },
         eventChat: function (chat) {
             chat.message = linkFixer(chat.message);
             chat.message = decodeEntities(chat.message);
@@ -958,23 +991,7 @@ dclookupOnUserJoin: function (id) {
             basicBot.room.roomstats.songCount++;
             basicBot.roomUtilities.intervalMessage();
             basicBot.room.currentDJID = obj.dj.id;
-            
-            var blacklistSkip = setTimeout(function () {
-                 var mid = obj.media.format + ':' + obj.media.cid;
-                 for (var bl in basicBot.room.blacklists) {
-                     if (basicBot.settings.blacklistEnabled) {
-                         if (basicBot.room.blacklists[bl].indexOf(mid) > -1) {
-                             API.sendChat(subChat(basicBot.chat.isblacklisted, {blacklist: bl}));
-                             if (basicBot.settings.smartSkip){
-                                 return basicBot.roomUtilities.smartSkip();
-                             }
-                             else {
-                                 return API.moderateForceSkip();
-                             }
-                         }
-                     }
-                 }
-            }, 2000);
+        
             
             var newMedia = obj.media;
             var timeLimitSkip = setTimeout(function () {
@@ -1722,12 +1739,12 @@ localStorage.setItem(chat.un, giverTokens);
 
 if (space === -1){ 
 localStorage.setItem(currentDJ, cislo);
-return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateli " + currentDJ + "");
+return API.sendChat("/me [ DARČEK ] Užívateľ @" + chat.un + " poslal " + strhnout + " QPoints užívateľovi @"+ currentDJ +"!");
 }
 
 else{
 localStorage.setItem(receiver, cislo);
-return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateli " + receiver + "");
+return API.sendChat("/me [ DARČEK ] Užívateľ @"+ chat.un +" poslal " + strhnout + " QPoints užívateľovi @"+ receiver +"!");
 }
 
 }
@@ -1786,7 +1803,7 @@ if (gni === 6){
 tos = "matematiku.";
 }
 
-API.sendChat('/me [@' + from + '] Minihra nastavena na ' + tos + '');
+API.sendChat('[@' + from + '] Minihra nastavena na ' + tos + '');
 
 }
 },
@@ -1838,11 +1855,11 @@ else if (basicBot.room.tipovacka.obtiznost == 6){
 if (gn < basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
                 localStorage.setItem(chat.un, giverTokens);
-				API.sendChat('[@' + chat.un + '] Správný výsledek je větší!');
-			} else if (gn > basicBot.room.tipovacka.currentNumber) {
+                API.sendChat('[@' + chat.un + '] Správný výsledek je větší!');
+            } else if (gn > basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
                 localStorage.setItem(chat.un, giverTokens);
-				API.sendChat('[@' + chat.un + '] Správný výsledek je menší!');   
+                API.sendChat('[@' + chat.un + '] Správný výsledek je menší!');   
 
 }
 }
@@ -1856,11 +1873,11 @@ else{
 if (gn < basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
                 localStorage.setItem(chat.un, giverTokens);
-				API.sendChat('[@' + chat.un + '] Správné číslo je větší!');
-			} else if (gn > basicBot.room.tipovacka.currentNumber) {
+                API.sendChat('[@' + chat.un + '] Správné číslo je větší!');
+            } else if (gn > basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
                 localStorage.setItem(chat.un, giverTokens);
-				API.sendChat('[@' + chat.un + '] Správné číslo je menší!');   
+                API.sendChat('[@' + chat.un + '] Správné číslo je menší!');   
 
 }
 }
@@ -3479,7 +3496,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý, hoď Like na Facebook https://bit.ly/QPlugcz!");
 // API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
 return false;
 }
@@ -3493,12 +3510,12 @@ return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý, hoď Like na Facebook https://bit.ly/QPlugcz!");
 // API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý, hoď Like na Facebook https://bit.ly/QPlugcz!");
 // API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
 }
 
@@ -3608,7 +3625,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý, hoď Like na Facebook https://bit.ly/QPlugcz!");
 /*API.sendChat("[@"+ from +"] Dnes o 19:00 sa usporiadá Event o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!");*/
 return false;
 }
@@ -3622,11 +3639,11 @@ return API.sendChat("[@"+ from +"] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý, hoď Like na Facebook https://bit.ly/QPlugcz!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako, prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
 }
 
 }
@@ -3728,7 +3745,7 @@ API.sendChat("[ "+ bot_name +" ] Základy našeho Systému pochádzajú z pôvod
 }
 }
 },
-		
+        
 peopleCommand: {
 command: ['ludia', 'online', 'people'],
 rank: 'user',
@@ -3982,7 +3999,7 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-API.sendChat("[ VIP ČLENI ] Dave, Repi69, Tessi Tess");
+API.sendChat("[ VIPS ČLENOVIA ] Dave, Repi69, Tessi Tess");
 
 }
 }
