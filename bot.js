@@ -249,56 +249,56 @@ ROOM»                              https://plug.dj/qplug-czsk
         
                 
             };
-    var botCreator = "QPlug.cz Tým";
-    var botMaintainer = "QPlug.cz"
-    var botCreatorIDs = ["4635487", "5032556"];
+var botCreator = "QPlug.cz Tým";
+var botMaintainer = "QPlug.cz"
+var botCreatorIDs = ["4635487", "5032556"];
 
-    var basicBot = {
-        version: "1.9",
-        status: false,
-        name: "QBot",
-        loggedInID: null,
-        scriptLink: "https://rawgit.com/FALSEYING/MFEBOT/master/system.js",
-        cmdLink: "https://musicforeveryone.6f.sk/prikazy",
-        chatLink: "https://rawgit.com/QPlugcz/QBot/master/package/qplugcz.json",
-        chat: null,
-        loadChat: loadChat,
-        retrieveSettings: retrieveSettings,
-        retrieveFromStorage: retrieveFromStorage,
-        settings: {
-            botName: "QBot",
-            language: "qplugcz",
-            chatLink: "https://rawgit.com/QPlugcz/QBot/master/package/qplugcz.json",
-            scriptLink: "https://rawgit.com/FALSEYING/MFEBOT/master/system.js",
-            roomLock: false, // Requires an extension to re-load the script
-            startupCap: 1, // 1-200
-            startupVolume: 0, // 0-100
-            startupEmoji: false, // true or false
-            autowoot: true,
-            autoskip: false,
-            smartSkip: true,
-            cmdDeletion: true,
-            maximumDc: 120,
-            lockdownEnabled: false,
-            historySkip: false,
-	    timeguard: true,
-            maximumSongLength: 6,
-            commandCooldown: 5,
-            usercommandsEnabled: true,
-            thorCommand: true,
-            thorCooldown: 5,
-            nahodaCommand: true,
-            nahodaCooldown: 30,
-            skipPosition: 2,
-            filterChat: true,
-            etaRestriction: false,
-            welcome: true,
-            songstats: false,
-        minihry: false,
-        inteligence: true,
-            commandLiteral: "!",
-        },
-        room: {
+var basicBot = {
+version: "1.9",
+status: false,
+name: "QBot",
+loggedInID: null,
+scriptLink: "https://rawgit.com/FALSEYING/MFEBOT/master/system.js",
+cmdLink: "https://musicforeveryone.6f.sk/prikazy",
+chatLink: "https://rawgit.com/QPlugcz/QBot/master/package/qplugcz.json",
+chat: null,
+loadChat: loadChat,
+retrieveSettings: retrieveSettings,
+retrieveFromStorage: retrieveFromStorage,
+settings: {
+botName: "QBot",
+language: "qplugcz",
+chatLink: "https://rawgit.com/QPlugcz/QBot/master/package/qplugcz.json",
+scriptLink: "https://rawgit.com/FALSEYING/MFEBOT/master/system.js",
+roomLock: false, // Requires an extension to re-load the script
+startupCap: 1, // 1-200
+startupVolume: 0, // 0-100
+startupEmoji: false, // true or false
+autowoot: true,
+autoskip: false,
+smartSkip: true,
+cmdDeletion: true,
+maximumDc: 120,
+lockdownEnabled: false,
+historySkip: true,
+timeGuard: true,
+maximumSongLength: 6,
+commandCooldown: 5,
+usercommandsEnabled: true,
+thorCommand: true,
+thorCooldown: 5,
+nahodaCommand: true,
+nahodaCooldown: 30,
+skipPosition: 2,
+filterChat: true,
+etaRestriction: false,
+welcome: true,
+minihry: false,
+inteligence: true,
+commandLiteral: "!",
+},
+        
+room: {
             name: null,
             chatMessages: [],
             users: [],
@@ -4328,7 +4328,7 @@ if (from != me){
 
 if(msg.indexOf("https://plug.dj/") > -1 || msg.indexOf("plug.dj/") > -1){
 API.moderateDeleteChat(a.cid);
-API.sendChat("[@"+ from2 +"] Budeš Mutnutý za spamovanie alebo zdielanie iných komunít v našej komunite!"); return false;
+API.sendChat("[@"+ from2 +"] Budeš Mutnutý za spamovanie alebo zdielanie iných komunít v našej komunite!");
 setTimeout(function(){ API.moderateMuteUser(from, 1, API.MUTE.MEDIUM); }, 5000);
 }
 
