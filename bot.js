@@ -291,6 +291,7 @@ filterChat: true,
 etaRestriction: false,
 welcome: true,
 minihry: false,
+duelDelay: 120,
 inteligence: true,
 commandLiteral: "!",
 },
@@ -302,6 +303,8 @@ room: {
             afkList: [],
             mutedUsers: [],
             bannedUsers: [],
+            duel: [],
+            duelReady: true,
             skippable: true,
             usercommand: true,
             allcommand: true,
@@ -1739,7 +1742,106 @@ return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnou
 
 }
 }, 
+            
+            //Duel - Zatím nefunkční, pracují na tom.
+ /*       
+duelCommand: {
+command: ['duel'],  //The command to be called. With the standard command literal this would be: !tip
+rank: 'user', //Minimum user permission to use the command
+type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+var hrac = validateTokens(basicBot.room.duel[0].username);
+if (basicBot.room.duelReady && basicBot.room.duel[0] === undefined && basicBot.userUtilities.lookupUserName(chat.message.substr(7))){
+                    if (basicBot.userUtilities.lookupUserName(chat.message.substr(7))){
+                        basicBot.room.duel.push(chat.uid);
+                        basicBot.room.duel.push(basicBot.userUtilities.lookupUserName(chat.message.substr(7)));
+                        API.sendChat('[@' + chat.message.substr(7) + '] Uživatel @' + chat.un + ' tě vyzval na duel o 20 QPoints. Reaguj na duel pomocí !ano nebo !ne.');
+                        setTimeout(function(){
+                            basicBot.room.duel = [];
+                        }, 120000);
+                        }
+                     else if (hrac < 20){  
+                     API.sendChat('[' + chat.un + '] K hraní duelu potřebuješ 20 QPoints.');    
+                    } else {
+                        API.sendChat('[' + chat.un + '] Duel se používá pomocí !duel @jméno');
+                    }
 
+            
+
+}
+}
+
+}
+},
+            */
+                  /* 
+anoCommand: {
+command: ['ano'],  //The command to be called. With the standard command literal this would be: !tip
+rank: 'user', //Minimum user permission to use the command
+type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+var hrac = validateTokens(basicBot.room.duel[1].username);
+if (chat.uid === basicBot.room.duel[1]) {
+if (hrac > 19){
+                    API.sendChat('[ DUEL ] Uživatel @' + API.getUser(basicBot.room.duel[1]).username + ' přijal žádost o duel.');
+                    var win = Math.round(Math.random());
+                    win === 0 ? lose = 1 : lose = 0;
+                    var winner = basicBot.room.duel[win];
+                    var loser = basicBot.room.duel[lose];
+                    setTimeout(function(){
+                        var vitez = validateTokens(winner);
+                        var vyhra = parseInt(vitez, 10) + parseInt(20,10);
+                        var prohra = validateTokens(loser);
+                        prohra -= 20;
+                        localStorage.setItem(winner, vyhra);
+                        localStorage.setItem(loser, prohra);
+                        API.sendChat('[ DUEL ] Uživatel @' + API.getUser(winner).username + ' vyhrál duel a získá 20 QPoints od uživatele ' + API.getUser(loser).username + ' ');
+                        basicBot.room.duelReady = false;
+                        setTimeout(function(){basicBot.room.duelReady = true}, basicBot.settings.duelDelay * 1000);
+                        basicBot.room.duel = [];
+                    }, 5000)
+                }
+            }  
+          }
+        }, 
+neCommand: {
+command: ['ne','nie'],  //The command to be called. With the standard command literal this would be: !tip
+rank: 'user', //Minimum user permission to use the command
+type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+ if (chat.uid === basicBot.room.duel[1]){
+                  basicBot.room.duel = [];
+                  basicBot.room.duelReady = true;
+                    API.sendChat('[ DUEL ] Uživatel ' + chat.un + ' zamítnul žádost o duel s ' + API.getUser(basicBot.room.duel[0]).username + '');
+                }
+            }
+          }
+        },
+setduelCommand: {
+command: ['setduel'],  //The command to be called. With the standard command literal this would be: !tip
+rank: 'manager', //Minimum user permission to use the command
+type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+  if (!isNaN(parseInt(chat.message.substr(11))) && parseInt(chat.message.substr(11)) >= 30) {
+                basicBot.settings.duelDelay = parseInt(chat.message.substr(11));
+                API.sendChat('[' + chat.un + '] Limit duelu je nyní nastaven na ' + basicBot.settings.duelDelay + ' sekund.');
+              } else {
+                sAPI.sendChat('[' + chat.un + '] Neplatná délka limitu pro duel.');
+                }
+            }
+        }, */
 spustitminihruCommand: {
 command: 'sm',
 rank: 'manager',
