@@ -1725,7 +1725,7 @@ dclookupOnUserJoin: function (id) {
 
 autoskipCommand: {
 command: 'autoskip',
-rank: 'manager',
+rank: 'bouncer',
 type: 'exact',
 functionality: function (chat, cmd) {
 if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -1880,7 +1880,7 @@ return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnou
 
 spustitminihruCommand: {
 command: 'sm',
-rank: 'bouncer',
+rank: 'manager',
 type: 'exact',
 functionality: function (chat, cmd) {
 if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
@@ -1893,7 +1893,7 @@ basicBot.room.tipovacka.hrat();
         
 minihraCommand: {
 command: 'minihra',
-rank: 'bouncer',
+rank: 'manager',
 type: 'startsWith',
 functionality: function (chat, cmd) {
 if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
@@ -2077,7 +2077,7 @@ return API.sendChat("/me [@" + receiver + "] Bylo vám přičteno na účet " + 
       
 odebratbodyCommand: {
 command: ['odebratbody', 'removeqp'],  //The command to be called. With the standard command literal this would be: !tip
-rank: 'bouncer', //Minimum user permission to use the command
+rank: 'manager', //Minimum user permission to use the command
 type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
 functionality: function (chat, cmd) {
 if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -3247,28 +3247,6 @@ else return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'funct
 }
 }
 },
-            
-lockchatCommand: {
-command: 'lockchat',
-rank: 'manager',
-type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var temp = basicBot.settings.lockdownEnabled;
-basicBot.settings.lockdownEnabled = !temp;
-
-if (basicBot.settings.lockdownEnabled){
-return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.lockdown}));
-}
-
-else return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.lockdown}));
-
-}
-}
-},
 
 jaCommand: {
 command: ['ja','já', 'cicina', 'iq', 'sexy', 'nálada', 'nalada'],
@@ -3878,7 +3856,7 @@ else{
 var online_people_count = API.getUsers().length;
 var online_staff_count = API.getStaff().length;
 
-API.sendChat("[ QPlug.cz ] Aktuálne je v komunite online "+ online_people_count +" ludí a z toho "+ online_staff_count +" členov QPlug.cz Týmu.");
+API.sendChat("[ QPlug.cz ] Aktuálne je v komunite online "+ online_people_count +" ludí/ia a z toho "+ online_staff_count +" člen/ov QPlug.cz Týmu.");
 
 }
 }
@@ -4322,7 +4300,7 @@ if (from != me){
 if(msg.indexOf("https://plug.dj/") > -1 || msg.indexOf("plug.dj/") > -1){
 API.moderateDeleteChat(a.cid);
 API.sendChat("[@"+ from2 +"] Budeš Mutnutý za spamovanie alebo zdielanie iných komunít v našej komunite!");          
-API.moderateMuteUser(from, 1, API.MUTE.MEDIUM);
+setTimeout(function(){ API.moderateMuteUser(from, 1, API.MUTE.MEDIUM); }, 5000);
 }
 
 }
