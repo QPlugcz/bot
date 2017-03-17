@@ -984,7 +984,6 @@ dclookupOnUserJoin: function (id) {
             basicBot.room.roomstats.totalMehs += lastplay.score.negative;
             basicBot.room.roomstats.totalCurates += lastplay.score.grabs;
             basicBot.room.roomstats.songCount++;
-            basicBot.roomUtilities.intervalMessage();
             basicBot.room.currentDJID = obj.dj.id;
             
             var newMedia = obj.media;
