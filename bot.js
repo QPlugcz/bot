@@ -3507,12 +3507,27 @@ var space = msg.indexOf(' ');
 var current_dj = API.getDJ().username;
 
 if (space === -1){
-API.sendChat("[@"+ from +"] Musíš zadať dôvod preskočenia! | n = NSFW | h = History | o = Moc krát prehrávaná");
+API.sendChat("[@"+ from +"] Musíš zadať kód preskočenia! | n = NSFW | h = History | m = Veľky počet Mehov | o = Ohraná pesnička.");
 }
 
 if(skip_reason === "n"){
 API.sendChat("[@"+ current_dj +"] Tvoja pesnička bude preskočená z dôvodu: NSFW! (nevhodný obsah)");
-setTimeout(function(){ API.moderateForceSkip(); }, 4000);
+setTimeout(function(){ API.moderateForceSkip(); }, 3000);
+}
+
+if(skip_reason === "h"){
+API.sendChat("[@"+ current_dj +"] Tvoja pesnička bude preskočená z dôvodu: História!");
+setTimeout(function(){ API.moderateForceSkip(); }, 3000);
+}
+
+if(skip_reason === "m"){
+API.sendChat("[@"+ current_dj +"] Tvoja pesnička bude preskočená z dôvodu: Veľky počet Mehov!");
+setTimeout(function(){ API.moderateForceSkip(); }, 3000);
+}
+
+if(skip_reason === "o"){
+API.sendChat("[@"+ current_dj +"] Tvoja pesnička bude preskočená z dôvodu: Ohraná pesnička!");
+setTimeout(function(){ API.moderateForceSkip(); }, 3000);
 }
 
 }
