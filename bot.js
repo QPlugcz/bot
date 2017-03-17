@@ -3083,32 +3083,32 @@ var msg = "[@"+ from +"] ";
 msg += basicBot.chat.chatfilter + ': ';
 if (basicBot.settings.filterChat) msg += 'ON';
 else msg += 'OFF';
-msg += '. ';
+msg += ' | ';
 
 msg += basicBot.chat.timeguard + ': ';
 if (basicBot.settings.timeGuard) msg += 'ON';
 else msg += 'OFF';
-msg += '. ';
+msg += ' | ';
 
 msg += basicBot.chat.historyskip + ': ';
 if (basicBot.settings.historySkip) msg += 'ON';
 else msg += 'OFF';
-msg += '. ';
+msg += ' | ';
 
 msg += basicBot.chat.cmddeletion + ': ';
 if (basicBot.settings.cmdDeletion) msg += 'ON';
 else msg += 'OFF';
-msg += '. ';
+msg += ' | ';
 
 msg += basicBot.chat.autoskip + ': ';
 if (basicBot.settings.autoskip) msg += 'ON';
 else msg += 'OFF';
-msg += '. ';
+msg += ' | ';
 
 msg += basicBot.chat.inteligence + ': ';
 if (basicBot.settings.inteligence) msg += 'ON';
 else msg += 'OFF';
-msg += '. ';
+msg += ' | ';
 
 
 var launchT = basicBot.room.roomstats.launchTime;
