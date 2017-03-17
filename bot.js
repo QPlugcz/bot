@@ -3491,6 +3491,34 @@ API.sendChat(retazec);
 }
 },
 
+skipCommand: {
+command: ['skip', 's'],
+rank: 'bouncer',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var msg = chat.message;
+var from = chat.un;
+var skip_reason = msg.substr(cmd.length + 1);
+var space = msg.indexOf(' ');
+var current_dj = API.getDJ().username;
+
+if (space === -1){
+API.sendChat("[@"+ from +"] Musíš zadať dôvod preskočenia! | n = NSFW | h = History | o = Moc krát prehrávaná");
+}
+
+if(skip_reason === "n"){
+API.sendChat("[@"+ current_dj +"] Tvoja pesnička bude preskočená z dôvodu: NSFW! (nevhodný obsah)");
+setTimeout(function(){ API.moderateForceSkip(); }, 4000);
+}
+
+}
+}
+},
+
 /*startCommand: {
 command: ['start', 'začať', 'začat', 'zacať', 'zacat'],
 rank: 'user',
