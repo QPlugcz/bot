@@ -1986,12 +1986,13 @@ giverTokens -= 5;
 localStorage.setItem(chat.un, giverTokens);
 API.sendChat('Špatná odpověď: ' + gni + '');    
 }
+
 else{
 giverTokens -= 5;
 localStorage.setItem(chat.un, giverTokens);
 API.sendChat('Špatné číslo: ' + gn + '');      
 
-}
+
 }
 }
 },
