@@ -375,11 +375,33 @@ room: {
                         basicBot.room.tipovacka.max = "white"; 
             API.sendChat('[ MINIHRA | @djs ] Myslím si barvu v angličtině. Tipněte zadanou barvu pomocí !tip text a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.'); 
                     }
+                        
+            if (basicBot.room.tipovacka.obtiznost == 7) {
+                        var otazka = ["pldjug","lakanduf","ojah"];
+                        var odpoved = ["plugdj"];
+                        var odpoved2 = ["kaufland"];
+                        var odpoved3 = ["ahoj"];
+                        var slovo = otazka[Math.floor(Math.random() * otazka.length)];
+          
+            if (slovo === "pldjug") { 
+            basicBot.room.tipovacka.currentNumber = odpoved;
+            API.sendChat('[ MINIHRA | @djs ] Rozluštěte slovo "pldjug". Odpovídejte pomocí !tip text a vyhrajte 50 QPoints! Pokus stojí 5 QPoints.');   
+              }
+            if (slovo === "lakanduf") { 
+            basicBot.room.tipovacka.currentNumber = odpoved2;
+            API.sendChat('[ MINIHRA | @djs ] Rozluštěte slovo "lakanduf". Odpovídejte pomocí !tip text a vyhrajte 50 QPoints! Pokus stojí 5 QPoints.');   
+                }  
+            if (slovo === "ojah") { 
+            basicBot.room.tipovacka.currentNumber = odpoved3;
+            API.sendChat('[ MINIHRA | @djs ] Rozluštěte slovo "ojah". Odpovídejte pomocí !tip text a vyhrajte 50 QPoints! Pokus stojí 5 QPoints.');      
+                
+                    }
+                    }
 if (basicBot.room.tipovacka.obtiznost == 6) {
     var vysledek = 100 + ~~(Math.random() * 5000);
     var a = 50 + ~~(Math.random() * (vysledek / 3));
     var b = vysledek - a;
-    
+    C
     var priklad = a + " + " + b + " = ";
 
     if (Date.now() % 2) {
@@ -452,7 +474,15 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 var receiverTokens = validateTokens(name);
                     var penize5 = parseInt(receiverTokens, 10) + parseInt(30,10);
                     localStorage.setItem(name, penize5);
-                            API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 30 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');  
+                 } else if (basicBot.room.tipovacka.obtiznost == 7) {
+                 name = basicBot.room.users[i].username;
+              basicBot.room.tipovacka.active = false;
+                            basicBot.room.tipovacka.max = 0;
+                var receiverTokens = validateTokens(name);
+                    var penize7 = parseInt(receiverTokens, 10) + parseInt(50,10);
+                    localStorage.setItem(name, penize7);
+                            API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 50 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');             API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 30 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');  
+                          
                           } else if (basicBot.room.tipovacka.obtiznost == 6) {
                  name = basicBot.room.users[i].username;
               basicBot.room.tipovacka.active = false;
@@ -1891,6 +1921,9 @@ tos = "hádaní barev v angličtině.";
 if (gni === 6){
 tos = "matematiku.";
 }
+if (gni === 7){
+tos = "luštění slov.";
+}
 
 API.sendChat('[@' + from + '] Minihra nastavena na ' + tos + '');
 
@@ -1938,6 +1971,7 @@ return API.sendChat("[@" + chat.un + "] Nemáš dostatek QPoints na hádaní odp
 if (gni === basicBot.room.tipovacka.currentNumber || gn === basicBot.room.tipovacka.currentNumber.toString()){
 basicBot.room.tipovacka.endNumberGame(chat.uid);
 giverTokens -= 5;
+localStorage.setItem(chat.un, giverTokens);
 }
 
 else if (basicBot.room.tipovacka.obtiznost == 6){
@@ -1958,6 +1992,11 @@ localStorage.setItem(chat.un, giverTokens);
 API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gni + '!');    
 }
 
+else if (basicBot.room.tipovacka.obtiznost == 7){
+giverTokens -= 5;
+localStorage.setItem(chat.un, giverTokens);
+API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gni + '!');    
+}
 else{
 if (gn < basicBot.room.tipovacka.currentNumber) {
                 giverTokens -= 5;
