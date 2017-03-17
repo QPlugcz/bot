@@ -349,54 +349,34 @@ room: {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 9) + 1);
                         basicBot.room.tipovacka.max = 10;
               
-            API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Tipněte zadané číslo pomocí !tip číslo a vyhrajte 25 QPoints! Pokus stojí 5 QPoints.');  
+            API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte 25 QPoints! Pokus stojí 5 QPoints.');  
                     }
                     if (basicBot.room.tipovacka.obtiznost == 2) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 24) + 1);
                         basicBot.room.tipovacka.max = 25;
-            API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Tipněte zadané číslo pomocí !tip číslo a vyhrajte 75 QPoints! Pokus stojí 5 QPoints.'); 
+            API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte 75 QPoints! Pokus stojí 5 QPoints.'); 
              
                     }
             if (basicBot.room.tipovacka.obtiznost == 3) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 49) + 1);
                         basicBot.room.tipovacka.max = 50;
-              API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Tipněte zadané číslo pomocí !tip číslo a vyhrajte 150 QPoints! Pokus stojí 5 QPoints.'); 
+              API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte 150 QPoints! Pokus stojí 5 QPoints.'); 
              
                     }
                     if (basicBot.room.tipovacka.obtiznost == 4) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 99) + 1);
                         basicBot.room.tipovacka.max = 100; 
                     
-                    API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Tipněte zadané číslo pomocí !tip číslo a vyhrajte 400 QPoints! Pokus stojí 5 QPoints.');
+                    API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte 400 QPoints! Pokus stojí 5 QPoints.');
           }      
             if (basicBot.room.tipovacka.obtiznost == 5) {
                         var barvy = ["red","yellow","orange","blue","green","purple","brown","black","pink"];
                         basicBot.room.tipovacka.currentNumber = barvy[Math.floor(Math.random() * barvy.length)];
                         basicBot.room.tipovacka.max = "white"; 
-            API.sendChat('[ MINIHRA | @djs ] Myslím si barvu v angličtině. Tipněte zadanou barvu pomocí !tip text a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.'); 
+            API.sendChat('[ MINIHRA | @djs ] Myslím si barvu v angličtině. Odpovídejte pomocí !t text a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.'); 
                     }
                         
-            if (basicBot.room.tipovacka.obtiznost == 7) {
-                        var otazka = ["pldjug","lakanduf","ojah"];
-                        var odpoved = ["plugdj"];
-                        var odpoved2 = ["kaufland"];
-                        var odpoved3 = ["ahoj"];
-                        var slovo = otazka[Math.floor(Math.random() * otazka.length)];
           
-            if (slovo === "pldjug") { 
-            basicBot.room.tipovacka.currentNumber = odpoved;
-            API.sendChat('[ MINIHRA | @djs ] Rozluštěte slovo "pldjug". Odpovídejte pomocí !tip text a vyhrajte 50 QPoints! Pokus stojí 5 QPoints.');   
-              }
-            if (slovo === "lakanduf") { 
-            basicBot.room.tipovacka.currentNumber = odpoved2;
-            API.sendChat('[ MINIHRA | @djs ] Rozluštěte slovo "lakanduf". Odpovídejte pomocí !tip text a vyhrajte 50 QPoints! Pokus stojí 5 QPoints.');   
-                }  
-            if (slovo === "ojah") { 
-            basicBot.room.tipovacka.currentNumber = odpoved3;
-            API.sendChat('[ MINIHRA | @djs ] Rozluštěte slovo "ojah". Odpovídejte pomocí !tip text a vyhrajte 50 QPoints! Pokus stojí 5 QPoints.');      
-                
-                    }
-                    }
 if (basicBot.room.tipovacka.obtiznost == 6) {
     var vysledek = 100 + ~~(Math.random() * 5000);
     var a = 50 + ~~(Math.random() * (vysledek / 3));
@@ -412,8 +392,29 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
     }
     
     basicBot.room.tipovacka.currentNumber = vysledek;
-    API.sendChat('[ MINIHRA | @djs ] Myslím si příklad ' + priklad + ' :question: Vypočítejte ho pomocí !tip číslo a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.');
+    API.sendChat('[ MINIHRA | @djs ] Vypočítejte příklad ' + priklad + ' :question: Odpovídejte pomocí !t číslo a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.');
 }
+                      if (basicBot.room.tipovacka.obtiznost == 7) {
+                        var otazka = ["pldjug","lakanduf","ojah","ketara","munikota"];
+                        var slovo = otazka[Math.floor(Math.random() * otazka.length)];
+          
+            if (slovo === "pldjug") { 
+            basicBot.room.tipovacka.currentNumber = "plugdj";
+                    }
+            if (slovo === "lakanduf") { 
+            basicBot.room.tipovacka.currentNumber = "kaufland";
+                    }  
+            if (slovo === "ojah") { 
+            basicBot.room.tipovacka.currentNumber = "ahoj";                   
+                    }  
+            if (slovo === "ketara") { 
+            basicBot.room.tipovacka.currentNumber = "raketa";                
+                    }  
+            if (slovo === "munikota") { 
+            basicBot.room.tipovacka.currentNumber = "komunita";                     
+                    }
+          API.sendChat('[ MINIHRA | @djs ] Rozluštěte slovo "' + slovo + '". Odpovídejte pomocí !t text a vyhrajte 50 QPoints! Pokus stojí 5 QPoints.');            
+                    }
                     },
                     
 
@@ -474,7 +475,15 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 var receiverTokens = validateTokens(name);
                     var penize5 = parseInt(receiverTokens, 10) + parseInt(30,10);
                     localStorage.setItem(name, penize5);
-                 } else if (basicBot.room.tipovacka.obtiznost == 7) {
+    } else if (basicBot.room.tipovacka.obtiznost == 6) {
+                 name = basicBot.room.users[i].username;
+              basicBot.room.tipovacka.active = false;
+                            basicBot.room.tipovacka.max = 0;
+                var receiverTokens = validateTokens(name);
+                    var penize6 = parseInt(receiverTokens, 10) + parseInt(30,10);
+                    localStorage.setItem(name, penize6);
+                            API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 30 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');
+        } else if (basicBot.room.tipovacka.obtiznost == 7) {
                  name = basicBot.room.users[i].username;
               basicBot.room.tipovacka.active = false;
                             basicBot.room.tipovacka.max = 0;
@@ -482,15 +491,6 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                     var penize7 = parseInt(receiverTokens, 10) + parseInt(50,10);
                     localStorage.setItem(name, penize7);
                             API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 50 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');             API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 30 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');  
-                          
-                          } else if (basicBot.room.tipovacka.obtiznost == 6) {
-                 name = basicBot.room.users[i].username;
-              basicBot.room.tipovacka.active = false;
-                            basicBot.room.tipovacka.max = 0;
-                var receiverTokens = validateTokens(name);
-                    var penize6 = parseInt(receiverTokens, 10) + parseInt(30,10);
-                    localStorage.setItem(name, penize6);
-                            API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál 30 QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');   
                     }  else {
                         return false; 
                     }    
@@ -1202,7 +1202,7 @@ dclookupOnUserJoin: function (id) {
 
                 }
                  var HELLOMsg = ['Hi','Hello my friend!','Hey','Ahoy!','Good morning!','Heyy!','Cheers!','Greetings!', 'Get off my back!'];
-                 if(msg.indexOf('@MFE Hello') !== -1 || msg.indexOf('@MFE hello') !== -1 || msg.indexOf('@MFE Hi') !== -1 || msg.indexOf('@MFE hi') !== -1 || msg.indexOf('@MFE Hey') !== -1 || msg.indexOf('@MFE hey') !== -1 || msg.indexOf('@MFE Ahoy') !== -1 || msg.indexOf('@MFE ahoy') !== -1 || msg.indexOf('@MFE Sup') !== -1 || msg.indexOf('@MFE sup') !== -1 || msg.indexOf('@MFE Good morning') !== -1 || msg.indexOf('@MFE Good day') !== -1 || msg.indexOf('@MFE Good night') !== -1 || msg.indexOf('@MFE good morning') !== -1 || msg.indexOf('@MFE Bye') !== -1 || msg.indexOf('@MFE bye') !== -1){                
+                 if(msg.indexOf('@QPlug.cz Hello') !== -1 || msg.indexOf('@QPlug.cz hello') !== -1 || msg.indexOf('@QPlug.cz Hi') !== -1 || msg.indexOf('@QPlug.cz hi') !== -1 || msg.indexOf('@QPlug.cz Hey') !== -1 || msg.indexOf('@QPlug.cz hey') !== -1 || msg.indexOf('@QPlug.cz Ahoy') !== -1 || msg.indexOf('@QPlug.cz ahoy') !== -1 || msg.indexOf('@QPlug.cz Sup') !== -1 || msg.indexOf('@QPlug.cz sup') !== -1 || msg.indexOf('@QPlug.cz Good morning') !== -1 || msg.indexOf('@QPlug.cz Good day') !== -1 || msg.indexOf('@QPlug.cz Good night') !== -1 || msg.indexOf('@QPlug.cz good morning') !== -1 || msg.indexOf('@QPlug.cz Bye') !== -1 || msg.indexOf('@QPlug.cz bye') !== -1){                
                    if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + HELLOMsg[Math.floor(Math.random() * HELLOMsg.length)]);
                 }
@@ -1211,7 +1211,7 @@ dclookupOnUserJoin: function (id) {
            }
                  
                  var WHENMsg = ['On Friday', 'Maybe tomorrow','In the afternoon', 'In an hour', 'I think tonight', 'Per year', 'Never', 'Rohlik knows, ask him'];
-                 if(msg.indexOf('@MFE When') !== -1 || msg.indexOf('@MFE when') !== -1){                
+                 if(msg.indexOf('@QPlug.cz When') !== -1 || msg.indexOf('@QPlug.cz when') !== -1){                
                           if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + WHENMsg[Math.floor(Math.random() * WHENMsg.length)]);
                  }
@@ -1219,7 +1219,7 @@ dclookupOnUserJoin: function (id) {
                    }
               }
                  var WHEREMsg = ['At home', 'On the football stadium', 'At the bus stop', 'At airport'];
-                 if(msg.indexOf('@MFE Where') !== -1 || msg.indexOf('@MFE where') !== -1){                
+                 if(msg.indexOf('@QPlug.cz Where') !== -1 || msg.indexOf('@QPlug.cz where') !== -1){                
                            if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + WHEREMsg[Math.floor(Math.random() * WHEREMsg.length)]);
                 }
@@ -1227,7 +1227,7 @@ dclookupOnUserJoin: function (id) {
                    }
                }
                  var WHOMsg = ['ƦΦHLiK_PƦΦDUCtiΦn || ΜFΣ','FALSEYING','- Karamel -', 'vanilka','♫Peťuš55♫','-kebabuss-',' _(Jassyk)_ ','Franta72',' GynekologisT_SexualisT','NEZNÁME','NYGA NYGA', 'OMGKNEDLIK', 'Polkov',' samikk ','ThePyrotechYoshi', 'Vιктσя🎧 ','♔Kevinko68♔',' ⚓☣ᶠᶸᶜᵏ✠♛ɪңʉsмāŋ♛✠ᶠᶸᶜᵏ☣⚓','BiachYeah','Corה','InterZ','Lסใใӌกқα ღ','SemiTruck', 'SiesBichO','Styx25','Česneček','Šášula^^','ҒИC ᗯᖇᗴST'];
-                 if(msg.indexOf('@MFE Who') !== -1 || msg.indexOf('@MFE who') !== -1){                
+                 if(msg.indexOf('@QPlug.cz Who') !== -1 || msg.indexOf('@QPlug.cz who') !== -1){                
                      if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + WHOMsg[Math.floor(Math.random() * WHOMsg.length)]);
                 }
@@ -1236,7 +1236,7 @@ dclookupOnUserJoin: function (id) {
              }
                 
                  var SMAJLIKMsg = [':resttc:',':D',':P',':(',':feelsbadman:',':O',':V:',':kappa:'];
-                 if(msg.indexOf('@MFE :') !== -1){   
+                 if(msg.indexOf('@QPlug.cz :') !== -1){   
                        if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + SMAJLIKMsg[Math.floor(Math.random() * SMAJLIKMsg.length)]);
                 }
@@ -1246,7 +1246,7 @@ dclookupOnUserJoin: function (id) {
                 
          //Česká verze umělé inteligence - v2.5.0
              var POZDRAVMsg = ['Zdarec','Ahoj','Čus','Čest','Nazdar','Čáj','Ahoj lásko!','Neotravuj','Buď zdráv, příteli'];
-                 if(msg.indexOf('@MFE zdar') !== -1 || msg.indexOf('@MFE čus') !== -1 || msg.indexOf('@MFE čau') !== -1 || msg.indexOf('@MFE čest') !== -1 || msg.indexOf('@MFE Zdravím') !== -1 || msg.indexOf('@MFE cs') !== -1 || msg.indexOf('@MFE nazdar') !== -1 || msg.indexOf('@MFE ahoj') !== -1 || msg.indexOf('@MFE cau') !== -1 || msg.indexOf('@MFE cus') !== -1 || msg.indexOf('@MFE čáu') !== -1 || msg.indexOf('@MFE dobrý den') !== -1 || msg.indexOf('@MFE Dobrý den') !== -1 || msg.indexOf('@MFE Dobrý večer') !== -1 || msg.indexOf('@MFE dobrý večer') !== -1 || msg.indexOf('@MFE Ahoj') !== -1){
+                 if(msg.indexOf('@QPlug.cz zdar') !== -1 || msg.indexOf('@QPlug.cz čus') !== -1 || msg.indexOf('@QPlug.cz čau') !== -1 || msg.indexOf('@QPlug.cz čest') !== -1 || msg.indexOf('@QPlug.cz Zdravím') !== -1 || msg.indexOf('@QPlug.cz cs') !== -1 || msg.indexOf('@QPlug.cz nazdar') !== -1 || msg.indexOf('@QPlug.cz ahoj') !== -1 || msg.indexOf('@QPlug.cz cau') !== -1 || msg.indexOf('@QPlug.cz cus') !== -1 || msg.indexOf('@QPlug.cz čáu') !== -1 || msg.indexOf('@QPlug.cz dobrý den') !== -1 || msg.indexOf('@QPlug.cz Dobrý den') !== -1 || msg.indexOf('@QPlug.cz Dobrý večer') !== -1 || msg.indexOf('@QPlug.cz dobrý večer') !== -1 || msg.indexOf('@QPlug.cz Ahoj') !== -1){
                           if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + POZDRAVMsg[Math.floor(Math.random() * POZDRAVMsg.length)]);
                 }
@@ -1255,7 +1255,7 @@ dclookupOnUserJoin: function (id) {
               }
                 
                  var KDYMsg = ['Co já vím?','O půlnoci','Za rok', 'Za 8 hodin a 5 minut', 'Nikdy', 'Nemůžu ti povrdit, že se někdy tak stane..', 'Za okamžik', 'Za dlouho','Brzy', 'Včera bylo pozdě', 'Dočkej času, jako husa klasu', 'Příští týden ve středu', 'Pravděpodobně za pár hodin','Až naprší a uschne','No ták, neotravuj!','V šest večer, ale nespolehal bych na to','Ráno','Odpoledne','Večer','Kdybych to věděl, už bych ti to řekl', 'To ani nechci vědět','To by mě také zajímalo'];
-                 if(msg.indexOf('@MFE kdy') !== -1 || msg.indexOf('@MFE KDY') !== -1 || msg.indexOf('za jak dlouho') !== -1 || msg.indexOf('@MFE Kdy') !== -1 || msg.indexOf('@MFE kedy') !== -1 || msg.indexOf('@MFE Kedy') !== -1){                
+                 if(msg.indexOf('@QPlug.cz kdy') !== -1 || msg.indexOf('@QPlug.cz KDY') !== -1 || msg.indexOf('za jak dlouho') !== -1 || msg.indexOf('@QPlug.cz Kdy') !== -1 || msg.indexOf('@QPlug.cz kedy') !== -1 || msg.indexOf('@QPlug.cz Kedy') !== -1){                
                     if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + KDYMsg[Math.floor(Math.random() * KDYMsg.length)]);
                   }
@@ -1263,7 +1263,7 @@ dclookupOnUserJoin: function (id) {
                    }
             }
                  var KDEMsg = ['V hospodě','Na gauči v obývaku', 'Ve škole', 'Na pracáku','V obchodě u pokladny','V nedalekém křoví', 'V malé chatce','Na autobusové zastávce', 'V Kauflandu', 'V Albertu', 'Na tržnici v centru', 'Na letišti', 'V práci na stavbě','Nebuď zvědavej :P'];
-                 if(msg.indexOf('@MFE kde') !== -1 || msg.indexOf('@MFE Kde') !== -1 || msg.indexOf('@MFE a kde') !== -1 || msg.indexOf('@MFE KDE') !== -1 || msg.indexOf('@MFE gde') !== -1 || msg.indexOf('@MFE Gde') !== -1){                
+                 if(msg.indexOf('@QPlug.cz kde') !== -1 || msg.indexOf('@QPlug.cz Kde') !== -1 || msg.indexOf('@QPlug.cz a kde') !== -1 || msg.indexOf('@QPlug.cz KDE') !== -1 || msg.indexOf('@QPlug.cz gde') !== -1 || msg.indexOf('@QPlug.cz Gde') !== -1){                
                      if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + KDEMsg[Math.floor(Math.random() * KDEMsg.length)]);
                   }
@@ -1271,7 +1271,7 @@ dclookupOnUserJoin: function (id) {
                    }
              }
                  var KAMMsg = ['Do hospody','Na gauč v obývaku','Do školy','Na pracák','Na autobusovou zastávku', 'Do nedalekého křoví', 'Do malé chatky', 'Na letiště','Do práce na stavbě','Nebuď zvědavej :P','do Albertu','do Kauflandu', 'Všechny cesty vedou do Říma'];
-                 if(msg.indexOf('@MFE kam') !== -1){                
+                 if(msg.indexOf('@QPlug.cz kam') !== -1){                
                       if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + KAMMsg[Math.floor(Math.random() * KAMMsg.length)]);
                   }
@@ -1279,7 +1279,7 @@ dclookupOnUserJoin: function (id) {
                    }
               }
                  var KDOMsg = ['ƦΦHLiK_PƦΦDUCtiΦn || ΜFΣ','FALSEYING','- Karamel -', 'vanilka','♫Peťuš55♫','-kebabuss-',' _(Jassyk)_ ','Franta72',' GynekologisT_SexualisT','NEZNÁME','NYGA NYGA', 'OMGKNEDLIK', 'Polkov',' samikk ','ThePyrotechYoshi', 'Vιктσя🎧 ','♔Kevinko68♔',' ⚓☣ᶠᶸᶜᵏ✠♛ɪңʉsмāŋ♛✠ᶠᶸᶜᵏ☣⚓','BiachYeah','Corה','InterZ','Lסใใӌกқα ღ','SemiTruck', 'SiesBichO','Styx25','Česneček','Šášula^^','ҒИC ᗯᖇᗴST'];
-                 if(msg.indexOf('@MFE Kdo') !== -1 || msg.indexOf('@MFE kdo') !== -1 || msg.indexOf('@MFE a kdo') !== -1 || msg.indexOf('@MFE a kto') !== -1 || msg.indexOf('@MFE KDO') !== -1 || msg.indexOf('@MFE kto') !== -1 || msg.indexOf('@MFE Kto') !== -1){                
+                 if(msg.indexOf('@QPlug.cz Kdo') !== -1 || msg.indexOf('@QPlug.cz kdo') !== -1 || msg.indexOf('@QPlug.cz a kdo') !== -1 || msg.indexOf('@QPlug.cz a kto') !== -1 || msg.indexOf('@QPlug.cz KDO') !== -1 || msg.indexOf('@QPlug.cz kto') !== -1 || msg.indexOf('@QPlug.cz Kto') !== -1){                
                       if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + KDOMsg[Math.floor(Math.random() * KDOMsg.length)]);
                   }
@@ -1287,7 +1287,7 @@ dclookupOnUserJoin: function (id) {
                    }
               }
                  var KOHOMsg = ['ƦΦHLiK_PƦΦDUCtiΦn || ΜFΣ','FALSEYING','- Karamel -', 'vanilka','♫Peťuš55♫','-kebabuss-',' _(Jassyk)_ ','Franta72',' GynekologisT_SexualisT','NEZNÁME','NYGA NYGA', 'OMGKNEDLIK', 'Polkov',' samikk ','ThePyrotechYoshi', 'Vιктσя🎧 ','♔Kevinko68♔',' ⚓☣ᶠᶸᶜᵏ✠♛ɪңʉsмāŋ♛✠ᶠᶸᶜᵏ☣⚓','BiachYeah','Corה','InterZ','Lסใใӌกқα ღ','SemiTruck', 'SiesBichO','Styx25','Česneček','Šášula^^','ҒИC ᗯᖇᗴST'];
-                 if(msg.indexOf('@MFE Koho') !== -1 || msg.indexOf('@MFE na koho') !== -1 || msg.indexOf('@MFE a koho') !== -1 || msg.indexOf('@MFE a na koho') !== -1 || msg.indexOf('@MFE koho') !== -1 || msg.indexOf('@MFE KOHO') !== -1){                
+                 if(msg.indexOf('@QPlug.cz Koho') !== -1 || msg.indexOf('@QPlug.cz na koho') !== -1 || msg.indexOf('@QPlug.cz a koho') !== -1 || msg.indexOf('@QPlug.cz a na koho') !== -1 || msg.indexOf('@QPlug.cz koho') !== -1 || msg.indexOf('@QPlug.cz KOHO') !== -1){                
                       if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + KOHOMsg[Math.floor(Math.random() * KOHOMsg.length)]);
                  }
@@ -1296,7 +1296,7 @@ dclookupOnUserJoin: function (id) {
               }
 
                  var KOLIKMsg = ['147','120','180','87','75','68','31','102', '3','17','20','8','5','70','25','1','29','42', '19','90','106'];
-                 if(msg.indexOf('@MFE kolik') !== -1 || msg.indexOf('@MFE Kolik') !== -1 || msg.indexOf('@MFE a kolik') !== -1 || msg.indexOf('@MFE Kolko') !== -1 || msg.indexOf('@MFE kolko') !== -1 || msg.indexOf('@MFE koľko') !== -1){                
+                 if(msg.indexOf('@QPlug.cz kolik') !== -1 || msg.indexOf('@QPlug.cz Kolik') !== -1 || msg.indexOf('@QPlug.cz a kolik') !== -1 || msg.indexOf('@QPlug.cz Kolko') !== -1 || msg.indexOf('@QPlug.cz kolko') !== -1 || msg.indexOf('@QPlug.cz koľko') !== -1){                
                      if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + KOLIKMsg[Math.floor(Math.random() * KOLIKMsg.length)]);
                  }
@@ -1304,7 +1304,7 @@ dclookupOnUserJoin: function (id) {
                    }
              }
                    var GLOBALZPRAVYMsg = ['Ano','Ne','Jasný','Zapomeň na to','Samozřejmě','Opravdu ne!','Jo','Jistě','Snad si nemyslíš, že ano?','NE!!','Mé karty říkají, že ne','Magická koule říká ano','No to opravdu ne'];
-                 if(msg.indexOf('@MFE') !== -1){                
+                 if(msg.indexOf('@QPlug.cz') !== -1){                
                      if (basicBot.settings.inteligence) {   
              API.sendChat("@" + chat.un + " " + GLOBALZPRAVYMsg[Math.floor(Math.random() * GLOBALZPRAVYMsg.length)]);
                  }
@@ -1931,11 +1931,11 @@ API.sendChat('[@' + from + '] Minihra nastavena na ' + tos + '');
 },
 
 tipommand: {
-command: ['tip', 't'],
+command: ['t'],
 rank: 'user',
 type: 'startsWith',
 functionality: function (chat, cmd) {
-if (chat.message.length < 5) { return void (0); }
+if (chat.message.length < 3) { return void (0); }
 if (!basicBot.room.tipovacka.active) {return void (0);}
 
 function validateTokens(user){
@@ -1965,7 +1965,7 @@ var gni = parseInt(gn);
 var giverTokens = validateTokens(chat.un);
 
 if (giverTokens < 5){
-return API.sendChat("[@" + chat.un + "] Nemáš dostatek QPoints na hádaní odpovědí. Tip stojí 5 QPoints."); 
+return API.sendChat("[@" + chat.un + "] Pokus stojí 5 QPoints!"); 
 }
 
 if (gni === basicBot.room.tipovacka.currentNumber || gn === basicBot.room.tipovacka.currentNumber.toString()){
@@ -1974,38 +1974,22 @@ giverTokens -= 5;
 localStorage.setItem(chat.un, giverTokens);
 }
 
-else if (basicBot.room.tipovacka.obtiznost == 6){
-if (gn < basicBot.room.tipovacka.currentNumber) {
-                giverTokens -= 5;
-                localStorage.setItem(chat.un, giverTokens);
-                API.sendChat('[@' + chat.un + '] Správný výsledek je větší!');
-            } else if (gn > basicBot.room.tipovacka.currentNumber) {
-                giverTokens -= 5;
-                localStorage.setItem(chat.un, giverTokens);
-                API.sendChat('[@' + chat.un + '] Správný výsledek je menší!');   
 
-}
-}
 else if (basicBot.room.tipovacka.obtiznost == 5){
 giverTokens -= 5;
 localStorage.setItem(chat.un, giverTokens);
-API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gni + '!');    
+API.sendChat('Špatná odpověď: ' + gni + '');    
 }
 
 else if (basicBot.room.tipovacka.obtiznost == 7){
 giverTokens -= 5;
 localStorage.setItem(chat.un, giverTokens);
-API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gni + '!');    
+API.sendChat('Špatná odpověď: ' + gni + '');    
 }
 else{
-if (gn < basicBot.room.tipovacka.currentNumber) {
-                giverTokens -= 5;
-                localStorage.setItem(chat.un, giverTokens);
-                API.sendChat('[@' + chat.un + '] Správné číslo je větší!');
-            } else if (gn > basicBot.room.tipovacka.currentNumber) {
-                giverTokens -= 5;
-                localStorage.setItem(chat.un, giverTokens);
-                API.sendChat('[@' + chat.un + '] Správné číslo je menší!');   
+giverTokens -= 5;
+localStorage.setItem(chat.un, giverTokens);
+API.sendChat('Špatné číslo: ' + gn + '');      
 
 }
 }
@@ -4522,6 +4506,10 @@ API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz môže použiť 
 API.on(API.CHAT, welcome);
 API.on(API.CHAT, antispam);
 API.on(API.CHAT, antispam2);
+API.on(API.CHAT, minihraspam);
+API.on(API.CHAT, minihraspam2);
+API.on(API.CHAT, minihraspam3);
+API.on(API.CHAT, minihraspam4);
 
 function welcome(chat){
 var msg = chat.message;
@@ -4550,6 +4538,59 @@ setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 mi
 
 }
 }
+function minihraspam(chat){
+var msg = chat.message;
+var from = chat.un;
+var fromid = chat.uid;
+
+if(
+msg.indexOf("Špatná odpověď") !== -1){
+if(fromid == "23843691"){
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 milisekund = 20 sekund
+}
+
+}
+}
+function minihraspam2(chat){
+var msg = chat.message;
+var from = chat.un;
+var fromid = chat.uid;
+
+if(
+msg.indexOf("Špatné číslo") !== -1){
+if(fromid == "23843691"){
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 milisekund = 20 sekund
+}
+
+}
+}
+function minihraspam3(chat){
+var msg = chat.message;
+var from = chat.un;
+var fromid = chat.uid;
+
+if(
+msg.indexOf("QPoints se správnou odpovědi") !== -1){
+if(fromid == "23843691"){
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 milisekund = 40 sekund
+}
+
+}
+}
+function minihraspam4(chat){
+var msg = chat.message;
+var from = chat.un;
+var fromid = chat.uid;
+
+if(
+msg.indexOf("Odpovídejte pomocí !t") !== -1){
+if(fromid == "23843691"){
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 180000); // 180 000 milisekund = 180 sekund
+}
+
+}
+}
+
 
 function antispam2(chat){
 var msg = chat.message;
