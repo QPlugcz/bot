@@ -1717,7 +1717,7 @@ var currentDJ = API.getDJ().username;
 var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
 
 if (giverTokens < strhnout){
-return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek QPoints k zaslání dárku!"); 
+return API.sendChat("[@"+ chat.un +"] Nemáš dostatek QPoints k zaslání dárku!"); 
 }
 
 else if (receiver === chat.un){
@@ -1730,12 +1730,12 @@ localStorage.setItem(chat.un, giverTokens);
 
 if (space === -1){ 
 localStorage.setItem(currentDJ, cislo);
-return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateli " + currentDJ + "");
+return API.sendChat("[ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateľovi " + currentDJ + "");
 }
 
 else{
 localStorage.setItem(receiver, cislo);
-return API.sendChat("/me [ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateli " + receiver + "");
+return API.sendChat("[ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateľovi " + receiver + "");
 }
 
 }
@@ -1893,7 +1893,7 @@ if (gni === 6){
 tos = "matematiku.";
 }
 
-API.sendChat('/me [@' + from + '] Minihra nastavena na ' + tos + '');
+API.sendChat('[@' + from + '] Minihra nastavena na ' + tos + '');
 
 }
 },
@@ -1933,7 +1933,7 @@ var gni = parseInt(gn);
 var giverTokens = validateTokens(chat.un);
 
 if (giverTokens < 5){
-return API.sendChat("/me [@" + chat.un + "] Nemáš dostatek QPoints na hádaní odpovědí. Tip stojí 5 QPoints."); 
+return API.sendChat("[@" + chat.un + "] Nemáš dostatek QPoints na hádaní odpovědí. Tip stojí 5 QPoints."); 
 }
 
 if (gni === basicBot.room.tipovacka.currentNumber || gn === basicBot.room.tipovacka.currentNumber.toString()){
@@ -1956,7 +1956,7 @@ if (gn < basicBot.room.tipovacka.currentNumber) {
 else if (basicBot.room.tipovacka.obtiznost == 5){
 giverTokens -= 5;
 localStorage.setItem(chat.un, giverTokens);
-API.sendChat('/me [@' + chat.un + '] Špatná odpověď: ' + gni + '');    
+API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gni + '!');    
 }
 
 else{
@@ -2017,7 +2017,7 @@ var currentDJ = API.getDJ().username;
 var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
 
 if (giverTokens <= -999){
-return API.sendChat("/me [@" + chat.un + "] Chyba v transakci."); 
+return API.sendChat("[@" + chat.un + "] Chyba v transakci."); 
 }
 
 else{
@@ -2026,12 +2026,12 @@ localStorage.setItem(chat.un, giverTokens);
 
 if (space === -1){ 
 localStorage.setItem(currentDJ, cislo);
-return API.sendChat("/me [@" + currentDJ + "] Bylo vám přičteno na účet " + strhnout + " QPoints.");
+return API.sendChat("[@" + currentDJ + "] Bylo vám přičteno na účet " + strhnout + " QPoints.");
 }
 
 else{
 localStorage.setItem(receiver, cislo);
-return API.sendChat("/me [@" + receiver + "] Bylo vám přičteno na účet " + strhnout + " QPoints.");
+return API.sendChat("[@" + receiver + "] Bylo vám přičteno na účet " + strhnout + " QPoints.");
 }
 
 }
@@ -2082,7 +2082,7 @@ var currentDJ = API.getDJ().username;
 var cislo = parseInt(receiverTokens, 10) - parseInt(strhnout,10);
 
 if (giverTokens <= -999){
-return API.sendChat("/me [@" + chat.un + "] Chyba v transakci."); 
+return API.sendChat("[@" + chat.un + "] Chyba v transakci."); 
 }
 
 else{
@@ -2091,12 +2091,12 @@ localStorage.setItem(chat.un, giverTokens);
 
 if (space === -1){ 
 localStorage.setItem(currentDJ, cislo);
-return API.sendChat("/me [@" + currentDJ + "] Bylo vám strženo z účtu " + strhnout + " QPoints.");
+return API.sendChat("[@" + currentDJ + "] Bylo vám strženo z účtu " + strhnout + " QPoints.");
 }
 
 else{
 localStorage.setItem(receiver, cislo);
-return API.sendChat("/me [@" + receiver + "] Bylo vám strženo z účtu " + strhnout + " QPoints.");
+return API.sendChat("[@" + receiver + "] Bylo vám strženo z účtu " + strhnout + " QPoints.");
 }
 
 }
@@ -2146,7 +2146,7 @@ return API.sendChat("[@" + chat.un + "] Chceš mít jedinečný odznak dle tvéh
 else{
 giverTokens -= 1000;
 localStorage.setItem(chat.un, giverTokens);
-return API.sendChat("["+ chat.un +"] Zakoupil jste si vlastní odznak. Kontaktujte nyní @Tessi Tess a domluvte se.");
+return API.sendChat("["+ chat.un +"] Zakoupil jste si vlastní odznak. Odscreenujte túto správu a kontaktujte @Tessi Tess.");
 }
 
 }
@@ -2194,7 +2194,7 @@ return API.sendChat("[@" + chat.un + "] Aktivuj si VIP u nás za 5000 QPoints a 
 else{
 giverTokens -= 5000;
 localStorage.setItem(chat.un, giverTokens);
-return API.sendChat("[ VIP ] Gratulujeme @" + chat.un +"! Nyní patříte mezi VIP členy! Všechny vaše výhody budou aktivovány v nejblížších dnech!");
+return API.sendChat("[ VIP ] Gratulujeme @" + chat.un +"! Nyní patříte mezi QPlug.cz VIP členy! Odscreenujte túto správu a kontaktujte Vedení komunity. Všechny vaše výhody budou aktivovány v nejblížších hodinách/dnech!");
 }
 
 }
@@ -2329,12 +2329,12 @@ similar += results.query.results.lfm.artist.similar.artist[1].name;
 similar += ", ";
 similar += results.query.results.lfm.artist.similar.artist[2].name;
 
-API.sendChat("/me [@" + chat.un + "] Jméno: " + name + " | Žánr: " + genres + " | Podobné skupiny: " + similar + " | Obrázek: " + picture);
+API.sendChat("[@" + chat.un + "] Jméno: " + name + " | Žánr: " + genres + " | Podobné skupiny: " + similar + " | Obrázek: " + picture);
 
 }
 
 catch (e){
-API.sendChat("/me [@" + chat.un + "] Omlouváme se, ale server nenalezl žádné informace o tomto zpěvákovi či hudební skupině.");
+API.sendChat("[@" + chat.un + "] Omlouváme se, ale server nenalezl žádné informace o tomto zpěvákovi či hudební skupině.");
 }
 
 },100);
@@ -2387,7 +2387,7 @@ var receiverTokens = validateTokens(receiver);
 var currentDJ = API.getDJ().username; 
 
 if (giverTokens <= -999){
-return API.sendChat("/me [@" + chat.un + "] Kód chyby 999"); 
+return API.sendChat("[@" + chat.un + "] Chyba 404."); 
 }
 
 else{
@@ -2397,13 +2397,13 @@ localStorage.setItem(chat.un, giverTokens);
 if (space === -1){ 
 receiverTokens -= 0;
 localStorage.setItem(currentDJ, receiverTokens);
-return API.sendChat("/me [@"+ chat.un +"] Úžívateľ "+ currentDJ +" má na konte "+ receiverTokens +" QPoints!"); 
+return API.sendChat("[@"+ chat.un +"] Úžívateľ "+ currentDJ +" má na konte "+ receiverTokens +" QPoints!"); 
 }
 
 else{
 receiverTokens -= 0;
 localStorage.setItem(receiver, receiverTokens);
-return API.sendChat("/me [@"+ chat.un +"] Užívateľ "+ receiver +" má na konte "+ receiverTokens +" QPoints!");
+return API.sendChat("[@"+ chat.un +"] Užívateľ "+ receiver +" má na konte "+ receiverTokens +" QPoints!");
 }
 
 }
@@ -2713,7 +2713,7 @@ else return API.sendChat(subChat(basicBot.chat.invalidtime, {name: chat.un}));
 },
 
 afktimeCommand: {
-command: 'afktime',
+command: ['afktime', 'afkt'],
 rank: 'user',
 type: 'startsWith',
 functionality: function (chat, cmd) {
@@ -2872,7 +2872,7 @@ API.sendChat(subChat(basicBot.chat.roulettejoin, {name: chat.un}));
 },
 
 jointimeCommand: {
-command: ['jointime', 'active'],
+command: ['jointime', 'active', 'jt'],
 rank: 'bouncer',
 type: 'startsWith',
 functionality: function (chat, cmd) {
@@ -3069,7 +3069,7 @@ return API.sendChat("/me [ OZNAM | @djs ] Minihry jsou nyní zapnuté.");
 },
             
 statusCommand: {
-command: ['status', 'funkcie'],
+command: ['status', 'settings', 'sett'],
 rank: 'bouncer',
 type: 'exact',
 functionality: function (chat, cmd) {
@@ -3143,7 +3143,7 @@ return API.sendChat(msg);
 },
 
 timeguardCommand: {
-command: 'timeguard',
+command: ['timeguard', 'tg'],
 rank: 'bouncer',
 type: 'exact',
 functionality: function (chat, cmd) {
