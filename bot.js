@@ -3272,7 +3272,7 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-var msg = data.message;
+var msg = chat.message;
 var current_dj = API.getDJ().username;
 var woots = API.getScore().positive * 1;
 var grabs = API.getScore().grabs * 2;
