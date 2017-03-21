@@ -3263,6 +3263,27 @@ else return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'funct
 }
 },
 
+qpcCommand: {
+command: ['qpc', 'qpcalculator'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var msg = data.message;
+var current_dj = API.getDJ().username;
+var woots = API.getScore().positive * 1;
+var grabs = API.getScore().grabs * 2;
+var vysledok = woots + grabs;
+
+API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ vysledok +" QPoints!");
+
+}
+}
+},
+
 jaCommand: {
 command: ['ja','já', 'cicina', 'iq', 'sexy', 'nálada', 'nalada'],
 rank: 'user',
