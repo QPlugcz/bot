@@ -256,7 +256,7 @@ status: false,
 name: "QBot",
 loggedInID: null,
 scriptLink: "https://rawgit.com/FALSEYING/MFEBOT/master/system.js",
-cmdLink: "https://musicforeveryone.6f.sk/prikazy",
+cmdLink: "http://qplug.funsite.cz/bot/commands",
 chatLink: "https://rawgit.com/QPlugcz/QBot/master/package/qplugcz.json",
 chat: null,
 loadChat: loadChat,
@@ -3327,15 +3327,17 @@ var franta = "5032556";
 var tessi = "5477951";
 var hellbyte = "4635487";
 var pinguin = "4006230";
-var atti = "13505684";
 var lemon = "5948294";
+var bonki = "6345878";
+var zinder = "Doplníme";
+var atti = "6614885";
 
 // VIP    
 var dave = "3431885";
 var repi = "5006795";
 var tessi = "5477951";
 
-if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == dave || fromid == atti || fromid == pinguin || fromid == repi || fromid == lemon){
+if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == dave || fromid == bonki || fromid == zinder || fromid == atti || fromid == pinguin || fromid == repi || fromid == lemon){
 $("#grab").click();
 $(".pop-menu ul li:first-child").mousedown();
 API.sendChat("[@"+ from +"] Bot grabol aktuálnu pesničku!");
@@ -3384,13 +3386,15 @@ var franta = "5032556";
 var tessi = "5477951";
 var hellbyte = "4635487";
 var Pinguin = "4006230";
-var Atti = "13505684";
 var Lemon = "5948294";
+var bonki = "6345878";
+var zinder = "Doplníme";
+var atti = "6614885";
 //VIP    
 var Dave = "3431885";
 var Repi = "5006795";
 
-if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == Dave || fromid == Atti || fromid == Pinguin || fromid == Repi || fromid == Lemon){
+if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == Dave || fromid == bonki || fromid == zinder || fromid == atti || fromid == Pinguin || fromid == Repi || fromid == Lemon){
 API.sendChat("[@"+ from +"] " + zacatek[Math.floor(Math.random() * zacatek.length)] + " " + jaky[Math.floor(Math.random() * jaky.length)] + " kamarád " + uzivatel[(cislo - 1)].username + " s tím, ať jdete " + kam[Math.floor(Math.random() * kam.length)] + ". Odpověděl jsi, že ne, radši půjdeš " + co[Math.floor(Math.random() * co.length)] + ".");
 setTimeout(function(){ API.sendChat("Nakonec tě přemluvil. Cestou jste potkali " + jake[Math.floor(Math.random() * jake.length)] + " kamarády " + uzivatel2[(cislo2 - 1)].username + " a " + uzivatel3[(cislo3 - 1)].username + ". Zeptal ses, jestli chtějí jít s vámi. Na to ti " + jak[Math.floor(Math.random() * jak.length)] + " odpověděli, ať na to zapomeneš " + proc[Math.floor(Math.random() * proc.length)] + ""); }, 700);
 setTimeout(function(){ API.sendChat("Tak jsi jen pokrčil rameny a pokračovali jste v cestě " + kam[Math.floor(Math.random() * kam.length)] + ", abyste " + jak[Math.floor(Math.random() * jak.length)] + " " + co2[Math.floor(Math.random() * co2.length)] + " " + proc2[Math.floor(Math.random() * proc2.length)] + ""); }, 1500);
@@ -4266,7 +4270,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/prikazy!");
+API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/commands");
 return false;
 }
 
@@ -4279,11 +4283,11 @@ return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/prikazy!");
+return API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/commands");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Príkazy našeho systému najdeš na http://qplug.funsite.cz/prikazy!");
+return API.sendChat("[@"+ user.username +"] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/commands");
 }
 
 }
@@ -4404,11 +4408,14 @@ var msg = data.message;
 var fromid = data.uid;
 var from = data.un;
 // Staff
-var atti = "13505684";
 var lemon = "5948294";
+var bonki = "6345878";
+var zinder = "Doplníme";
+var atti = "6614885";
 
 if(msg === "!bouncer"){
-if(fromid == atti || fromid == lemon){
+if(fromid == bonki || fromid == zinder || fromid == atti || fromid == lemon){
+
 API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 2); }, 500);
 }
@@ -4425,11 +4432,13 @@ var msg = data.message;
 var fromid = data.uid;
 var from = data.un;
 // Staff
-var atti = "13505684";
 var lemon = "5948294";
+var bonki = "6345878";
+var zinder = "Doplníme";
+var atti = "6614885";
 
-if(msg === "!unbouncer"){
-if(fromid == atti || fromid == lemon){
+if(msg === "!bouncer"){
+if(fromid == bonki || fromid == zinder || fromid == atti || fromid == lemon){
 API.sendChat("[@"+ from +"] Použil si Demote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 0); }, 500);
 }
@@ -4447,17 +4456,14 @@ var fromid = data.uid;
 var from = data.un;
 // Staff
 var pipi = "6045137";
-var bonki = "6345878";
 var germ = "4741752";
-var qajkick = "";
 var thepsycho = "4280235";
 var thomasine = "24953133";
-var zinder = "";
 var demon = "6632231";
 var petus = "5351087";
 
 if(msg === "!rdj"){
-if(fromid == pipi || fromid == bonki || fromid == germ || fromid == qajkick || fromid == thepsycho || fromid == thomasine || fromid == zinder || fromid == demon || fromid == petus){
+if(fromid == pipi || fromid == bonki || fromid == germ || fromid == thepsycho || fromid == thomasine || fromid == zinder || fromid == demon || fromid == petus){
 API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 1); }, 500);
 }
@@ -4475,17 +4481,14 @@ var fromid = data.uid;
 var from = data.un;
 // Staff
 var pipi = "6045137";
-var bonki = "6345878";
 var germ = "4741752";
-var qajkick = "";
 var thepsycho = "4280235";
 var thomasine = "24953133";
-var zinder = "";
 var demon = "6632231";
 var petus = "5351087";
 
 if(msg === "!unrdj"){
-if(fromid == pipi || fromid == bonki || fromid == germ || fromid == qajkick || fromid == thepsycho || fromid == thomasine || fromid == zinder || fromid == demon || fromid == petus){
+if(fromid == pipi || fromid == germ || fromid == thepsycho || fromid == thomasine || fromid == demon || fromid == petus){
 API.sendChat("[@"+ from +"] Použil si Demote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 0); }, 500);
 }
