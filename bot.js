@@ -804,39 +804,7 @@ dclookupOnUserJoin: function (id) {
                     return false;
                 }
             },
-          afkCheck: function (chat) {
-                var msg, id;
-                var rank = basicBot.roomUtilities.rankToNumber(basicBot.settings.afkRankCheck);
-                        var user = basicBot.userUtilities.lookupUser(id);
-                        if (typeof user !== 'boolean') {
-                            var plugUser = basicBot.userUtilities.getUser(user);
-                            if (rank !== null && basicBot.userUtilities.getPermission(plugUser) <= rank) {
-                                var name = plugUser.username;
-                                var warncount = user.afkWarningCount;
-                                if (msg.indexOf('test') > -1) {
-                                    if (warncount === 0) {
-                                        API.sendChat("warn #1");
-                                        user.afkWarningCount = 3;
-                                        user.afkCountdown = setTimeout(function (userToChange) {
-                                            userToChange.afkWarningCount = 1;
-                                        }, 90 * 1000, user);
-                                    }
-                                    else if (warncount === 1) {
-                                        API.sendChat("warn #2");
-                                        user.afkWarningCount = 3;
-                                        user.afkCountdown = setTimeout(function (userToChange) {
-                                            userToChange.afkWarningCount = 2;
-                                        }, 30 * 1000, user);
-                                    }
-                                    else if (warncount === 2) {
-                                    API.sendChat("warn #3");    
-                                            
-                                        }
-                                        user.afkWarningCount = 0;
-                                    }
-                                }
-                           } 
-            },
+
             smartSkip: function (reason) {
                 var dj = API.getDJ();
                 var id = dj.id;
