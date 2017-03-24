@@ -338,6 +338,7 @@ room: {
 
         tipovacka: {
                 currentNumber: 0,
+                zapisne: 0,
                 obtiznost: 1,
                 active: false,
                 countdown: null,
@@ -351,31 +352,31 @@ room: {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 9) + 1);
                         basicBot.room.tipovacka.max = 10;
               
-            API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte 25 QPoints! Pokus stojí 5 QPoints.');  
+            API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte 25 QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');  
                     }
                     if (basicBot.room.tipovacka.obtiznost == 2) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 24) + 1);
                         basicBot.room.tipovacka.max = 25;
-            API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte 75 QPoints! Pokus stojí 5 QPoints.'); 
+            API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte 75 QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.'); 
              
                     }
             if (basicBot.room.tipovacka.obtiznost == 3) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 49) + 1);
                         basicBot.room.tipovacka.max = 50;
-              API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte 150 QPoints! Pokus stojí 5 QPoints.'); 
+              API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte 150 QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.'); 
              
                     }
                     if (basicBot.room.tipovacka.obtiznost == 4) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 99) + 1);
                         basicBot.room.tipovacka.max = 100; 
                     
-                    API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte 400 QPoints! Pokus stojí 5 QPoints.');
+                    API.sendChat('[ MINIHRA | @djs ] Myslím si číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte 400 QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
           }      
             if (basicBot.room.tipovacka.obtiznost == 5) {
                         var barvy = ["red","yellow","orange","blue","green","purple","brown","black","pink"];
                         basicBot.room.tipovacka.currentNumber = barvy[Math.floor(Math.random() * barvy.length)];
                         basicBot.room.tipovacka.max = "white"; 
-            API.sendChat('[ MINIHRA | @djs ] Myslím si barvu v angličtině. Odpovídejte pomocí !t text a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.'); 
+            API.sendChat('[ MINIHRA | @djs ] Myslím si barvu v angličtině. Odpovídejte pomocí !t text a vyhrajte 30 QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.'); 
                     }
                         
           
@@ -394,7 +395,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
     }
     
     basicBot.room.tipovacka.currentNumber = vysledek;
-    API.sendChat('[ MINIHRA | @djs ] Vypočítejte příklad ' + priklad + ' :question: Odpovídejte pomocí !t číslo a vyhrajte 30 QPoints! Pokus stojí 5 QPoints.');
+    API.sendChat('[ MINIHRA | @djs ] Vypočítejte příklad ' + priklad + ' :question: Odpovídejte pomocí !t číslo a vyhrajte 30 QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
 }
                       if (basicBot.room.tipovacka.obtiznost == 7) {
                         var otazka = ["pldjug","lakanduf","ojah","ketara","munikota"];
@@ -415,7 +416,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
             if (slovo === "munikota") { 
             basicBot.room.tipovacka.currentNumber = "komunita";                     
                     }
-          API.sendChat('[ MINIHRA | @djs ] Rozluštěte slovo "' + slovo + '". Odpovídejte pomocí !t text a vyhrajte 50 QPoints! Pokus stojí 5 QPoints.');            
+          API.sendChat('[ MINIHRA | @djs ] Rozluštěte slovo "' + slovo + '". Odpovídejte pomocí !t text a vyhrajte 50 QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');            
                     }
                     },
                     
@@ -1896,38 +1897,46 @@ if (chat.message.length < 6) {return void (0);}
 
 var gn = chat.message.substring(cmd.length + 1);
 var gni = parseInt(gn);
+var typ = gn.length;
+var lastSpace = chat.message.lastIndexOf(' ');
+var pokus = chat.message.substring(typ + 1);
+var pokus2 = parseInt(pokus);
+var vyhra = chat.message.substring(lastSpace + 1);
+var vyhra2 = parseInt(vyhra);
 var from = chat.un;
 basicBot.room.tipovacka.obtiznost = gni;
+basicBot.room.tipovacka.zapisne = pokus2;
+basicBot.room.tipovacka.vyhra = vyhra2;
 var tos = "undefined";
 
 if (gni === 1){
-tos = "hádaní čísel. (1 až 10)";
+tos = "Čísla (1-10)";
 }
 
 if (gni === 2){
-tos = "hádaní čísel. (1 až 25)";
+tos = "Čísla (1-25)";
 }
 
 if (gni === 3){
-tos = "hádaní čísel. (1 až 50)";
+tos = "Čísla (1-50)";
 }
 
 if (gni === 4){
-tos = "hádaní čísel. (1 až 100)";
+tos = "Čísla (1-100)";
 }
 
 if (gni === 5){
-tos = "hádaní barev v angličtině.";
+tos = "Barvy v angličtině";
 }
 
 if (gni === 6){
-tos = "matematiku.";
+tos = "Matematika";
 }
 if (gni === 7){
-tos = "luštění slov.";
+tos = "Luštění slov";
 }
 
-API.sendChat('[@' + from + '] Minihra nastavena na ' + tos + '');
+API.sendChat('[@' + from + '] Nastavení minihry | Typ: ' + tos + ' | Cena pokusu: ' + pokus2 + ' QPoints | Výhra: ' + vyhra2 + ' QPoints');
 
 }
 },
@@ -1966,33 +1975,33 @@ var gn = chat.message.substring(cmd.length + 1);
 var gni = parseInt(gn);
 var giverTokens = validateTokens(chat.un);
 
-if (giverTokens < 5){
-return API.sendChat("[@" + chat.un + "] Pokus stojí 5 QPoints!"); 
+if (giverTokens < basicBot.room.tipovacka.zapisne){
+return API.sendChat("[@" + chat.un + "] Pokus stojí " + basicBot.room.tipovacka.zapisne + " QPoints!"); 
 }
 
 if (gni === basicBot.room.tipovacka.currentNumber || gn === basicBot.room.tipovacka.currentNumber.toString()){
 basicBot.room.tipovacka.endNumberGame(chat.uid);
-giverTokens -= 5;
+giverTokens -= basicBot.room.tipovacka.zapisne;
 localStorage.setItem(chat.un, giverTokens);
 }
 
 
 else if (basicBot.room.tipovacka.obtiznost == 5){
-giverTokens -= 5;
+giverTokens -= basicBot.room.tipovacka.zapisne;
 localStorage.setItem(chat.un, giverTokens);
-API.sendChat('Špatná odpověď: ' + gni + '');    
+API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gni + '');    
 }
 
 else if (basicBot.room.tipovacka.obtiznost == 7){
-giverTokens -= 5;
+giverTokens -= basicBot.room.tipovacka.zapisne;
 localStorage.setItem(chat.un, giverTokens);
-API.sendChat('Špatná odpověď: ' + gni + '');    
+API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gni + '');    
 }
 
 else{
-giverTokens -= 5;
+giverTokens -= basicBot.room.tipovacka.zapisne;
 localStorage.setItem(chat.un, giverTokens);
-API.sendChat('Špatné číslo: ' + gn + '');      
+API.sendChat('[@' + chat.un + '] Špatné číslo: ' + gn + '');      
 
 
 }
