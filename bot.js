@@ -155,6 +155,7 @@ ROOM»                              https://plug.dj/qplug-czsk
                 basicBot.room.users = room.users;
                 basicBot.room.historyList = room.historyList;
                 basicBot.room.mutedUsers = room.mutedUsers;
+                basicBot.room.autoskip = room.autoskip;
                 basicBot.room.roomstats = room.roomstats;
                 basicBot.room.messages = room.messages;
                 basicBot.room.queue = room.queue;
@@ -272,7 +273,7 @@ startupCap: 1, // 1-200
 startupVolume: 0, // 0-100
 startupEmoji: false, // true or false
 autowoot: true,
-autoskip: false,
+autoskip: true,
 smartSkip: true,
 cmdDeletion: true,
 maximumDc: 120,
@@ -308,7 +309,8 @@ room: {
             skippable: true,
             usercommand: true,
             allcommand: true,
-            //autoskip: false,
+            autoskip: true,
+            autoskipTimer: null, 
             queueing: 0,
             queueable: true,
             currentDJID: null,
@@ -1090,7 +1092,7 @@ dclookupOnUserJoin: function (id) {
                 user.ownSong = false;
             }
             
-            clearTimeout(basicBot.room.autoskipTimer);
+             clearTimeout(basicBot.room.autoskipTimer);
             if (basicBot.settings.autoskip) {
                 var remaining = obj.media.duration * 1000;
                 var startcid = API.getMedia().cid;
