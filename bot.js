@@ -343,41 +343,35 @@ room: {
                 obtiznost: 1,
                 active: false,
                 countdown: null,                
-                max: 100,
 
                 hrat: function() {
                     basicBot.room.tipovacka.active = true;
                     basicBot.room.tipovacka.countdown = setTimeout(function () {
                         basicBot.room.tipovacka.endNumberGameTime();
                     }, 180 * 1000);{
-                        basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 9) + 1);
+                        basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 10) + 1);
                     if (basicBot.room.tipovacka.obtiznost == 1) 
-                        basicBot.room.tipovacka.max = 10;
               
-            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');  
+            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo 1-10. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');  
                     }
                     if (basicBot.room.tipovacka.obtiznost == 2) {
-                        basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 24) + 1);
-                        basicBot.room.tipovacka.max = 25;
-            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo od 1 do' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.'); 
+                        basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 25) + 1);
+            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo 1-25. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.'); 
              
                     }
             if (basicBot.room.tipovacka.obtiznost == 3) {
-                        basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 49) + 1);
-                        basicBot.room.tipovacka.max = 50;
-              API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.'); 
+                        basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 50) + 1);
+              API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo 1-50. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.'); 
              
                     }
                     if (basicBot.room.tipovacka.obtiznost == 4) {
-                        basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 99) + 1);
-                        basicBot.room.tipovacka.max = 100; 
+                        basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 100) + 1);
                     
-                    API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo od 1 do ' + basicBot.room.tipovacka.max + '. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
+                    API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo od 1-100. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
           }      
             if (basicBot.room.tipovacka.obtiznost == 5) {
-                        var barvy = ["red","yellow","orange","blue","green","purple","brown","black","pink"];
+                        var barvy = ["red","yellow","orange","blue","green","purple","brown","black","pink","white"];
                         basicBot.room.tipovacka.currentNumber = barvy[Math.floor(Math.random() * barvy.length)];
-                        basicBot.room.tipovacka.max = "white"; 
             API.sendChat('[ MINIHRA | @djs ] Uhodněte zadanou barvu v angličtině. Odpovídejte pomocí !t text a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.'); 
                     }
                         
