@@ -2061,7 +2061,7 @@ var lastSpace = msg.lastIndexOf(' ');
 var receiver = msg.substring(msg.indexOf("@") + 1);
 var giverTokens = validateTokens(chat.un);
 var receiverTokens = validateTokens(receiver);
-var strhnout = chat.message.substring(chat.message.indexOf(receiver)+1,chat.message.length);
+var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
 var currentDJ = API.getDJ().username; 
 var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
 
@@ -2126,7 +2126,7 @@ var lastSpace = msg.lastIndexOf(' ');
 var receiver = msg.substring(msg.indexOf("@") + 1);
 var giverTokens = validateTokens(chat.un);
 var receiverTokens = validateTokens(receiver);
-var strhnout = chat.message.substring(chat.message.indexOf(receiver)+1,chat.message.length);
+var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
 var currentDJ = API.getDJ().username; 
 var cislo = parseInt(receiverTokens, 10) - parseInt(strhnout,10);
 
