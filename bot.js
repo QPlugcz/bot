@@ -1963,7 +1963,7 @@ rank: 'user',
 type: 'startsWith',
 functionality: function (chat, cmd) {
 if (chat.message.length < 3) { return void (0); }
-if (basicBot.room.tipovacka.active) {
+if (!basicBot.room.tipovacka.active) {
 API.sendChat("[" + chat.un + "] Neprobíhá žádná minihra!");
 }
 
