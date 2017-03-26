@@ -556,7 +556,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 songCount: 0
             };
             this.lastKnownPosition = null;
-            
+        this.napomenuti = 0;    
         this.better = null;
         this.offered = 0;
         this.isBetting = false;
@@ -1203,10 +1203,45 @@ dclookupOnUserJoin: function (id) {
                 }
                 if (basicBot.settings.cmdDeletion && msg.startsWith(basicBot.settings.commandLiteral)) {
                     API.moderateDeleteChat(chat.cid);
- 
-   // Umělá inteligence - English version / v1.0.0
-
                 }
+var hodnota = 1;     
+var zacatek = 0;
+if (user.napomenuti === 0) {
+if(msg.indexOf('kokot') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){     
+setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
+}
+}
+if (user.napomenuti === 1) {
+if(msg.indexOf('kokot') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){     
+setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
+    }
+    }
+if (user.napomenuti === 2) {
+if(msg.indexOf('kokot') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){      
+setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
+    }
+    }
+if (user.napomenuti === 3) {
+if(msg.indexOf('kokot') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){     
+API.sendChat("[@" + user.username + "] Bylo ti strženo 20 QPoints za vulgaritu v chatu. Uklidni svůj slovník nebo budeš umlčen/a!");
+var giverTokens = validateTokens(chat.un);
+giverTokens -= 20;
+localStorage.setItem(chat.un, giverTokens);
+setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
+    }
+    }
+if (user.napomenuti === 4) {
+if(msg.indexOf('kokot') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){      
+API.sendChat("[@" + user.username + "] Byl/a jsi umlčen/a za opakovanou vulgaritu v chatu!");
+API.moderateMuteUser(user.username, 1, API.MUTE.SHORT);
+setTimeout(function(){ user.napomenuti === zacatek; }, 2000);
+    }
+    }
+    else {
+
+                
+    }
+                
                  var HELLOMsg = ['Hi','Hello my friend!','Hey','Ahoy!','Good morning!','Heyy!','Cheers!','Greetings!', 'Get off my back!'];
                  if(msg.indexOf('@QPlug.cz Hello') !== -1 || msg.indexOf('@QPlug.cz hello') !== -1 || msg.indexOf('@QPlug.cz Hi') !== -1 || msg.indexOf('@QPlug.cz hi') !== -1 || msg.indexOf('@QPlug.cz Hey') !== -1 || msg.indexOf('@QPlug.cz hey') !== -1 || msg.indexOf('@QPlug.cz Ahoy') !== -1 || msg.indexOf('@QPlug.cz ahoy') !== -1 || msg.indexOf('@QPlug.cz Sup') !== -1 || msg.indexOf('@QPlug.cz sup') !== -1 || msg.indexOf('@QPlug.cz Good morning') !== -1 || msg.indexOf('@QPlug.cz Good day') !== -1 || msg.indexOf('@QPlug.cz Good night') !== -1 || msg.indexOf('@QPlug.cz good morning') !== -1 || msg.indexOf('@QPlug.cz Bye') !== -1 || msg.indexOf('@QPlug.cz bye') !== -1){                
                    if (basicBot.settings.inteligence) {   
@@ -2508,6 +2543,20 @@ tokens = localStorage.getItem(user);
 }
 
 return tokens;
+
+}
+}
+},
+napomenutiCommand: {
+command: ['napomenuti'],
+rank: 'user',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+var user = basicBot.userUtilities.lookupUser(chat.uid);
+API.sendChat("[@" + user.username + "] Byl jsi dnes napomenut " + user.napomenuti + "x");
 
 }
 }
