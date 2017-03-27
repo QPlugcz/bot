@@ -3692,6 +3692,42 @@ setTimeout(function(){ API.moderateForceSkip(); }, 3000);
 }
 },
 
+waitlistCommand: {
+command: ['waitlist', 'wl'],
+rank: 'bouncer',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var from = chat.un;
+var code_id = msg.substr(cmd.length + 1);
+var space = msg.indexOf(' ');
+
+if (space === -1){
+API.sendChat("[@"+ from +"] Musíš zadať kód! | l = Lock | u = Unlock | c = Lock a Clear.");
+}
+
+if(code_id === "l"){
+API.sendChat("[@"+ from +"] Uzamkol si zoznam čakania!");
+setTimeout(function(){ API.moderateLockWaitList(true, false); }, 3000);
+}
+
+if(code_id === "u"){
+API.sendChat("[@"+ from +"] Odomkol si zoznam čakania!");
+setTimeout(function(){ API.moderateLockWaitList(false, false); }, 3000);
+}
+
+if(code_id === "c"){
+API.sendChat("[@"+ from +"] Uzamkol a vyčistil si zoznam čakania!");
+setTimeout(function(){ API.moderateForceSkip(true, true); }, 3000);
+}
+
+}
+}
+},
+
 /*startCommand: {
 command: ['start', 'začať', 'začat', 'zacať', 'zacat'],
 rank: 'user',
