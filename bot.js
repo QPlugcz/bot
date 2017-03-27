@@ -3368,7 +3368,6 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-var msg = data.message;
 var current_dj = API.getDJ().username;
 var waitlist_count = API.getWaitList().length;
 
