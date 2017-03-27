@@ -556,7 +556,9 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 songCount: 0
             };
             this.lastKnownPosition = null;
-        this.napomenuti = 0;    
+        this.napomenuti = 0;  
+        this.mazlicek = 0;
+        this.jidlo = 100;
         this.better = null;
         this.offered = 0;
         this.isBetting = false;
@@ -667,6 +669,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 }
                 else API.moderateMoveDJ(id, pos);
             },
+         
            dclookup: function (id) {
                 var user = basicBot.userUtilities.lookupUser(id);
                 if (typeof user === 'boolean') return basicBot.chat.usernotfound;
@@ -1111,6 +1114,7 @@ dclookupOnUserJoin: function (id) {
             storeToStorage();
             sendToSocket();
         },
+      
         eventWaitlistupdate: function (users) {
             if (users.length < 50) {
                 if (basicBot.room.queue.id.length > 0 && basicBot.room.queueable) {
@@ -1203,10 +1207,233 @@ dclookupOnUserJoin: function (id) {
                 }
                 if (basicBot.settings.cmdDeletion && msg.startsWith(basicBot.settings.commandLiteral)) {
                     API.moderateDeleteChat(chat.cid);
+               } 
+                var giverTokens = validateTokens(chat.un);
+                var cislo = parseInt(giverTokens, 10) + parseInt(50,10);
+                if (user.mazlicek === 1) { 
+                setTimeout(function(){ 
+                API.sendChat("[@" + user.username + "] Získal/a jsi 50 QP za starost o mazlíčka! ");
+                localStorage.setItem(chat.un, cislo); }, 1800000); 
                 }
+              var user = basicBot.userUtilities.lookupUser(chat.uid);
+              if (user.mazlicek === 1) { 
+              if (user.jidlo === 100) {   
+                    setTimeout(function(){ user.jidlo = 99; }, 36000); 
+              
+              } else if (user.jidlo === 99) {    
+                    setTimeout(function(){ user.jidlo = 98; }, 36000);
+              } else if (user.jidlo === 98) {    
+                    setTimeout(function(){ user.jidlo = 97; }, 36000);
+              } else if (user.jidlo === 97) {    
+                    setTimeout(function(){ user.jidlo = 96; }, 36000);
+              } else if (user.jidlo === 96) {    
+                    setTimeout(function(){ user.jidlo = 95; }, 36000);
+              } else if (user.jidlo === 95) {    
+                    setTimeout(function(){ user.jidlo = 94; }, 36000);
+              } else if (user.jidlo === 94) {    
+                    setTimeout(function(){ user.jidlo = 93; }, 36000);
+              } else if (user.jidlo === 93) {    
+                    setTimeout(function(){ user.jidlo = 92; }, 36000);
+              } else if (user.jidlo === 92) {    
+                    setTimeout(function(){ user.jidlo = 91; }, 36000);
+              } else if (user.jidlo === 91) {    
+                    setTimeout(function(){ user.jidlo = 90; }, 36000);
+              } else if (user.jidlo === 90) {    
+                    setTimeout(function(){ user.jidlo = 89; }, 36000); 
+              } else if (user.jidlo === 89) {    
+                    setTimeout(function(){ user.jidlo = 88; }, 36000);
+              } else if (user.jidlo === 88) {    
+                    setTimeout(function(){ user.jidlo = 87; }, 36000);
+              } else if (user.jidlo === 87) {    
+                    setTimeout(function(){ user.jidlo = 86; }, 36000);
+              } else if (user.jidlo === 86) {    
+                    setTimeout(function(){ user.jidlo = 85; }, 36000);
+              } else if (user.jidlo === 85) {    
+                    setTimeout(function(){ user.jidlo = 84; }, 36000);
+              } else if (user.jidlo === 84) {    
+                    setTimeout(function(){ user.jidlo = 83; }, 36000);
+              } else if (user.jidlo === 83) {    
+                    setTimeout(function(){ user.jidlo = 82; }, 36000);
+              } else if (user.jidlo === 82) {    
+                    setTimeout(function(){ user.jidlo = 81; }, 36000);
+              } else if (user.jidlo === 81) {    
+                    setTimeout(function(){ user.jidlo = 80; }, 36000);
+              } else if (user.jidlo === 80) {    
+                    setTimeout(function(){ user.jidlo = 79; }, 36000);
+              } else if (user.jidlo === 79) {    
+                    setTimeout(function(){ user.jidlo = 78; }, 36000);
+              } else if (user.jidlo === 78) {    
+                    setTimeout(function(){ user.jidlo = 77; }, 36000);
+              } else if (user.jidlo === 77) {    
+                    setTimeout(function(){ user.jidlo = 76; }, 36000);
+              } else if (user.jidlo === 76) {    
+                    setTimeout(function(){ user.jidlo = 75; }, 36000);
+              } else if (user.jidlo === 75) {    
+                    setTimeout(function(){ user.jidlo = 74; }, 36000);
+              } else if (user.jidlo === 74) {    
+                    setTimeout(function(){ user.jidlo = 73; }, 36000);
+              } else if (user.jidlo === 73) {    
+                    setTimeout(function(){ user.jidlo = 72; }, 36000);
+              } else if (user.jidlo === 72) {    
+                    setTimeout(function(){ user.jidlo = 71; }, 36000); 
+              } else if (user.jidlo === 71) {    
+                    setTimeout(function(){ user.jidlo = 70; }, 36000);
+              } else if (user.jidlo === 70) {    
+                    setTimeout(function(){ user.jidlo = 69; }, 36000);
+              } else if (user.jidlo === 69) {    
+                    setTimeout(function(){ user.jidlo = 68; }, 36000);
+              } else if (user.jidlo === 68) {    
+                    setTimeout(function(){ user.jidlo = 67; }, 36000);
+              } else if (user.jidlo === 67) {    
+                    setTimeout(function(){ user.jidlo = 66; }, 36000);
+              } else if (user.jidlo === 66) {    
+                    setTimeout(function(){ user.jidlo = 65; }, 36000);
+              } else if (user.jidlo === 65) {    
+                    setTimeout(function(){ user.jidlo = 64; }, 36000);
+              } else if (user.jidlo === 64) {    
+                    setTimeout(function(){ user.jidlo = 63; }, 36000);
+              } else if (user.jidlo === 63) {    
+                    setTimeout(function(){ user.jidlo = 62; }, 36000);
+              } else if (user.jidlo === 62) {    
+                    setTimeout(function(){ user.jidlo = 61; }, 36000);
+              } else if (user.jidlo === 61) {    
+                    setTimeout(function(){ user.jidlo = 60; }, 36000);
+              } else if (user.jidlo === 60) {    
+                    setTimeout(function(){ user.jidlo = 59; }, 36000);
+              } else if (user.jidlo === 59) {    
+                    setTimeout(function(){ user.jidlo = 58; }, 36000);
+              } else if (user.jidlo === 58) {    
+                    setTimeout(function(){ user.jidlo = 57; }, 36000);
+              } else if (user.jidlo === 57) {    
+                    setTimeout(function(){ user.jidlo = 56; }, 36000);
+              } else if (user.jidlo === 56) {    
+                    setTimeout(function(){ user.jidlo = 55; }, 36000);
+              } else if (user.jidlo === 55) {    
+                    setTimeout(function(){ user.jidlo = 54; }, 36000);
+              } else if (user.jidlo === 54) {    
+                    setTimeout(function(){ user.jidlo = 53; }, 36000); 
+              } else if (user.jidlo === 53) {    
+                    setTimeout(function(){ user.jidlo = 52; }, 36000);
+              } else if (user.jidlo === 52) {    
+                    setTimeout(function(){ user.jidlo = 51; }, 36000);
+              } else if (user.jidlo === 51) {    
+                    setTimeout(function(){ user.jidlo = 50; }, 36000);
+              } else if (user.jidlo === 50) {    
+                    setTimeout(function(){ user.jidlo = 49; }, 36000);
+              } else if (user.jidlo === 49) {    
+                    setTimeout(function(){ user.jidlo = 48; }, 36000);
+              } else if (user.jidlo === 48) {    
+                    setTimeout(function(){ user.jidlo = 47; }, 36000);
+              } else if (user.jidlo === 47) {    
+                    setTimeout(function(){ user.jidlo = 46; }, 36000);
+              } else if (user.jidlo === 46) {    
+                    setTimeout(function(){ user.jidlo = 45; }, 36000);
+              } else if (user.jidlo === 45) {    
+                    setTimeout(function(){ user.jidlo = 44; }, 36000);
+              } else if (user.jidlo === 44) {    
+                    setTimeout(function(){ user.jidlo = 43; }, 36000);
+              } else if (user.jidlo === 43) {    
+                    setTimeout(function(){ user.jidlo = 42; }, 36000);
+              } else if (user.jidlo === 42) {    
+                    setTimeout(function(){ user.jidlo = 41; }, 36000);
+              } else if (user.jidlo === 41) {    
+                    setTimeout(function(){ user.jidlo = 40; }, 36000);
+              } else if (user.jidlo === 40) {    
+                    setTimeout(function(){ user.jidlo = 39; }, 36000);
+              } else if (user.jidlo === 39) {    
+                    setTimeout(function(){ user.jidlo = 38; }, 36000);
+              } else if (user.jidlo === 38) {    
+                    setTimeout(function(){ user.jidlo = 37; }, 36000);
+              } else if (user.jidlo === 37) {    
+                    setTimeout(function(){ user.jidlo = 36; }, 36000);
+              } else if (user.jidlo === 36) {    
+                    setTimeout(function(){ user.jidlo = 35; }, 36000); 
+              } else if (user.jidlo === 35) {    
+                    setTimeout(function(){ user.jidlo = 34; }, 36000);
+              } else if (user.jidlo === 34) {    
+                    setTimeout(function(){ user.jidlo = 33; }, 36000);
+              } else if (user.jidlo === 33) {    
+                    setTimeout(function(){ user.jidlo = 32; }, 36000);
+              } else if (user.jidlo === 32) {    
+                    setTimeout(function(){ user.jidlo = 31; }, 36000);
+              } else if (user.jidlo === 31) {    
+                    setTimeout(function(){ user.jidlo = 30; }, 36000);
+              } else if (user.jidlo === 30) {    
+                    setTimeout(function(){ user.jidlo = 29; }, 36000);
+              } else if (user.jidlo === 29) {    
+                    setTimeout(function(){ user.jidlo = 28; }, 36000);
+              } else if (user.jidlo === 28) {    
+                    setTimeout(function(){ user.jidlo = 27; }, 36000);
+              } else if (user.jidlo === 27) {    
+                    setTimeout(function(){ user.jidlo = 26; }, 36000);
+              } else if (user.jidlo === 26) {    
+                    setTimeout(function(){ user.jidlo = 25; }, 36000);
+              } else if (user.jidlo === 25) {    
+                    API.sendChat("[@" + user.username + "] Zdraví tě tvůj pes! Zbyla mi už jen čtvrtina jídla, hoď mi nějaký pamlsek!");
+                    setTimeout(function(){ user.jidlo = 24; }, 36000);
+              } else if (user.jidlo === 24) {    
+                    setTimeout(function(){ user.jidlo = 23; }, 36000);
+              } else if (user.jidlo === 23) {    
+                    setTimeout(function(){ user.jidlo = 22; }, 36000);
+              } else if (user.jidlo === 22) {    
+                    setTimeout(function(){ user.jidlo = 21; }, 36000);
+              } else if (user.jidlo === 21) {    
+                    setTimeout(function(){ user.jidlo = 20; }, 36000);
+              } else if (user.jidlo === 20) {    
+                    setTimeout(function(){ user.jidlo = 19; }, 36000);
+              } else if (user.jidlo === 19) {    
+                    setTimeout(function(){ user.jidlo = 18; }, 36000);
+              } else if (user.jidlo === 18) {    
+                    setTimeout(function(){ user.jidlo = 17; }, 36000);
+              } else if (user.jidlo === 17) {    
+                    setTimeout(function(){ user.jidlo = 16; }, 36000);
+              } else if (user.jidlo === 16) {    
+                    setTimeout(function(){ user.jidlo = 15; }, 36000); 
+              } else if (user.jidlo === 15) {    
+                    setTimeout(function(){ user.jidlo = 14; }, 36000);
+              } else if (user.jidlo === 14) {    
+                    setTimeout(function(){ user.jidlo = 13; }, 36000);
+              } else if (user.jidlo === 13) {    
+                    setTimeout(function(){ user.jidlo = 12; }, 36000);
+              } else if (user.jidlo === 12) {    
+                    setTimeout(function(){ user.jidlo = 11; }, 36000);
+              } else if (user.jidlo === 11) {    
+                    setTimeout(function(){ user.jidlo = 10; }, 36000);
+              } else if (user.jidlo === 10) {    
+                    setTimeout(function(){ user.jidlo = 9; }, 36000);
+              } else if (user.jidlo === 9) {    
+                    setTimeout(function(){ user.jidlo = 8; }, 36000);
+              } else if (user.jidlo === 8) {    
+                    setTimeout(function(){ user.jidlo = 7; }, 36000);
+              } else if (user.jidlo === 7) {    
+                    setTimeout(function(){ user.jidlo = 6; }, 36000);
+              } else if (user.jidlo === 6) {    
+                    setTimeout(function(){ user.jidlo = 5; }, 36000);
+              } else if (user.jidlo === 5) {    
+                     API.sendChat("[@" + user.username + "] Haló! Tady tvůj pes! Rychle mi kup jídlo nebo za chvíli nebudu mít co jíst!");
+                    setTimeout(function(){ user.jidlo = 4; }, 36000);
+              } else if (user.jidlo === 4) {    
+                    setTimeout(function(){ user.jidlo = 3; }, 36000);
+              } else if (user.jidlo === 3) {    
+                    setTimeout(function(){ user.jidlo = 2; }, 36000);
+              } else if (user.jidlo === 2) {    
+                    setTimeout(function(){ user.jidlo = 1; }, 36000);
+               } else if (user.jidlo === 1) {   
+                    setTimeout(function(){ user.jidlo = 0; }, 36000);
+               } else if (user.jidlo === 0) {    
+                      API.sendChat("[@" + user.username + "] Nedokázal/a jsi včas nakrmit psa a proto si jej ztratil/a!"); 
+                     setTimeout(function(){ user.mazlicek = 0; }, 2000);
+                  }
+              
+              
+    else {
+}
+                  
+                } 
+                
 var hodnota = 1;     
 var from = chat.un;
-                
+                                  
 if (user.napomenuti === 0) {
 if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){     
 setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
@@ -1435,6 +1662,7 @@ setTimeout(function(){ user.napomenuti = 0; }, 2000);
                 }
                 return executed;
             },
+          
             action: function (chat) {
                 var user = basicBot.userUtilities.lookupUser(chat.uid);
                 if (chat.type === 'message') {
@@ -1813,106 +2041,7 @@ return API.sendChat("[ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + 
 
 }
 }, 
-            
-            //Duel - Zatím nefunkční, pracují na tom.
- /*       
-duelCommand: {
-command: ['duel'],  //The command to be called. With the standard command literal this would be: !tip
-rank: 'user', //Minimum user permission to use the command
-type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-var hrac = validateTokens(basicBot.room.duel[0].username);
-if (basicBot.room.duelReady && basicBot.room.duel[0] === undefined && basicBot.userUtilities.lookupUserName(chat.message.substr(7))){
-                    if (basicBot.userUtilities.lookupUserName(chat.message.substr(7))){
-                        basicBot.room.duel.push(chat.uid);
-                        basicBot.room.duel.push(basicBot.userUtilities.lookupUserName(chat.message.substr(7)));
-                        API.sendChat('[@' + chat.message.substr(7) + '] Uživatel @' + chat.un + ' tě vyzval na duel o 20 QPoints. Reaguj na duel pomocí !ano nebo !ne.');
-                        setTimeout(function(){
-                            basicBot.room.duel = [];
-                        }, 120000);
-                        }
-                     else if (hrac < 20){  
-                     API.sendChat('[' + chat.un + '] K hraní duelu potřebuješ 20 QPoints.');    
-                    } else {
-                        API.sendChat('[' + chat.un + '] Duel se používá pomocí !duel @jméno');
-                    }
-
-            
-
-}
-}
-
-}
-},
-            */
-                  /* 
-anoCommand: {
-command: ['ano'],  //The command to be called. With the standard command literal this would be: !tip
-rank: 'user', //Minimum user permission to use the command
-type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-var hrac = validateTokens(basicBot.room.duel[1].username);
-if (chat.uid === basicBot.room.duel[1]) {
-if (hrac > 19){
-                    API.sendChat('[ DUEL ] Uživatel @' + API.getUser(basicBot.room.duel[1]).username + ' přijal žádost o duel.');
-                    var win = Math.round(Math.random());
-                    win === 0 ? lose = 1 : lose = 0;
-                    var winner = basicBot.room.duel[win];
-                    var loser = basicBot.room.duel[lose];
-                    setTimeout(function(){
-                        var vitez = validateTokens(winner);
-                        var vyhra = parseInt(vitez, 10) + parseInt(20,10);
-                        var prohra = validateTokens(loser);
-                        prohra -= 20;
-                        localStorage.setItem(winner, vyhra);
-                        localStorage.setItem(loser, prohra);
-                        API.sendChat('[ DUEL ] Uživatel @' + API.getUser(winner).username + ' vyhrál duel a získá 20 QPoints od uživatele ' + API.getUser(loser).username + ' ');
-                        basicBot.room.duelReady = false;
-                        setTimeout(function(){basicBot.room.duelReady = true}, basicBot.settings.duelDelay * 1000);
-                        basicBot.room.duel = [];
-                    }, 5000)
-                }
-            }  
-          }
-        }, 
-neCommand: {
-command: ['ne','nie'],  //The command to be called. With the standard command literal this would be: !tip
-rank: 'user', //Minimum user permission to use the command
-type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
- if (chat.uid === basicBot.room.duel[1]){
-                  basicBot.room.duel = [];
-                  basicBot.room.duelReady = true;
-                    API.sendChat('[ DUEL ] Uživatel ' + chat.un + ' zamítnul žádost o duel s ' + API.getUser(basicBot.room.duel[0]).username + '');
-                }
-            }
-          }
-        },
-setduelCommand: {
-command: ['setduel'],  //The command to be called. With the standard command literal this would be: !tip
-rank: 'manager', //Minimum user permission to use the command
-type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-  if (!isNaN(parseInt(chat.message.substr(11))) && parseInt(chat.message.substr(11)) >= 30) {
-                basicBot.settings.duelDelay = parseInt(chat.message.substr(11));
-                API.sendChat('[' + chat.un + '] Limit duelu je nyní nastaven na ' + basicBot.settings.duelDelay + ' sekund.');
-              } else {
-                sAPI.sendChat('[' + chat.un + '] Neplatná délka limitu pro duel.');
-                }
-            }
-        }, */
+               
 spustitminihruCommand: {
 command: 'sm',
 rank: 'manager',
@@ -1925,6 +2054,95 @@ basicBot.room.tipovacka.hrat();
 
 }
 },
+buydogCommand: {
+command: 'buydog',
+rank: 'user',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
+if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
+var user = basicBot.userUtilities.lookupUser(chat.uid);  
+var giverTokens = validateTokens(chat.un);
+var zivot = 1;
+    
+if (giverTokens < 100){
+return API.sendChat("[@" + user.username + "] Nemáš dostatek QPoints ke koupi psa!"); 
+}  
+    
+if (giverTokens > 99){
+if (user.mazlicek === 0) {
+API.sendChat("[@" + user.username + "] Právě sis zakoupil psa! Pes ti přinese příjmy QPoints, ale musíš se o něj starat! Jeho hlavní potřeba je jídlo. Hlídej si jeho potřebu v příkazu !dog. Více o psovi nalezneš zde: http://qplug.funsite.cz/bot/changelog ");
+giverTokens -= 100;
+localStorage.setItem(user.username, giverTokens);
+setTimeout(function(){ user.mazlicek += zivot; }, 2000);    
+}
+}
+else if (user.mazlicek === 1) {
+API.sendChat("[@" + user.username + "] Nemůžeš vlastnit zárověň více než jednoho psa!");
+
+    }
+    else {
+
+                
+}
+}
+},
+ dogCommand: {
+command: 'dog',
+rank: 'user',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
+if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
+var user = basicBot.userUtilities.lookupUser(chat.uid);  
+
+if (user.mazlicek === 1) {
+API.sendChat("[@" + user.username + "] Tvůj pes má " + user.jidlo + "% jídla.");
+}
+else if (user.mazlicek === 0) {
+API.sendChat("[@" + user.username + "] Nemáš žádného mazlíčka!");
+
+    }
+    else {
+
+                
+    }
+}
+},  
+buyfoodCommand: {
+command: 'buyfood',
+rank: 'user',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
+if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
+var user = basicBot.userUtilities.lookupUser(chat.uid);  
+var giverTokens = validateTokens(chat.un);  
+if (giverTokens < 30){
+return API.sendChat("[@" + user.username + "] Nemáš dostatek QPoints ke koupi jídla!"); 
+}  
+    
+if (giverTokens > 29){
+if (user.mazlicek === 1) {
+API.sendChat("[@" + user.username + "] Doplněno jídlo pro mazlíčka.");
+setTimeout(function(){ user.jidlo = 100; }, 2000);    
+
+    
+giverTokens -= 30;
+localStorage.setItem(user.username, giverTokens);
+}
+}
+else if (user.mazlicek === 0) {
+API.sendChat("[@" + user.username + "] Nemáš žádného mazlíčka!");
+
+    }
+    else {
+
+                
+    }
+}
+},       
+
  stopCommand: {
 command: 'stop',
 rank: 'manager',
@@ -3241,26 +3459,6 @@ return API.sendChat(msg);
 }
 },
 
-inteligenceCommand: {
-command: ['inteligence', 'inteligencia', 'ai'],
-rank: 'manager',
-type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else {
-if (basicBot.settings.inteligence) {
-basicBot.settings.inteligence = !basicBot.settings.inteligence;
-return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.inteligence}));
-}
-else {
-basicBot.settings.inteligence = !basicBot.settings.inteligence;
-return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.inteligence}));
-}
-}
-}
-},
-
 timeguardCommand: {
 command: ['timeguard', 'tg'],
 rank: 'bouncer',
@@ -3368,26 +3566,13 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
+var msg = chat.message;
 var current_dj = API.getDJ().username;
-var waitlist_count = API.getWaitList().length;
-
 var woots = API.getScore().positive * 1;
 var grabs = API.getScore().grabs * 2;
-var mehs = API.getScore().negative * 1;
-var vysledok = woots + grabs - mehs;
+var vysledok = woots + grabs;
 
-var double_woots = API.getScore().positive * 2;
-var double_grabs = API.getScore().grabs * 2;
-var double_mehs = API.getScore().negative * 1;
-var double_vysledok = double_woots + double_grabs - double_mehs;
-
-if(waitlist_count < "15"){
 API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ vysledok +" QPoints!");
-}
-
-if(waitlist_count >= "15"){
-API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ double_vysledok +" QPoints!");
-}
 
 }
 }
@@ -3686,43 +3871,6 @@ setTimeout(function(){ API.moderateForceSkip(); }, 3000);
 if(skip_reason === "o"){
 API.sendChat("[@"+ current_dj +"] Tvoja pesnička bude preskočená z dôvodu: Ohraná pesnička!");
 setTimeout(function(){ API.moderateForceSkip(); }, 3000);
-}
-
-}
-}
-},
-
-waitlistCommand: {
-command: ['waitlist', 'wl'],
-rank: 'bouncer',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var msg = chat.message;
-var from = chat.un;
-var code_id = msg.substr(cmd.length + 1);
-var space = msg.indexOf(' ');
-
-if (space === -1){
-API.sendChat("[@"+ from +"] Musíš zadať kód! | l = Lock | u = Unlock | c = Lock a Clear.");
-}
-
-if(code_id === "l"){
-API.sendChat("[@"+ from +"] Uzamkol si zoznam čakania!");
-setTimeout(function(){ API.moderateLockWaitList(true, false); }, 3000);
-}
-
-if(code_id === "u"){
-API.sendChat("[@"+ from +"] Odomkol si zoznam čakania!");
-setTimeout(function(){ API.moderateLockWaitList(false, false); }, 3000);
-}
-
-if(code_id === "c"){
-API.sendChat("[@"+ from +"] Uzamkol a vyčistil si zoznam čakania!");
-setTimeout(function(){ API.moderateForceSkip(true, true); }, 3000);
 }
 
 }
