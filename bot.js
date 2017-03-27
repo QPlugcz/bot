@@ -3241,6 +3241,26 @@ return API.sendChat(msg);
 }
 },
 
+inteligenceCommand: {
+command: ['inteligence', 'inteligencia', 'ai'],
+rank: 'manager',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else {
+if (basicBot.settings.inteligence) {
+basicBot.settings.inteligence = !basicBot.settings.inteligence;
+return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.inteligence}));
+}
+else {
+basicBot.settings.inteligence = !basicBot.settings.inteligence;
+return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.inteligence}));
+}
+}
+}
+},
+
 timeguardCommand: {
 command: ['timeguard', 'tg'],
 rank: 'bouncer',
