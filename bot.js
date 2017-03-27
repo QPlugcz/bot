@@ -3701,6 +3701,7 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
+var msg = chat.message;
 var from = chat.un;
 var code_id = msg.substr(cmd.length + 1);
 var space = msg.indexOf(' ');
