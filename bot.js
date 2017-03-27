@@ -3368,13 +3368,27 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-var msg = chat.message;
+var msg = data.message;
 var current_dj = API.getDJ().username;
+var waitlist_count = API.getWaitList().length;
+
 var woots = API.getScore().positive * 1;
 var grabs = API.getScore().grabs * 2;
-var vysledok = woots + grabs;
+var mehs = API.getScore().negative * 1;
+var vysledok = woots + grabs - mehs;
 
+var double_woots = API.getScore().positive * 2;
+var double_grabs = API.getScore().grabs * 2;
+var double_mehs = API.getScore().negative * 1;
+var double_vysledok = double_woots + double_grabs - double_mehs;
+
+if(waitlist_count < "15"){
 API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ vysledok +" QPoints!");
+}
+
+if(waitlist_count >= "15"){
+API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ double_vysledok +" QPoints!");
+}
 
 }
 }
