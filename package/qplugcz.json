@@ -104,6 +104,8 @@
 
 "activefor": "Systém je aktívny %%TIME%%.",
 
+"whois": "[@%%NAME1%%] Meno: %%NAME2%% | ID: %%ID%% | Hodnosť: %%RANK%% | Jazyk: %%LANGUAGE%% | Status: %%STATUS%%%%PROFILE%%",
+
 "swapinvalid": "\/me @%%NAME%%, Invalid user specified.",
 
 "swapwlonly": "\/me @%%NAME%%, I can swap users only if they are in the waitlist!",
