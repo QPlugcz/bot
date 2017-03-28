@@ -596,6 +596,11 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 }
                 return false;
             },
+            getAllUsers: function() { 
+            return basicBot.room.users; 
+            },
+            
+    
             lookupUserName: function (name) {
                 for (var i = 0; i < basicBot.room.users.length; i++) {
                     var match = basicBot.room.users[i].username.trim() == name.trim();
@@ -1215,222 +1220,23 @@ dclookupOnUserJoin: function (id) {
                 API.sendChat("[@" + user.username + "] Získal/a jsi 50 QP za starost o mazlíčka! ");
                 localStorage.setItem(chat.un, cislo); }, 1800000); 
                 }
-              var user = basicBot.userUtilities.lookupUser(chat.uid);
-              if (user.mazlicek === 1) { 
-              if (user.jidlo === 100) {   
-                    setTimeout(function(){ user.jidlo = 99; }, 36000); 
-              
-              } else if (user.jidlo === 99) {    
-                    setTimeout(function(){ user.jidlo = 98; }, 36000);
-              } else if (user.jidlo === 98) {    
-                    setTimeout(function(){ user.jidlo = 97; }, 36000);
-              } else if (user.jidlo === 97) {    
-                    setTimeout(function(){ user.jidlo = 96; }, 36000);
-              } else if (user.jidlo === 96) {    
-                    setTimeout(function(){ user.jidlo = 95; }, 36000);
-              } else if (user.jidlo === 95) {    
-                    setTimeout(function(){ user.jidlo = 94; }, 36000);
-              } else if (user.jidlo === 94) {    
-                    setTimeout(function(){ user.jidlo = 93; }, 36000);
-              } else if (user.jidlo === 93) {    
-                    setTimeout(function(){ user.jidlo = 92; }, 36000);
-              } else if (user.jidlo === 92) {    
-                    setTimeout(function(){ user.jidlo = 91; }, 36000);
-              } else if (user.jidlo === 91) {    
-                    setTimeout(function(){ user.jidlo = 90; }, 36000);
-              } else if (user.jidlo === 90) {    
-                    setTimeout(function(){ user.jidlo = 89; }, 36000); 
-              } else if (user.jidlo === 89) {    
-                    setTimeout(function(){ user.jidlo = 88; }, 36000);
-              } else if (user.jidlo === 88) {    
-                    setTimeout(function(){ user.jidlo = 87; }, 36000);
-              } else if (user.jidlo === 87) {    
-                    setTimeout(function(){ user.jidlo = 86; }, 36000);
-              } else if (user.jidlo === 86) {    
-                    setTimeout(function(){ user.jidlo = 85; }, 36000);
-              } else if (user.jidlo === 85) {    
-                    setTimeout(function(){ user.jidlo = 84; }, 36000);
-              } else if (user.jidlo === 84) {    
-                    setTimeout(function(){ user.jidlo = 83; }, 36000);
-              } else if (user.jidlo === 83) {    
-                    setTimeout(function(){ user.jidlo = 82; }, 36000);
-              } else if (user.jidlo === 82) {    
-                    setTimeout(function(){ user.jidlo = 81; }, 36000);
-              } else if (user.jidlo === 81) {    
-                    setTimeout(function(){ user.jidlo = 80; }, 36000);
-              } else if (user.jidlo === 80) {    
-                    setTimeout(function(){ user.jidlo = 79; }, 36000);
-              } else if (user.jidlo === 79) {    
-                    setTimeout(function(){ user.jidlo = 78; }, 36000);
-              } else if (user.jidlo === 78) {    
-                    setTimeout(function(){ user.jidlo = 77; }, 36000);
-              } else if (user.jidlo === 77) {    
-                    setTimeout(function(){ user.jidlo = 76; }, 36000);
-              } else if (user.jidlo === 76) {    
-                    setTimeout(function(){ user.jidlo = 75; }, 36000);
-              } else if (user.jidlo === 75) {    
-                    setTimeout(function(){ user.jidlo = 74; }, 36000);
-              } else if (user.jidlo === 74) {    
-                    setTimeout(function(){ user.jidlo = 73; }, 36000);
-              } else if (user.jidlo === 73) {    
-                    setTimeout(function(){ user.jidlo = 72; }, 36000);
-              } else if (user.jidlo === 72) {    
-                    setTimeout(function(){ user.jidlo = 71; }, 36000); 
-              } else if (user.jidlo === 71) {    
-                    setTimeout(function(){ user.jidlo = 70; }, 36000);
-              } else if (user.jidlo === 70) {    
-                    setTimeout(function(){ user.jidlo = 69; }, 36000);
-              } else if (user.jidlo === 69) {    
-                    setTimeout(function(){ user.jidlo = 68; }, 36000);
-              } else if (user.jidlo === 68) {    
-                    setTimeout(function(){ user.jidlo = 67; }, 36000);
-              } else if (user.jidlo === 67) {    
-                    setTimeout(function(){ user.jidlo = 66; }, 36000);
-              } else if (user.jidlo === 66) {    
-                    setTimeout(function(){ user.jidlo = 65; }, 36000);
-              } else if (user.jidlo === 65) {    
-                    setTimeout(function(){ user.jidlo = 64; }, 36000);
-              } else if (user.jidlo === 64) {    
-                    setTimeout(function(){ user.jidlo = 63; }, 36000);
-              } else if (user.jidlo === 63) {    
-                    setTimeout(function(){ user.jidlo = 62; }, 36000);
-              } else if (user.jidlo === 62) {    
-                    setTimeout(function(){ user.jidlo = 61; }, 36000);
-              } else if (user.jidlo === 61) {    
-                    setTimeout(function(){ user.jidlo = 60; }, 36000);
-              } else if (user.jidlo === 60) {    
-                    setTimeout(function(){ user.jidlo = 59; }, 36000);
-              } else if (user.jidlo === 59) {    
-                    setTimeout(function(){ user.jidlo = 58; }, 36000);
-              } else if (user.jidlo === 58) {    
-                    setTimeout(function(){ user.jidlo = 57; }, 36000);
-              } else if (user.jidlo === 57) {    
-                    setTimeout(function(){ user.jidlo = 56; }, 36000);
-              } else if (user.jidlo === 56) {    
-                    setTimeout(function(){ user.jidlo = 55; }, 36000);
-              } else if (user.jidlo === 55) {    
-                    setTimeout(function(){ user.jidlo = 54; }, 36000);
-              } else if (user.jidlo === 54) {    
-                    setTimeout(function(){ user.jidlo = 53; }, 36000); 
-              } else if (user.jidlo === 53) {    
-                    setTimeout(function(){ user.jidlo = 52; }, 36000);
-              } else if (user.jidlo === 52) {    
-                    setTimeout(function(){ user.jidlo = 51; }, 36000);
-              } else if (user.jidlo === 51) {    
-                    setTimeout(function(){ user.jidlo = 50; }, 36000);
-              } else if (user.jidlo === 50) {    
-                    setTimeout(function(){ user.jidlo = 49; }, 36000);
-              } else if (user.jidlo === 49) {    
-                    setTimeout(function(){ user.jidlo = 48; }, 36000);
-              } else if (user.jidlo === 48) {    
-                    setTimeout(function(){ user.jidlo = 47; }, 36000);
-              } else if (user.jidlo === 47) {    
-                    setTimeout(function(){ user.jidlo = 46; }, 36000);
-              } else if (user.jidlo === 46) {    
-                    setTimeout(function(){ user.jidlo = 45; }, 36000);
-              } else if (user.jidlo === 45) {    
-                    setTimeout(function(){ user.jidlo = 44; }, 36000);
-              } else if (user.jidlo === 44) {    
-                    setTimeout(function(){ user.jidlo = 43; }, 36000);
-              } else if (user.jidlo === 43) {    
-                    setTimeout(function(){ user.jidlo = 42; }, 36000);
-              } else if (user.jidlo === 42) {    
-                    setTimeout(function(){ user.jidlo = 41; }, 36000);
-              } else if (user.jidlo === 41) {    
-                    setTimeout(function(){ user.jidlo = 40; }, 36000);
-              } else if (user.jidlo === 40) {    
-                    setTimeout(function(){ user.jidlo = 39; }, 36000);
-              } else if (user.jidlo === 39) {    
-                    setTimeout(function(){ user.jidlo = 38; }, 36000);
-              } else if (user.jidlo === 38) {    
-                    setTimeout(function(){ user.jidlo = 37; }, 36000);
-              } else if (user.jidlo === 37) {    
-                    setTimeout(function(){ user.jidlo = 36; }, 36000);
-              } else if (user.jidlo === 36) {    
-                    setTimeout(function(){ user.jidlo = 35; }, 36000); 
-              } else if (user.jidlo === 35) {    
-                    setTimeout(function(){ user.jidlo = 34; }, 36000);
-              } else if (user.jidlo === 34) {    
-                    setTimeout(function(){ user.jidlo = 33; }, 36000);
-              } else if (user.jidlo === 33) {    
-                    setTimeout(function(){ user.jidlo = 32; }, 36000);
-              } else if (user.jidlo === 32) {    
-                    setTimeout(function(){ user.jidlo = 31; }, 36000);
-              } else if (user.jidlo === 31) {    
-                    setTimeout(function(){ user.jidlo = 30; }, 36000);
-              } else if (user.jidlo === 30) {    
-                    setTimeout(function(){ user.jidlo = 29; }, 36000);
-              } else if (user.jidlo === 29) {    
-                    setTimeout(function(){ user.jidlo = 28; }, 36000);
-              } else if (user.jidlo === 28) {    
-                    setTimeout(function(){ user.jidlo = 27; }, 36000);
-              } else if (user.jidlo === 27) {    
-                    setTimeout(function(){ user.jidlo = 26; }, 36000);
-              } else if (user.jidlo === 26) {    
-                    setTimeout(function(){ user.jidlo = 25; }, 36000);
-              } else if (user.jidlo === 25) {    
-                    API.sendChat("[@" + user.username + "] Zdraví tě tvůj pes! Zbyla mi už jen čtvrtina jídla, hoď mi nějaký pamlsek!");
-                    setTimeout(function(){ user.jidlo = 24; }, 36000);
-              } else if (user.jidlo === 24) {    
-                    setTimeout(function(){ user.jidlo = 23; }, 36000);
-              } else if (user.jidlo === 23) {    
-                    setTimeout(function(){ user.jidlo = 22; }, 36000);
-              } else if (user.jidlo === 22) {    
-                    setTimeout(function(){ user.jidlo = 21; }, 36000);
-              } else if (user.jidlo === 21) {    
-                    setTimeout(function(){ user.jidlo = 20; }, 36000);
-              } else if (user.jidlo === 20) {    
-                    setTimeout(function(){ user.jidlo = 19; }, 36000);
-              } else if (user.jidlo === 19) {    
-                    setTimeout(function(){ user.jidlo = 18; }, 36000);
-              } else if (user.jidlo === 18) {    
-                    setTimeout(function(){ user.jidlo = 17; }, 36000);
-              } else if (user.jidlo === 17) {    
-                    setTimeout(function(){ user.jidlo = 16; }, 36000);
-              } else if (user.jidlo === 16) {    
-                    setTimeout(function(){ user.jidlo = 15; }, 36000); 
-              } else if (user.jidlo === 15) {    
-                    setTimeout(function(){ user.jidlo = 14; }, 36000);
-              } else if (user.jidlo === 14) {    
-                    setTimeout(function(){ user.jidlo = 13; }, 36000);
-              } else if (user.jidlo === 13) {    
-                    setTimeout(function(){ user.jidlo = 12; }, 36000);
-              } else if (user.jidlo === 12) {    
-                    setTimeout(function(){ user.jidlo = 11; }, 36000);
-              } else if (user.jidlo === 11) {    
-                    setTimeout(function(){ user.jidlo = 10; }, 36000);
-              } else if (user.jidlo === 10) {    
-                    setTimeout(function(){ user.jidlo = 9; }, 36000);
-              } else if (user.jidlo === 9) {    
-                    setTimeout(function(){ user.jidlo = 8; }, 36000);
-              } else if (user.jidlo === 8) {    
-                    setTimeout(function(){ user.jidlo = 7; }, 36000);
-              } else if (user.jidlo === 7) {    
-                    setTimeout(function(){ user.jidlo = 6; }, 36000);
-              } else if (user.jidlo === 6) {    
-                    setTimeout(function(){ user.jidlo = 5; }, 36000);
-              } else if (user.jidlo === 5) {    
-                     API.sendChat("[@" + user.username + "] Haló! Tady tvůj pes! Rychle mi kup jídlo nebo za chvíli nebudu mít co jíst!");
-                    setTimeout(function(){ user.jidlo = 4; }, 36000);
-              } else if (user.jidlo === 4) {    
-                    setTimeout(function(){ user.jidlo = 3; }, 36000);
-              } else if (user.jidlo === 3) {    
-                    setTimeout(function(){ user.jidlo = 2; }, 36000);
-              } else if (user.jidlo === 2) {    
-                    setTimeout(function(){ user.jidlo = 1; }, 36000);
-               } else if (user.jidlo === 1) {   
-                    setTimeout(function(){ user.jidlo = 0; }, 36000);
-               } else if (user.jidlo === 0) {    
-                      API.sendChat("[@" + user.username + "] Nedokázal/a jsi včas nakrmit psa a proto si jej ztratil/a!"); 
-                     setTimeout(function(){ user.mazlicek = 0; }, 2000);
-                  }
-              
-              
-    else {
-}
-                  
-                } 
+     
+      setInterval(function(){
+       basicBot.userUtilities.getAllUsers()
+        .forEach(function(user) {
+        
+            if(user.mazlicek === 1) {
                 
+                user.jidlo--;
+                console.log("Procento ubráno!");
+                if(user.jidlo === 0) {
+                
+                    //Udělej něco
+                }
+            }
+    });
+}, 36000);
+
 var hodnota = 1;     
 var from = chat.un;
                                   
