@@ -3198,7 +3198,7 @@ else{
 var profile = "~";
 }
 
-API.sendChat(subChat(basicBot.chat.whois, {name1: chat.un, name2: name, id: id, avatar: avatar, profile: profile, language: language, level: level, joined: joined, rank: rank}));
+API.sendChat(subChat(basicBot.chat.whois, {name1: chat.un, name2: name, id: id, profile: profile, language: language, rank: rank}));
 
 }
 
