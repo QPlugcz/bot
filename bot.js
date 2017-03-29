@@ -2589,13 +2589,43 @@ var tokens = validateTokens(user);
 
 var unranked = 500;
 var silver_1 = 500;
+var silver_2 = 2000;
+var silver_3 = 2500;
+var silver_4 = 4000;
+var silver_5 = 4500;
+var silver_elite = 6000;
+var silver_elite_master = 6500;
 
 if(tokens < unranked){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Nie si zaradený v Rank systéme. Na zaradenie potrebuješ 500 QPoints!");
 }
 
 if(tokens >= silver_1){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver 1!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver I!");
+}
+
+if(tokens >= silver_2){
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver II!");
+}
+
+if(tokens >= silver_3){
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver III!");
+}
+
+if(tokens >= silver_4){
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver IV!");
+}
+
+if(tokens >= silver_5){
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver V!");
+}
+
+if(tokens >= silver_elite){
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver Elite!");
+}
+
+if(tokens >= silver_elite_master){
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver Elite Master!");
 }
 
 }
