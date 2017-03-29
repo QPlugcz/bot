@@ -2575,6 +2575,53 @@ return tokens;
 }
 },
 
+rankCommand: {
+command: 'rank',
+rank: 'user',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var user = chat.un;
+var tokens = validateTokens(user);
+
+var unranked = 500;
+var silver_1 = 500;
+
+if(tokens < unranked){
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Nie si zaradený v Rank systéme. Na zaradenie potrebuješ 500 QPoints!");
+}
+
+if(tokens >= silver_1){
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver 1!");
+}
+
+}
+
+function validateTokens(user){
+var tokens; 
+
+if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
+localStorage.setItem(user, "0");
+tokens = localStorage.getItem(user);
+}
+
+else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
+tokens = localStorage.getItem(user);
+}
+
+else{
+tokens = localStorage.getItem(user);
+}
+
+return tokens;
+
+}
+}
+},
+
 napomenutiCommand: {
 command: ['napomenuti'],
 rank: 'user',
