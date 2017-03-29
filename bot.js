@@ -1213,29 +1213,29 @@ dclookupOnUserJoin: function (id) {
                 if (basicBot.settings.cmdDeletion && msg.startsWith(basicBot.settings.commandLiteral)) {
                     API.moderateDeleteChat(chat.cid);
                } 
-                var giverTokens = validateTokens(chat.un);
-                var cislo = parseInt(giverTokens, 10) + parseInt(50,10);
-                if (user.mazlicek === 1) { 
-                setTimeout(function(){ 
-                API.sendChat("[@" + user.username + "] Získal/a jsi 50 QP za starost o mazlíčka! ");
-                localStorage.setItem(chat.un, cislo); }, 1800000); 
-                }
+//                 var giverTokens = validateTokens(chat.un);
+//                 var cislo = parseInt(giverTokens, 10) + parseInt(50,10);
+//                 if (user.mazlicek === 1) { 
+//                 setTimeout(function(){ 
+//                 API.sendChat("[@" + user.username + "] Získal/a jsi 50 QP za starost o mazlíčka! ");
+//                 localStorage.setItem(chat.un, cislo); }, 1800000); 
+//                 }
      
-      setInterval(function(){
-       basicBot.userUtilities.getAllUsers()
-        .forEach(function(user) {
+//       setInterval(function(){
+//        basicBot.userUtilities.getAllUsers()
+//         .forEach(function(user) {
         
-            if(user.mazlicek === 1) {
+//             if(user.mazlicek === 1) {
                 
-                user.jidlo--;
-                console.log("Procento ubráno!");
-                if(user.jidlo === 0) {
+//                 user.jidlo--;
+//                 console.log("Procento ubráno!");
+//                 if(user.jidlo === 0) {
                 
-                    //Udělej něco
-                }
-            }
-    });
-}, 36000);
+//                     //Udělej něco
+//                 }
+//             }
+//     });
+// }, 36000);
 
 var hodnota = 1;     
 var from = chat.un;
