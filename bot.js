@@ -1807,7 +1807,7 @@ else{
 tokens = localStorage.getItem(user);
 }
 
-return tokens;
+return ~~tokens;
 
 }
 
