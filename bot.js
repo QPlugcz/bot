@@ -3979,7 +3979,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if (medzera === -1){
-API.sendChat("[@" + from.un + "] Miluješ sa?");
+API.sendChat("[@" + from.un + "] Miluješ sám seba?");
 return false;
 }
 
@@ -4487,7 +4487,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/commands");
+API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/commands!");
 return false;
 }
 
@@ -4500,11 +4500,11 @@ return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/commands");
+return API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/commands!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/commands");
+return API.sendChat("[@"+ user.username +"] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/commands!");
 }
 
 }
