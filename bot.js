@@ -1861,94 +1861,94 @@ basicBot.room.tipovacka.hrat();
 }
 },
 
-buydogCommand: {
-command: 'buydog',
-rank: 'user',
-type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
-if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
-var user = basicBot.userUtilities.lookupUser(chat.uid);  
-var giverTokens = validateTokens(chat.un);
-var zivot = 1;
+// buydogCommand: {
+// command: 'buydog',
+// rank: 'user',
+// type: 'exact',
+// functionality: function (chat, cmd) {
+// if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
+// if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
+// var user = basicBot.userUtilities.lookupUser(chat.uid);  
+// var giverTokens = validateTokens(chat.un);
+// var zivot = 1;
     
-if (giverTokens < 100){
-return API.sendChat("[@" + user.username + "] Nemáš dostatek QPoints ke koupi psa!"); 
-}  
+// if (giverTokens < 100){
+// return API.sendChat("[@" + user.username + "] Nemáš dostatek QPoints ke koupi psa!"); 
+// }  
     
-if (giverTokens > 99){
-if (user.mazlicek === 0) {
-API.sendChat("[@" + user.username + "] Právě sis zakoupil psa! Pes ti přinese příjmy QPoints, ale musíš se o něj starat! Jeho hlavní potřeba je jídlo. Hlídej si jeho potřebu v příkazu !dog. Více o psovi nalezneš zde: http://qplug.funsite.cz/bot/changelog ");
-giverTokens -= 100;
-localStorage.setItem(user.username, giverTokens);
-setTimeout(function(){ user.mazlicek += zivot; }, 2000);    
-}
-}
-else if (user.mazlicek === 1) {
-API.sendChat("[@" + user.username + "] Nemůžeš vlastnit zárověň více než jednoho psa!");
+// if (giverTokens > 99){
+// if (user.mazlicek === 0) {
+// API.sendChat("[@" + user.username + "] Právě sis zakoupil psa! Pes ti přinese příjmy QPoints, ale musíš se o něj starat! Jeho hlavní potřeba je jídlo. Hlídej si jeho potřebu v příkazu !dog. Více o psovi nalezneš zde: http://qplug.funsite.cz/bot/changelog ");
+// giverTokens -= 100;
+// localStorage.setItem(user.username, giverTokens);
+// setTimeout(function(){ user.mazlicek += zivot; }, 2000);    
+// }
+// }
+// else if (user.mazlicek === 1) {
+// API.sendChat("[@" + user.username + "] Nemůžeš vlastnit zárověň více než jednoho psa!");
 
-    }
-    else {
+//     }
+//     else {
 
                 
-}
-}
-},
- dogCommand: {
-command: 'dog',
-rank: 'user',
-type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
-if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
-var user = basicBot.userUtilities.lookupUser(chat.uid);  
+// }
+// }
+// },
+//  dogCommand: {
+// command: 'dog',
+// rank: 'user',
+// type: 'exact',
+// functionality: function (chat, cmd) {
+// if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
+// if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
+// var user = basicBot.userUtilities.lookupUser(chat.uid);  
 
-if (user.mazlicek === 1) {
-API.sendChat("[@" + user.username + "] Tvůj pes má " + user.jidlo + "% jídla.");
-}
-else if (user.mazlicek === 0) {
-API.sendChat("[@" + user.username + "] Nemáš žádného mazlíčka!");
+// if (user.mazlicek === 1) {
+// API.sendChat("[@" + user.username + "] Tvůj pes má " + user.jidlo + "% jídla.");
+// }
+// else if (user.mazlicek === 0) {
+// API.sendChat("[@" + user.username + "] Nemáš žádného mazlíčka!");
 
-    }
-    else {
-
-                
-    }
-}
-},  
-buyfoodCommand: {
-command: 'buyfood',
-rank: 'user',
-type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
-if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
-var user = basicBot.userUtilities.lookupUser(chat.uid);  
-var giverTokens = validateTokens(chat.un);  
-if (giverTokens < 30){
-return API.sendChat("[@" + user.username + "] Nemáš dostatek QPoints ke koupi jídla!"); 
-}  
-    
-if (giverTokens > 29){
-if (user.mazlicek === 1) {
-API.sendChat("[@" + user.username + "] Doplněno jídlo pro mazlíčka.");
-setTimeout(function(){ user.jidlo = 100; }, 2000);    
-
-    
-giverTokens -= 30;
-localStorage.setItem(user.username, giverTokens);
-}
-}
-else if (user.mazlicek === 0) {
-API.sendChat("[@" + user.username + "] Nemáš žádného mazlíčka!");
-
-    }
-    else {
+//     }
+//     else {
 
                 
-    }
-}
-},       
+//     }
+// }
+// },  
+// buyfoodCommand: {
+// command: 'buyfood',
+// rank: 'user',
+// type: 'exact',
+// functionality: function (chat, cmd) {
+// if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
+// if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
+// var user = basicBot.userUtilities.lookupUser(chat.uid);  
+// var giverTokens = validateTokens(chat.un);  
+// if (giverTokens < 30){
+// return API.sendChat("[@" + user.username + "] Nemáš dostatek QPoints ke koupi jídla!"); 
+// }  
+    
+// if (giverTokens > 29){
+// if (user.mazlicek === 1) {
+// API.sendChat("[@" + user.username + "] Doplněno jídlo pro mazlíčka.");
+// setTimeout(function(){ user.jidlo = 100; }, 2000);    
+
+    
+// giverTokens -= 30;
+// localStorage.setItem(user.username, giverTokens);
+// }
+// }
+// else if (user.mazlicek === 0) {
+// API.sendChat("[@" + user.username + "] Nemáš žádného mazlíčka!");
+
+//     }
+//     else {
+
+                
+//     }
+// }
+// },       
 
 stopCommand: {
 command: 'stop',
