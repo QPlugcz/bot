@@ -3181,6 +3181,66 @@ API.sendChat(subChat(basicBot.chat.rouletteleave, {name: chat.un}));
 }
 },
 
+waitlistCommand: {
+command: ['waitlist', 'wl'],
+rank: 'bouncer',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var msg = chat.message;
+var from = chat.un;
+var code_id = msg.substr(cmd.length + 1);
+var space = msg.indexOf(' ');
+
+if (space === -1){
+API.sendChat("[@"+ from +"] Musíš zadať kód! | l = Lock | u = Unlock | c = Lock a Clear.");
+}
+
+if(code_id === "l"){
+API.sendChat("[@"+ from +"] Uzamkol si zoznam čakania!");
+setTimeout(function(){ API.moderateLockWaitList(true, false); }, 3000);
+}
+
+if(code_id === "u"){
+API.sendChat("[@"+ from +"] Odomkol si zoznam čakania!");
+setTimeout(function(){ API.moderateLockWaitList(false, false); }, 3000);
+}
+
+if(code_id === "c"){
+API.sendChat("[@"+ from +"] Uzamkol a vyčistil si zoznam čakania!");
+setTimeout(function(){ API.moderateForceSkip(true, true); }, 3000);
+}
+
+}
+}
+},
+
+inteligenceCommand: {
+command: ['inteligence', 'inteligencia', 'ai'],
+rank: 'manager',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+if (basicBot.settings.inteligence){
+basicBot.settings.inteligence = !basicBot.settings.inteligence;
+return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.inteligence}));
+}
+
+else{
+basicBot.settings.inteligence = !basicBot.settings.inteligence;
+return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.inteligence}));
+}
+
+}
+}
+},
+
 // banlistCommand: {
 // command: 'banlist',
 // rank: 'user',
