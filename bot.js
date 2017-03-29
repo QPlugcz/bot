@@ -3508,8 +3508,6 @@ var double_grabs = API.getScore().grabs * 2;
 var double_mehs = API.getScore().negative * 1;
 var double_vysledok = double_woots + double_grabs - double_mehs;
 
-if(msg === "!qpc"){
-
 if(waitlist_count < "15"){
 API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ vysledok +" QPoints!");
 }
