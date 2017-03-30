@@ -2849,7 +2849,7 @@ API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Diamond V!"
 // Global Elite
 var global = 30000;
 
-else if(tokens >= global){
+if(tokens >= global){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Global Elite. Gratulujeme si najvyšší rank!");
 }
 
