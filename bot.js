@@ -2718,23 +2718,23 @@ var bronze3 = 2500;
 var bronze4 = 4000;
 var bronze5 = 4500;
 
-else if(tokens >= bronze1 && tokens <= 1999){
+else if(tokens >= 500 && tokens <= 1999){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze I!");
 }
 
-else if(tokens >= bronze2 && tokens <= 2499){
+else if(tokens >= 2000 && tokens <= 2499){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze II!");
 }
 
-else if(tokens >= bronze3 && tokens <= 3999){
+else if(tokens >= 2500 && tokens <= 3999){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze III!");
 }
 
-else if(tokens >= bronze4 && tokens <= 4499){
+else if(tokens >= 4000 && tokens <= 4499){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze IV!");
 }
 
-else if(tokens >= bronze5 && tokens <= 5999){
+else if(tokens >= 4500 && tokens <= 5999){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze V!");
 }
 
@@ -2745,23 +2745,23 @@ var silver3 = 8000;
 var silver4 = 8500;
 var silver5 = 10000;
 
-else if(tokens >= silver1 && tokens <= 6499){
+else if(tokens >= 6000 && tokens <= 6499){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver I!");
 }
 
-else if(tokens >= silver2 && tokens <= 7999){
+else if(tokens >= 6500 && tokens <= 7999){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver II!");
 }
 
-else if(tokens >= silver3 && tokens <= 8499){
+else if(tokens >= 8000 && tokens <= 8499){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver III!");
 }
 
-else if(tokens >= silver4 && tokens <= 9999){
+else if(tokens >= 8500 && tokens <= 9999){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver IV!");
 }
 
-else if(tokens >= silver5){
+else if(tokens >= 10000){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver V!");
 }
 
