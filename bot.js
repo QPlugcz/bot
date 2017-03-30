@@ -2614,7 +2614,7 @@ return tokens;
 }
 },
 
-rankCommand: {
+/*rankCommand: {
 command: 'rank',
 rank: 'user',
 type: 'exact',
@@ -2797,7 +2797,7 @@ return tokens;
 
 }
 }
-},
+},*/
 
 napomenutiCommand: {
 command: ['napomenuti'],
