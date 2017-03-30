@@ -2692,7 +2692,7 @@ return tokens;
 }
 },
 
-/*rankCommand: {
+rankCommand: {
 command: 'rank',
 rank: 'user',
 type: 'exact',
@@ -2718,7 +2718,7 @@ var bronze3 = 2500;
 var bronze4 = 4000;
 var bronze5 = 4500;
 
-else if(tokens >= bronze1 && tokens <= 1999){
+if(tokens >= bronze1 && tokens <= 1999){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze I!");
 }
 
@@ -2745,7 +2745,7 @@ var silver3 = 8000;
 var silver4 = 8500;
 var silver5 = 10000;
 
-else if(tokens >= silver1 && tokens <= 6499){
+if(tokens >= silver1 && tokens <= 6499){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver I!");
 }
 
@@ -2772,7 +2772,7 @@ var gold3 = 12500;
 var gold4 = 14000;
 var gold5 = 14500;
 
-else if(tokens >= gold1 && tokens <= 11999){
+if(tokens >= gold1 && tokens <= 11999){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Gold I!");
 }
 
@@ -2799,7 +2799,7 @@ var plat3 = 18000;
 var plat4 = 18500;
 var plat5 = 20000;
 
-else if(tokens >= plat1 && tokens <= 16499){
+if(tokens >= plat1 && tokens <= 16499){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Platinum I!");
 }
 
@@ -2826,7 +2826,7 @@ var dia3 = 22500;
 var dia4 = 24000;
 var dia5 = 24500;
 
-else if(tokens >= dia1 && tokens <= 21999){
+if(tokens >= dia1 && tokens <= 21999){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Diamond I!");
 }
 
@@ -2875,7 +2875,7 @@ return tokens;
 
 }
 }
-},*/
+},
 
 napomenutiCommand: {
 command: ['napomenuti'],
