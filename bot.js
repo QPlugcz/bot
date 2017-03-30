@@ -1893,13 +1893,13 @@ var giverTokens = validateTokens(chat.un);
                 
                  user.jidlo--;
                  if(user.jidlo === 20) {                
-                 API.sendChat("[@" + user.username + "] Tady tvůj pes. Začínám hladovět! - Zakup mu jídlo pomocí !buyfood.");
+                 API.sendChat("[@" + user.username + "] Tvůj pes začíná mít hlad! :dog2:");
                  }
                  if(user.jidlo === 10) {                
-                 API.sendChat("[@" + user.username + "] Haló! Zdraví tě tvůj pes! Jsem hladový!! - Zakup mu jídlo pomocí !buyfood.");
+                 API.sendChat("[@" + user.username + "] Tvůj pes hladoví a už dlouho to nevydrží! :dog2:");
                  }
                  if(user.jidlo === 0) {     
-                 API.sendChat("[@" + user.username + "] Ztratil/a jsi svého mazlíčka. Doporučujeme příště se o něj lépe starat!");
+                 API.sendChat("[@" + user.username + "] Ztratil/a jsi svého psa. Doporučujeme příště se o něj lépe starat!");
                  setTimeout(function(){ user.mazlicek = 0; }, 2000);  
                  setTimeout(function(){ user.jidlo = 100; }, 4000);  
                  }
@@ -1914,7 +1914,7 @@ var giverTokens = validateTokens(chat.un);
          .forEach(function(user) {
         
              if(user.mazlicek === 1) {
-                  API.sendChat("[@" + user.username + "] Bylo vám zasláno 50 QP za starost o mazlíčka! ");
+                  API.sendChat("[@" + user.username + "] Bylo vám zasláno 50 QP za starost o psa!");
                   localStorage.setItem(chat.un, odmena);                 
              }          
      });
@@ -1923,8 +1923,8 @@ var giverTokens = validateTokens(chat.un);
    }
       }
    
- else if (user.mazlicek === 1) {
- API.sendChat("[@" + user.username + "] Nemůžeš vlastnit zároveň více než jednoho mazlíčka!");
+ else if (user.mazlicek > 0) {
+ API.sendChat("[@" + user.username + "] Nemůžeš vlastnit více než jednoho mazlíčka!");
 
      }
      else {
@@ -1933,8 +1933,81 @@ var giverTokens = validateTokens(chat.un);
  }
  }
  },
-  dogCommand: {
- command: 'dog',
+  buycatCommand: {
+command: 'buycat',
+rank: 'user',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
+if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
+
+
+ var user = basicBot.userUtilities.lookupUser(chat.uid);  
+var giverTokens = validateTokens(chat.un);
+ var zivot = 2;
+ var odmena = parseInt(giverTokens, 10) + parseInt(50,10);  
+ var platba = parseInt(giverTokens, 10) - parseInt(100,10);  
+    
+ if (giverTokens < 100){
+ return API.sendChat("[@" + user.username + "] Nemáš dostatek QPoints ke koupi kočky!"); 
+ }  
+    
+ if (giverTokens > 99){
+ if (user.mazlicek === 0) {
+ API.sendChat("[@" + user.username + "] Právě sis zakoupil/a kočku! Přinese ti příjmy QPoints, ale musíš hlídat potřeby mazlíčka! Více o kočce nalezneš zde: http://qplug.funsite.cz/bot/changelog ");
+ localStorage.setItem(chat.un, platba);
+ setTimeout(function(){ user.mazlicek += zivot; }, 2000);  
+  
+            setInterval(function(){
+        basicBot.userUtilities.getAllUsers()
+         .forEach(function(user) {
+        
+             if(user.mazlicek === 2) {
+                
+                 user.jidlo--;
+                 if(user.jidlo === 20) {                
+                 API.sendChat("[@" + user.username + "] Tvá kočka začíná mít hlad! :cat2:");
+                 }
+                 if(user.jidlo === 10) {                
+                 API.sendChat("[@" + user.username + "] Tvá kočka hladoví a už dlouho to nevydrží! :cat2:");
+                 }
+                 if(user.jidlo === 0) {     
+                 API.sendChat("[@" + user.username + "] Ztratil/a jsi svojí kočku. Doporučujeme příště se o ni lépe starat!");
+                 setTimeout(function(){ user.mazlicek = 0; }, 2000);  
+                 setTimeout(function(){ user.jidlo = 100; }, 4000);  
+                 }
+             }
+           
+
+          
+     });
+ }, 36000);
+                    setInterval(function(){
+        basicBot.userUtilities.getAllUsers()
+         .forEach(function(user) {
+        
+             if(user.mazlicek === 2) {
+                  API.sendChat("[@" + user.username + "] Bylo vám zasláno 50 QP za starost o kočku!");
+                  localStorage.setItem(chat.un, odmena);                 
+             }          
+     });
+ }, 1800000);
+                
+   }
+      }
+   
+ else if (user.mazlicek > 0) {
+ API.sendChat("[@" + user.username + "] Nemůžeš vlastnit více než jednoho mazlíčka!");
+
+     }
+     else {
+
+                
+ }
+ }
+ },
+  zvireCommand: {
+ command: ['zvire','animal','dog','cat','pes','kocka'],
  rank: 'user',
  type: 'exact',
  functionality: function (chat, cmd) {
@@ -1943,10 +2016,14 @@ var giverTokens = validateTokens(chat.un);
  var user = basicBot.userUtilities.lookupUser(chat.uid);  
 
  if (user.mazlicek === 1) {
- API.sendChat("[@" + user.username + "] Tvůj pes má " + user.jidlo + "% jídla.");
+ API.sendChat("[@" + user.username + "] Tvůj pes má " + user.jidlo + "% jídla. :dog2:");
  }
  else if (user.mazlicek === 0) {
- API.sendChat("[@" + user.username + "] Nemáš žádného mazlíčka!");
+ API.sendChat("[@" + user.username + "] Nemáš žádného mazlíčka! Kup si kočku nebo psa pomocí příkazů !buydog a !buycat.");
+
+ }
+ else if (user.mazlicek === 2) {
+ API.sendChat("[@" + user.username + "] Tvá kočka má " + user.jidlo + "% jídla. :cat2:");
 
      }
     else {
@@ -1969,7 +2046,7 @@ var giverTokens = validateTokens(chat.un);
  }  
     
  if (giverTokens > 29){
- if (user.mazlicek === 1) {
+ if (user.mazlicek > 0) {
  API.sendChat("[@" + user.username + "] Zakoupeno jídlo pro mazlíčka!");
  setTimeout(function(){ user.jidlo = 100; }, 2000);    
 
@@ -1978,6 +2055,7 @@ var giverTokens = validateTokens(chat.un);
  localStorage.setItem(chat.un, giverTokens);
  }
  }
+   
  else if (user.mazlicek === 0) {
  API.sendChat("[@" + user.username + "] Nemáš žádného mazlíčka!");
 
