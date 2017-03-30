@@ -2692,7 +2692,7 @@ return tokens;
 }
 },
 
-/*rankCommand: {
+rankCommand: {
 command: 'rank',
 rank: 'user',
 type: 'exact',
@@ -2708,7 +2708,7 @@ var tokens = validateTokens(user);
 var unranked = 500;
 
 if(tokens < unranked){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Nie si zaradený v Rank systéme. Na zaradenie potrebuješ 500 QPoints!");
+API.sendChat("Máš "+ tokens +" QPoints! Nie si zaradený v Rank systéme. Na zaradenie potrebuješ 500 QPoints!");
 }
 
 // Bronze
@@ -2761,96 +2761,8 @@ else if(tokens >= silver4 && tokens <= 9999){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver IV!");
 }
 
-else if(tokens >= silver5 && tokens <= 10499){
+else if(tokens >= silver5){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver V!");
-}
-
-//  Gold
-var gold1 = 10500;
-var gold2 = 12000;
-var gold3 = 12500;
-var gold4 = 14000;
-var gold5 = 14500;
-
-else if(tokens >= gold1 && tokens <= 11999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Gold I!");
-}
-
-else if(tokens >= gold2 && tokens <= 12499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Gold II!");
-}
-
-else if(tokens >= gold3 && tokens <= 13999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Gold III!");
-}
-
-else if(tokens >= gold4 && tokens <= 14499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Gold IV!");
-}
-
-else if(tokens >= gold5 && tokens <= 15999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Gold V!");
-}
-
-// Platinum
-var plat1 = 16000;
-var plat2 = 16500;
-var plat3 = 18000;
-var plat4 = 18500;
-var plat5 = 20000;
-
-else if(tokens >= plat1 && tokens <= 16499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Platinum I!");
-}
-
-else if(tokens >= plat2 && tokens <= 17999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Platinum II!");
-}
-
-else if(tokens >= plat3 && tokens <= 18499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Platinum III!");
-}
-
-else if(tokens >= plat4 && tokens <= 19999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Platinum IV!");
-}
-
-else if(tokens >= plat5 && tokens <= 20499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Platinum V!");
-}
-
-// Diamond
-var dia1 = 20500;
-var dia2 = 22000;
-var dia3 = 22500;
-var dia4 = 24000;
-var dia5 = 24500;
-
-else if(tokens >= dia1 && tokens <= 21999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Diamond I!");
-}
-
-else if(tokens >= dia2 && tokens <= 22499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Diamond II!");
-}
-
-else if(tokens >= dia3 && tokens <= 23999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Diamond III!");
-}
-
-else if(tokens >= dia4 && tokens <= 24499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Diamond IV!");
-}
-
-else if(tokens >= dia5 && tokens <= 29999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Diamond V!");
-}
-
-// Global Elite
-var global = 30000;
-
-else if(tokens >= global){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Global Elite. Gratulujeme si najvyšší rank!");
 }
 
 }
