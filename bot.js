@@ -2734,12 +2734,11 @@ else if(tokens >= 4000 && tokens <= 4499){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze IV!");
 }
 
-else if(tokens >= 4500 && tokens <= 5999){
+else if(tokens >= 4500){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze V!");
 }
 
-// Silver
-var silver1 = 6000;
+/*var silver1 = 6000;
 var silver2 = 6500;
 var silver3 = 8000;
 var silver4 = 8500;
@@ -2763,7 +2762,7 @@ API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver IV!"
 
 else if(tokens >= 10000){
 API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver V!");
-}
+}*/
 
 }
 
