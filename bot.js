@@ -2787,7 +2787,7 @@ return tokens;
 
 }
 }
-},*/
+},
 
 napomenutiCommand: {
 command: ['napomenuti'],
