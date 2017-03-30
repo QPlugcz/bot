@@ -1873,6 +1873,7 @@ if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
 var giverTokens = validateTokens(chat.un);
  var zivot = 1;
  var odmena = parseInt(giverTokens, 10) + parseInt(50,10);  
+ var platba = parseInt(giverTokens, 10) - parseInt(100,10);  
     
  if (giverTokens < 100){
  return API.sendChat("[@" + user.username + "] Nemáš dostatek QPoints ke koupi psa!"); 
@@ -1881,8 +1882,7 @@ var giverTokens = validateTokens(chat.un);
  if (giverTokens > 99){
  if (user.mazlicek === 0) {
  API.sendChat("[@" + user.username + "] Právě sis zakoupil psa! Přinese ti příjmy QPoints, ale musíš hlídat jeho potřeby! Více o psovi nalezneš zde: http://qplug.funsite.cz/bot/changelog ");
- giverTokens -= 100;
- localStorage.setItem(user.username, giverTokens);
+ localStorage.setItem(chat.un, platba);
  setTimeout(function(){ user.mazlicek += zivot; }, 2000);  
   
             setInterval(function(){
@@ -1915,7 +1915,7 @@ var giverTokens = validateTokens(chat.un);
         
              if(user.mazlicek === 1) {
                   API.sendChat("[@" + user.username + "] Bylo vám zasláno 50 QP za starost o mazlíčka! ");
-                  localStorage.setItem(user.username, odmena);                 
+                  localStorage.setItem(chat.un, odmena);                 
              }          
      });
  }, 1800000);
@@ -1924,7 +1924,7 @@ var giverTokens = validateTokens(chat.un);
       }
    
  else if (user.mazlicek === 1) {
- API.sendChat("[@" + user.username + "] Nemůžeš vlastnit zárověň více než jednoho mazlíčka!");
+ API.sendChat("[@" + user.username + "] Nemůžeš vlastnit zároveň více než jednoho mazlíčka!");
 
      }
      else {
@@ -1975,7 +1975,7 @@ var giverTokens = validateTokens(chat.un);
 
     
  giverTokens -= 30;
- localStorage.setItem(user.username, giverTokens);
+ localStorage.setItem(chat.un, giverTokens);
  }
  }
  else if (user.mazlicek === 0) {
