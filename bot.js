@@ -1875,33 +1875,33 @@ basicBot.room.tipovacka.vyhra = vyhra2;
 var tos = "undefined";
 
 if (gni === 1){
-tos = "tipování čísel (1-10)";
+tos = "Tipování čísel (1-10)";
 }
 
 if (gni === 2){
-tos = "tipování čísel (1-25)";
+tos = "Tipování čísel (1-25)";
 }
 
 if (gni === 3){
-tos = "tipování čísel (1-50)";
+tos = "Tipování čísel (1-50)";
 }
 
 if (gni === 4){
-tos = "tipování čísel (1-100)";
+tos = "Tipování čísel (1-100)";
 }
 
 if (gni === 5){
-tos = "tipování barev v angličtině";
+tos = "Tipování barev v angličtině";
 }
 
 if (gni === 6){
-tos = "matematiku";
+tos = "Matematika";
 }
 if (gni === 7){
-tos = "luštění slov";
+tos = "Luštění slov";
 }
 
-API.sendChat('[@' + from + '] Nastavil jsi minihru na ' + tos + '! Uživatelé budou tipovat odpovědí za ' + pokus2 + ' QPoints a za správnou odpověď vyhrají ' + vyhra2 + ' QPoints!');
+API.sendChat('[@' + from + '] Typ: ' + tos + ' | Cena pokusu: ' + pokus2 + ' QP | Výhra:' + vyhra2 + ' QP');
 
 }
 },
