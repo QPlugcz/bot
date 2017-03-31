@@ -1858,7 +1858,7 @@ functionality: function (chat, cmd) {
 if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
 if (chat.message.length < 6) {return void (0);}
 if (basicBot.room.tipovacka.active) {
-API.sendChat("[" + chat.un + "] Nelze změnit nastavení během probíhající minihry!");
+API.sendChat("[@" + chat.un + "] Nelze změnit nastavení během probíhající minihry!");
 }
     
 var gn = chat.message.substring(cmd.length + 1);
@@ -1901,7 +1901,7 @@ if (gni === 7){
 tos = "Luštění slov";
 }
 
-API.sendChat('[@' + from + '] Typ: ' + tos + ' | Cena pokusu: ' + pokus2 + ' QP | Výhra:' + vyhra2 + ' QP');
+API.sendChat('[@' + from + '] Typ: ' + tos + ' | Cena pokusu: ' + pokus2 + ' QP | Výhra: ' + vyhra2 + ' QP');
 
 }
 },
