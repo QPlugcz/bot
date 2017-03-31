@@ -434,7 +434,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                         basicBot.room.tipovacka.currentNumber = 0;
                     }
                 },
-               endNumberGame: function(winnerID, chat) {
+               endNumberGame: function(winnerID) {
                   
 
                     var name = "undefined";
