@@ -338,12 +338,13 @@ room: {
 
         tipovacka: {
                 currentNumber: 0,
-                zapisne: 0,
-                vyhra: 0,
+                zapisne: 5,
+                vyhra: 50,
                 obtiznost: 1,
                 active: false,
-                countdown: null,                
-
+                countdown: null,        
+            
+    
                 hrat: function() {
                     basicBot.room.tipovacka.active = true;
                     basicBot.room.tipovacka.countdown = setTimeout(function () {
@@ -433,15 +434,15 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                         basicBot.room.tipovacka.currentNumber = 0;
                     }
                 },
-               endNumberGame: function(winnerID) {
+               endNumberGame: function(winnerID, chat) {
                   
 
-    
                     var name = "undefined";
                     for (var i = 0; i < basicBot.room.users.length; i++) {
                         if (basicBot.room.users[i].id === winnerID) {
             if (basicBot.room.tipovacka.obtiznost == 1) {
-                            name = basicBot.room.users[i].username;
+                            name = basicBot.room.users[i].username;                   
+                     var receiverTokens = validateTokens(name);
                     var castka = basicBot.room.tipovacka.vyhra;
                     var penize = parseInt(receiverTokens, 10) + parseInt(castka, 10);
                     localStorage.setItem(name, penize);
@@ -505,7 +506,6 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 }
             },
 
-
             roulette: {
                 rouletteStatus: false,
                 participants: [],
@@ -557,8 +557,6 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
             };
             this.lastKnownPosition = null;
         this.napomenuti = 0;  
-        this.mazlicek = 0;
-        this.jidlo = 100;
         this.better = null;
         this.offered = 0;
         this.isBetting = false;
@@ -1213,29 +1211,7 @@ dclookupOnUserJoin: function (id) {
                 if (basicBot.settings.cmdDeletion && msg.startsWith(basicBot.settings.commandLiteral)) {
                     API.moderateDeleteChat(chat.cid);
                } 
-//                 var giverTokens = validateTokens(chat.un);
-//                 var cislo = parseInt(giverTokens, 10) + parseInt(50,10);
-//                 if (user.mazlicek === 1) { 
-//                 setTimeout(function(){ 
-//                 API.sendChat("[@" + user.username + "] Získal/a jsi 50 QP za starost o mazlíčka! ");
-//                 localStorage.setItem(chat.un, cislo); }, 1800000); 
-//                 }
-     
-//       setInterval(function(){
-//        basicBot.userUtilities.getAllUsers()
-//         .forEach(function(user) {
-        
-//             if(user.mazlicek === 1) {
-                
-//                 user.jidlo--;
-//                 console.log("Procento ubráno!");
-//                 if(user.jidlo === 0) {
-                
-//                     //Udělej něco
-//                 }
-//             }
-//     });
-// }, 36000);
+
 
 var hodnota = 1;     
 var from = chat.un;
@@ -1856,216 +1832,10 @@ functionality: function (chat, cmd) {
 if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
 if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
 
-basicBot.room.tipovacka.hrat();
+basicBot.room.tipovacka.hrat();      
 
 }
 },
-buydogCommand: {
-command: 'buydog',
-rank: 'user',
-type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
-if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
-
-
- var user = basicBot.userUtilities.lookupUser(chat.uid);  
-var giverTokens = validateTokens(chat.un);
- var zivot = 1;
- var odmena = parseInt(giverTokens, 10) + parseInt(50,10);  
- var platba = parseInt(giverTokens, 10) - parseInt(100,10);  
-    
- if (giverTokens < 100){
- return API.sendChat("[@" + user.username + "] Nemáš dostatek QPoints ke koupi psa!"); 
- }  
-    
- if (giverTokens > 99){
- if (user.mazlicek === 0) {
- API.sendChat("[@" + user.username + "] Právě sis zakoupil psa! Přinese ti příjmy QPoints, ale musíš hlídat jeho potřeby! Více o psovi nalezneš zde: http://qplug.funsite.cz/bot/changelog ");
- localStorage.setItem(chat.un, platba);
- setTimeout(function(){ user.mazlicek += zivot; }, 2000);  
-  
-            setInterval(function(){
-        basicBot.userUtilities.getAllUsers()
-         .forEach(function(user) {
-        
-             if(user.mazlicek === 1) {
-                
-                 user.jidlo--;
-                 if(user.jidlo === 20) {                
-                 API.sendChat("[@" + user.username + "] Tvůj pes začíná mít hlad! :dog2:");
-                 }
-                 if(user.jidlo === 10) {                
-                 API.sendChat("[@" + user.username + "] Tvůj pes hladoví a už dlouho to nevydrží! :dog2:");
-                 }
-                 if(user.jidlo === 0) {     
-                 API.sendChat("[@" + user.username + "] Ztratil/a jsi svého psa. Doporučujeme příště se o něj lépe starat!");
-                 setTimeout(function(){ user.mazlicek = 0; }, 2000);  
-                 setTimeout(function(){ user.jidlo = 100; }, 4000);  
-                 }
-             }
-           
-
-          
-     });
- }, 36000);
-                    setInterval(function(){
-        basicBot.userUtilities.getAllUsers()
-         .forEach(function(user) {
-        
-             if(user.mazlicek === 1) {
-                  API.sendChat("[@" + user.username + "] Bylo vám zasláno 50 QP za starost o psa!");
-                  localStorage.setItem(chat.un, odmena);                 
-             }          
-     });
- }, 1800000);
-                
-   }
-      }
-   
- else if (user.mazlicek > 0) {
- API.sendChat("[@" + user.username + "] Nemůžeš vlastnit více než jednoho mazlíčka!");
-
-     }
-     else {
-
-                
- }
- }
- },
-  buycatCommand: {
-command: 'buycat',
-rank: 'user',
-type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
-if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
-
-
- var user = basicBot.userUtilities.lookupUser(chat.uid);  
-var giverTokens = validateTokens(chat.un);
- var zivot = 2;
- var odmena = parseInt(giverTokens, 10) + parseInt(50,10);  
- var platba = parseInt(giverTokens, 10) - parseInt(100,10);  
-    
- if (giverTokens < 100){
- return API.sendChat("[@" + user.username + "] Nemáš dostatek QPoints ke koupi kočky!"); 
- }  
-    
- if (giverTokens > 99){
- if (user.mazlicek === 0) {
- API.sendChat("[@" + user.username + "] Právě sis zakoupil/a kočku! Přinese ti příjmy QPoints, ale musíš hlídat potřeby mazlíčka! Více o kočce nalezneš zde: http://qplug.funsite.cz/bot/changelog ");
- localStorage.setItem(chat.un, platba);
- setTimeout(function(){ user.mazlicek += zivot; }, 2000);  
-  
-            setInterval(function(){
-        basicBot.userUtilities.getAllUsers()
-         .forEach(function(user) {
-        
-             if(user.mazlicek === 2) {
-                
-                 user.jidlo--;
-                 if(user.jidlo === 20) {                
-                 API.sendChat("[@" + user.username + "] Tvá kočka začíná mít hlad! :cat2:");
-                 }
-                 if(user.jidlo === 10) {                
-                 API.sendChat("[@" + user.username + "] Tvá kočka hladoví a už dlouho to nevydrží! :cat2:");
-                 }
-                 if(user.jidlo === 0) {     
-                 API.sendChat("[@" + user.username + "] Ztratil/a jsi svojí kočku. Doporučujeme příště se o ni lépe starat!");
-                 setTimeout(function(){ user.mazlicek = 0; }, 2000);  
-                 setTimeout(function(){ user.jidlo = 100; }, 4000);  
-                 }
-             }
-           
-
-          
-     });
- }, 36000);
-                    setInterval(function(){
-        basicBot.userUtilities.getAllUsers()
-         .forEach(function(user) {
-        
-             if(user.mazlicek === 2) {
-                  API.sendChat("[@" + user.username + "] Bylo vám zasláno 50 QP za starost o kočku!");
-                  localStorage.setItem(chat.un, odmena);                 
-             }          
-     });
- }, 1800000);
-                
-   }
-      }
-   
- else if (user.mazlicek > 0) {
- API.sendChat("[@" + user.username + "] Nemůžeš vlastnit více než jednoho mazlíčka!");
-
-     }
-     else {
-
-                
- }
- }
- },
-  zvireCommand: {
- command: ['zvire','animal','dog','cat','pes','kocka'],
- rank: 'user',
- type: 'exact',
- functionality: function (chat, cmd) {
- if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
- if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
- var user = basicBot.userUtilities.lookupUser(chat.uid);  
-
- if (user.mazlicek === 1) {
- API.sendChat("[@" + user.username + "] Tvůj pes má " + user.jidlo + "% jídla. :dog2:");
- }
- else if (user.mazlicek === 0) {
- API.sendChat("[@" + user.username + "] Nemáš žádného mazlíčka! Kup si kočku nebo psa pomocí příkazů !buydog a !buycat.");
-
- }
- else if (user.mazlicek === 2) {
- API.sendChat("[@" + user.username + "] Tvá kočka má " + user.jidlo + "% jídla. :cat2:");
-
-     }
-    else {
-
-                
-     }
- }
- },  
- buyfoodCommand: {
- command: 'buyfood',
- rank: 'user',
- type: 'exact',
- functionality: function (chat, cmd) {
- if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
- if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
- var user = basicBot.userUtilities.lookupUser(chat.uid);  
- var giverTokens = validateTokens(chat.un);  
- if (giverTokens < 30){
- return API.sendChat("[@" + user.username + "] Nemáš dostatek QPoints ke koupi jídla!"); 
- }  
-    
- if (giverTokens > 29){
- if (user.mazlicek > 0) {
- API.sendChat("[@" + user.username + "] Zakoupeno jídlo pro mazlíčka!");
- setTimeout(function(){ user.jidlo = 100; }, 2000);    
-
-    
- giverTokens -= 30;
- localStorage.setItem(chat.un, giverTokens);
- }
- }
-   
- else if (user.mazlicek === 0) {
- API.sendChat("[@" + user.username + "] Nemáš žádného mazlíčka!");
-
-     }
-     else {
-
-                
-     }
- }
- },       
 
 stopCommand: {
 command: 'stop',
@@ -2105,33 +1875,33 @@ basicBot.room.tipovacka.vyhra = vyhra2;
 var tos = "undefined";
 
 if (gni === 1){
-tos = "Čísla (1-10)";
+tos = "tipování čísel (1-10)";
 }
 
 if (gni === 2){
-tos = "Čísla (1-25)";
+tos = "tipování čísel (1-25)";
 }
 
 if (gni === 3){
-tos = "Čísla (1-50)";
+tos = "tipování čísel (1-50)";
 }
 
 if (gni === 4){
-tos = "Čísla (1-100)";
+tos = "tipování čísel (1-100)";
 }
 
 if (gni === 5){
-tos = "Barvy v angličtině";
+tos = "tipování barev v angličtině";
 }
 
 if (gni === 6){
-tos = "Matematika";
+tos = "matematiku";
 }
 if (gni === 7){
-tos = "Luštění slov";
+tos = "luštění slov";
 }
 
-API.sendChat('[@' + from + '] Nastavení minihry | Typ: ' + tos + ' | Cena pokusu: ' + pokus2 + ' QPoints | Výhra: ' + vyhra2 + ' QPoints');
+API.sendChat('[@' + from + '] Nastavil jsi minihru na ' + tos + '! Uživatelé budou tipovat odpovědí za ' + pokus2 + ' QPoints a za správnou odpověď vyhrají ' + vyhra2 + ' QPoints!');
 
 }
 },
@@ -2142,9 +1912,8 @@ rank: 'user',
 type: 'startsWith',
 functionality: function (chat, cmd) {
 if (chat.message.length < 3) { return void (0); }
-if (!basicBot.room.tipovacka.active) {
-API.sendChat("[" + chat.un + "] Neprobíhá žádná minihra!");
-}
+if (!basicBot.room.tipovacka.active) { return void (0); }
+
 
 function validateTokens(user){
 
@@ -2184,13 +1953,13 @@ basicBot.room.tipovacka.endNumberGame(chat.uid);
 else if (basicBot.room.tipovacka.obtiznost == 5){
 giverTokens -= basicBot.room.tipovacka.zapisne;
 localStorage.setItem(chat.un, giverTokens);
-API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gni + '');    
+API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gn + '');    
 }
 
 else if (basicBot.room.tipovacka.obtiznost == 7){
 giverTokens -= basicBot.room.tipovacka.zapisne;
 localStorage.setItem(chat.un, giverTokens);
-API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gni + '');    
+API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gn + '');    
 }
 
 else{
@@ -2877,22 +2646,7 @@ return tokens;
 }
 },
 
-napomenutiCommand: {
-command: ['napomenuti'],
-rank: 'user',
-type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
 
-var user = basicBot.userUtilities.lookupUser(chat.uid);
-
-API.sendChat("[@" + user.username + "] Byl jsi dnes napomenut " + user.napomenuti + "x!");
-
-}
-}
-},
 
 
 /*automatCommand: {  
