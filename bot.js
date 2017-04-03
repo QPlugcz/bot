@@ -3056,16 +3056,7 @@ else if (rawrank == "10"){
 var rank = "Admin"
 }
 
-var slug = API.getUser(id).slug;
-if (typeof slug !== 'undefined'){
-var profile = "https://plug.dj/@/" + slug;
-}
-
-else{
-var profile = "~";
-}
-
-API.sendChat(subChat(basicBot.chat.whois, {name1: chat.un, name2: name, id: id, profile: profile, language: language, rank: rank, profile: profile}));
+API.sendChat(subChat(basicBot.chat.whois, {name1: chat.un, name2: name, id: id, profile: profile, language: language, rank: rank}));
 
 }
 
@@ -4829,6 +4820,7 @@ setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 mi
 
 }
 }
+
 function minihraspam(chat){
 var msg = chat.message;
 var from = chat.un;
@@ -4842,6 +4834,7 @@ setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 mi
 
 }
 }
+
 function minihraspam2(chat){
 var msg = chat.message;
 var from = chat.un;
@@ -4855,6 +4848,7 @@ setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 mi
 
 }
 }
+
 function minihraspam3(chat){
 var msg = chat.message;
 var from = chat.un;
@@ -4868,6 +4862,7 @@ setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 mi
 
 }
 }
+
 function minihraspam4(chat){
 var msg = chat.message;
 var from = chat.un;
@@ -4881,7 +4876,6 @@ setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 180000); // 180 000 
 
 }
 }
-
 
 function antispam2(chat){
 var msg = chat.message;
