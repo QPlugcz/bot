@@ -4689,19 +4689,16 @@ API.on(API.CHAT, bouncer);
 API.on(API.CHAT, rdj);
 
 function adremove(a){
-var me = API.getUser();
 var msg = a.message;
-var from = a.uid;
-var from2 = a.un;
+var from = a.un;
+var from_id = a.uid;
 
-if (from != me){
+if(from_id === 23843691) return;
 
 if(msg.indexOf("https://plug.dj/") > -1 || msg.indexOf("plug.dj/") > -1 || msg.indexOf("socket.dj") > -1 || msg.indexOf("http://socket.dj") > -1){
 API.moderateDeleteChat(a.cid);
-API.sendChat("[@"+ from2 +"] Budeš Mutnutý za spamovanie alebo zdielanie iných komunít v našej komunite!");
-setTimeout(function(){ API.moderateMuteUser(from, 1, API.MUTE.MEDIUM); }, 5000);
-}
-
+API.sendChat("[@"+ from +"] Budeš Mutnutý za spamovanie alebo zdielanie iných komunít v našej komunite!");
+setTimeout(function(){ API.moderateMuteUser(from_id, 1, API.MUTE.MEDIUM); }, 5000);
 }
 }
 
@@ -4732,12 +4729,11 @@ var atti = "6614885";
 var pipi = "6045137";
 var germ = "4741752";
 var thepsycho = "4280235";
-var thomasine = "24953133";
 var demon = "6632231";
 var petus = "5351087";
 
 if(msg === "!bouncer"){
-if(fromid == bonki || fromid == zinder || fromid == atti || fromid == lemon || fromid == pipi || fromid == germ || fromid == thepsycho || fromid == thomasine || fromid == demon || fromid == petus){
+if(fromid == bonki || fromid == zinder || fromid == atti || fromid == lemon || fromid == pipi || fromid == germ || fromid == thepsycho || fromid == demon || fromid == petus){
 API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 2); }, 500);
 }
