@@ -102,7 +102,7 @@
 
 "activefor": "Systém je aktívny %%TIME%%.",
 
-"whois": "[@%%NAME1%%] Meno: %%NAME2%% | ID: %%ID%% | Hodnosť: %%RANK%% | Jazyk: %%LANGUAGE%% | Status: %%STATUS%%%%PROFILE%%",
+"whois": "[@%%NAME1%%] Meno: %%NAME2%% | ID: %%ID%% | Hodnosť: %%RANK%% | Jazyk: %%LANGUAGE%% | Profil: %%PROFILE%%!",
 
 "swapinvalid": "\/me @%%NAME%%, Invalid user specified.",
 
