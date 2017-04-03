@@ -16,9 +16,9 @@
 
 "songknown": "[@%%NAME%%] Táto pesnička je v histórií!",
 
-"notavailable": "[@%%NAME%%] Pesnička je nedostupná!",
+"notavailable": "[@%%NAME%%] Táto pesnička je nedostupná!",
 
-"isopen": "[ RULETA | @everyone ] Ruleta je otvorená! Náhodne vylosovanie na prvé miesta v zozname čakaní! Použite !join pre pripojenie.",
+"isopen": "[ RULETA | @djs ] Ruleta je otvorená! Náhodne vylosovanie na prvé miesta v zozname čakaní! Použite !join pre pripojenie.",
 
 "winnerpicked": "[@%%NAME%%] Si výherca Rulety. Vyhral si %%POSITION%% pozíciu!",
 
@@ -84,13 +84,13 @@
 
 "dclookuprank": "\/me [@%%NAME%%] Only bouncers and above can do a lookup for others.",
 
-"notinwaitlist": "[@%%NAME%%] Sorry, but you aren't in the Waitlist!",
+"notinwaitlist": "[@%%NAME%%] Nie si v zozname čakaní!",
 
 "roulettejoin": "[@%%NAME%%] Pripojil si sa do Rulety! Použi !leave pre odpojenie.",
 
 "jointime": "[@%%NAMEFROM%%] %%USERNAME%% je v komunite %%TIME%%!",
 
-"kill": "\/me Im off!",
+"kill": "[ QPlug.cz ] Systém sa vypína!",
 
 "logout": "\/me [@%%NAME%%] Logging out %%BOTNAME%%",
 
@@ -102,7 +102,7 @@
 
 "activefor": "Systém je aktívny %%TIME%%.",
 
-"whois": "[@%%NAME1%%] Meno: %%NAME2%% | ID: %%ID%% | Hodnosť: %%RANK%% | Jazyk: %%LANGUAGE%% | Profil: %%PROFILE%%!",
+"whois": "[@%%NAME1%%] Meno: %%NAME2%% | ID: %%ID%% | Hodnosť: %%RANK%% | Jazyk: %%LANGUAGE%%!",
 
 "swapinvalid": "\/me @%%NAME%%, Invalid user specified.",
 
@@ -118,7 +118,7 @@
 
 "nahodacd": "\/me [@%%NAME%%] Zkusit své štěstí můžeš znovu za %%TIME%% minut.",
 
-"inactivefor": "\/me [@%%NAME%%] @%%USERNAME%% je neaktivní %%TIME%%.",
+"inactivefor": "[@%%NAME%%] @%%USERNAME%% je neaktivný %%TIME%%.",
 
 "inactivelonger": "\/me [@%%NAME%%] @%%USERNAME%% je déle neaktivní, než %%BOTNAME%% se připojil."
 }
