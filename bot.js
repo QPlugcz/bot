@@ -2436,43 +2436,6 @@ else{
 var user = chat.un;
 var tokens = validateTokens(user);
 
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints!");
-}
-
-function validateTokens(user){
-var tokens; 
-
-if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
-localStorage.setItem(user, "0");
-tokens = localStorage.getItem(user);
-}
-
-else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
-tokens = localStorage.getItem(user);
-}
-
-else{
-tokens = localStorage.getItem(user);
-}
-
-return tokens;
-
-}
-}
-},
-
-rankCommand: {
-command: 'rank',
-rank: 'user',
-type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var user = chat.un;
-var tokens = validateTokens(user);
-
 // Unranked
 var unranked = 500;
 
@@ -2488,23 +2451,23 @@ var bronze4 = 4000;
 var bronze5 = 4500;
 
 if(tokens >= bronze1 && tokens <= 1999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze I!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Bronze I\"!");
 }
 
 else if(tokens >= bronze2 && tokens <= 2499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze II!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Bronze II\"!");
 }
 
 else if(tokens >= bronze3 && tokens <= 3999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze III!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Bronze III\"!");
 }
 
 else if(tokens >= bronze4 && tokens <= 4499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze IV!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Bronze IV\"!");
 }
 
 else if(tokens >= bronze5 && tokens <= 5999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Bronze V!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Bronze V\"!");
 }
 
 // Silver
@@ -2515,23 +2478,23 @@ var silver4 = 8500;
 var silver5 = 10000;
 
 if(tokens >= silver1 && tokens <= 6499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver I!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Silver I\"!");
 }
 
 else if(tokens >= silver2 && tokens <= 7999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver II!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Silver II\"!");
 }
 
 else if(tokens >= silver3 && tokens <= 8499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver III!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Silver III\"!");
 }
 
 else if(tokens >= silver4 && tokens <= 9999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver IV!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Silver IV\"!");
 }
 
 else if(tokens >= silver5 && tokens <= 10499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Silver V!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Silver V\"!");
 }
 
 //  Gold
@@ -2542,23 +2505,23 @@ var gold4 = 14000;
 var gold5 = 14500;
 
 if(tokens >= gold1 && tokens <= 11999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Gold I!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Gold I\"!");
 }
 
 else if(tokens >= gold2 && tokens <= 12499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Gold II!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Gold II\"!");
 }
 
 else if(tokens >= gold3 && tokens <= 13999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Gold III!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Gold III\"!");
 }
 
 else if(tokens >= gold4 && tokens <= 14499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Gold IV!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Gold IV\"!");
 }
 
 else if(tokens >= gold5 && tokens <= 15999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Gold V!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Gold V\"!");
 }
 
 // Platinum
@@ -2569,23 +2532,23 @@ var plat4 = 18500;
 var plat5 = 20000;
 
 if(tokens >= plat1 && tokens <= 16499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Platinum I!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Platinum I\"!");
 }
 
 else if(tokens >= plat2 && tokens <= 17999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Platinum II!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Platinum II\"!");
 }
 
 else if(tokens >= plat3 && tokens <= 18499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Platinum III!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Platinum III\"!");
 }
 
 else if(tokens >= plat4 && tokens <= 19999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Platinum IV!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Platinum IV\"!");
 }
 
 else if(tokens >= plat5 && tokens <= 20499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Platinum V!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Platinum V\"!");
 }
 
 // Diamond
@@ -2596,23 +2559,23 @@ var dia4 = 24000;
 var dia5 = 24500;
 
 if(tokens >= dia1 && tokens <= 21999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Diamond I!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Diamond I\"!");
 }
 
 else if(tokens >= dia2 && tokens <= 22499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Diamond II!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Diamond II\"!");
 }
 
 else if(tokens >= dia3 && tokens <= 23999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Diamond III!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Diamond III\"!");
 }
 
 else if(tokens >= dia4 && tokens <= 24499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Diamond IV!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Diamond IV\"!");
 }
 
 else if(tokens >= dia5 && tokens <= 29999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Diamond V!");
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \"Diamond V\"!");
 }
 
 // Global Elite
@@ -2645,9 +2608,6 @@ return tokens;
 }
 }
 },
-
-
-
 
 /*automatCommand: {  
 command: ['automat', 'automaty'],  //The command to be called. With the standard command literal this would be: !slots
@@ -2922,6 +2882,7 @@ var durationOnline = Date.now() - launchT;
 if (inactivity == durationOnline){
 API.sendChat(subChat(basicBot.chat.inactivelonger, {botname: basicBot.settings.botName, name: chat.un, username: name}));
 }
+
 else{
 API.sendChat(subChat(basicBot.chat.inactivefor, {name: chat.un, username: name, time: time}));
 }
@@ -3909,7 +3870,7 @@ var space = msg.indexOf(' ');
 var current_dj = API.getDJ().username;
 
 if (space === -1){
-API.sendChat("[@"+ from +"] Musíš zadať kód preskočenia! | n = NSFW | h = History | m = Veľky počet Mehov | o = Ohraná pesnička.");
+API.sendChat("[@"+ from +"] Musíš zadať kód preskočenia! | n = NSFW | h = History | m = Veľky počet Mehov | o = Ohraná pesnička | u = Nedostupná pesnička.");
 }
 
 if(skip_reason === "n"){
@@ -3929,6 +3890,11 @@ setTimeout(function(){ API.moderateForceSkip(); }, 3000);
 
 if(skip_reason === "o"){
 API.sendChat("[@"+ current_dj +"] Tvoja pesnička bude preskočená z dôvodu: Ohraná pesnička!");
+setTimeout(function(){ API.moderateForceSkip(); }, 3000);
+}
+
+if(skip_reason === "u"){
+API.sendChat("[@"+ current_dj +"] Tvoja pesnička bude preskočená z dôvodu: Nedostupná pesnička!");
 setTimeout(function(){ API.moderateForceSkip(); }, 3000);
 }
 
