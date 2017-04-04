@@ -1802,9 +1802,13 @@ return API.sendChat("[@"+ chat.un +"] Nemáš dostatek QPoints k zaslání dárk
 }
 
 else if (receiver === chat.un){
-return API.sendChat("[@" + chat.un + "] Nemůžeš posílat QPoints sám sobě!");
+return API.sendChat("[@" + chat.un + "] Musíš zvolit uživatele k zaslání QPoints!");
 }
 
+else if (strhnout < 1){
+return API.sendChat("[@" + chat.un + "] Nemůžeš posílat QPoints v záporných hodnotách!");
+}
+    
 else{
 giverTokens -= strhnout;
 localStorage.setItem(chat.un, giverTokens);
@@ -2016,7 +2020,9 @@ var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
 if (giverTokens <= -999){
 return API.sendChat("[@" + chat.un + "] Chyba v transakci."); 
 }
-
+else if (strhnout < 1){
+return API.sendChat("[@" + chat.un + "] Nemůžeš posílat QPoints v záporných hodnotách!");
+}
 else{
 giverTokens -= 0;
 localStorage.setItem(chat.un, giverTokens);
@@ -2078,10 +2084,9 @@ var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
 var currentDJ = API.getDJ().username; 
 var cislo = parseInt(receiverTokens, 10) - parseInt(strhnout,10);
 
-if (giverTokens <= -999){
-return API.sendChat("[@" + chat.un + "] Chyba v transakci."); 
+if (strhnout < 1){
+return API.sendChat("[@" + chat.un + "] Nemůžeš odebírat QPoints v záporných hodnotách!");
 }
-
 else{
 giverTokens -= 0;
 localStorage.setItem(chat.un, giverTokens);
