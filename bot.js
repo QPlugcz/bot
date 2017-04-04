@@ -3942,6 +3942,46 @@ return API.sendChat("[@" + user.username + "] Získavaj pomocou DJovania jedine�
 }
 },*/
 
+qphelpCommand: {
+command: ['qpointshelp', 'qphelp'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var from = chat.un;
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if(medzera === -1){
+API.sendChat("[@" + from + "] Čo sú QPoints a ako ich zarábať najdeš na http://qplug.funsite.cz/bot/qpoints!");
+return false;
+}
+
+else{
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if(user === false || !user.inRoom){
+return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
+}
+
+else if(user.username === chat.un){
+return API.sendChat("[@" + from + "] Čo sú QPoints a ako ich zarábať najdeš na http://qplug.funsite.cz/bot/qpoints!");
+}
+
+else{
+return API.sendChat("[@" + user.username + "] Čo sú QPoints a ako ich zarábať najdeš na http://qplug.funsite.cz/bot/qpoints!");
+}
+
+}
+
+}
+}
+},
+
 rulesCommand: {
 command: ['pravidla', 'pravidlá', 'rules'],
 rank: 'user',
