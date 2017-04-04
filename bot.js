@@ -1217,21 +1217,28 @@ var hodnota = 1;
 var from = chat.un;
                                   
 if (user.napomenuti === 0) {
+if (perm === 0) {
 if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){     
 setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
+}
 }
 }
 if (user.napomenuti === 1) {
+if (perm === 0) {
 if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){     
 setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
     }
     }
+    }
 if (user.napomenuti === 2) {
+if (perm === 0) {
 if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){      
 setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
     }
     }
+    }
 if (user.napomenuti === 3) {
+if (perm === 0) {
 if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){     
 API.sendChat("[@" + user.username + "] Bylo ti strženo 20 QPoints za vulgaritu v chatu. Uklidni svůj slovník nebo budeš umlčen/a!");
 var giverTokens = validateTokens(chat.un);
@@ -1240,11 +1247,14 @@ localStorage.setItem(chat.un, giverTokens);
 setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
     }
     }
+    }
 if (user.napomenuti === 4) {
+if (perm === 0) {
 if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){      
 API.sendChat("[@" + user.username + "] Byl/a jsi umlčen/a za opakovanou vulgaritu v chatu!");
 setTimeout(function(){ API.moderateMuteUser(user.id, 1, API.MUTE.SHORT); }, 2000);
 setTimeout(function(){ user.napomenuti = 0; }, 2000);
+    }
     }
     }
     else {
@@ -2105,102 +2115,8 @@ return API.sendChat("[@" + receiver + "] Bylo vám strženo z účtu " + strhnou
 
 }
 },
-               
-odznakCommand: {
-command: ['badge','odznak'],  //The command to be called. With the standard command literal this would be: !tip
-rank: 'user', //Minimum user permission to use the command
-type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else {
-}
 
-function validateTokens(user){
 
-var tokens; 
-
-//Check for existing user tokens
-if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
-localStorage.setItem(user, "0");
-tokens = localStorage.getItem(user);
-}
-
-else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
-tokens = localStorage.getItem(user);
-}
-
-else{
-tokens = localStorage.getItem(user);
-}
-
-return tokens;
-
-}
-
-var msg = chat.message; 
-var giverTokens = validateTokens(chat.un);
-
-if (giverTokens < 1000){
-return API.sendChat("[@" + chat.un + "] Chceš mít jedinečný odznak dle tvého přání? Zakup si vlastní odznak za 1000 QPoints, kteří uvidí všichni uživatelé s RCS!"); 
-}
-
-else{
-giverTokens -= 1000;
-localStorage.setItem(chat.un, giverTokens);
-return API.sendChat("["+ chat.un +"] Zakoupil jste si vlastní odznak. Odscreenujte túto správu a kontaktujte @Tessi Tess.");
-}
-
-}
-},
-
-vipCommand: {
-command: ['vip'],  //The command to be called. With the standard command literal this would be: !tip
-rank: 'user', //Minimum user permission to use the command
-type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-}
-
-function validateTokens(user){
-
-var tokens; 
-
-//Check for existing user tokens
-if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
-localStorage.setItem(user, "0");
-tokens = localStorage.getItem(user);
-}
-
-else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
-tokens = localStorage.getItem(user);
-}
-
-else{
-tokens = localStorage.getItem(user);
-}
-
-return tokens;
-
-}
-
-var msg = chat.message; 
-var giverTokens = validateTokens(chat.un);
-
-if (giverTokens < 5000){
-return API.sendChat("[@" + chat.un + "] Aktivuj si VIP u nás za 5000 QPoints a získej spoustu výhod! Skvělý odznak a ikonu, kteří vidí uživatelé s RCS, automatické grabování tvých písní botem nebo příkazy jen pro VIP!"); 
-}
-
-else{
-giverTokens -= 5000;
-localStorage.setItem(chat.un, giverTokens);
-return API.sendChat("[ VIP ] Gratulujeme @" + chat.un +"! Nyní patříte mezi QPlug.cz VIP členy! Odscreenujte túto správu a kontaktujte Vedení komunity. Všechny vaše výhody budou aktivovány v nejblížších hodinách/dnech!");
-}
-
-}
-}, 
 
 buyCommand: {
 command: ['buy'],  //The command to be called. With the standard command literal this would be: !tip
@@ -3627,33 +3543,20 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
+var giverTokens = validateTokens(chat.un);
 var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
 
-// Staff (Bouncer+)
-var franta = "5032556";
-var tessi = "5477951";
-var hellbyte = "4635487";
-var pinguin = "4006230";
-var lemon = "5948294";
-var bonki = "6345878";
-var zinder = "Doplníme";
-var atti = "6614885";
+if (giverTokens > 4499) {
 
-// VIP    
-var dave = "3431885";
-var repi = "5006795";
-var tessi = "5477951";
-
-if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == dave || fromid == bonki || fromid == zinder || fromid == atti || fromid == pinguin || fromid == repi || fromid == lemon){
 $("#grab").click();
 $(".pop-menu ul li:first-child").mousedown();
 API.sendChat("[@"+ from +"] Bot grabol aktuálnu pesničku!");
 }
 
 else{ 
-API.sendChat("[@" + from + "] Tento příkaz je pouze pro VIP nebo členy Staff týmu! Staň se VIP a získej plno výhod, aktivovat jej můžeš pomocí !vip.");
+API.sendChat("[@" + from + "] Tento příkaz vyžaduje rank Bronze V nebo vyšší! Více o rank systému nalezneš zde: http://qplug.funsite.cz/bot/qpoints");
 }
 
 }
@@ -3670,9 +3573,9 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
+var giverTokens = validateTokens(chat.un);
 var msg = chat.message;
 var from = chat.un;
-var fromid = chat.uid;
 var uzivatel = API.getUsers();
 var uzivatel2 = API.getUsers();
 var uzivatel3 = API.getUsers();
@@ -3691,35 +3594,15 @@ var jak = ["úplně vypatlaně","bez rozmyšlení","sebejistě","maniacky","vych
 var proc = ["protože bagr","protože je nikdo nemá rád.","protože to " + uzivatel4[(cislo4 - 1)].username + " přikazal.","protože jsou do sebe zamilovaní.","protože jsou zhulený.","protože chcou více drog.","protože jsou vožralý.","protože banán.","protože když máš 4 jablka a 3 hrušky, nemůžeš mít švestkový kompot."];
 var proc2 = ["protože jste retardi.","protože bagr neplave.","protože vás nikdo nemá rád.","protože jste do sebe zamilovaní.","protože jste zhulený.","protože chcete více drog.","protože jste vožralý.","protože banán.","protože když máte 4 jablka a 3 hrušky, nemůžete mít švestkový kompot."];
 
-// Staff
-var franta = "5032556";
-var tessi = "5477951";
-var hellbyte = "4635487";
-var pinguin = "4006230";
-var lemon = "5948294";
-var bonki = "6345878";
-var zinder = "2789608";
-var atti = "6614885";
-var pipi = "6045137";
-var germ = "4741752";
-var thepsycho = "4280235";
-var thomasine = "24953133";
-var demon = "6632231";
-var petus = "5351087";
+if (giverTokens > 4499) {
 
-
-//VIP    
-var dave = "3431885";
-var repi = "5006795";
-
-if(fromid == franta || fromid == tessi || fromid == hellbyte || fromid == dave || fromid == bonki || fromid == zinder || fromid == atti || fromid == pinguin || fromid == repi || fromid == lemon){
 API.sendChat("[@"+ from +"] " + zacatek[Math.floor(Math.random() * zacatek.length)] + " " + jaky[Math.floor(Math.random() * jaky.length)] + " kamarád " + uzivatel[(cislo - 1)].username + " s tím, ať jdete " + kam[Math.floor(Math.random() * kam.length)] + ". Odpověděl jsi, že ne, radši půjdeš " + co[Math.floor(Math.random() * co.length)] + ".");
 setTimeout(function(){ API.sendChat("Nakonec tě přemluvil. Cestou jste potkali " + jake[Math.floor(Math.random() * jake.length)] + " kamarády " + uzivatel2[(cislo2 - 1)].username + " a " + uzivatel3[(cislo3 - 1)].username + ". Zeptal ses, jestli chtějí jít s vámi. Na to ti " + jak[Math.floor(Math.random() * jak.length)] + " odpověděli, ať na to zapomeneš " + proc[Math.floor(Math.random() * proc.length)] + ""); }, 700);
 setTimeout(function(){ API.sendChat("Tak jsi jen pokrčil rameny a pokračovali jste v cestě " + kam[Math.floor(Math.random() * kam.length)] + ", abyste " + jak[Math.floor(Math.random() * jak.length)] + " " + co2[Math.floor(Math.random() * co2.length)] + " " + proc2[Math.floor(Math.random() * proc2.length)] + ""); }, 1500);
 }
 
 else{
-API.sendChat("[@" + from + "] Tento příkaz je pouze pro VIP nebo členy staff týmu! Staň se VIP a získej plno výhod, aktivovat jej můžeš pomocí !vip.");
+API.sendChat("[@" + from + "] Tento příkaz vyžaduje rank Bronze V nebo vyšší! Více o rank systému nalezneš zde: http://qplug.funsite.cz/bot/qpoints");
 }
 
 }
@@ -4485,21 +4368,6 @@ return API.sendChat("[@"+ user.username +"] Odkaz na náš Discord je https://bi
 }
 
 }
-
-}
-}
-},
-
-vipsCommand: {
-command: 'vips',
-rank: 'user',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-API.sendChat("[ VIP ČLENOVIA ] Dave, Repi69, Tessi Tess");
 
 }
 }
