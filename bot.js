@@ -890,7 +890,7 @@ dclookupOnUserJoin: function (id) {
  		    var cislo = Math.floor((Math.random() * users.length) + 1);
             var vybrany_uzivatel = users[(cislo - 1)].username;
             var user = basicBot.userUtilities.lookupUser(chat.uid);
-            
+            var fromid = chat.uid;
             // Odpovědi
             var pozdrav = ["Ahoj","Čau","Čest","Zdar","Čauko","Zdarec"];
             var KDE_odpoved = ["V popelnici :)","Ve vesmíru","Na houpačce","V obývaku","V koupelně","Zdá se mi, že v nemocnici","Hej, určitě v Kauflandu","Na dovolené v Thajsku :P","Na policejní stanici...","Tak to vím naprosto přesně. V kamionu. :)","Někde venku, hledej :*","Na náměstí :O","Toulá se v kavárně","Nevím :(","Ve sprše :O","V kuchyni!"];
@@ -905,8 +905,10 @@ dclookupOnUserJoin: function (id) {
             setTimeout(function(){ user.inteligence += 1; }, 2000);
         }
         }
-            
-            // Průběh AI
+        if (chat.message.match(ALL) || chat.message.match(KDE) || chat.message.match(KDO)  || chat.message.match(KDY) || chat.message.match(KONEC)) {
+        if (fromid === 23843691) { 
+        }
+        }
         if (chat.message.match(KDE)) { 
             if (user.inteligence === 1) {
             setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDE_odpoved[Math.floor(Math.random() * KDE_odpoved.length)] + " "); }, 4000);
