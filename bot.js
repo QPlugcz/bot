@@ -3905,7 +3905,7 @@ return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!"
 }
 
 else if (user.username === from.un){
-return API.sendChat("[@"+ from.un +"] Ty chceš sex sám so sebou? Tak si to uži! :smiling_imp:");
+return API.sendChat("[@"+ from.un +"] Tento príkaz sa používa: !sex @meno");
 }
 
 else{
@@ -3947,7 +3947,7 @@ return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!"
 }
 
 else if (user.username === from.un){
-return API.sendChat("[@" + from.un + "] Miluješ sám seba?");
+return API.sendChat("[@" + from.un + "] Tento príkaz sa používa: !love @meno");
 }
 
 else{
