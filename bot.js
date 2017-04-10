@@ -898,10 +898,11 @@ dclookupOnUserJoin: function (id) {
             var KDY_odpoved = ["Včera :P","Za chvíli","Zítra","Za týden","Za měsíc","Za rok","Za hodinu","Nikdy :)","V noci","Před rokem","Ráno","Odpoledne"];
             var ALL_odpoved = ["Ano","Ne"];
             var vypnout_AI = ["Dobře, už mlčím :(","Tak ahoj :(","OK, rozcházíme se :(","Hej, myslel jsem, že jsme přátelé! :(",":("];
+            
             // Začátek AI
             if (chat.message.match(AI)) {
             if (user.inteligence === 0) {
-            setTimeout(function(){ API.sendChat("@" + chat.un + " " + pozdrav[Math.floor(Math.random() * pozdrav.length)] + " "); }, 4000);
+            setTimeout(function(){ API.sendChat("@" + chat.un + " " + pozdrav[Math.floor(Math.random() * pozdrav.length)] + " "); }, 500);
             setTimeout(function(){ user.inteligence += 1; }, 2000);
         }
         }
@@ -911,30 +912,32 @@ dclookupOnUserJoin: function (id) {
         }
         if (chat.message.match(KDE)) {
             if (user.inteligence === 1) {
-            setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDE_odpoved[Math.floor(Math.random() * KDE_odpoved.length)] + " "); }, 4000);
+            setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDE_odpoved[Math.floor(Math.random() * KDE_odpoved.length)] + " "); }, 500);
         }
         }
          if (chat.message.match(KDO)) {
             if (user.inteligence === 1) {
-            setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDO_odpoved[Math.floor(Math.random() * KDO_odpoved.length)] + " "); }, 4000);
+            setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDO_odpoved[Math.floor(Math.random() * KDO_odpoved.length)] + " "); }, 500);
         }
         }
              if (chat.message.match(KDY)) {
             if (user.inteligence === 1) {
-            setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDY_odpoved[Math.floor(Math.random() * KDY_odpoved.length)] + " "); }, 4000);
+            setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDY_odpoved[Math.floor(Math.random() * KDY_odpoved.length)] + " "); }, 500);
         }
         }
-         if (chat.message.match(ALL) && !chat.message.match(KDE) && !chat.message.match(KDO)  && !chat.message.match(KDY) && !chat.message.match(KONEC)) {
-            if (user.inteligence === 1) {
-            setTimeout(function(){ API.sendChat("@" + chat.un + " " + ALL_odpoved[Math.floor(Math.random() * ALL_odpoved.length)] + " "); }, 4000);
-        }
-        }
-            // Ukončení AI
+          // Ukončení AI
           if (chat.message.match(KONEC)) {
             if (user.inteligence === 1) {
-            setTimeout(function(){ API.sendChat("@" + chat.un + " " + vypnout_AI[Math.floor(Math.random() * vypnout_AI.length)] + " "); }, 4000);
+            setTimeout(function(){ API.sendChat("@" + chat.un + " " + vypnout_AI[Math.floor(Math.random() * vypnout_AI.length)] + " "); }, 500);
             setTimeout(function(){ user.inteligence = 0; }, 2000);
         }
+        }
+         else if (chat.message.match(ALL) && !chat.message.match(KDE) && !chat.message.match(KDO)  && !chat.message.match(KDY) && !chat.message.match(KONEC)) {
+            if (user.inteligence === 1) {
+            setTimeout(function(){ API.sendChat("@" + chat.un + " " + ALL_odpoved[Math.floor(Math.random() * ALL_odpoved.length)] + " "); }, 500);
+        }
+        }
+        else {
         }
         },
         eventUserjoin: function (user) {
