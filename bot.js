@@ -10,7 +10,7 @@ ROOM»                              https://plug.dj/qplug-czsk
 // This is a remastered version of the original Basicbot, made by Benzi. All rights are reserved for the author and he may change some of the bot features if he wants or not.
 
 (function () {
-    
+
     API.getWaitListPosition = function(id){
         if(typeof id === 'undefined' || id === null){
             id = API.getUser().id;
@@ -32,7 +32,7 @@ ROOM»                              https://plug.dj/qplug-czsk
 
     // This socket server is used solely for statistical and troubleshooting purposes.
     // This server may not always be up, but will be used to get live data at any given time.
- 
+
     var socket = function () {
         function loadSocket() {
             SockJS.prototype.msg = function(a){this.send(JSON.stringify(a))};
@@ -67,7 +67,7 @@ ROOM»                              https://plug.dj/qplug-czsk
         var data = {users:API.getUsers(),userinfo:API.getUser(),room:location.pathname,basicBotSettings:basicBotSettings,basicBotRoom:basicBotRoom,basicBotInfo:basicBotInfo};
         return sock.msg(data);
     };
- 
+
     var storeToStorage = function () {
         localStorage.setItem("basicBotsettings", JSON.stringify(basicBot.settings));
         localStorage.setItem("basicBotRoom", JSON.stringify(basicBot.room));
@@ -79,7 +79,7 @@ ROOM»                              https://plug.dj/qplug-czsk
         localStorage.setItem("basicBotStorageInfo", JSON.stringify(basicBotStorageInfo));
 
     };
- 
+
     var subChat = function (chat, obj) {
         if (typeof chat === "undefined") {
             API.chatLog("There is a chat text missing.");
@@ -229,8 +229,8 @@ ROOM»                              https://plug.dj/qplug-czsk
     };
     function validateTokens(user)
                 {
-            var tokens; 
-            
+            var tokens;
+
             //Check for existing user tokens
             if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
                  localStorage.setItem(user, "0");
@@ -242,10 +242,10 @@ ROOM»                              https://plug.dj/qplug-czsk
             else {
                  tokens = localStorage.getItem(user);
             }
-            
+
             return tokens;
-        
-                
+
+
             };
 var botCreator = "QPlug.cz Tým";
 var botMaintainer = "QPlug.cz"
@@ -295,7 +295,7 @@ minihry: false,
 duelDelay: 120,
 commandLiteral: "!",
 },
-        
+
 room: {
             name: null,
             chatMessages: [],
@@ -309,7 +309,7 @@ room: {
             usercommand: true,
             allcommand: true,
             autoskip: true,
-            autoskipTimer: null, 
+            autoskipTimer: null,
             queueing: 0,
             queueable: true,
             currentDJID: null,
@@ -341,41 +341,41 @@ room: {
                 vyhra: 50,
                 obtiznost: 1,
                 active: false,
-                countdown: null,        
-            
-    
+                countdown: null,
+
+
                 hrat: function() {
                     basicBot.room.tipovacka.active = true;
                     basicBot.room.tipovacka.countdown = setTimeout(function () {
                         basicBot.room.tipovacka.endNumberGameTime();
                     }, 180 * 1000);{
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 10) + 1);
-                    if (basicBot.room.tipovacka.obtiznost == 1) 
-              
-            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo 1-10. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');  
+                    if (basicBot.room.tipovacka.obtiznost == 1)
+
+            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo 1-10. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
                     }
                     if (basicBot.room.tipovacka.obtiznost == 2) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 25) + 1);
-            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo 1-25. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.'); 
-             
+            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo 1-25. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
+
                     }
             if (basicBot.room.tipovacka.obtiznost == 3) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 50) + 1);
-              API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo 1-50. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.'); 
-             
+              API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo 1-50. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
+
                     }
                     if (basicBot.room.tipovacka.obtiznost == 4) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 100) + 1);
-                    
+
                     API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo od 1-100. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
-          }      
+          }
             if (basicBot.room.tipovacka.obtiznost == 5) {
                         var barvy = ["red","yellow","orange","blue","green","purple","brown","black","pink","white"];
                         basicBot.room.tipovacka.currentNumber = barvy[Math.floor(Math.random() * barvy.length)];
-            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadanou barvu v angličtině. Odpovídejte pomocí !t text a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.'); 
+            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadanou barvu v angličtině. Odpovídejte pomocí !t text a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
                     }
-                        
-          
+
+
 if (basicBot.room.tipovacka.obtiznost == 6) {
     var vysledek = 100 + ~~(Math.random() * 5000);
     var a = 50 + ~~(Math.random() * (vysledek / 3));
@@ -389,42 +389,42 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
         vysledek = tmp;
         priklad = a + " - " + b + " = ";
     }
-    
+
     basicBot.room.tipovacka.currentNumber = vysledek;
     API.sendChat('[ MINIHRA | @djs ] Vypočítejte příklad ' + priklad + ' :question: Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
 }
                       if (basicBot.room.tipovacka.obtiznost == 7) {
                         var otazka = ["pldjug","lakanduf","ojah","ketara","munikota","namera","bustoau","rzlizmna"];
                         var slovo = otazka[Math.floor(Math.random() * otazka.length)];
-          
-            if (slovo === "pldjug") { 
+
+            if (slovo === "pldjug") {
             basicBot.room.tipovacka.currentNumber = "plugdj";
                     }
-            if (slovo === "lakanduf") { 
+            if (slovo === "lakanduf") {
             basicBot.room.tipovacka.currentNumber = "kaufland";
-                    }  
-            if (slovo === "ojah") { 
-            basicBot.room.tipovacka.currentNumber = "ahoj";                   
-                    }  
-            if (slovo === "ketara") { 
-            basicBot.room.tipovacka.currentNumber = "raketa";                
-                    }  
-            if (slovo === "munikota") { 
-            basicBot.room.tipovacka.currentNumber = "komunita";                     
                     }
-            if (slovo === "namera") { 
-            basicBot.room.tipovacka.currentNumber = "ramena";                     
+            if (slovo === "ojah") {
+            basicBot.room.tipovacka.currentNumber = "ahoj";
                     }
-            if (slovo === "bustoau") { 
-            basicBot.room.tipovacka.currentNumber = "autobus";                     
+            if (slovo === "ketara") {
+            basicBot.room.tipovacka.currentNumber = "raketa";
                     }
-            if (slovo === "rzlizmna") { 
-            basicBot.room.tipovacka.currentNumber = "zmrzlina";                     
+            if (slovo === "munikota") {
+            basicBot.room.tipovacka.currentNumber = "komunita";
                     }
-          API.sendChat('[ MINIHRA | @djs ] Rozluštěte slovo "' + slovo + '". Odpovídejte pomocí !t text a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');            
+            if (slovo === "namera") {
+            basicBot.room.tipovacka.currentNumber = "ramena";
+                    }
+            if (slovo === "bustoau") {
+            basicBot.room.tipovacka.currentNumber = "autobus";
+                    }
+            if (slovo === "rzlizmna") {
+            basicBot.room.tipovacka.currentNumber = "zmrzlina";
+                    }
+          API.sendChat('[ MINIHRA | @djs ] Rozluštěte slovo "' + slovo + '". Odpovídejte pomocí !t text a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
                     }
                     },
-                    
+
 
                 endNumberGameTime: function() {
                     if (basicBot.room.tipovacka.active) {
@@ -434,13 +434,13 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                     }
                 },
                endNumberGame: function(winnerID) {
-                  
+
 
                     var name = "undefined";
                     for (var i = 0; i < basicBot.room.users.length; i++) {
                         if (basicBot.room.users[i].id === winnerID) {
             if (basicBot.room.tipovacka.obtiznost == 1) {
-                            name = basicBot.room.users[i].username;                   
+                            name = basicBot.room.users[i].username;
                      var receiverTokens = validateTokens(name);
                     var castka = basicBot.room.tipovacka.vyhra;
                     var penize = parseInt(receiverTokens, 10) + parseInt(castka, 10);
@@ -495,11 +495,11 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 var receiverTokens = validateTokens(name);
                     var penize7 = parseInt(receiverTokens, 10) + parseInt(castka, 10);
                     localStorage.setItem(name, penize7);
-                            API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál ' + basicBot.room.tipovacka.vyhra + ' QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');   
+                            API.sendChat('[ MINIHRA ] Uživatel @' + name + ' vyhrál ' + basicBot.room.tipovacka.vyhra + ' QPoints se správnou odpovědi ' + basicBot.room.tipovacka.currentNumber + '.');
                          basicBot.room.tipovacka.active = false;
                     }  else {
-                        return false; 
-                    }    
+                        return false;
+                    }
                         }
                     }
                 }
@@ -531,7 +531,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                     }, 1 * 1000, winner, pos);
                 }
             },
-            usersUsedThor: [],  
+            usersUsedThor: [],
         usersUsedNahoda: []
         },
         User: function (id, name) {
@@ -555,8 +555,8 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 songCount: 0
             };
             this.lastKnownPosition = null;
-        this.inteligence = 0; 
-        this.napomenuti = 0;  
+        this.inteligence = 0;
+        this.napomenuti = 0;
         this.better = null;
         this.offered = 0;
         this.isBetting = false;
@@ -594,11 +594,11 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 }
                 return false;
             },
-            getAllUsers: function() { 
-            return basicBot.room.users; 
+            getAllUsers: function() {
+            return basicBot.room.users;
             },
-            
-    
+
+
             lookupUserName: function (name) {
                 for (var i = 0; i < basicBot.room.users.length; i++) {
                     var match = basicBot.room.users[i].username.trim() == name.trim();
@@ -672,7 +672,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                 }
                 else API.moderateMoveDJ(id, pos);
             },
-         
+
            dclookup: function (id) {
                 var user = basicBot.userUtilities.lookupUser(id);
                 if (typeof user === 'boolean') return basicBot.chat.usernotfound;
@@ -871,11 +871,11 @@ dclookupOnUserJoin: function (id) {
             if (basicBot.chatUtilities.chatFilter(chat)) return void (0);
             if (!basicBot.chatUtilities.commandCheck(chat))
                 basicBot.chatUtilities.action(chat);
-            
+
              // Spustí AI
             var spustit = ["@QPlug.cz"];
             var KDE_spustit = ["kde","Kde","KDE"];
-            var KDO_spustit = ["kdo","Kdo","KDO"]; 
+            var KDO_spustit = ["kdo","Kdo","KDO"];
             var KDY_spustit = ["kdy","Kdy","KDY"];
             var ALL_spustit = ["@QPlug.cz"];
             var ukoncit = ["ticho","Ticho","TICHO"];
@@ -899,43 +899,43 @@ dclookupOnUserJoin: function (id) {
             var ALL_odpoved = ["Ano","Ne"];
             var vypnout_AI = ["Dobře, už mlčím :(","Tak ahoj :(","OK, rozcházíme se :(","Hej, myslel jsem, že jsme přátelé! :(",":("];
             // Začátek AI
-            if (chat.message.match(AI)) { 
+            if (chat.message.match(AI)) {
             if (user.inteligence === 0) {
             setTimeout(function(){ API.sendChat("@" + chat.un + " " + pozdrav[Math.floor(Math.random() * pozdrav.length)] + " "); }, 4000);
             setTimeout(function(){ user.inteligence += 1; }, 2000);
         }
         }
         if (chat.message.match(ALL) || chat.message.match(KDE) || chat.message.match(KDO)  || chat.message.match(KDY) || chat.message.match(KONEC)) {
-        if (fromid === 23843691) { 
+        if (fromid === 23843691) {
         }
         }
-        if (chat.message.match(KDE)) { 
+        if (chat.message.match(KDE)) {
             if (user.inteligence === 1) {
             setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDE_odpoved[Math.floor(Math.random() * KDE_odpoved.length)] + " "); }, 4000);
         }
         }
-         if (chat.message.match(KDO)) { 
+         if (chat.message.match(KDO)) {
             if (user.inteligence === 1) {
             setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDO_odpoved[Math.floor(Math.random() * KDO_odpoved.length)] + " "); }, 4000);
         }
-        }  
-             if (chat.message.match(KDY)) { 
+        }
+             if (chat.message.match(KDY)) {
             if (user.inteligence === 1) {
             setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDY_odpoved[Math.floor(Math.random() * KDY_odpoved.length)] + " "); }, 4000);
         }
-        }  
+        }
          if (chat.message.match(ALL) && !chat.message.match(KDE) && !chat.message.match(KDO)  && !chat.message.match(KDY) && !chat.message.match(KONEC)) {
             if (user.inteligence === 1) {
             setTimeout(function(){ API.sendChat("@" + chat.un + " " + ALL_odpoved[Math.floor(Math.random() * ALL_odpoved.length)] + " "); }, 4000);
         }
-        }  
+        }
             // Ukončení AI
-          if (chat.message.match(KONEC)) { 
+          if (chat.message.match(KONEC)) {
             if (user.inteligence === 1) {
             setTimeout(function(){ API.sendChat("@" + chat.un + " " + vypnout_AI[Math.floor(Math.random() * vypnout_AI.length)] + " "); }, 4000);
-            setTimeout(function(){ user.inteligence = 0; }, 2000);    
+            setTimeout(function(){ user.inteligence = 0; }, 2000);
         }
-        }     
+        }
         },
         eventUserjoin: function (user) {
             var known = false;
@@ -1005,9 +1005,9 @@ dclookupOnUserJoin: function (id) {
                         basicBot.room.users[i].votes.meh++;
             var receiverTokens = validateTokens(obj.user.username);
             receiverTokens -= 1
-           localStorage.setItem(obj.user.username, receiverTokens);            
+           localStorage.setItem(obj.user.username, receiverTokens);
            API.sendChat("/me [" + obj.user.username + "] Ztratil/a jsi 1 QPoints za mehnutí písně!");
-           
+
                     }
                 }
             }
@@ -1036,14 +1036,14 @@ dclookupOnUserJoin: function (id) {
                 if (basicBot.room.users[i].id === obj.user.id) {
                     basicBot.room.users[i].votes.curate++;
 
-            
-       
+
+
                 }
             }
         },
         eventDjadvance: function (obj) {
 //Vydelavani
-        
+
        var reward = (obj.lastPlay.score.positive * 1) + (obj.lastPlay.score.grabs * 2) - (obj.lastPlay.score.negative * 1);
             var lastdjplayed = basicBot.userUtilities.lookupUser(obj.lastPlay.dj.id);
             var msg = chat.message;
@@ -1051,17 +1051,17 @@ dclookupOnUserJoin: function (id) {
                     var receiverTokens = validateTokens(lastdjplayed.username);
             var cislo = parseInt(receiverTokens, 10) + parseInt(reward,10);
             var cislo2 = parseInt(receiverTokens, 10) + parseInt(reward2,10);
-            
-            
+
+
            if (Math.round(API.getWaitList().length * 1) >= 15) {
            localStorage.setItem(lastdjplayed.username, cislo2);
            API.sendChat("[" + lastdjplayed.username + "] Získal/a jsi " + reward2 + " QPoints za odehrání písně!");
-           } else {  
+           } else {
          localStorage.setItem(lastdjplayed.username, cislo);
            API.sendChat("[" + lastdjplayed.username + "] Získal/a jsi " + reward + " QPoints za odehrání písně!");
         }
-         
-        
+
+
         if (basicBot.settings.autowoot) {
                 $("#woot").click(); // autowoot
             }
@@ -1092,7 +1092,7 @@ dclookupOnUserJoin: function (id) {
             basicBot.room.roomstats.totalCurates += lastplay.score.grabs;
             basicBot.room.roomstats.songCount++;
             basicBot.room.currentDJID = obj.dj.id;
-            
+
             var newMedia = obj.media;
             var timeLimitSkip = setTimeout(function () {
                 if (basicBot.settings.timeGuard && newMedia.duration > basicBot.settings.maximumSongLength * 60 && !basicBot.room.roomevent) {
@@ -1166,7 +1166,7 @@ dclookupOnUserJoin: function (id) {
                 API.sendChat(subChat(basicBot.chat.permissionownsong, {name: user.username}));
                 user.ownSong = false;
             }
-            
+
              clearTimeout(basicBot.room.autoskipTimer);
             if (basicBot.settings.autoskip) {
                 var remaining = obj.media.duration * 1000;
@@ -1182,7 +1182,7 @@ dclookupOnUserJoin: function (id) {
             storeToStorage();
             sendToSocket();
         },
-      
+
         eventWaitlistupdate: function (users) {
             if (users.length < 50) {
                 if (basicBot.room.queue.id.length > 0 && basicBot.room.queueable) {
@@ -1275,36 +1275,36 @@ dclookupOnUserJoin: function (id) {
                 }
                 if (basicBot.settings.cmdDeletion && msg.startsWith(basicBot.settings.commandLiteral)) {
                     API.moderateDeleteChat(chat.cid);
-               } 
+               }
 
 
-var hodnota = 1;     
+var hodnota = 1;
 var from = chat.un;
-                                  
+
 if (user.napomenuti === 0) {
 if (perm === 0) {
-if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){     
+if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){
 setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
 }
 }
 }
 if (user.napomenuti === 1) {
 if (perm === 0) {
-if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){     
+if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){
 setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
     }
     }
     }
 if (user.napomenuti === 2) {
 if (perm === 0) {
-if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){      
+if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){
 setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
     }
     }
     }
 if (user.napomenuti === 3) {
 if (perm === 0) {
-if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){     
+if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){
 API.sendChat("[@" + user.username + "] Byl/a jsi napomenut/a za vulgaritu v chatu. Uklidni svůj slovník nebo budeš umlčen/a!");
 setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
     }
@@ -1312,7 +1312,7 @@ setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
     }
 if (user.napomenuti === 4) {
 if (perm === 0) {
-if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){      
+if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){
 API.sendChat("[@" + user.username + "] Byl/a jsi umlčen/a za opakovanou vulgaritu v chatu!");
 setTimeout(function(){ API.moderateMuteUser(user.id, 1, API.MUTE.SHORT); }, 2000);
 setTimeout(function(){ user.napomenuti = 0; }, 2000);
@@ -1321,9 +1321,9 @@ setTimeout(function(){ user.napomenuti = 0; }, 2000);
     }
     else {
     }
-                
- 
-                 
+
+
+
 
 
                 var rlJoinChat = basicBot.chat.roulettejoin;
@@ -1405,7 +1405,7 @@ setTimeout(function(){ user.napomenuti = 0; }, 2000);
                 }
                 return executed;
             },
-          
+
             action: function (chat) {
                 var user = basicBot.userUtilities.lookupUser(chat.uid);
                 if (chat.type === 'message') {
@@ -1544,7 +1544,7 @@ setTimeout(function(){ user.napomenuti = 0; }, 2000);
                 var wlIndex = API.getWaitListPosition(basicBot.room.users[ind].id) + 1;
                 basicBot.userUtilities.updatePosition(basicBot.room.users[ind], wlIndex);
             };
-            
+
             basicBot.loggedInID = API.getUser().id;
             basicBot.status = true;
             API.sendChat('/cap ' + basicBot.settings.startupCap);
@@ -1631,7 +1631,7 @@ setTimeout(function(){ user.napomenuti = 0; }, 2000);
              **/
 
 autoskipCommand: {
-command: 'autoskip',
+command: ['autoskip', 'as'],
 rank: 'bouncer',
 type: 'exact',
 functionality: function (chat, cmd) {
@@ -1676,7 +1676,7 @@ return API.sendChat(subChat(basicBot.chat.chatcleared, {name: chat.un}));
 },
 
 cmddeletionCommand: {
-command: ['commanddeletion', 'cmddeletion', 'cmddel'],
+command: ['commanddeletion', 'cmddel'],
 rank: 'manager',
 type: 'exact',
 functionality: function (chat, cmd) {
@@ -1697,7 +1697,7 @@ API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBo
 }
 }
 },
-        
+
 resetbodyCommand: {
 command: 'resetqp',  //The command to be called. With the standard command literal this would be: !cleartokens
 rank: 'cohost', //Minimum user permission to use the command
@@ -1707,7 +1707,6 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!bot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-var user = chat.un;
 localStorage.clear();
 
 API.sendChat("[ OZNAM | @djs ] Vedenie komunity resetovalo QPoints všetkým užívateľom.");
@@ -1728,7 +1727,7 @@ else{
 
 function validateTokens(user){
 
-var tokens; 
+var tokens;
 
 //Check for existing user tokens
 if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
@@ -1748,18 +1747,18 @@ return ~~tokens;
 
 }
 
-var msg = chat.message; 
+var msg = chat.message;
 var space = msg.indexOf(' ');
 var lastSpace = msg.lastIndexOf(' ');
 var receiver = msg.substring(msg.indexOf("@") + 1);
 var giverTokens = validateTokens(chat.un);
 var receiverTokens = validateTokens(receiver);
 var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
-var currentDJ = API.getDJ().username; 
+var currentDJ = API.getDJ().username;
 var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
 
 if (giverTokens < strhnout){
-return API.sendChat("[@"+ chat.un +"] Nemáš dostatek QPoints k zaslání dárku!"); 
+return API.sendChat("[@"+ chat.un +"] Nemáš dostatek QPoints k zaslání dárku!");
 }
 
 else if (receiver === chat.un){
@@ -1769,12 +1768,12 @@ return API.sendChat("[@" + chat.un + "] Musíš zvolit uživatele k zaslání QP
 else if (strhnout < 1){
 return API.sendChat("[@" + chat.un + "] Nemůžeš posílat QPoints v záporných hodnotách!");
 }
-    
+
 else{
 giverTokens -= strhnout;
 localStorage.setItem(chat.un, giverTokens);
 
-if (space === -1){ 
+if (space === -1){
 localStorage.setItem(currentDJ, cislo);
 return API.sendChat("[ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + " QPoints uživateľovi " + currentDJ + "");
 }
@@ -1787,8 +1786,8 @@ return API.sendChat("[ DÁREK ] Uživatel " + chat.un + " poslal " + strhnout + 
 }
 
 }
-}, 
-               
+},
+
 spustitminihruCommand: {
 command: 'sm',
 rank: 'manager',
@@ -1797,7 +1796,7 @@ functionality: function (chat, cmd) {
 if (this.type === 'exact' && chat.message.length !== cmd.length) {return void (0);}
 if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
 
-basicBot.room.tipovacka.hrat();      
+basicBot.room.tipovacka.hrat();
 
 }
 },
@@ -1813,7 +1812,7 @@ if (!basicBot.commands.executable(this.rank, chat)) {return void (0);}
 basicBot.room.tipovacka.endNumberGameTime();
 
 }
-},       
+},
 
 minihraCommand: {
 command: 'minihra',
@@ -1825,7 +1824,7 @@ if (chat.message.length < 6) {return void (0);}
 if (basicBot.room.tipovacka.active) {
 API.sendChat("[@" + chat.un + "] Nelze změnit nastavení během probíhající minihry!");
 }
-    
+
 var gn = chat.message.substring(cmd.length + 1);
 var gni = parseInt(gn);
 var lastSpace = chat.message.lastIndexOf(' ');
@@ -1882,7 +1881,7 @@ if (!basicBot.room.tipovacka.active) { return void (0); }
 
 function validateTokens(user){
 
-var tokens; 
+var tokens;
 
 //Check for existing user tokens
 if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
@@ -1907,7 +1906,7 @@ var gni = parseInt(gn);
 var giverTokens = validateTokens(chat.un);
 
 if (giverTokens < basicBot.room.tipovacka.zapisne){
-return API.sendChat("[@" + chat.un + "] Pokus stojí " + basicBot.room.tipovacka.zapisne + " QPoints!"); 
+return API.sendChat("[@" + chat.un + "] Pokus stojí " + basicBot.room.tipovacka.zapisne + " QPoints!");
 }
 
 if (gni === basicBot.room.tipovacka.currentNumber || gn === basicBot.room.tipovacka.currentNumber.toString()){
@@ -1918,19 +1917,19 @@ basicBot.room.tipovacka.endNumberGame(chat.uid);
 else if (basicBot.room.tipovacka.obtiznost == 5){
 giverTokens -= basicBot.room.tipovacka.zapisne;
 localStorage.setItem(chat.un, giverTokens);
-API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gn + '');    
+API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gn + '');
 }
 
 else if (basicBot.room.tipovacka.obtiznost == 7){
 giverTokens -= basicBot.room.tipovacka.zapisne;
 localStorage.setItem(chat.un, giverTokens);
-API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gn + '');    
+API.sendChat('[@' + chat.un + '] Špatná odpověď: ' + gn + '');
 }
 
 else{
 giverTokens -= basicBot.room.tipovacka.zapisne;
 localStorage.setItem(chat.un, giverTokens);
-API.sendChat('[@' + chat.un + '] Špatné číslo: ' + gn + '');      
+API.sendChat('[@' + chat.un + '] Špatné číslo: ' + gn + '');
 
 
 }
@@ -1949,7 +1948,7 @@ else{
 
 function validateTokens(user){
 
-var tokens; 
+var tokens;
 
 //Check for existing user tokens
 if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
@@ -1968,18 +1967,18 @@ tokens = localStorage.getItem(user);
 return tokens;
 
 }
-var msg = chat.message; 
+var msg = chat.message;
 var space = msg.indexOf(' ');
 var lastSpace = msg.lastIndexOf(' ');
 var receiver = msg.substring(msg.indexOf("@") + 1);
 var giverTokens = validateTokens(chat.un);
 var receiverTokens = validateTokens(receiver);
 var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
-var currentDJ = API.getDJ().username; 
+var currentDJ = API.getDJ().username;
 var cislo = parseInt(receiverTokens, 10) + parseInt(strhnout,10);
 
 if (giverTokens <= -999){
-return API.sendChat("[@" + chat.un + "] Chyba v transakci."); 
+return API.sendChat("[@" + chat.un + "] Chyba v transakci.");
 }
 else if (strhnout < 1){
 return API.sendChat("[@" + chat.un + "] Nemůžeš posílat QPoints v záporných hodnotách!");
@@ -1988,7 +1987,7 @@ else{
 giverTokens -= 0;
 localStorage.setItem(chat.un, giverTokens);
 
-if (space === -1){ 
+if (space === -1){
 localStorage.setItem(currentDJ, cislo);
 return API.sendChat("[@" + currentDJ + "] Bylo vám přičteno na účet " + strhnout + " QPoints.");
 }
@@ -2001,8 +2000,8 @@ return API.sendChat("[@" + receiver + "] Bylo vám přičteno na účet " + strh
 }
 
 }
-}, 
-      
+},
+
 odebratbodyCommand: {
 command: ['odebratbody', 'removeqp'],  //The command to be called. With the standard command literal this would be: !tip
 rank: 'manager', //Minimum user permission to use the command
@@ -2015,7 +2014,7 @@ else {
 
 function validateTokens(user){
 
-var tokens; 
+var tokens;
 
 //Check for existing user tokens
 if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
@@ -2035,14 +2034,14 @@ return tokens;
 
 }
 
-var msg = chat.message; 
+var msg = chat.message;
 var space = msg.indexOf(' ');
 var lastSpace = msg.lastIndexOf(' ');
 var receiver = msg.substring(msg.indexOf("@") + 1);
 var giverTokens = validateTokens(chat.un);
 var receiverTokens = validateTokens(receiver);
 var strhnout = parseInt(msg.substring(cmd.length + 1, lastSpace));
-var currentDJ = API.getDJ().username; 
+var currentDJ = API.getDJ().username;
 var cislo = parseInt(receiverTokens, 10) - parseInt(strhnout,10);
 
 if (strhnout < 1){
@@ -2052,7 +2051,7 @@ else{
 giverTokens -= 0;
 localStorage.setItem(chat.un, giverTokens);
 
-if (space === -1){ 
+if (space === -1){
 localStorage.setItem(currentDJ, cislo);
 return API.sendChat("[@" + currentDJ + "] Bylo vám strženo z účtu " + strhnout + " QPoints.");
 }
@@ -2081,7 +2080,7 @@ else{
 
 function validateTokens(user){
 
-var tokens; 
+var tokens;
 
 //Check for existing user tokens
 if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
@@ -2103,7 +2102,7 @@ return tokens;
 
 function pozice(user){
 
-var nakup; 
+var nakup;
 
 //Check for existing user tokens
 if (sessionStorage.getItem(user) == null || sessionStorage.getItem(user) == "undefined"){
@@ -2123,13 +2122,13 @@ return nakup;
 
 }
 
-var msg = chat.message; 
+var msg = chat.message;
 var giverTokens = validateTokens(chat.un);
 var zakaznik = chat.un;
 var uid = chat.uid;
 
 if (giverTokens < 500){
-return API.sendChat("[@" + zakaznik + "] Nemáš dostatek QPoints k zaplacení 1. pozice ve frontě. Nákup stojí 500 QPoints."); 
+return API.sendChat("[@" + zakaznik + "] Nemáš dostatek QPoints k zaplacení 1. pozice ve frontě. Nákup stojí 500 QPoints.");
 }
 
 else{
@@ -2212,12 +2211,12 @@ API.sendChat("[@" + chat.un + "] Omlouváme se, ale server nenalezl žádné inf
 
 }
 
-simpleAJAXLib.init();   
+simpleAJAXLib.init();
 
 }
 }
 },
-            
+
 kontoCommand: {
 command: ['konto'],
 rank: 'bouncer',
@@ -2229,7 +2228,7 @@ else{
 }
 
 function validateTokens(user){
-var tokens; 
+var tokens;
 
 if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
 localStorage.setItem(user, "0");
@@ -2248,25 +2247,25 @@ return tokens;
 
 }
 
-var msg = chat.message; 
+var msg = chat.message;
 var space = msg.indexOf(' ');
-var receiver = msg.substring(space + 2); 
+var receiver = msg.substring(space + 2);
 var giverTokens = validateTokens(chat.un);
 var receiverTokens = validateTokens(receiver);
-var currentDJ = API.getDJ().username; 
+var currentDJ = API.getDJ().username;
 
 if (giverTokens <= -999){
-return API.sendChat("[@" + chat.un + "] Chyba 404."); 
+return API.sendChat("[@" + chat.un + "] Chyba 404.");
 }
 
 else{
 giverTokens -= 0;
 localStorage.setItem(chat.un, giverTokens);
 
-if (space === -1){ 
+if (space === -1){
 receiverTokens -= 0;
 localStorage.setItem(currentDJ, receiverTokens);
-return API.sendChat("[@"+ chat.un +"] Úžívateľ "+ currentDJ +" má na konte "+ receiverTokens +" QPoints!"); 
+return API.sendChat("[@"+ chat.un +"] Úžívateľ "+ currentDJ +" má na konte "+ receiverTokens +" QPoints!");
 }
 
 else{
@@ -2460,7 +2459,7 @@ API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Global Elit
 }
 
 function validateTokens(user){
-var tokens; 
+var tokens;
 
 if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
 localStorage.setItem(user, "0");
@@ -2481,21 +2480,21 @@ return tokens;
 }
 },
 
-/*automatCommand: {  
+/*automatCommand: {
 command: ['automat', 'automaty'],  //The command to be called. With the standard command literal this would be: !slots
-rank: 'user', 
-type: 'startsWith',  
-functionality: function (chat, cmd) { 
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0); 
-if (!basicBot.commands.executable(this.rank, chat)) return void (0); 
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else {
 
 if (!basicBot.settings.minihry) {
-return API.sendChat("/me [@" + chat.un + "] Automaty jsou vypnuté."); 
+return API.sendChat("/me [@" + chat.un + "] Automaty jsou vypnuté.");
 }
-var msg = chat.message; 
+var msg = chat.message;
 var space = msg.indexOf(' ');
-var user = chat.un; 
+var user = chat.un;
 var updatedTokens;
 var bet = parseInt(msg.substring(space + 1));
 
@@ -2503,27 +2502,27 @@ var bet = parseInt(msg.substring(space + 1));
 if (bet == null || isNaN(bet)) {
 bet = 1;
 }
-bet = Math.round(bet);      
+bet = Math.round(bet);
 
-var playerTokens = checkTokens(bet, user);  
+var playerTokens = checkTokens(bet, user);
 
 //Prevent invalid betting
 if (bet > playerTokens[0]) {
 if (playerTokens[0] === 0){
-return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Nemáš žádné body."); 
-} 
+return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Nemáš žádné body.");
+}
 else if (playerTokens[0] === 1) {
-return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Máš 1 bod."); 
+return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Máš 1 bod.");
 }
 else {
-return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Máš " + playerTokens[0] + " bodů."); 
+return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Máš " + playerTokens[0] + " bodů.");
 }
 }
 else if (bet < 0) {
 return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit " + bet + " bodů. Zkus to bez nesmyslných částek!");
 }
-else if (bet === 0) { 
-return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit 0 bodů."); 
+else if (bet === 0) {
+return API.sendChat("/me [@" + chat.un + "] Nemůžeš vsadit 0 bodů.");
 }
 //Process valid bets
 else {
@@ -2532,25 +2531,25 @@ updatedTokens = slotWinnings(outcome[3], user);
 }
 
 //Display Slots
-if (space === -1 || bet == 1) { 
+if (space === -1 || bet == 1) {
 //Start Slots
 API.sendChat("/me @" + chat.un + " vsadil/a 1 bod do vánočního automatu.");
 setTimeout(function() {API.sendChat("/me [ Automat ] " + outcome[0]  + outcome[1]  + outcome[2])}, 5000);
-} 
-else if (bet > 1) { 
+}
+else if (bet > 1) {
 //Start Slots
 API.sendChat("/me @" + chat.un + " vsadil/a " + bet + " bodů do vánočního automatu.");
 setTimeout(function() {API.sendChat("/me [ Automat ] " + outcome[0]  + outcome[1]  + outcome[2])}, 5000);
-}  
+}
 else {
-return false; 
+return false;
 }
 
 //Display Outcome
 if (outcome[3] == 0) {
 if (updatedTokens === 1) {
-setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Prohrál/a jsi! Zbylo ti 1 bod.")}, 7000);   
-}  
+setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Prohrál/a jsi! Zbylo ti 1 bod.")}, 7000);
+}
 else if (updatedTokens === 0) {
 setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Prohrál/a jsi! Nemáš žádné body. Vydělávej hraním písní a poté přijď znovu!")}, 7000);
 
@@ -2564,13 +2563,13 @@ setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Vyhrál/a jsi váno�
 
 }
 else {
-setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Vyhrál/a jsi! Tvá výhra je " + outcome[3] + " bodů. Nyní máš " + updatedTokens + " bodů ")}, 7000); 
+setTimeout(function() {API.sendChat("/me [@" + chat.un + "] Vyhrál/a jsi! Tvá výhra je " + outcome[3] + " bodů. Nyní máš " + updatedTokens + " bodů ")}, 7000);
 }
 
 //Validate Tokens
 function validateTokens(user)
 {
-var tokens; 
+var tokens;
 
 //Check for existing user tokens
 if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
@@ -2588,7 +2587,7 @@ return tokens;
 }
 
 //Slots---------------------------------------------------------------------------------------------------------------------------
-function spinSlots() 
+function spinSlots()
 {
 var slotArray = [':beer: -',
 ':snowflake: - ',
@@ -2605,16 +2604,16 @@ var slotValue = [6,
 6,
 6,
 6,
-20];    
-var rand =  Math.floor(Math.random() * (slotArray.length));                
-return [slotArray[rand], slotValue[rand]]; 
+20];
+var rand =  Math.floor(Math.random() * (slotArray.length));
+return [slotArray[rand], slotValue[rand]];
 }
 
-function spinOutcome(bet) 
+function spinOutcome(bet)
 {
 var winnings;
-var outcome1 = spinSlots(); 
-var outcome2 = spinSlots(); 
+var outcome1 = spinSlots();
+var outcome2 = spinSlots();
 var outcome3 = spinSlots();
 
 
@@ -2634,12 +2633,12 @@ winnings = Math.round(bet * (.40 * outcome2[1]));
 
 }
 else{
-winnings = 0;  
+winnings = 0;
 }
 
-return [outcome1[0], outcome2[0], outcome3[0], winnings];                      
+return [outcome1[0], outcome2[0], outcome3[0], winnings];
 }
-function checkTokens(bet, user) 
+function checkTokens(bet, user)
 {
 var tokensPreBet = validateTokens(user);
 var tokensPostBet;
@@ -2658,7 +2657,7 @@ localStorage.setItem(user, tokensPostBet);
 return [tokensPreBet, tokensPostBet, validBet];
 }
 
-function slotWinnings(winnings, user) 
+function slotWinnings(winnings, user)
 {
 var userTokens = parseInt(localStorage.getItem(user)) + winnings;
 if (isNaN(userTokens)) {
@@ -2670,9 +2669,9 @@ return userTokens;
 }
 
 }
-} 
+}
 },*/
-           
+
 mehcommand: {
 command: 'meh',
 rank: 'bouncer',
@@ -2706,7 +2705,7 @@ $("#woot").click();
 },
 
 maxlengthCommand: {
-command: 'maxlength',
+command: ['maxlength', 'ml'],
 rank: 'manager',
 type: 'startsWith',
 functionality: function (chat, cmd) {
@@ -2997,7 +2996,7 @@ API.sendChat(subChat(basicBot.chat.roulettejoin, {name: chat.un}));
 },
 
 jointimeCommand: {
-command: ['jointime', 'active', 'jt'],
+command: ['jointime', 'active', 'joint'],
 rank: 'bouncer',
 type: 'startsWith',
 functionality: function (chat, cmd) {
@@ -3042,7 +3041,7 @@ kill();
 },
 
 leaveCommand: {
-command: 'leave',
+command: ['leave', 'opustit'],
 rank: 'user',
 type: 'exact',
 functionality: function (chat, cmd) {
@@ -3231,7 +3230,7 @@ return API.sendChat("/me [ OZNAM | @djs ] Minihry jsou nyní zapnuté.");
 }
 }
 },
-            
+
 statusCommand: {
 command: ['status', 'settings', 'sett'],
 rank: 'bouncer',
@@ -3377,7 +3376,7 @@ basicBot.userUtilities.moveUser(user2.id, p1, false);
 }
 }
 },
-        
+
 lockchatCommand: {
 command: 'lockchat',
 rank: 'manager',
@@ -3474,15 +3473,14 @@ var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
 
-if (giverTokens > 4499) {
+if (giverTokens > 4499){
 
 $("#grab").click();
 $(".pop-menu ul li:first-child").mousedown();
-API.sendChat("[@"+ from +"] Bot grabol aktuálnu pesničku!");
 }
 
-else{ 
-API.sendChat("[@" + from + "] Tento příkaz vyžaduje rank Bronze V nebo vyšší! Více o rank systému nalezneš zde: http://qplug.funsite.cz/bot/qpoints");
+else{
+API.sendChat("[@"+ from +"] Tento příkaz vyžaduje rank Bronze V nebo vyšší! Více o rank systému nalezneš zde: http://qplug.funsite.cz/bot/qpoints!");
 }
 
 }
@@ -3534,7 +3532,7 @@ API.sendChat("[@" + from + "] Tento příkaz vyžaduje rank Bronze V nebo vyšš
 }
 }
 },
-            
+
 meninyCommand: {
 command: ['meniny','nameday'],
 rank: 'user',
@@ -3599,7 +3597,7 @@ var kalendar1 = new Array("Nový rok","Alexandra","Daniela","Drahoslav","Andrea"
 "Nikola/Nikolaj","Ružena","Nora",
 "Drahoslava","Linda","Belo","Rozália","Regína","Alica",
 "Marianna","Miriama","Martina","Oleg","Bystrík");
-    
+
 var kalendar2 = new Array("Mária","Ctibor","Ľudomil","Jolana","Ľudmila","Olympia",
 "Eugénia","Konštantín","Ľuboslav/Ľuboslava","Matúš","Móric",
 "Zdenka","Ľuboš/Ľubor","Vladislav","Edita","Cyprián",
@@ -3631,7 +3629,7 @@ if((kalendarIndex - 255) >= 0 ){
 API.sendChat("Dnes má na Slovensku meniny: "+ kalendar2[kalendarIndex-255] +".");
 }
 
-else{ 
+else{
 API.sendChat("Dnes má na Slovensku meniny: "+ kalendar1[kalendarIndex] +".");
 }
 
@@ -3770,7 +3768,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[@" + from + "] Čo sú QPoints a ako ich zarábať najdeš na http://qplug.funsite.cz/bot/qpoints!");
+API.sendChat("[@" + from + "] Čo sú QPoints, Rank systém a ako ich zarábať najdeš na http://qplug.funsite.cz/bot/qpoints!");
 return false;
 }
 
@@ -3783,11 +3781,11 @@ return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@" + from + "] Čo sú QPoints a ako ich zarábať najdeš na http://qplug.funsite.cz/bot/qpoints!");
+return API.sendChat("[@" + from + "] Čo sú QPoints, Rank systém a ako ich zarábať najdeš na http://qplug.funsite.cz/bot/qpoints!");
 }
 
 else{
-return API.sendChat("[@" + user.username + "] Čo sú QPoints a ako ich zarábať najdeš na http://qplug.funsite.cz/bot/qpoints!");
+return API.sendChat("[@" + user.username + "] Čo sú QPoints, Rank systém a ako ich zarábať najdeš na http://qplug.funsite.cz/bot/qpoints!");
 }
 
 }
@@ -3878,7 +3876,7 @@ return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny Ná
 }
 }
 },
-            
+
 sexCommand: {
 command: ['sex', 'lulu'],
 rank: 'user',
@@ -3904,7 +3902,7 @@ var user = basicBot.userUtilities.lookupUserName(meno);
 
 if (user === false || !user.inRoom){
 return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!");
-} 
+}
 
 else if (user.username === from.un){
 return API.sendChat("[@"+ from.un +"] Ty chceš sex sám so sebou? Tak si to uži! :smiling_imp:");
@@ -3946,7 +3944,7 @@ var user = basicBot.userUtilities.lookupUserName(meno);
 
 if (user === false || !user.inRoom){
 return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!");
-} 
+}
 
 else if (user.username === from.un){
 return API.sendChat("[@" + from.un + "] Miluješ sám seba?");
@@ -3954,7 +3952,7 @@ return API.sendChat("[@" + from.un + "] Miluješ sám seba?");
 
 else{
 if((from.uid == 4183729 && user.id == 5477951) || (from.uid == 5477951 && user.id == 4183729))
-random = 250; 
+random = 250;
 
 return API.sendChat("@" + from.un + ", miluje @" + user.username + " na " + random + "%! :two_hearts:");
 }
@@ -3979,8 +3977,8 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
-/*API.sendChat("[@"+ from +"] Dnes o 19:00 sa usporiadá Event o veľké množstvo QPoints! Viac na http://qplug.funsite.cz/eventy!");*/
+/*API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");*/
+API.sendChat("[@"+ from +"] 14.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/eventy!");
 return false;
 }
 
@@ -3993,11 +3991,11 @@ return API.sendChat("[@"+ from +"] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ from +"] 14.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/eventy!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ user.username +"] 14.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/eventy!");
 }
 
 }
@@ -4045,7 +4043,7 @@ return API.sendChat("[@"+ user.username +"] Hoď like na našu Facebook stránku
 }
 }
 },
-            
+
 joinwlCommand: {
 command: 'joinwl',
 rank: 'user',
@@ -4062,7 +4060,7 @@ API.moderateAddDJ(fromid);
 }
 }
 },
-        
+
 leavewlCommand: {
 command: 'leavewl',
 rank: 'user',
@@ -4099,7 +4097,7 @@ API.sendChat("[ "+ bot_name +" ] Základy našeho Systému pochádzajú z pôvod
 }
 }
 },
-        
+
 peopleCommand: {
 command: ['ludia', 'online', 'people'],
 rank: 'user',
@@ -4117,7 +4115,7 @@ API.sendChat("[ QPlug.cz ] Aktuálne je v komunite online "+ online_people_count
 }
 }
 },
-            
+
 afkCommand: {
 command: ['preč', 'prec', 'pryč', 'pryc', 'afk', 'away'],
 rank: 'user',
@@ -4156,7 +4154,7 @@ functionality: function (chat, cmd) {
 if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
-    
+
 var from = chat.un;
 
 API.sendChat("[ AFK ] Užívateľ @"+ from +" sa práve vrátil!");
@@ -4173,7 +4171,7 @@ functionality: function (chat, cmd) {
 if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
-    
+
 var from = chat.un;
 var vtipy = [
 "Idú 2 babky po púšti a tá stredná odbočí doľava.",
@@ -4207,7 +4205,7 @@ functionality: function (chat, cmd) {
 if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
-    
+
 var from = chat.un;
 var memes = [
 "http://upload.emefka.sk:82/posts/new/orig/12/63/81263.jpg",
@@ -4425,7 +4423,7 @@ var time=1800; // SEKUNDY
 var timer;
 API.on(API.CHAT_COMMAND, command);
 API.sendChat("/startmsg");
- 
+
 function command(value){
 console.log("command called");
 var commandfunction = "";
@@ -4463,17 +4461,17 @@ API.chatLog("Správy sa teraz odosielajú!",true);
 break;
 }
 }
- 
+
 function postmsg(){
 var random = Math.floor((Math.random() * msgs.length));
 API.sendChat(msgs[random]);
 }
- 
+
 function refreshtimer(){
 stoptimer(timer);
 timer = window.setInterval(postmsg, time*1000);
 }
- 
+
 function stoptimer(){
 window.clearInterval(timer);
 timer = null;
@@ -4604,7 +4602,7 @@ var from = chat.un;
 var fromid = chat.uid;
 
 if(
-msg.indexOf("Pomocou DJovania získaš QPoints (virtuálne peniaze) za ktore si môžeš kúpiť prvú pozíciu v zozname čakaní! Príkaz pre zistenie QPoints je !qp ") !== -1){
+msg.indexOf("Pomocou DJovania získaš QPoints. (virtuálne peniaze) Viac na http://qplug.funsite.cz/bot/qpoints!") !== -1){
 if(fromid == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 milisekund = 40 sekund
 }
