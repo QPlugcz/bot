@@ -3978,7 +3978,7 @@ var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
 /*API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");*/
-API.sendChat("[@"+ from +"] 14.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/eventy!");
+API.sendChat("[@"+ from +"] 14.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/events!");
 return false;
 }
 
@@ -3991,11 +3991,11 @@ return API.sendChat("[@"+ from +"] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@"+ from +"] 14.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/eventy!");
+return API.sendChat("[@"+ from +"] 14.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/events!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] 14.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/eventy!");
+return API.sendChat("[@"+ user.username +"] 14.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/events!");
 }
 
 }
@@ -4381,7 +4381,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/commands!");
+API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/prikazy!");
 return false;
 }
 
@@ -4394,11 +4394,11 @@ return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/commands!");
+return API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/prikazy!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/commands!");
+return API.sendChat("[@"+ user.username +"] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/prikazy!");
 }
 
 }
@@ -4416,7 +4416,7 @@ loadChat(basicBot.startup);
 var msgs=[
 "/me Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!",
 "/me Náš Discord server https://bit.ly/QPlugczDiscord!",
-"/me Pomocou DJovania získaš QPoints (virtuálne peniaze) za ktore si môžeš kúpiť prvú pozíciu v zozname čakaní! Príkaz pre zistenie QPoints je !qp :heart:",
+"/me Pomocou DJovania získaš QPoints. (virtuálne peniaze) Viac na http://qplug.funsite.cz/bot/qpoints! :heart:",
 "/me Na našej stránke najdeš pravidlá a informácie o našej komunite. Stránka obsahuje okrem toho aj informácie o aktualizáciach nášho Bota. Link http://qplug.funsite.cz!"
 ];
 var time=1800; // SEKUNDY
