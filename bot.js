@@ -4602,7 +4602,7 @@ var from = chat.un;
 var fromid = chat.uid;
 
 if(
-msg.indexOf("Pomocou DJovania získaš QPoints. (virtuálne peniaze) Viac na http://qplug.funsite.cz/bot/qpoints!") !== -1){
+msg.indexOf("14.4.2017 sa usporiadá Event o QPoints! Viac informácii čoskoro!") !== -1){
 if(fromid == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 milisekund = 40 sekund
 }
