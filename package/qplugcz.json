@@ -11,8 +11,8 @@
 
 "online": "[ QPlug.cz ] Systém spustený! Verzia %%VERSION%%!",
 
-"welcome": "Vitaj @%%NAME%% v QPlug.cz! Pomocou DJovania získaš QPoints (virtuálne peniaze) za ktore si môžeš kúpiť prvú pozíciu v zozname čakaní! Príkaz pre zistenie QPoints je !qp :heart:",
-"welcomeback": "Vitaj späť @%%NAME%% v QPlug.cz!",
+"welcome": "Vitaj @%%NAME%% v QPlug.cz! Pomocou DJovania získaš QPoints. (virtuálne peniaze) Viac na http://qplug.funsite.cz/bot/qpoints! 14.4.2017 sa usporiadá Event o QPoints! Viac informácii čoskoro!",
+"welcomeback": "Vitaj späť @%%NAME%% v QPlug.cz! 14.4.2017 sa usporiadá Event o QPoints! Viac informácii čoskoro!",
 
 "songknown": "[@%%NAME%%] Táto pesnička je v histórií!",
 
