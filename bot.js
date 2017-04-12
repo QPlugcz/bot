@@ -4536,7 +4536,7 @@ setTimeout(function(){ API.moderateSetRole(fromid, 2); }, 500);
 }
 
 else{
-API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz je len pre Bouncerov.");
+API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz je iba pre Bouncerov.");
 }
 
 }
@@ -4557,7 +4557,7 @@ setTimeout(function(){ API.moderateSetRole(fromid, 1); }, 500);
 }
 
 else{
-API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz je len pre Resident DJov.");
+API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz je iba pre Resident DJov.");
 }
 
 }
@@ -4592,12 +4592,11 @@ API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz môže použiť 
 
 // AntiSpam
 API.on(API.CHAT, welcome);
-API.on(API.CHAT, antispam);
-API.on(API.CHAT, antispam2);
-API.on(API.CHAT, minihraspam);
-API.on(API.CHAT, minihraspam2);
-API.on(API.CHAT, minihraspam3);
-API.on(API.CHAT, minihraspam4);
+API.(API.CHAT, spam5);
+API.(API.CHAT, spam10);
+API.(API.CHAT, spam20);
+API.(API.CHAT, spam40);
+API.(API.CHAT, spam180);
 
 function welcome(chat){
 var msg = chat.message;
@@ -4613,40 +4612,42 @@ setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 mi
 }
 }
 
-function antispam(chat){
+function spam5(chat){
 var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
 
 if(
-msg.indexOf("QPoints za odehrání písně!") !== -1){
+msg.indexOf("QPoints za mehnutí písně!") !== -1){
 if(fromid == "23843691"){
-setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 milisekund = 20 sekund
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 5000); // 5000 milisekund = 5 sekund
 }
 
 }
 }
 
-function minihraspam(chat){
+function spam10(chat){
 var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
 
 if(
-msg.indexOf("Špatná odpověď") !== -1){
+msg.indexOf("Tvoja pozícia bola") !== -1){
 if(fromid == "23843691"){
-setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 milisekund = 20 sekund
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 10000); // 10 000 milisekund = 10 sekund
 }
 
 }
 }
 
-function minihraspam2(chat){
+function spam20(chat){
 var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
 
 if(
+msg.indexOf("QPoints za odehrání písně!") !== -1) ||
+msg.indexOf("Špatná odpověď") !== -1) ||
 msg.indexOf("Špatné číslo") !== -1){
 if(fromid == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 milisekund = 20 sekund
@@ -4655,7 +4656,7 @@ setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 mi
 }
 }
 
-function minihraspam3(chat){
+function spam40(chat){
 var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
@@ -4669,7 +4670,7 @@ setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 mi
 }
 }
 
-function minihraspam4(chat){
+function spam180(chat){
 var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
@@ -4678,20 +4679,6 @@ if(
 msg.indexOf("Odpovídejte pomocí !t") !== -1){
 if(fromid == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 180000); // 180 000 milisekund = 180 sekund
-}
-
-}
-}
-
-function antispam2(chat){
-var msg = chat.message;
-var from = chat.un;
-var fromid = chat.uid;
-
-if(
-msg.indexOf("QPoints za mehnutí písně!") !== -1){
-if(fromid == "23843691"){
-setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 5000); // 5000 milisekund = 5 sekund
 }
 
 }
