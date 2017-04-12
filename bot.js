@@ -4591,95 +4591,53 @@ API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz môže použiť 
 }
 
 // AntiSpam
-API.on(API.CHAT, welcome);
-API.(API.CHAT, spam5);
-API.(API.CHAT, spam10);
-API.(API.CHAT, spam20);
-API.(API.CHAT, spam40);
-API.(API.CHAT, spam180);
-
-function welcome(chat){
+API.on(API.CHAT, function(chat){
 var msg = chat.message;
 var from = chat.un;
-var fromid = chat.uid;
+var fromID = chat.uid;
 
 if(
 msg.indexOf("14.4.2017 sa usporiadá Event o QPoints! Viac informácii čoskoro!") !== -1){
-if(fromid == "23843691"){
+if(fromID == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 milisekund = 40 sekund
 }
-
 }
-}
-
-function spam5(chat){
-var msg = chat.message;
-var from = chat.un;
-var fromid = chat.uid;
 
 if(
 msg.indexOf("QPoints za mehnutí písně!") !== -1){
-if(fromid == "23843691"){
+if(fromID == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 5000); // 5000 milisekund = 5 sekund
 }
-
 }
-}
-
-function spam10(chat){
-var msg = chat.message;
-var from = chat.un;
-var fromid = chat.uid;
 
 if(
 msg.indexOf("Tvoja pozícia bola") !== -1){
-if(fromid == "23843691"){
+if(fromID == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 10000); // 10 000 milisekund = 10 sekund
 }
-
 }
-}
-
-function spam20(chat){
-var msg = chat.message;
-var from = chat.un;
-var fromid = chat.uid;
 
 if(
-msg.indexOf("QPoints za odehrání písně!") !== -1) ||
-msg.indexOf("Špatná odpověď") !== -1) ||
+msg.indexOf("QPoints za odehrání písně!") !== -1 ||
+msg.indexOf("Špatná odpověď") !== -1 ||
 msg.indexOf("Špatné číslo") !== -1){
-if(fromid == "23843691"){
+if(fromID == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 milisekund = 20 sekund
 }
-
 }
-}
-
-function spam40(chat){
-var msg = chat.message;
-var from = chat.un;
-var fromid = chat.uid;
 
 if(
 msg.indexOf("QPoints se správnou odpovědi") !== -1){
-if(fromid == "23843691"){
+if(fromID == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 milisekund = 40 sekund
 }
-
 }
-}
-
-function spam180(chat){
-var msg = chat.message;
-var from = chat.un;
-var fromid = chat.uid;
 
 if(
 msg.indexOf("Odpovídejte pomocí !t") !== -1){
-if(fromid == "23843691"){
+if(fromID == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 180000); // 180 000 milisekund = 180 sekund
 }
+}
 
-}
-}
+});
