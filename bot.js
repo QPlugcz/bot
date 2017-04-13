@@ -279,6 +279,7 @@ cmdDeletion: true,
 maximumDc: 120,
 lockdownEnabled: false,
 historySkip: true,
+autograb: false,
 timeGuard: true,
 maximumSongLength: 6.20,
 commandCooldown: 5,
@@ -898,7 +899,7 @@ dclookupOnUserJoin: function (id) {
             var KDY_odpoved = ["Včera :P","Za chvíli","Zítra","Za týden","Za měsíc","Za rok","Za hodinu","Nikdy :)","V noci","Před rokem","Ráno","Odpoledne"];
             var ALL_odpoved = ["Ano","Ne"];
             var vypnout_AI = ["Dobře, už mlčím :(","Tak ahoj :(","OK, rozcházíme se :(","Hej, myslel jsem, že jsme přátelé! :(",":("];
-            
+
             // Začátek AI
             if (chat.message.match(AI)) {
             if (user.inteligence === 0) {
@@ -1165,6 +1166,12 @@ dclookupOnUserJoin: function (id) {
                     }
                 }, 2000);
             }
+
+if(basicBot.settings.autograb){
+$("#grab").click();
+$(".pop-menu ul li:first-child").mousedown();
+}
+
             if (user.ownSong) {
                 API.sendChat(subChat(basicBot.chat.permissionownsong, {name: user.username}));
                 user.ownSong = false;
@@ -1651,6 +1658,29 @@ return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function':
 else{
 basicBot.settings.autoskip = !basicBot.settings.autoskip;
 return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.autoskip}));
+}
+
+}
+}
+},
+
+autograbCommand: {
+command: ['autograb', 'ag'],
+rank: 'manager',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+if (basicBot.settings.autograb){
+basicBot.settings.autograb = !basicBot.settings.autograb;
+API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.autograb}));
+}
+
+else{
+basicBot.settings.autograb = !basicBot.settings.autograb;
+API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.autograb}));
 }
 
 }
@@ -3271,7 +3301,10 @@ if (basicBot.settings.autoskip) msg += 'ON';
 else msg += 'OFF';
 msg += ' | ';
 
-
+msg += basicBot.chat.autograb + ': ';
+if (basicBot.settings.autograb) msg += 'ON';
+else msg += 'OFF';
+msg += ' | ';
 
 var launchT = basicBot.room.roomstats.launchTime;
 var durationOnline = Date.now() - launchT;
