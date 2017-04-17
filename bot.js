@@ -4014,7 +4014,7 @@ var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
 /*API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");*/
-API.sendChat("[@"+ from +"] 14.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/events!");
+API.sendChat("[@"+ from +"] 21.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/events!");
 return false;
 }
 
@@ -4027,11 +4027,11 @@ return API.sendChat("[@"+ from +"] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@"+ from +"] 14.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/events!");
+return API.sendChat("[@"+ from +"] 21.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/events!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] 14.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/events!");
+return API.sendChat("[@"+ user.username +"] 21.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/events!");
 }
 
 }
@@ -4630,7 +4630,7 @@ var from = chat.un;
 var fromID = chat.uid;
 
 if(
-msg.indexOf("14.4.2017 sa usporiadá Event o QPoints! Viac informácii čoskoro!") !== -1){
+msg.indexOf("21.4.2017 sa usporiadá Event o QPoints! Viac informácii čoskoro!") !== -1){
 if(fromID == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 milisekund = 40 sekund
 }
