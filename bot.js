@@ -985,7 +985,7 @@ dclookupOnUserJoin: function (id) {
             var automatickeDC = basicBot.userUtilities.dclookupOnUserJoin(user.id);
             if (typeof automatickeDC === "string") setTimeout(function(){ API.sendChat(automatickeDC); }, 4000);
             
-            basicBot.joinedCount += 1;
+            basicBot.settings.joinedCount += 1;
         },
         eventUserleave: function (user) {
             var lastDJ = API.getHistory()[0].user.id;
@@ -3615,7 +3615,7 @@ var launchT = basicBot.room.roomstats.launchTime;
 var durationOnline = Date.now() - launchT;
 var since = basicBot.roomUtilities.msToStr(durationOnline);
 
-API.sendChat("[@"+ from +" ] Za "+ since +" čo je Bot spustený prešlo komunitou "+ basicBot.joinedCount +" ľudí.");
+API.sendChat("[@"+ from +" ] Za "+ since +" čo je Bot spustený prešlo komunitou "+ basicBot.settings.joinedCount +" ľudí.");
 
 }
 }
