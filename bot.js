@@ -269,6 +269,7 @@ language: "qplugcz",
 chatLink: "https://rawgit.com/QPlugcz/QBot/master/package/qplugcz.json",
 scriptLink: "https://rawgit.com/FALSEYING/MFEBOT/master/system.js",
 roomLock: false, // Requires an extension to re-load the script
+joinedCount: 0,
 startupCap: 1, // 1-200
 startupVolume: 0, // 0-100
 startupEmoji: false, // true or false
@@ -983,6 +984,8 @@ dclookupOnUserJoin: function (id) {
             }
             var automatickeDC = basicBot.userUtilities.dclookupOnUserJoin(user.id);
             if (typeof automatickeDC === "string") setTimeout(function(){ API.sendChat(automatickeDC); }, 4000);
+            
+            basicBot.joinedCount += 1;
         },
         eventUserleave: function (user) {
             var lastDJ = API.getHistory()[0].user.id;
@@ -3569,110 +3572,6 @@ API.sendChat("[@" + from + "] Tento příkaz vyžaduje rank Bronze V nebo vyšš
 }
 },
 
-meninyCommand: {
-command: ['meniny','nameday'],
-rank: 'user',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var dnes = new Date();
-var mesiac = dnes.getMonth()+1;
-var den = dnes.getDate();
-
-var kalendar1 = new Array("Nový rok","Alexandra","Daniela","Drahoslav","Andrea","Antónia",
-"Bohuslava/Róbert","Severín","Alexej","Dáša","Malvína",
-"Ernest","Rastislav","Radovan","Dobroslav","Kristína",
-"Nataša","Bohdana","Drahomíra","Dalibor","Vincent","Zora",
-"Miloš","Timotej","Gejza","Tamara","Bohuš","Alfonz",
-"Gašpar","Ema","Emil",
-"Tatiana","Erika/Erik","Blažej","Veronika","Agáta","Dorota",
-"Vanda","Zoja","Zdenko","Gabriela","Dezider","Perla",
-"Arpád","Valentín","Pravoslav","Ida","Miloslava","Jaromír",
-"Vlasta","Lívia","Eleonóra","Etela","Roman/Romana",
-"Matej","Frederik/Frederika","Viktor","Alexander",
-"Zlatica","",
-"Albín","Anežka","Bohumil/Bohumila","Kazimír","Fridrich",
-"Radoslav/Radoslava","Tomáš/Róbert","Alan/Alana","Františka",
-"Branislav/Bruno","Angela/Angelika","Gregor","Vlastimil",
-"Matilda","Svetlana","Boleslav","Ľubica","Eduard","Jozef",
-"Víťazoslav","Blahoslav","Beňadik","Adrián","Gabriel",
-"Marián","Emanuel","Alena","Soňa","Miroslav","Vieroslava",
-"Benjamín",
-"Hugo","Zita","Richard","Izidor","Miroslava","Irena",
-"Zoltán/Róbert","Albert","Milena","Igor","Július","Estera",
-"Aleš","Justína","Fedor","Dana/Danica","Rudolf","Valér",
-"Jela","Marcel","Ervín","Slavomír","Vojtech","Juraj",
-"Marek","Jaroslava","Jaroslav","Jarmila","Lea",
-"Anastázia",
-"Sviatok práce","Žigmund","Galina","Florián","Lesana/Lesia","Hermína",
-"Monika/Róbert","Ingrida","Roland","Viktória","Blažena",
-"Pankrác","Servác","Bonifác","Žofia","Svetozár","Gizela",
-"Viola","Gertrúda","Bernard","Zina","Júlia/Juliana",
-"Želmíra","Ela","Urban","Dušan","Iveta","Viliam","Vilma",
-"Ferdinand","Petronela/Petrana",
-"Žaneta","Xénia","Karolína","Lenka","Laura","Norbert",
-"Róbert","Medard","Stanislava","Margaréta","Dobroslava",
-"Zlatko","Anton","Vasil","Vít","Blanka","Adolf","Vratislav",
-"Alfréd","Valéria","Alojz","Paulína","Sidónia","Ján",
-"Tadeáš","Adriana","Ladislav/Ladislava","Beata",
-"Peter/Pavol/Petra","Melánia",
-"Diana","Berta","Miloslav","Prokop","Cyril/Metod","Patrik/Patrícia",
-"Oliver","Ivan","Lujza","Amália","Milota","Nina","Margita",
-"Kamil","Henrich","Drahomír","Bohuslav","Kamila","Dušana",
-"Iľja/Eliáš","Daniel","Magdaléna","Oľga","Vladimír",
-"Jakub","Anna/Hana","Božena","Krištof","Marta","Libuša",
-"Ignác",
-"Božidara","Gustáv","Jerguš","Dominik/Dominika","Hortenzia",
-"Jozefína","Štefánia","Oskar","Ľubomíra","Vavrinec",
-"Zuzana","Darina","Ľubomír","Mojmír","Marcela","Leonard",
-"Milica","Elena/Helena","Lýdia","Anabela","Jana","Tichomír",
-"Filip","Bartolomej","Ľudovít","Samuel","Silvia","Augustín",
-"Nikola/Nikolaj","Ružena","Nora",
-"Drahoslava","Linda","Belo","Rozália","Regína","Alica",
-"Marianna","Miriama","Martina","Oleg","Bystrík");
-
-var kalendar2 = new Array("Mária","Ctibor","Ľudomil","Jolana","Ľudmila","Olympia",
-"Eugénia","Konštantín","Ľuboslav/Ľuboslava","Matúš","Móric",
-"Zdenka","Ľuboš/Ľubor","Vladislav","Edita","Cyprián",
-"Václav","Michal/Michaela","Jarolím",
-"Arnold","Levoslav","Stela","František","Viera","Natália",
-"Eliška","Brigita","Dionýz","Slavomíra","Valentína",
-"Maximilián","Koloman","Boris","Terézia","Vladimíra",
-"Hedviga","Lukáš","Kristián","Vendelín","Uršuľa","Sergej",
-"Alojzia","Kvetoslava","Aurel","Demeter","Sabína","Dobromila",
-"Klára","Šimon/Simona","Aurélia",
-"Denis/Denisa","","Hubert","Karol","Imrich","Renáta",
-"René","Bohumír","Teodor","Tibor","Martin/Maroš","Svätopluk",
-"Stanislav","Irma","Leopold","Agnesa","Klaudia","Eugen",
-"Alžbeta","Félix","Elvíra","Cecília","Klement","Emília",
-"Katarína","Kornel","Milan","Henrieta","Vratko",
-"Ondrej/Andrej",
-"Edmund","Bibiána","Oldrich","Barbora","Oto","Mikuláš",
-"Ambróz","Marína","Izabela","Radúz","Hilda","Otília",
-"Lucia","Branislava/Bronislava","Ivica","Albína","Kornélia",
-"Sláva/Slávka","Judita","Dagmara","Bohdan","Adela","Nadežda",
-"Adam/Eva","Vianoce","Štefan","Filoména","Ivana/Ivona","Milada",
-"Dávid","Silvester");
-
-var dniVMesiaci = new Array(31,29,31,30,31,30,31,31,30,31,30,31);
-var kalendarIndex = 0;
-for(i=0;i<(mesiac-1);i++) kalendarIndex+= dniVMesiaci[i];
-kalendarIndex+= (den-1);
-if((kalendarIndex - 255) >= 0 ){
-API.sendChat("Dnes má na Slovensku meniny: "+ kalendar2[kalendarIndex-255] +".");
-}
-
-else{
-API.sendChat("Dnes má na Slovensku meniny: "+ kalendar1[kalendarIndex] +".");
-}
-
-}
-}
-},
-
 dayCommand: {
 command: ['dnes','today', 'teraz', 'now', 'deň', 'den', 'day'],
 rank: 'user',
@@ -3685,18 +3584,46 @@ else{
 var msg = chat.message;
 var from = chat.un;
 
-var datum = new Date();
-var denVTydnu = new Array("nudná Nedeľa","Pondelok", "Utorok", "Streda", "Štvrtok", "konečne Piatok", "Sobota");
-var retazec = "[@"+ from +"] Dnes je ";
-retazec += denVTydnu[datum.getDay()] + ", ";
-retazec += datum.getDate() + ".";
-retazec += (1 + datum.getMonth()) + ".";
-retazec += datum.getFullYear() + ". ";
-retazec += "Čas: " + datum.getHours() + ":";
-retazec += datum.getMinutes();
-retazec += ". ";
-retazec += "Prajeme pekne prežitý deň. <3";
-API.sendChat(retazec);
+var addZero = function(i){ if(i < 10){ i = "0" + i; } return i; };
+var date = new Date();
+var dayOfWeek = new Array("Nedeľa","Pondelok", "Utorok", "Streda", "Štvrtok", "Piatok", "Sobota");
+var dayCurrent = dayOfWeek[date.getDay()];
+var dayOfWeekNumber = date.getDate();
+var month = (1 + date.getMonth());
+var year = date.getFullYear();
+var hour = addZero(date.getHours());
+var minutes = addZero(date.getMinutes());
+
+API.sendChat("[ "+ from +" ] Dnes je "+ dayCurrent +", "+ dayOfWeekNumber +"."+ month +"."+ year +". Čas: "+ hour +":"+ minutes +"! Prajeme pekne prežitý deň! :heart:");
+
+}
+}
+},
+
+komunitaCommand: {
+command: ['community','komunita', 'qplugcz', 'qplug'],
+rank: 'user',
+type: 'startsWith',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var from = chat.un;
+
+var launchT = basicBot.room.roomstats.launchTime;
+var durationOnline = Date.now() - launchT;
+var since = basicBot.roomUtilities.msToStr(durationOnline);
+var onlinePeopleCount = API.getUsers().length;
+var jC = basicBot.joinedCount;
+
+if(jC == 0){
+API.sendChat("[ "+ from +" ] Za "+ since +" čo je Bot spustený prešlo komunitou "+ onlinePeopleCount +" ľudí.");
+}
+    
+else{
+API.sendChat("[ "+ from +" ] Za "+ since +" čo je Bot spustený prešlo komunitou "+ jC +" ľudí.");
+}
 
 }
 }
@@ -3717,7 +3644,7 @@ var skip_reason = msg.substr(cmd.length + 1);
 var space = msg.indexOf(' ');
 var current_dj = API.getDJ().username;
 
-if (space === -1){
+if(space === -1){
 API.sendChat("[@"+ from +"] Musíš zadať kód preskočenia! | n = NSFW | h = History | m = Veľky počet Mehov | o = Ohraná pesnička | u = Nedostupná pesnička.");
 }
 
