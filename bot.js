@@ -3614,16 +3614,8 @@ var from = chat.un;
 var launchT = basicBot.room.roomstats.launchTime;
 var durationOnline = Date.now() - launchT;
 var since = basicBot.roomUtilities.msToStr(durationOnline);
-var onlinePeopleCount = API.getUsers().length;
-var jC = basicBot.joinedCount;
 
-if(jC == 0){
-API.sendChat("[ "+ from +" ] Za "+ since +" čo je Bot spustený prešlo komunitou "+ onlinePeopleCount +" ľudí.");
-}
-    
-else{
-API.sendChat("[ "+ from +" ] Za "+ since +" čo je Bot spustený prešlo komunitou "+ jC +" ľudí.");
-}
+API.sendChat("[@"+ from +" ] Za "+ since +" čo je Bot spustený prešlo komunitou "+ basicBot.joinedCount +" ľudí.");
 
 }
 }
