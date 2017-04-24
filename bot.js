@@ -1060,13 +1060,13 @@ dclookupOnUserJoin: function (id) {
             var cislo2 = parseInt(receiverTokens, 10) + parseInt(reward2,10);
 
 
-           if (Math.round(API.getWaitList().length * 1) >= 15) {
+           if (Math.round(API.getWaitList().length * 1) >= 0) {
            localStorage.setItem(lastdjplayed.username, cislo2);
            API.sendChat("[" + lastdjplayed.username + "] Získal/a jsi " + reward2 + " QPoints za odehrání písně!");
-           } else {
-         localStorage.setItem(lastdjplayed.username, cislo);
-           API.sendChat("[" + lastdjplayed.username + "] Získal/a jsi " + reward + " QPoints za odehrání písně!");
-        }
+            } //else {
+//          localStorage.setItem(lastdjplayed.username, cislo);
+//            API.sendChat("[" + lastdjplayed.username + "] Získal/a jsi " + reward + " QPoints za odehrání písně!");
+//         }
 
 
         if (basicBot.settings.autowoot) {
@@ -3461,11 +3461,11 @@ var double_grabs = API.getScore().grabs * 2;
 var double_mehs = API.getScore().negative * 1;
 var double_vysledok = double_woots + double_grabs - double_mehs;
 
-if(waitlist_count < "15"){
-API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ vysledok +" QPoints!");
-}
+// if(waitlist_count < "15"){
+// API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ vysledok +" QPoints!");
+// }
 
-if(waitlist_count >= "15"){
+if(waitlist_count >= "0"){
 API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ double_vysledok +" QPoints!");
 }
 
@@ -3933,7 +3933,7 @@ var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
 /*API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");*/
-API.sendChat("[@"+ from +"] 21.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/events!");
+API.sendChat("[@"+ from +"] Dnes začína Double QPoints Týžden! Cez tento týždeň dostanete za 1 Woot = 2 QPoints | 1 Grab = 2 QPoints. :relaxed:");
 return false;
 }
 
@@ -3946,11 +3946,11 @@ return API.sendChat("[@"+ from +"] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@"+ from +"] 21.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/events!");
+return API.sendChat("[@"+ from +"] Dnes začína Double QPoints Týžden! Cez tento týždeň dostanete za 1 Woot = 2 QPoints | 1 Grab = 2 QPoints. :relaxed:");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] 21.4.2017 sa usporiadá Event. Podrobnejšie informácie dostanete cez týždeň na http://qplug.funsite.cz/events!");
+return API.sendChat("[@"+ user.username +"] Dnes začína Double QPoints Týžden! Cez tento týždeň dostanete za 1 Woot = 2 QPoints | 1 Grab = 2 QPoints. :relaxed:");
 }
 
 }
@@ -4028,26 +4028,6 @@ else{
 fromid = chat.uid;
 
 API.moderateRemoveDJ(fromid);
-
-}
-}
-},
-
-botCommand: {
-command: ['bot', 'system'],
-rank: 'user',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var bot_id = "23843691";
-var bot_name = API.getUser(bot_id).username;
-var bot_plug_points = API.getUser(bot_id).pp;
-var bot_plug_xp = API.getUser(bot_id).xp;
-
-API.sendChat("[ "+ bot_name +" ] Základy našeho Systému pochádzajú z pôvodného basicBota. Všetky ostatné príkazy sú tvorené nami. | plug.dj Body: "+ bot_plug_points +" | plug.dj XP: "+ bot_plug_xp +"!");
 
 }
 }
@@ -4549,7 +4529,7 @@ var from = chat.un;
 var fromID = chat.uid;
 
 if(
-msg.indexOf("21.4.2017 sa usporiadá Event o QPoints! Viac informácii čoskoro!") !== -1){
+msg.indexOf("Dnes začína Double QPoints Týžden! Tak nezmeškaj. :relaxed:") !== -1){
 if(fromID == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 milisekund = 40 sekund
 }
