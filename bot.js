@@ -989,7 +989,7 @@ dclookupOnUserJoin: function (id) {
             var cislo2 = parseInt(receiverTokens, 10) + parseInt(reward2,10);
 
 
-           if (Math.round(API.getWaitList().length * 1) >= 0) {
+           if (Math.round(API.getWaitList().length * 1) >= 15) {
            localStorage.setItem(lastdjplayed.username, cislo2);
            API.sendChat("[" + lastdjplayed.username + "] Získal/a jsi " + reward2 + " QPoints za odehrání písně!");
             } else {
@@ -3191,7 +3191,7 @@ if(waitlist_count < "15"){
 API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ vysledok +" QPoints!");
 }
 
-if(waitlist_count >= "0"){
+if(waitlist_count >= "15"){
 API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ double_vysledok +" QPoints!");
 }
 
