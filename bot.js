@@ -1,13 +1,10 @@
 /*
 
-COPYRIGHT»                         QPlug.cz 2017
-DEVELOPERS»                        Franta72, Hellbyte
-ROOM»                              https://plug.dj/qplug-czsk
-
+COPYRIGHT»                   QPlug.cz 2017
+SOFTWARE ENGINEER»           Hellbyte, Franta72
+ROOM»                        plug.dj/qplug-czsk
 
 */
-
-// This is a remastered version of the original Basicbot, made by Benzi. All rights are reserved for the author and he may change some of the bot features if he wants or not.
 
 (function () {
 
@@ -29,9 +26,6 @@ ROOM»                              https://plug.dj/qplug-czsk
         clearInterval(basicBot.room.afkInterval);
         basicBot.status = false;
     };
-
-    // This socket server is used solely for statistical and troubleshooting purposes.
-    // This server may not always be up, but will be used to get live data at any given time.
 
     var socket = function () {
         function loadSocket() {
@@ -247,7 +241,7 @@ ROOM»                              https://plug.dj/qplug-czsk
 
 
             };
-var botCreator = "QPlug.cz Tým";
+var botCreator = "QPlug.cz Team";
 var botMaintainer = "QPlug.cz"
 var botCreatorIDs = ["4635487", "5032556"];
 
@@ -874,73 +868,8 @@ dclookupOnUserJoin: function (id) {
             if (!basicBot.chatUtilities.commandCheck(chat))
                 basicBot.chatUtilities.action(chat);
 
-             // Spustí AI
-            var spustit = ["@QPlug.cz"];
-            var KDE_spustit = ["kde","Kde","KDE"];
-            var KDO_spustit = ["kdo","Kdo","KDO"];
-            var KDY_spustit = ["kdy","Kdy","KDY"];
-            var ALL_spustit = ["@QPlug.cz"];
-            var ukoncit = ["ticho","Ticho","TICHO"];
-            // Funkce
-            var AI = new RegExp(spustit, 'g');
-            var KDE = new RegExp(KDE_spustit, 'g');
-            var KDO = new RegExp(KDO_spustit, 'g');
-            var KDY = new RegExp(KDY_spustit, 'g');
-            var ALL = new RegExp(ALL_spustit, 'g');
-            var KONEC = new RegExp(ukoncit, 'g')
-            var users = API.getUsers();
- 		    var cislo = Math.floor((Math.random() * users.length) + 1);
-            var vybrany_uzivatel = users[(cislo - 1)].username;
-            var user = basicBot.userUtilities.lookupUser(chat.uid);
-            var fromid = chat.uid;
-            // Odpovědi
-            var pozdrav = ["Ahoj","Čau","Čest","Zdar","Čauko","Zdarec"];
-            var KDE_odpoved = ["V popelnici :)","Ve vesmíru","Na houpačce","V obývaku","V koupelně","Zdá se mi, že v nemocnici","Hej, určitě v Kauflandu","Na dovolené v Thajsku :P","Na policejní stanici...","Tak to vím naprosto přesně. V kamionu. :)","Někde venku, hledej :*","Na náměstí :O","Toulá se v kavárně","Nevím :(","Ve sprše :O","V kuchyni!"];
-            var KDO_odpoved = ["Myslím si, že " + vybrany_uzivatel + " ", "Mám takové tušení, že " + vybrany_uzivatel + " ", "Kdo jiný než " + vybrany_uzivatel + " :)", "Nevím to jistě, ale " + vybrany_uzivatel + " ","Ty :*"," " + vybrany_uzivatel + " "];
-            var KDY_odpoved = ["Včera :P","Za chvíli","Zítra","Za týden","Za měsíc","Za rok","Za hodinu","Nikdy :)","V noci","Před rokem","Ráno","Odpoledne"];
-            var ALL_odpoved = ["Ano","Ne"];
-            var vypnout_AI = ["Dobře, už mlčím :(","Tak ahoj :(","OK, rozcházíme se :(","Hej, myslel jsem, že jsme přátelé! :(",":("];
 
-            // Začátek AI
-            if (chat.message.match(AI)) {
-            if (user.inteligence === 0) {
-            setTimeout(function(){ API.sendChat("@" + chat.un + " " + pozdrav[Math.floor(Math.random() * pozdrav.length)] + " "); }, 500);
-            setTimeout(function(){ user.inteligence += 1; }, 2000);
-        }
-        }
-        if (chat.message.match(ALL) || chat.message.match(KDE) || chat.message.match(KDO)  || chat.message.match(KDY) || chat.message.match(KONEC)) {
-        if (fromid === 23843691) {
-        }
-        }
-        if (chat.message.match(KDE)) {
-            if (user.inteligence === 1) {
-            setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDE_odpoved[Math.floor(Math.random() * KDE_odpoved.length)] + " "); }, 500);
-        }
-        }
-         if (chat.message.match(KDO)) {
-            if (user.inteligence === 1) {
-            setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDO_odpoved[Math.floor(Math.random() * KDO_odpoved.length)] + " "); }, 500);
-        }
-        }
-             if (chat.message.match(KDY)) {
-            if (user.inteligence === 1) {
-            setTimeout(function(){ API.sendChat("@" + chat.un + " " + KDY_odpoved[Math.floor(Math.random() * KDY_odpoved.length)] + " "); }, 500);
-        }
-        }
-          // Ukončení AI
-          if (chat.message.match(KONEC)) {
-            if (user.inteligence === 1) {
-            setTimeout(function(){ API.sendChat("@" + chat.un + " " + vypnout_AI[Math.floor(Math.random() * vypnout_AI.length)] + " "); }, 500);
-            setTimeout(function(){ user.inteligence = 0; }, 2000);
-        }
-        }
-         else if (chat.message.match(ALL) && !chat.message.match(KDE) && !chat.message.match(KDO)  && !chat.message.match(KDY) && !chat.message.match(KONEC)) {
-            if (user.inteligence === 1) {
-            setTimeout(function(){ API.sendChat("@" + chat.un + " " + ALL_odpoved[Math.floor(Math.random() * ALL_odpoved.length)] + " "); }, 500);
-        }
-        }
-        else {
-        }
+
         },
         eventUserjoin: function (user) {
             var known = false;
@@ -984,7 +913,7 @@ dclookupOnUserJoin: function (id) {
             }
             var automatickeDC = basicBot.userUtilities.dclookupOnUserJoin(user.id);
             if (typeof automatickeDC === "string") setTimeout(function(){ API.sendChat(automatickeDC); }, 4000);
-            
+
             basicBot.settings.joinedCount += 1;
         },
         eventUserleave: function (user) {
@@ -1063,10 +992,10 @@ dclookupOnUserJoin: function (id) {
            if (Math.round(API.getWaitList().length * 1) >= 0) {
            localStorage.setItem(lastdjplayed.username, cislo2);
            API.sendChat("[" + lastdjplayed.username + "] Získal/a jsi " + reward2 + " QPoints za odehrání písně!");
-            } //else {
-//          localStorage.setItem(lastdjplayed.username, cislo);
-//            API.sendChat("[" + lastdjplayed.username + "] Získal/a jsi " + reward + " QPoints za odehrání písně!");
-//         }
+            } else {
+          localStorage.setItem(lastdjplayed.username, cislo);
+            API.sendChat("[" + lastdjplayed.username + "] Získal/a jsi " + reward + " QPoints za odehrání písně!");
+         }
 
 
         if (basicBot.settings.autowoot) {
@@ -1226,6 +1155,7 @@ $(".pop-menu ul li:first-child").mousedown();
                 basicBot.userUtilities.updatePosition(user, API.getWaitListPosition(users[i].id) + 1);
             }
         },
+
         chatcleaner: function (chat) {
             if (!basicBot.settings.filterChat) return false;
             if (basicBot.userUtilities.getPermission(chat.uid) > 1) return false;
@@ -1250,11 +1180,7 @@ $(".pop-menu ul li:first-child").mousedown();
                 API.sendChat(subChat(basicBot.chat.caps, {name: chat.un}));
                 return true;
             }
-            msg = msg.toLowerCase();
-            if (msg === 'skip') {
-                API.sendChat(subChat(basicBot.chat.askskip, {name: chat.un}));
-                return true;
-            }
+
             for (var j = 0; j < basicBot.chatUtilities.spam.length; j++) {
                 if (msg === basicBot.chatUtilities.spam[j]) {
                     API.sendChat(subChat(basicBot.chat.spam, {name: chat.un}));
@@ -1291,49 +1217,9 @@ $(".pop-menu ul li:first-child").mousedown();
                }
 
 
-var hodnota = 1;
-var from = chat.un;
 
-if (user.napomenuti === 0) {
-if (perm === 0) {
-if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){
-setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
-}
-}
-}
-if (user.napomenuti === 1) {
-if (perm === 0) {
-if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){
-setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
-    }
-    }
-    }
-if (user.napomenuti === 2) {
-if (perm === 0) {
-if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){
-setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
-    }
-    }
-    }
-if (user.napomenuti === 3) {
-if (perm === 0) {
-if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){
-API.sendChat("[@" + user.username + "] Byl/a jsi napomenut/a za vulgaritu v chatu. Uklidni svůj slovník nebo budeš umlčen/a!");
-setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
-    }
-    }
-    }
-if (user.napomenuti === 4) {
-if (perm === 0) {
-if(msg.indexOf('kokot') !== -1 || msg.indexOf('buz') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('k*') !== -1 || msg.indexOf('p*') !== -1 || msg.indexOf('pič') !== -1 || msg.indexOf('pic') !== -1 || msg.indexOf('pyc') !== -1 || msg.indexOf('kkt') !== -1 || msg.indexOf('PIC') !== -1 || msg.indexOf('PIČ') !== -1 || msg.indexOf('pi*') !== -1 || msg.indexOf('píč') !== -1 || msg.indexOf('Píč') !== -1 || msg.indexOf('čůrák') !== -1 || msg.indexOf('čůrak') !== -1 || msg.indexOf('čurak') !== -1 || msg.indexOf('curak') !== -1 || msg.indexOf('idiot') !== -1 || msg.indexOf('mrd') !== -1 || msg.indexOf('jeb') !== -1 || msg.indexOf('kurv') !== -1 || msg.indexOf('debil') !== -1 || msg.indexOf('hajzl') !== -1 || msg.indexOf('ču*') !== -1 || msg.indexOf('koko*') !== -1){
-API.sendChat("[@" + user.username + "] Byl/a jsi umlčen/a za opakovanou vulgaritu v chatu!");
-setTimeout(function(){ API.moderateMuteUser(user.id, 1, API.MUTE.SHORT); }, 2000);
-setTimeout(function(){ user.napomenuti = 0; }, 2000);
-    }
-    }
-    }
-    else {
-    }
+
+
 
 
 
@@ -2826,114 +2712,6 @@ API.sendChat(toChat);
 }
 },
 
-whoisCommand: {
-command: 'whois',
-rank: 'bouncer',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var msg = chat.message;
-var name;
-if (msg.length === cmd.length) name = chat.un;
-
-else{
-name = msg.substr(cmd.length + 2);
-}
-
-users = API.getUsers();
-var len = users.length;
-
-for (var i = 0; i < len; ++i){
-if (users[i].username == name){
-var id = users[i].id;
-
-var rawlang = API.getUser(id).language;
-if (rawlang == "en"){
-var language = "English";
-}
-
-else if (rawlang == "bg"){
-var language = "Bulgarian";
-}
-
-else if (rawlang == "cs"){
-var language = "Czech";
-}
-
-else if (rawlang == "fi"){
-var language = "Finnish"
-}
-
-else if (rawlang == "fr"){
-var language = "French"
-}
-
-else if (rawlang == "pt"){
-var language = "Portuguese"
-}
-
-else if (rawlang == "zh"){
-var language = "Chinese"
-}
-
-else if (rawlang == "sk"){
-var language = "Slovak"
-}
-
-else if (rawlang == "nl"){
-var language = "Dutch"
-}
-
-else if (rawlang == "ms"){
-var language = "Malay"
-}
-
-var rawrank = API.getUser(id).role;
-if(rawrank == "0"){
-var rank = "Užívateľ";
-}
-
-else if (rawrank == "1"){
-var rank = "Resident DJ";
-}
-
-else if (rawrank == "2"){
-var rank = "Bouncer";
-}
-
-else if (rawrank == "3"){
-var rank = "Manager"
-}
-
-else if (rawrank == "4"){
-var rank = "Co-Host"
-}
-
-else if (rawrank == "5"){
-var rank = "Host"
-}
-
-else if (rawrank == "7"){
-var rank = "Brand Ambassador"
-}
-
-else if (rawrank == "10"){
-var rank = "Admin"
-}
-
-API.sendChat(subChat(basicBot.chat.whois, {name1: chat.un, name2: name, id: id, profile: profile, language: language, rank: rank}));
-
-}
-
-}
-
-}
-}
-},
-
 etaCommand: {
 command: 'eta',
 rank: 'user',
@@ -3133,35 +2911,6 @@ setTimeout(function(){ API.moderateForceSkip(true, true); }, 3000);
 }
 },
 
-
-
-// banlistCommand: {
-// command: 'banlist',
-// rank: 'user',
-// type: 'exact',
-// functionality: function(chat, cmd) {
-// if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
-// if (!basicBot.commands.executable(this.rank, chat)) return void(0);
-// else {
-
-// jQuery.ajax({
-// url: 'https://plug.dj/_/bans',
-// success: (_, body) => {
-
-// var banned = body.data;
-
-// var banned_count = banned.length;
-// var banned_usernames = banned.map(e => e.username).join(', ');
-
-// API.sendChat("[ BANLIST ] Počet zabanových ľudí: " + banned_count + " | " + banned_usernames + "");
-
-// }
-// });
-
-// }
-// }
-// },
-
 moveCommand: {
 command: 'move',
 rank: 'manager',
@@ -3238,29 +2987,6 @@ else{
 
 if (!basicBot.room.roulette.rouletteStatus){
 basicBot.room.roulette.startRoulette();
-}
-
-}
-}
-},
-
-setminihryCommand: {
-command: 'setminihry',
-rank: 'cohost',
-type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-if (basicBot.settings.minihry){
-basicBot.settings.minihry = !basicBot.settings.minihry;
-return API.sendChat("/me [ OZNAM | @djs ] Minihry jsou nyní vypnuté.");
-}
-
-else{
-basicBot.settings.minihry = !basicBot.settings.minihry;
-return API.sendChat("/me [ OZNAM | @djs ] Minihry jsou nyní zapnuté.");
 }
 
 }
@@ -3461,9 +3187,9 @@ var double_grabs = API.getScore().grabs * 2;
 var double_mehs = API.getScore().negative * 1;
 var double_vysledok = double_woots + double_grabs - double_mehs;
 
-// if(waitlist_count < "15"){
-// API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ vysledok +" QPoints!");
-// }
+if(waitlist_count < "15"){
+API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ vysledok +" QPoints!");
+}
 
 if(waitlist_count >= "0"){
 API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ double_vysledok +" QPoints!");
@@ -3567,34 +3293,6 @@ setTimeout(function(){ API.sendChat("Tak jsi jen pokrčil rameny a pokračovali 
 else{
 API.sendChat("[@" + from + "] Tento příkaz vyžaduje rank Bronze V nebo vyšší! Více o rank systému nalezneš zde: http://qplug.funsite.cz/bot/qpoints");
 }
-
-}
-}
-},
-
-dayCommand: {
-command: ['dnes','today', 'teraz', 'now', 'deň', 'den', 'day'],
-rank: 'user',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var msg = chat.message;
-var from = chat.un;
-
-var addZero = function(i){ if(i < 10){ i = "0" + i; } return i; };
-var date = new Date();
-var dayOfWeek = new Array("Nedeľa","Pondelok", "Utorok", "Streda", "Štvrtok", "Piatok", "Sobota");
-var dayCurrent = dayOfWeek[date.getDay()];
-var dayOfWeekNumber = date.getDate();
-var month = (1 + date.getMonth());
-var year = date.getFullYear();
-var hour = addZero(date.getHours());
-var minutes = addZero(date.getMinutes());
-
-API.sendChat("[ "+ from +" ] Dnes je "+ dayCurrent +", "+ dayOfWeekNumber +"."+ month +"."+ year +". Čas: "+ hour +":"+ minutes +"! Prajeme pekne prežitý deň! :heart:");
 
 }
 }
@@ -3999,40 +3697,6 @@ return API.sendChat("[@"+ user.username +"] Hoď like na našu Facebook stránku
 }
 },
 
-joinwlCommand: {
-command: 'joinwl',
-rank: 'user',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var fromid = chat.uid;
-
-API.moderateAddDJ(fromid);
-
-}
-}
-},
-
-leavewlCommand: {
-command: 'leavewl',
-rank: 'user',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-fromid = chat.uid;
-
-API.moderateRemoveDJ(fromid);
-
-}
-}
-},
-
 peopleCommand: {
 command: ['ludia', 'online', 'people'],
 rank: 'user',
@@ -4093,64 +3757,6 @@ else{
 var from = chat.un;
 
 API.sendChat("[ AFK ] Užívateľ @"+ from +" sa práve vrátil!");
-
-}
-}
-},
-
-vtipCommand: {
-command: ['vtip', 'vtipy'],
-rank: 'user',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var from = chat.un;
-var vtipy = [
-"Idú 2 babky po púšti a tá stredná odbočí doľava.",
-"Máš 10 rybiek, 1 sa utopila. Koľko máš?",
-"Peniaze vedia rozprávať. Napríklad moje mi každú chvíľu povedia: Zbohom!",
-"Milý Ježiško! Pod stromček si prosím tučnú peňaženku a štíhlu postavu. PS: Nepopleť to prosím ťa!",
-"Kedy utrpí chlap otras mozgu? Keď ho kopnú do rozkroku.",
-"Muži majú najmenšiu záhradku na svete. Jednu mrkvu, dva zemiačky a trošku petržlena!",
-"Ženy sú ako drogy. V mladosti s nimi začneš a do smrti ti ničia život.",
-"Mami, můžu jít ven? Je ti 25, nemusíš se vracet.",
-"Málokdo ví, že slovo onanie pochází ze slovenštiny. Logicky vzniklo spojením slov ona-nie.",
-"Viete, že človek je zo slivky? Zo slivky je slivovica, zo slivovice je opica a z opice je človek.",
-"Idú dva tanky jeden je ruský a druhý je tiež pokazený...",
-"Ide had na bicykli a spomenie si, že nemá nohy, a tak upadne a zlomí si koleno.",
-"Chobotnica má 8 chápadiel a jedno nechápe.",
-"Idú dve stíhačky a jedna nestíha.",
-"Bol raz jeden cigán... jedináčik..."
-];
-
-API.sendChat(""+ vtipy[Math.floor(Math.random() * vtipy.length)] +"");
-
-}
-}
-},
-
-memeCommand: {
-command: ['meme', 'memes'],
-rank: 'user',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var from = chat.un;
-var memes = [
-"http://upload.emefka.sk:82/posts/new/orig/12/63/81263.jpg",
-"http://upload.emefka.sk:82/posts/new/orig/12/55/81255.jpg",
-"http://upload.emefka.sk:82/posts/new/orig/12/31/81231.jpg",
-"http://upload.emefka.sk:82/posts/new/orig/12/27/81227.jpg",
-"http://upload.emefka.sk:82/posts/new/orig/12/23/81223.png"
-];
-
-API.sendChat(""+ memes[Math.floor(Math.random() * memes.length)] +"");
 
 }
 }
@@ -4282,21 +3888,6 @@ if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
 API.sendChat("[ QPlug.cz ] Systém spustený! Verzia "+ basicBot.version +"! Použite !prikazy pre zoznam príkazov.");
-
-}
-}
-},
-
-versionCommand: {
-command: ['verzia', 'verze', 'version'],
-rank: 'user',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-API.sendChat("[ QPlug.cz ] Verzia našeho systému je aktuálne "+ basicBot.version +"!");
 
 }
 }
@@ -4490,33 +4081,6 @@ setTimeout(function(){ API.moderateSetRole(fromid, 1); }, 500);
 
 else{
 API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz je iba pre Resident DJov.");
-}
-
-}
-}
-
-// User Commands
-API.on(API.CHAT, tessi);
-
-function tessi(data){
-var msg = data.message;
-var fromid = data.uid;
-var from = data.un;
-
-var podprsy = Math.floor((Math.random() * 122) + 58);
-var kosicek = ["A", "B", "C", "D", "E"];
-var kosicekrandom = kosicek[Math.floor(Math.random() * kosicek.length)];
-var sexy = Math.floor((Math.random() * 100) + 1);
-var iq = Math.floor((Math.random() * 180) + 1);
-var nalada = ["Naštvaný/á.", "Kludný/á.", "Nadržený/á.", "Vzteklý/á.", "Bláznivý/á.", "Hodný/á.", "Radostný/á.", "Skleslý/á.", "Vtipný/á.", "Smutný/á."];
-
-if(msg === "!tessi"){
-if(fromid == "5477951"){
-API.sendChat("[@" + from + "] Tvoj obvod hrudníku je: "+ podprsy +" "+ kosicekrandom +". | Tvoje IQ: " + iq + " | Si sexy na " + sexy + "% | Aktuálna nálada: " + nalada[Math.floor(Math.random() * nalada.length)]);
-}
-
-else{
-API.sendChat("[@"+ from +"] Nemáš na to práva! Tento príkaz môže použiť iba Tessi Tess.");
 }
 
 }
