@@ -327,27 +327,27 @@ room: {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 10) + 1);
                     if (basicBot.room.tipovacka.obtiznost == 1)
 
-            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo 1-10. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
+            API.sendChat('[ MINIHRA | @everyone ] Uhodněte zadané číslo 1-10. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
                     }
                     if (basicBot.room.tipovacka.obtiznost == 2) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 25) + 1);
-            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo 1-25. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
+            API.sendChat('[ MINIHRA | @everyone ] Uhodněte zadané číslo 1-25. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
 
                     }
             if (basicBot.room.tipovacka.obtiznost == 3) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 50) + 1);
-              API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo 1-50. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
+              API.sendChat('[ MINIHRA | @everyone ] Uhodněte zadané číslo 1-50. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
 
                     }
                     if (basicBot.room.tipovacka.obtiznost == 4) {
                         basicBot.room.tipovacka.currentNumber = Math.floor((Math.random() * 100) + 1);
 
-                    API.sendChat('[ MINIHRA | @djs ] Uhodněte zadané číslo od 1-100. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
+                    API.sendChat('[ MINIHRA | @everyone ] Uhodněte zadané číslo od 1-100. Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
           }
             if (basicBot.room.tipovacka.obtiznost == 5) {
                         var barvy = ["red","yellow","orange","blue","green","purple","brown","black","pink","white"];
                         basicBot.room.tipovacka.currentNumber = barvy[Math.floor(Math.random() * barvy.length)];
-            API.sendChat('[ MINIHRA | @djs ] Uhodněte zadanou barvu v angličtině. Odpovídejte pomocí !t text a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
+            API.sendChat('[ MINIHRA | @everyone ] Uhodněte zadanou barvu v angličtině. Odpovídejte pomocí !t text a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
                     }
 
 
@@ -366,7 +366,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
     }
 
     basicBot.room.tipovacka.currentNumber = vysledek;
-    API.sendChat('[ MINIHRA | @djs ] Vypočítejte příklad ' + priklad + ' :question: Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
+    API.sendChat('[ MINIHRA | @everyone ] Vypočítejte příklad ' + priklad + ' :question: Odpovídejte pomocí !t číslo a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
 }
                       if (basicBot.room.tipovacka.obtiznost == 7) {
                         var otazka = ["pldjug","lakanduf","ojah","ketara","munikota","namera","bustoau","rzlizmna"];
@@ -396,7 +396,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
             if (slovo === "rzlizmna") {
             basicBot.room.tipovacka.currentNumber = "zmrzlina";
                     }
-          API.sendChat('[ MINIHRA | @djs ] Rozluštěte slovo "' + slovo + '". Odpovídejte pomocí !t text a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
+          API.sendChat('[ MINIHRA | @everyone ] Rozluštěte slovo "' + slovo + '". Odpovídejte pomocí !t text a vyhrajte ' + basicBot.room.tipovacka.vyhra + ' QPoints! Pokus stojí ' + basicBot.room.tipovacka.zapisne + ' QPoints.');
                     }
                     },
 
@@ -1571,7 +1571,7 @@ else{
 
 localStorage.clear();
 
-API.sendChat("[ OZNAM | @djs ] Vedenie komunity resetovalo QPoints všetkým užívateľom.");
+API.sendChat("[ OZNAM | @everyone ] Vedenie komunity resetovalo QPoints všetkým užívateľom.");
 
 }
 }
@@ -3714,7 +3714,7 @@ else{
 var msg = chat.message;
 var alert = msg.substring(cmd.length + 1);
 
-API.sendChat("[ OZNAM | @djs ] "+ alert +"");
+API.sendChat("[ OZNAM | @everyone ] "+ alert +"");
 
 }
 }
