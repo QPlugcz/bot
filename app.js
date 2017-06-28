@@ -2140,23 +2140,6 @@ return API.sendChat("[@"+ chat.un +"] Užívateľ "+ receiver +" má na konte "+
 }
 },
 
-qcCommand: {
-command: ['qc', 'qcoiny', 'qcoins'],
-rank: 'user',
-type: 'exact',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var from = chat.un;
-
-API.sendChat("[@"+ from +"] Príkaz !qc sa zmenil na !qp kvôli premenovaniu na QPoints. Ďakujeme za porozumenie.");
-
-}
-}
-},
-
 qpointsCommand: {
 command: ['qpointy','qpoints', 'qp'],
 rank: 'user',
@@ -3219,7 +3202,7 @@ var msg = chat.message;
 var from = chat.un;
 var fromid = chat.uid;
 
-if (giverTokens > 4499){
+if(giverTokens > 4499){
 
 $("#grab").click();
 $(".pop-menu ul li:first-child").mousedown();
