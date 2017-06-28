@@ -92,7 +92,7 @@ ROOM»                        plug.dj/qplug-czsk
     var loadChat = function (cb) {
         if (!cb) cb = function () {
         };
-        $.get("https://rawgit.com/QPlugcz/QBot/master/package/languages.json", function (json) {
+        $.get("https://rawgit.com/qplugcz/bot/master/package/languages.json", function (json) {
             var link = basicBot.chatLink;
             if (json !== null && typeof json !== "undefined") {
                 langIndex = json;
@@ -228,20 +228,21 @@ var botCreatorIDs = ["4635487", "5032556"];
 var basicBot = {
 version: "1.9",
 status: false,
-name: "QBot",
+name: "QPlug.cz Bot",
 loggedInID: null,
-scriptLink: "https://rawgit.com/FALSEYING/MFEBOT/master/system.js",
-cmdLink: "http://qplug.funsite.cz/bot/commands",
-chatLink: "https://rawgit.com/QPlugcz/QBot/master/package/qplugcz.json",
+scriptLink: "https://rawgit.com/qplugcz/bot/master/app.js",
+cmdLink: "http://qplug.funsite.cz/bot/prikazy",
+chatLink: "https://rawgit.com/qplugcz/bot/master/package/qplugcz.json",
 chat: null,
 loadChat: loadChat,
 retrieveSettings: retrieveSettings,
 retrieveFromStorage: retrieveFromStorage,
+
 settings: {
-botName: "QBot",
+botName: "QPlug.cz Bot",
 language: "qplugcz",
-chatLink: "https://rawgit.com/QPlugcz/QBot/master/package/qplugcz.json",
-scriptLink: "https://rawgit.com/FALSEYING/MFEBOT/master/system.js",
+chatLink: "https://rawgit.com/qplugcz/bot/master/package/qplugcz.json",
+scriptLink: "https://rawgit.com/qplugcz/bot/master/app.js",
 roomLock: false, // Requires an extension to re-load the script
 joinedCount: 0,
 startupCap: 1, // 1-200
@@ -249,7 +250,6 @@ startupVolume: 0, // 0-100
 startupEmoji: false, // true or false
 autowoot: true,
 autoskip: true,
-smartSkip: true,
 cmdDeletion: true,
 maximumDc: 120,
 lockdownEnabled: false,
@@ -263,7 +263,6 @@ thorCommand: true,
 thorCooldown: 5,
 nahodaCommand: true,
 nahodaCooldown: 30,
-skipPosition: 2,
 filterChat: true,
 etaRestriction: false,
 welcome: true,
@@ -792,41 +791,6 @@ dclookupOnUserJoin: function (id) {
                     return false;
                 }
             },
-
-            smartSkip: function (reason) {
-                var dj = API.getDJ();
-                var id = dj.id;
-                var waitlistlength = API.getWaitList().length;
-                var locked = false;
-                basicBot.room.queueable = false;
-
-                if (waitlistlength == 50) {
-                    basicBot.roomUtilities.booth.lockBooth();
-                    locked = true;
-                }
-                setTimeout(function (id) {
-                    API.moderateForceSkip();
-                    setTimeout(function () {
-                        if (typeof reason !== 'undefined') {
-                            API.sendChat(reason);
-                        }
-                    }, 500);
-                    basicBot.room.skippable = false;
-                    setTimeout(function () {
-                        basicBot.room.skippable = true
-                    }, 5 * 1000);
-                    setTimeout(function (id) {
-                        basicBot.userUtilities.moveUser(id, basicBot.settings.skipPosition, false);
-                        basicBot.room.queueable = true;
-                        if (locked) {
-                            setTimeout(function () {
-                                basicBot.roomUtilities.booth.unlockBooth();
-                            }, 1000);
-                        }
-                    }, 1500, id);
-                }, 1000, id);
-            },
-
 
          },
         eventChat: function (chat) {
@@ -3228,7 +3192,7 @@ API.sendChat("[@"+ from +"] Tento příkaz vyžaduje rank Bronze V nebo vyšší
 }
 },
 
-//VIP příkaz
+// VIP příkaz
 pribehCommand: {
 command: ['pribeh', 'story'],
 rank: 'user',
@@ -3520,7 +3484,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if (medzera === -1){
-API.sendChat("[@"+ from.un +"] Tento príkaz sa používa: !sex @meno");
+API.sendChat("[@"+ from.un +"] Tento príkaz sa používa v tvare: !sex @meno");
 return false;
 }
 
@@ -3534,7 +3498,7 @@ return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!"
 }
 
 else if (user.username === from.un){
-return API.sendChat("[@"+ from.un +"] Tento príkaz sa používa: !sex @meno");
+return API.sendChat("[@"+ from.un +"] Tento príkaz sa používa v tvare: !sex @meno");
 }
 
 else{
@@ -3562,7 +3526,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if (medzera === -1){
-API.sendChat("[@" + from.un + "] Tento príkaz sa používa: !love @meno");
+API.sendChat("[@" + from.un + "] Tento príkaz sa používa v tvare: !love @meno");
 return false;
 }
 
@@ -3576,7 +3540,7 @@ return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!"
 }
 
 else if (user.username === from.un){
-return API.sendChat("[@" + from.un + "] Tento príkaz sa používa: !love @meno");
+return API.sendChat("[@" + from.un + "] Tento príkaz sa používa v tvare: !love @meno");
 }
 
 else{
@@ -3606,8 +3570,8 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-/*API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");*/
-API.sendChat("[@"+ from +"] Dnes začína Double QPoints Týžden! Cez tento týždeň dostanete za 1 Woot = 2 QPoints | 1 Grab = 2 QPoints. :relaxed:");
+API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+/*API.sendChat("[@"+ from +"] Dnes začína Double QPoints Týžden! Cez tento týždeň dostanete za 1 Woot = 2 QPoints | 1 Grab = 2 QPoints. :relaxed:");*/
 return false;
 }
 
@@ -3620,11 +3584,11 @@ return API.sendChat("[@"+ from +"] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@"+ from +"] Dnes začína Double QPoints Týžden! Cez tento týždeň dostanete za 1 Woot = 2 QPoints | 1 Grab = 2 QPoints. :relaxed:");
+return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Dnes začína Double QPoints Týžden! Cez tento týždeň dostanete za 1 Woot = 2 QPoints | 1 Grab = 2 QPoints. :relaxed:");
+return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
 }
 
 }
@@ -3705,7 +3669,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if (medzera === -1){
-API.sendChat("[ AFK ] Užívateľ @"+ from.un +" je práve preč od klávesnice.");
+API.sendChat("[ AFK ] Užívateľ "+ from.un +" je práve preč od klávesnice.");
 return false;
 }
 
@@ -3713,7 +3677,7 @@ else{
 
 var dovod = msg.substring(cmd.length + 1);
 
-return API.sendChat("[ AFK ] Užívateľ @"+ from.un +" je práve preč od klávesnice z dôvodu: "+ dovod +"");
+return API.sendChat("[ AFK ] Užívateľ "+ from.un +" je práve preč od klávesnice z dôvodu: "+ dovod +"");
 
 }
 
@@ -3732,7 +3696,7 @@ else{
 
 var from = chat.un;
 
-API.sendChat("[ AFK ] Užívateľ @"+ from +" sa práve vrátil!");
+API.sendChat("[ AFK ] Užívateľ "+ from +" sa práve vrátil!");
 
 }
 }
@@ -3788,7 +3752,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[ DISCORD ] Odkaz na náš Discord je https://bit.ly/QPlugczDiscord!");
+API.sendChat("[ DISCORD ] Odkaz na náš Discord server je https://bit.ly/QPlugczDiscord!");
 return false;
 }
 
@@ -3801,11 +3765,11 @@ return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[ DISCORD ] Odkaz na náš Discord je https://bit.ly/QPlugczDiscord!");
+return API.sendChat("[ DISCORD ] Odkaz na náš Discord server je https://bit.ly/QPlugczDiscord!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Odkaz na náš Discord je https://bit.ly/QPlugczDiscord!");
+return API.sendChat("[@"+ user.username +"] Odkaz na náš Discord server je https://bit.ly/QPlugczDiscord!");
 }
 
 }
@@ -3828,7 +3792,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[ AUTOWOOT ] Je program na automatické Wootovanie a pomocou neho uvidíte naše pozadie. Ale obsahuje aj dalšie užitočné funkcie. Link https://rcs.radiant.dj/install!");
+API.sendChat("[ AUTOWOOT ] Je program na automatické Wootovanie a pomocou neho uvidíte naše pozadie. Obsahuje aj dalšie užitočné funkcie. Link https://rcs.radiant.dj/install!");
 return false;
 }
 
@@ -3841,11 +3805,11 @@ return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[ AUTOWOOT ] Je program na automatické Wootovanie a pomocou neho uvidíte naše pozadie. Ale obsahuje aj dalšie užitočné funkcie. Link https://rcs.radiant.dj/install!");
+return API.sendChat("[ AUTOWOOT ] Je program na automatické Wootovanie a pomocou neho uvidíte naše pozadie. Obsahuje aj dalšie užitočné funkcie. Link https://rcs.radiant.dj/install!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] AutoWoot je program na automatické Wootovanie a pomocou neho uvidíte naše pozadie. Ale obsahuje aj dalšie užitočné funkcie. Link https://rcs.radiant.dj/install!");
+return API.sendChat("[@"+ user.username +"] AutoWoot Je program na automatické Wootovanie a pomocou neho uvidíte naše pozadie. Obsahuje aj dalšie užitočné funkcie. Link https://rcs.radiant.dj/install!");
 }
 
 }
@@ -3863,7 +3827,7 @@ if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0)
 if (!basicBot.commands.executable(this.rank, chat)) return void (0);
 else{
 
-API.sendChat("[ QPlug.cz ] Systém spustený! Verzia "+ basicBot.version +"! Použite !prikazy pre zoznam príkazov.");
+API.sendChat("[ QPlug.cz ] Systém spustený! Použite !prikazy pre zoznam príkazov.");
 
 }
 }
@@ -3883,7 +3847,7 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/prikazy!");
+API.sendChat("[ PRÍKAZY ] Príkazy nášho Bota najdeš na http://qplug.funsite.cz/bot/prikazy!");
 return false;
 }
 
@@ -3896,11 +3860,11 @@ return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[ PRÍKAZY ] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/prikazy!");
+return API.sendChat("[ PRÍKAZY ] Príkazy nášho Bota najdeš na http://qplug.funsite.cz/bot/prikazy!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Príkazy našeho systému najdeš na http://qplug.funsite.cz/bot/prikazy!");
+return API.sendChat("[@"+ user.username +"] Príkazy nášho Bota najdeš na http://qplug.funsite.cz/bot/prikazy!");
 }
 
 }
@@ -4001,12 +3965,10 @@ setTimeout(function(){ API.moderateMuteUser(from_id, 1, API.MUTE.MEDIUM); }, 500
 function advance(obj){
 if (!obj.dj || !obj.media) return;
 
-var repi = "5006795";
-var dave = "3431885";
 var hellbyte = "4635487";
 var tessi = "5477951";
 
-if(obj.dj.id === 5006795 || obj.dj.id === 3431885 || obj.dj.id === 4635487 || obj.dj.id === 5477951){
+if(obj.dj.id === 4635487 || obj.dj.id === 5477951){
 $("#grab").click();
 $(".pop-menu ul li:first-child").mousedown();
 }
