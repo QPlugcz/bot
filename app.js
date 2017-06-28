@@ -2169,6 +2169,47 @@ else{
 var user = chat.un;
 var tokens = validateTokens(user);
 
+API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints!");
+}
+
+function validateTokens(user){
+var tokens;
+
+if(localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
+localStorage.setItem(user, "0");
+tokens = localStorage.getItem(user);
+}
+
+else if(localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
+tokens = localStorage.getItem(user);
+}
+
+else{
+tokens = localStorage.getItem(user);
+}
+
+return tokens;
+}
+
+}
+},
+
+
+
+
+
+rankCommand: {
+command: ['rank','hodnost', 'hodnosť'],
+rank: 'user',
+type: 'exact',
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+var user = chat.un;
+var tokens = validateTokens(user);
+
 // Unranked
 var unranked = 500;
 
@@ -2323,12 +2364,12 @@ API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Global Elit
 function validateTokens(user){
 var tokens;
 
-if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
+if(localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined"){
 localStorage.setItem(user, "0");
 tokens = localStorage.getItem(user);
 }
 
-else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
+else if(localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined"){
 tokens = localStorage.getItem(user);
 }
 
@@ -2337,8 +2378,8 @@ tokens = localStorage.getItem(user);
 }
 
 return tokens;
-
 }
+
 }
 },
 
@@ -3307,46 +3348,6 @@ setTimeout(function(){ API.moderateForceSkip(); }, 3000);
 }
 },
 
-/*startCommand: {
-command: ['start', 'začať', 'začat', 'zacať', 'zacat'],
-rank: 'user',
-type: 'startsWith',
-functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-else{
-
-var from = chat.un;
-var msg = chat.message;
-var medzera = msg.indexOf(' ');
-
-if(medzera === -1){
-API.sendChat("[@" + from + "] Získavaj pomocou DJovania jedinečné QPoints za ktoré sa bude dať kúpiť prve miesto v zozname čakaní! Za každý 1 Woot ktorý dostaneš máš 1 QPoints. Za každý Grab dostaneš 2 QCoiny. Ak ti niekto dá Meh na tvoju pesničku jemu to odčíta z QPoints. Na konci každej pesničky zistíš koľko získal DJ QPoints.");
-return false;
-}
-
-else{
-var meno = msg.substring(medzera + 2);
-var user = basicBot.userUtilities.lookupUserName(meno);
-
-if(user === false || !user.inRoom){
-return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
-}
-
-else if(user.username === chat.un){
-return API.sendChat("[@" + from + "] Získavaj pomocou DJovania jedinečné QPoints za ktoré sa bude dať kúpiť prve miesto v zozname čakaní! Za každý 1 Woot ktorý dostaneš máš 1 QPoints. Za každý Grab dostaneš 2 QCoiny. Ak ti niekto dá Meh na tvoju pesničku jemu to odčíta z QPoints. Na konci každej pesničky zistíš koľko získal DJ QPoints.");
-}
-
-else{
-return API.sendChat("[@" + user.username + "] Získavaj pomocou DJovania jedinečné QPoints za ktoré sa bude dať kúpiť prve miesto v zozname čakaní! Za každý 1 Woot ktorý dostaneš máš 1 QPoints. Za každý Grab dostaneš 2 QCoiny. Ak ti niekto dá Meh na tvoju pesničku jemu to odčíta z QPoints. Na konci každej pesničky zistíš koľko získal DJ QPoints.");
-}
-
-}
-
-}
-}
-},*/
-
 qphelpCommand: {
 command: ['qpointshelp', 'qphelp'],
 rank: 'user',
@@ -3531,15 +3532,14 @@ return false;
 }
 
 else{
-
 var meno = msg.substring(medzera + 2);
 var user = basicBot.userUtilities.lookupUserName(meno);
 
-if (user === false || !user.inRoom){
+if(user === false || !user.inRoom){
 return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!");
 }
 
-else if (user.username === from.un){
+else if(user.username === from.un){
 return API.sendChat("[@" + from.un + "] Tento príkaz sa používa v tvare: !love @meno");
 }
 
@@ -3588,7 +3588,7 @@ return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak ch
 }
 
 else{
-return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny event. Ak chceš vedieť kedy sa bude konať další Event ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
 }
 
 }
@@ -3674,11 +3674,9 @@ return false;
 }
 
 else{
-
 var dovod = msg.substring(cmd.length + 1);
 
 return API.sendChat("[ AFK ] Užívateľ "+ from.un +" je práve preč od klávesnice z dôvodu: "+ dovod +"");
-
 }
 
 }
@@ -3739,7 +3737,7 @@ API.sendChat("[ OZNAM | @staff ] "+ alert +"");
 },
 
 discordCommand: {
-command: 'discord',
+command: ['discord', 'disc'],
 rank: 'user',
 type: 'startsWith',
 functionality: function (chat, cmd) {
@@ -3882,7 +3880,7 @@ loadChat(basicBot.startup);
 var msgs=[
 "/me Hoď like na našu Facebook stránku aby si vedel všetko ako prvý! Link https://bit.ly/QPlugcz!",
 "/me Náš Discord server https://bit.ly/QPlugczDiscord!",
-"/me Pomocou DJovania získaš QPoints. (virtuálne peniaze) Viac na http://qplug.funsite.cz/bot/qpoints! :heart:",
+"/me Pomocou DJovania získaš QPoints. (virtuálne peniaze) Viac na http://qplug.funsite.cz/bot/qpoints! :blue_heart:",
 "/me Na našej stránke najdeš pravidlá a informácie o našej komunite. Stránka obsahuje okrem toho aj informácie o aktualizáciach nášho Bota. Link http://qplug.funsite.cz!"
 ];
 var time=1800; // SEKUNDY
@@ -3980,18 +3978,10 @@ var fromid = data.uid;
 var from = data.un;
 
 // Staff
-var lemon = "5948294";
-var bonki = "6345878";
-var zinder = "2789608";
-var atti = "6614885";
-var pipi = "6045137";
-var germ = "4741752";
-var thepsycho = "4280235";
-var demon = "6632231";
-var petus = "5351087";
+var meno = "";
 
 if(msg === "!bouncer"){
-if(fromid == bonki || fromid == zinder || fromid == atti || fromid == lemon || fromid == pipi || fromid == germ || fromid == thepsycho || fromid == demon || fromid == petus){
+if(fromid == meno){
 API.sendChat("[@"+ from +"] Použil si Promote funkciu!");
 setTimeout(function(){ API.moderateSetRole(fromid, 2); }, 500);
 }
@@ -4031,8 +4021,8 @@ var from = chat.un;
 var fromID = chat.uid;
 
 if(
-/*Pomocou DJovania získaš QPoints. (virtuálne peniaze) Viac na http://qplug.funsite.cz/bot/qpoints!*/
-msg.indexOf("Dnes začína Double QPoints Týžden! Tak nezmeškaj. :relaxed:") !== -1){
+msg.indexOf("Pomocou DJovania získaš QPoints. (virtuálne peniaze) Viac na http://qplug.funsite.cz/bot/qpoints! :blue_heart:") !== -1 ||
+msg.indexOf("Užívaj! :blue_heart:") !== -1){
 if(fromID == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 milisekund = 40 sekund
 }
