@@ -3282,8 +3282,6 @@ soubojCommand: {
                                         return API.sendChat("/me [ DUEL | @" + chat.un + " ] Nemůžeš vyzvat sám sebe na duel!");
                                     } else if (player1QP < 20) {
                                         return API.sendChat("/me [ DUEL | @" + chat.un + " ] K zahájení duelu potřebuješ mít 20 QPoints!");
-                                    } else if (player2QP < 20) {
-                                        return API.sendChat("/me [ DUEL | @" + chat.un + " ] Tento uživatel nemá dostatek QPoints k duelu!");
                                     } else {
                                         API.sendChat("/me [ DUEL | @" + user.username + " ] Uživatel @" + chat.un + " tě vyzval na duel o 20 QPoints. Výzvu můžeš přijmout pomocí !ok");
                                         basicBot.room.duel.stats = true;
@@ -3311,6 +3309,11 @@ soubojCommand: {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
                     if (!basicBot.commands.executable(this.rank, chat)) return void(0);
                     else {
+                        var player2 = chat.un;
+                        var player2QP = validateTokens(player2);
+                        if (player2QP < 20) {
+                        API.sendChat("/me [ DUEL | @" + chat.un + " ] K přijmutí duelu potřebujete 20 QPoints!");
+                        }
                         if (basicBot.room.duel.users[0] != chat.uid) {
                             for (var i in basicBot.room.duel.users) {
                                 if (chat.uid == basicBot.room.duel.users[i]) {
