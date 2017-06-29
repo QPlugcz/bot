@@ -1156,14 +1156,50 @@ $(".pop-menu ul li:first-child").mousedown();
                     API.moderateDeleteChat(chat.cid);
                }
 
-
-
-
-
-
-
-
-
+var hodnota = 1;
+var from = chat.un;
+var urazky = ["kokot","buzn","buzera","kkt","k*","KOKOT","koko*","p*","pič","pic","píč","pyc","PIC","PIČ","PÍČ","PYČ","pi*","čůrák","čurák","čurak","curak","CURAK","jeb","JEB","mrd","MRD","idiot","hajzl","kurv","ku*","bitch","fuck","fck","FUCK","fu*","debil","DEBIL"];
+              
+if (user.napomenuti === 0) {
+if (perm === 0) {
+if(msg.indexOf(urazky) !== -1){
+setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
+}
+}
+}
+if (user.napomenuti === 1) {
+if (perm === 0) {
+if(msg.indexOf(urazky) !== -1){
+setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
+    }
+    }
+    }
+if (user.napomenuti === 2) {
+if (perm === 0) {
+if(msg.indexOf(urazky) !== -1){
+setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
+    }
+    }
+    }
+if (user.napomenuti === 3) {
+if (perm === 0) {
+if(msg.indexOf(urazky) !== -1){
+API.sendChat("[@" + user.username + "] Byl/a jsi napomenut/a za vulgaritu v chatu. Uklidni svůj slovník nebo budeš umlčen/a!");
+setTimeout(function(){ user.napomenuti += hodnota; }, 2000);
+    }
+    }
+    }
+if (user.napomenuti === 4) {
+if (perm === 0) {
+if(msg.indexOf(urazky) !== -1){
+API.sendChat("[@" + user.username + "] Byl/a jsi umlčen/a na 15 minut za opakovanou vulgaritu v chatu!");
+setTimeout(function(){ API.moderateMuteUser(user.id, 1, API.MUTE.SHORT); }, 2000);
+setTimeout(function(){ user.napomenuti = 0; }, 2000);
+    }
+    }
+    }
+    else {
+    }
 
                 var rlJoinChat = basicBot.chat.roulettejoin;
                 var rlLeaveChat = basicBot.chat.rouletteleave;
