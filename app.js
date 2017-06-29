@@ -3461,8 +3461,8 @@ var msg = chat.message;
 var medzera = msg.indexOf(' ');
 
 if(medzera === -1){
-API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
-// API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
+//API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
 return false;
 }
 
@@ -3475,13 +3475,13 @@ return API.sendChat("[@" + from + "] Nevidím tohto užívateľa v komunite!");
 }
 
 else if(user.username === chat.un){
-return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
-// API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
+//return API.sendChat("[@"+ from +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
 }
 
 else{
-return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
-// API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
+//return API.sendChat("[@"+ user.username +"] Momentálne sa nechystá žiadny Nábor do Týmu. Ak chceš vedieť kedy sa bude konať další Nábor ako prvý hoď Like na Facebook https://bit.ly/QPlugcz!");
+return API.sendChat("[@"+ from +"] Práve prebieha Nábor do QPlug.cz Týmu! Prihlás sa tu: https://bit.ly/QPlugczNabor!");
 }
 
 }
