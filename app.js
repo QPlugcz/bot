@@ -3272,9 +3272,6 @@ soubojCommand: {
                                 var from = chat.uid;
                                 var to = user.id;
                                 var ismuted;
-                                if (user.mute.is) {
-                                    ismuted = true;
-                                }
 
                                     if (user === false || !user.inRoom) {
                                         return API.sendChat("/me [ DUEL | @" + chat.un + " ] Tento uživatel se nenachází v místnosti!");
