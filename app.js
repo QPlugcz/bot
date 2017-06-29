@@ -3574,6 +3574,47 @@ return API.sendChat("@" + from.un + ", miluje @" + user.username + " na " + rand
 }
 }
 },
+            
+hateCommand: {
+command: 'hate',
+rank: 'user',
+type: 'startsWith',
+functionality: function(chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
+if (!basicBot.commands.executable(this.rank, chat)) return void(0);
+else{
+
+var from = chat;
+var random = Math.floor((Math.random() * 100) + 1);
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if (medzera === -1){
+API.sendChat("[@" + from.un + "] Tento príkaz sa používa v tvare: !hate @meno");
+return false;
+}
+
+else{
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if(user === false || !user.inRoom){
+return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!");
+}
+
+else if(user.username === from.un){
+return API.sendChat("[@" + from.un + "] Tento príkaz sa používa v tvare: !hate @meno");
+}
+
+else{
+return API.sendChat("@" + from.un + ", neznáša @" + user.username + " na " + random + "%! :angry:");
+}
+    
+}
+
+}
+}
+},
 
 eventCommand: {
 command: 'event',
