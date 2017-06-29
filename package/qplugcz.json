@@ -10,15 +10,15 @@
 "bouncer": "I cant be alive if i will run as a bouncer.",
 
 "online": "[ QPlug.cz ] Systém spustený! Verzia %%VERSION%%!",
-
-"welcome": "Vitaj @%%NAME%% v QPlug.cz! Pomocou DJovania získaš QPoints. (virtuálne peniaze) Viac na http://qplug.funsite.cz/bot/qpoints! :blue_heart:",
-"welcomeback": "Vitaj späť @%%NAME%% v QPlug.cz! Užívaj! :blue_heart:",
+//Pomocou DJovania získaš QPoints. (virtuálne peniaze) Viac na http://qplug.funsite.cz/bot/qpoints! :blue_heart:",
+"welcome": "Vitaj @%%NAME%% v QPlug.cz! Práve prebieha Nábor do QPlug.cz Týmu. Prihlás sa tu: https://bit.ly/QPlugczNabor! :blue_heart:",
+"welcomeback": "Vitaj späť @%%NAME%% v QPlug.cz! Práve prebieha Nábor do QPlug.cz Týmu. Prihlás sa tu: https://bit.ly/QPlugczNabor! :blue_heart:",
 
 "songknown": "[@%%NAME%%] Táto pesnička je v histórií!",
 
 "notavailable": "[@%%NAME%%] Táto pesnička je nedostupná!",
 
-"isopen": "[ RULETA | @djs ] Ruleta je otvorená! Náhodne vylosovanie na prvé miesta v zozname čakaní! Použite !join pre pripojenie.",
+"isopen": "[ RULETA | @everyone ] Ruleta je otvorená! Náhodne vylosovanie na prvé miesta v zozname čakaní! Použite !join pre pripojenie.",
 
 "winnerpicked": "[@%%NAME%%] Si výherca Rulety. Vyhral si %%POSITION%% pozíciu!",
 
@@ -74,7 +74,7 @@
 
 "inteligence": "Umelá Inteligencia",
 
-"timelimit": "\/me @%%NAME%%, tvoje skladba je del\u0161\u00ed ne\u017e %%MAXLENGTH%% minut, pot\u0159ebuje\u0161 svolen\u00ed hr\u00e1t del\u0161\u00ed skladby.",
+"timelimit": "[@%%NAME%%] Tvoja pesnička má viac ako 6 minút 20 sekúnd. Bude preskočená.",
 
 "invalidtime": "\/me [@%%NAME%%] Byl zad\u00e1n neplatn\u00fd \u010das.",
 
