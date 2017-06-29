@@ -4004,7 +4004,7 @@ var from = chat.un;
 var fromID = chat.uid;
 
 if(
-msg.indexOf("Pomocou DJovania získaš QPoints. (virtuálne peniaze) Viac na http://qplug.funsite.cz/bot/qpoints! :blue_heart:") !== -1 ||
+msg.indexOf("Pomocou DJovania získaš QPoints. (virtuálne peniaze) Viac na") !== -1 ||
 msg.indexOf("Užívaj! :blue_heart:") !== -1){
 if(fromID == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 40000); // 40 000 milisekund = 40 sekund
