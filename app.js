@@ -3275,7 +3275,7 @@ soubojCommand: {
                                 if (user.mute.is) {
                                     ismuted = true;
                                 }
-                                if (!ismuted) {
+
                                     if (user === false || !user.inRoom) {
                                         return API.sendChat("/me [ DUEL | @" + chat.un + " ] Tento uživatel se nenachází v místnosti!");
                                     } else if (user.username === chat.un) {
@@ -3292,9 +3292,7 @@ soubojCommand: {
                                             basicBot.room.duel.users = [];
                                         }, 30 * 1000);
                                     }
-                                } else {
-                                    API.sendChat("/me @" + chat.un + ", tento uživatel je umlčen!");
-                                }
+                                 
                             }
                         } else API.sendChat("/me @" + chat.un + ", právě duel probíhá!");
                     }
