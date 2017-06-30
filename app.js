@@ -312,6 +312,7 @@ room: {
             users: [],
             stats: false,
             time: null,
+            sazka: 20,
             waiting: null,
             vyhratDuel: function() {
                 var msgs = [
@@ -337,7 +338,7 @@ room: {
                     }
                 }
                 var ind;
-                 var qpoints = 20;
+                 var qpoints = basicBot.room.duel.sazka;
                  var player1 = win.username;
                  var player1QP = validateTokens(player1);
                  var winqp = parseInt(player1QP, 10) + parseInt(qpoints, 10);
@@ -346,7 +347,7 @@ room: {
                  var loseqp = parseInt(player2QP, 10) - parseInt(qpoints, 10);
                     localStorage.setItem(player1, winqp);
                     localStorage.setItem(player2, loseqp);
-                API.sendChat("/me [ DUEL ] Uživatel " + win.username + " " + msg + " " + loser.username + "");
+                API.sendChat("/me [ DUEL ] Uživatel " + win.username + " vyhrál " + basicBot.room.duel.sazka + " od uživatele" + loser.username + "");
                 for (var a = 0; a < basicBot.room.users.length; a++) {
                     if (basicBot.room.users[a].id === loser.id) {
                         ind = a;
@@ -3263,12 +3264,16 @@ soubojCommand: {
                             var msg = chat.message;
                             var space = msg.indexOf(' ');
                             if (space === -1) {
-                                API.sendChat("[ DUEL | @" + chat.un + " ] Je minihra, ve které můžeš vyzvat někoho z uživatelů na souboj o 20 QPoints! Vyzvi někoho pomocí !duel @meno");
+                                API.sendChat("[ DUEL | @" + chat.un + " ] Je minihra, ve které můžeš vyzvat někoho z uživatelů na souboj o QPoints! Vyzvi někoho pomocí !duel 'sázka' @meno ");
                                 return false;
                             } else {
-                                var name = msg.substring(space + 2);
+                                var name = msg.substring(msg.indexOf("@") + 1);                            
                                 var user = basicBot.userUtilities.lookupUserName(name);
                                 var player2QP = validateTokens(user);
+                                var lastSpace = chat.message.lastIndexOf(' ');
+                                var sazka = parseInt(msg.substring(cmd.length + 1, lastSpace));
+                                var sazka_format = parseInt(sazka);
+                                basicBot.room.duel.sazka = sazka_format;
                                 var from = chat.uid;
                                 var to = user.id;
 
@@ -3276,10 +3281,10 @@ soubojCommand: {
                                         return API.sendChat("[ DUEL | @" + chat.un + " ] Tento uživatel se nenachází v místnosti!");
                                     } else if (user.username === chat.un) {
                                         return API.sendChat("[ DUEL | @" + chat.un + " ] Nemůžeš vyzvat sám sebe na duel!");
-                                    } else if (player1QP < 20) {
-                                        return API.sendChat("[ DUEL | @" + chat.un + " ] K zahájení duelu potřebuješ mít 20 QPoints!");
+                                    } else if (player1QP < sazka_format) {
+                                        return API.sendChat("[ DUEL | @" + chat.un + " ] K zahájení duelu potřebuješ mít " + basicBot.room.duel.sazka + " QPoints!");
                                     } else {
-                                        API.sendChat("[ DUEL | @" + user.username + " ] Uživatel @" + chat.un + " tě vyzval na duel o 20 QPoints. Výzvu můžeš přijmout pomocí !ok");
+                                        API.sendChat("[ DUEL | @" + user.username + " ] Uživatel @" + chat.un + " tě vyzval na duel o " + basicBot.room.duel.sazka + " QPoints. Výzvu můžeš přijmout pomocí !ok");
                                         basicBot.room.duel.stats = true;
                                         basicBot.room.duel.users.push(from, to);
                                         basicBot.room.duel.waiting = setTimeout(function() {
@@ -3305,8 +3310,8 @@ soubojCommand: {
                     else {
                         var player2 = chat.un;
                         var player2QP = validateTokens(player2);
-                        if (player2QP < 20) {
-                        API.sendChat("[ DUEL | @" + chat.un + " ] K přijmutí duelu potřebujete 20 QPoints!");
+                        if (player2QP < basicBot.room.duel.sazka) {
+                        API.sendChat("[ DUEL | @" + chat.un + " ] K přijmutí duelu potřebujete " + basicBot.room.duel.sazka + " QPoints!");
                         }
                         if (basicBot.room.duel.users[0] != chat.uid) {
                             for (var i in basicBot.room.duel.users) {
@@ -3314,7 +3319,7 @@ soubojCommand: {
                                     clearTimeout(basicBot.room.duel.waiting);
                                     var from = basicBot.room.duel.users[i - 1];
                                     var user = basicBot.userUtilities.lookupUser(from);
-                                    API.sendChat("[ DUEL ] Za chvíli proběhne duel mezi " + user.username + " a " + chat.un + "!");
+                                    API.sendChat("[ DUEL ] Za chvíli proběhne duel mezi " + user.username + " a " + chat.un + " o " + basicBot.room.duel.sazka + " QPoints!");
                                     basicBot.room.duel.start();
                                 }
                             }
