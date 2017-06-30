@@ -2016,8 +2016,75 @@ return API.sendChat("[@" + receiver + "] Bylo vám strženo z účtu " + strhnou
 }
 },
 
+//Testování localStorage.
+/*
+testCommand: {
+command: ['koupitpsa'],  //The command to be called. With the standard command literal this would be: !tip
+rank: 'cohost', //Minimum user permission to use the command
+type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+}
 
 
+var msg = chat.message;
+var penize_kupce = validateTokens(chat.un);
+var kupec = chat.un;
+var uid = chat.uid;    
+    
+var pes = "pes";
+var majitel_psa = validateTokens(pes);
+var cena = 1200;
+
+if (penize_kupce < cena){
+return API.sendChat("[@" + kupec + "] Nemáš dostatek QPoints ke koupení psa. Stojí " + cena + " QPoints.");
+}
+if (majitel_psa == 0){
+penize_kupce -= cena;
+majitel_psa = chat.un;
+localStorage.setItem(chat.un, penize_kupce);
+localStorage.setItem(pes, majitel_psa); 
+API.sendChat("[" + kupec + "] Koupil sis psa za " + cena + " QPoints!");
+}
+else{
+return API.sendChat("[@" + kupec + "] Nemůžeš si koupit psa, vlastní jej " + majitel_psa + "");
+}
+
+}
+},
+
+pesCommand: {
+command: ['pes'],  //The command to be called. With the standard command literal this would be: !tip
+rank: 'cohost', //Minimum user permission to use the command
+type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+functionality: function (chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+else{
+
+
+
+var msg = chat.message;
+var penize_kupce = validateTokens(chat.un);
+var jmeno = chat.un;
+var uid = chat.uid;    
+    
+var pes = "pes";
+var majitel_psa = validateTokens(pes);
+
+if (chat.un == majitel_psa) {
+API.sendChat("[" + jmeno + "] Tvůj pes.");
+} else {
+
+API.sendChat("[" + jmeno + "] Tohoto psa vlastní uživatel " + majitel_psa + "");
+
+}
+}
+}
+},
+*/
 buyCommand: {
 command: ['buy'],  //The command to be called. With the standard command literal this would be: !tip
 rank: 'user', //Minimum user permission to use the command
