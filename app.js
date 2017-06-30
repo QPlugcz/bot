@@ -543,7 +543,7 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
                     var ind = Math.floor(Math.random() * basicBot.room.roulette.participants.length);
                     var winner = basicBot.room.roulette.participants[ind];
                     basicBot.room.roulette.participants = [];
-                    var cisla = ["6", "3", "5", "4", "2"];
+                    var cisla = ["2", "3", "1"];
                     var pos = cisla[Math.floor(Math.random() * cisla.length)];
                     var user = basicBot.userUtilities.lookupUser(winner);
                     var name = user.username;
@@ -2284,7 +2284,7 @@ var tokens = validateTokens(user);
 var unranked = 500;
 
 if(tokens < unranked){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Nie si zaradený v Rank systéme. Na zaradenie potrebuješ 500 QPoints! Viac o QPoints a Rankoch na http://qplug.funsite.cz/bot/qpoints!");
+API.sendChat("[@"+ user +"] Nie si zaradený v Rank systéme. Na zaradenie potrebuješ 500 QPoints! Viac o QPoints a Rankoch na http://qplug.funsite.cz/bot/qpoints!");
 }
 
 // Bronze
@@ -2295,23 +2295,23 @@ var bronze4 = 4000;
 var bronze5 = 4500;
 
 if(tokens >= bronze1 && tokens <= 1999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Bronze I \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Bronze I \"!");
 }
 
 else if(tokens >= bronze2 && tokens <= 2499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Bronze II \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Bronze II \"!");
 }
 
 else if(tokens >= bronze3 && tokens <= 3999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Bronze III \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Bronze III \"!");
 }
 
 else if(tokens >= bronze4 && tokens <= 4499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Bronze IV \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Bronze IV \"!");
 }
 
 else if(tokens >= bronze5 && tokens <= 5999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Bronze V \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Bronze V \"!");
 }
 
 // Silver
@@ -2322,23 +2322,23 @@ var silver4 = 8500;
 var silver5 = 10000;
 
 if(tokens >= silver1 && tokens <= 6499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Silver I \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Silver I \"!");
 }
 
 else if(tokens >= silver2 && tokens <= 7999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Silver II \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Silver II \"!");
 }
 
 else if(tokens >= silver3 && tokens <= 8499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Silver III \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Silver III \"!");
 }
 
 else if(tokens >= silver4 && tokens <= 9999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Silver IV \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Silver IV \"!");
 }
 
 else if(tokens >= silver5 && tokens <= 10499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Silver V \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Silver V \"!");
 }
 
 //  Gold
@@ -2349,23 +2349,23 @@ var gold4 = 14000;
 var gold5 = 14500;
 
 if(tokens >= gold1 && tokens <= 11999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Gold I \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Gold I \"!");
 }
 
 else if(tokens >= gold2 && tokens <= 12499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Gold II \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Gold II \"!");
 }
 
 else if(tokens >= gold3 && tokens <= 13999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Gold III \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Gold III \"!");
 }
 
 else if(tokens >= gold4 && tokens <= 14499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Gold IV \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Gold IV \"!");
 }
 
 else if(tokens >= gold5 && tokens <= 15999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Gold V \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Gold V \"!");
 }
 
 // Platinum
@@ -2376,23 +2376,23 @@ var plat4 = 18500;
 var plat5 = 20000;
 
 if(tokens >= plat1 && tokens <= 16499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Platinum I \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Platinum I \"!");
 }
 
 else if(tokens >= plat2 && tokens <= 17999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Platinum II \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Platinum II \"!");
 }
 
 else if(tokens >= plat3 && tokens <= 18499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Platinum III \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Platinum III \"!");
 }
 
 else if(tokens >= plat4 && tokens <= 19999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Platinum IV \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Platinum IV \"!");
 }
 
 else if(tokens >= plat5 && tokens <= 20499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Platinum V \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Platinum V \"!");
 }
 
 // Diamond
@@ -2403,30 +2403,30 @@ var dia4 = 24000;
 var dia5 = 24500;
 
 if(tokens >= dia1 && tokens <= 21999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Diamond I \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Diamond I \"!");
 }
 
 else if(tokens >= dia2 && tokens <= 22499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Diamond II \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Diamond II \"!");
 }
 
 else if(tokens >= dia3 && tokens <= 23999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Diamond III \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Diamond III \"!");
 }
 
 else if(tokens >= dia4 && tokens <= 24499){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Diamond IV \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Diamond IV \"!");
 }
 
 else if(tokens >= dia5 && tokens <= 29999){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je \" Diamond V \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Diamond V \"!");
 }
 
 // Global Elite
 var global = 30000;
 
 if(tokens >= global){
-API.sendChat("[@"+ user +"] Máš "+ tokens +" QPoints! Tvoj rank je Global Elite. Gratulujeme si najvyšší rank!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Global Elite. Gratulujeme si najvyšší rank!");
 }
 
 }
@@ -3263,7 +3263,7 @@ soubojCommand: {
                             var msg = chat.message;
                             var space = msg.indexOf(' ');
                             if (space === -1) {
-                                API.sendChat("/me [ DUEL | @" + chat.un + " ] To je minihra, ve které můžeš vyzvat někoho z uživatelů na souboj o 20 QPoints! Vyzvi někoho pomocí !duel @jméno");
+                                API.sendChat("[ DUEL | @" + chat.un + " ] Je minihra, ve které můžeš vyzvat někoho z uživatelů na souboj o 20 QPoints! Vyzvi někoho pomocí !duel @meno");
                                 return false;
                             } else {
                                 var name = msg.substring(space + 2);
@@ -3271,27 +3271,26 @@ soubojCommand: {
                                 var player2QP = validateTokens(user);
                                 var from = chat.uid;
                                 var to = user.id;
-                                var ismuted;
 
                                     if (user === false || !user.inRoom) {
-                                        return API.sendChat("/me [ DUEL | @" + chat.un + " ] Tento uživatel se nenachází v místnosti!");
+                                        return API.sendChat("[ DUEL | @" + chat.un + " ] Tento uživatel se nenachází v místnosti!");
                                     } else if (user.username === chat.un) {
-                                        return API.sendChat("/me [ DUEL | @" + chat.un + " ] Nemůžeš vyzvat sám sebe na duel!");
+                                        return API.sendChat("[ DUEL | @" + chat.un + " ] Nemůžeš vyzvat sám sebe na duel!");
                                     } else if (player1QP < 20) {
-                                        return API.sendChat("/me [ DUEL | @" + chat.un + " ] K zahájení duelu potřebuješ mít 20 QPoints!");
+                                        return API.sendChat("[ DUEL | @" + chat.un + " ] K zahájení duelu potřebuješ mít 20 QPoints!");
                                     } else {
-                                        API.sendChat("/me [ DUEL | @" + user.username + " ] Uživatel @" + chat.un + " tě vyzval na duel o 20 QPoints. Výzvu můžeš přijmout pomocí !ok");
+                                        API.sendChat("[ DUEL | @" + user.username + " ] Uživatel @" + chat.un + " tě vyzval na duel o 20 QPoints. Výzvu můžeš přijmout pomocí !ok");
                                         basicBot.room.duel.stats = true;
                                         basicBot.room.duel.users.push(from, to);
                                         basicBot.room.duel.waiting = setTimeout(function() {
-                                            API.sendChat("/me [ DUEL | @" + chat.un + " ] Uživatel " + user.username + " neodpověděl na vaší pozvánku k duelu!");
+                                            API.sendChat("[ DUEL | @" + chat.un + " ] Uživatel " + user.username + " neodpověděl na vaší pozvánku k duelu!");
                                             basicBot.room.duel.stats = false;
                                             basicBot.room.duel.users = [];
                                         }, 30 * 1000);
                                     }
                                  
                             }
-                        } else API.sendChat("/me @" + chat.un + ", právě duel probíhá!");
+                        } else API.sendChat("[@" + chat.un + "] Duel právě probíhá!");
                     }
                 }
             },
@@ -3307,7 +3306,7 @@ soubojCommand: {
                         var player2 = chat.un;
                         var player2QP = validateTokens(player2);
                         if (player2QP < 20) {
-                        API.sendChat("/me [ DUEL | @" + chat.un + " ] K přijmutí duelu potřebujete 20 QPoints!");
+                        API.sendChat("[ DUEL | @" + chat.un + " ] K přijmutí duelu potřebujete 20 QPoints!");
                         }
                         if (basicBot.room.duel.users[0] != chat.uid) {
                             for (var i in basicBot.room.duel.users) {
@@ -3315,7 +3314,7 @@ soubojCommand: {
                                     clearTimeout(basicBot.room.duel.waiting);
                                     var from = basicBot.room.duel.users[i - 1];
                                     var user = basicBot.userUtilities.lookupUser(from);
-                                    API.sendChat("/me [ DUEL ] Za chvíli proběhne duel mezi " + user.username + " a " + chat.un + "");
+                                    API.sendChat("[ DUEL ] Za chvíli proběhne duel mezi " + user.username + " a " + chat.un + "!");
                                     basicBot.room.duel.start();
                                 }
                             }
@@ -3695,6 +3694,47 @@ random = 250;
 return API.sendChat("@" + from.un + ", miluje @" + user.username + " na " + random + "%! :two_hearts:");
 }
 
+}
+
+}
+}
+},
+
+hateCommand: {
+command: 'hate',
+rank: 'user',
+type: 'startsWith',
+functionality: function(chat, cmd) {
+if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
+if (!basicBot.commands.executable(this.rank, chat)) return void(0);
+else{
+
+var from = chat;
+var random = Math.floor((Math.random() * 100) + 1);
+var msg = chat.message;
+var medzera = msg.indexOf(' ');
+
+if (medzera === -1){
+API.sendChat("[@" + from.un + "] Tento príkaz sa používa v tvare: !hate @meno");
+return false;
+}
+
+else{
+var meno = msg.substring(medzera + 2);
+var user = basicBot.userUtilities.lookupUserName(meno);
+
+if(user === false || !user.inRoom){
+return API.sendChat("[@" + from.un + "] Nevidím tohto užívateľa v komunite!");
+}
+
+else if(user.username === from.un){
+return API.sendChat("[@" + from.un + "] Tento príkaz sa používa v tvare: !hate @meno");
+}
+
+else{
+return API.sendChat("@" + from.un + ", neznáša @" + user.username + " na " + random + "%! :angry:");
+}
+    
 }
 
 }
