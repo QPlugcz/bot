@@ -403,7 +403,6 @@ if (basicBot.room.tipovacka.obtiznost == 6) {
     var vysledek = 100 + ~~(Math.random() * 5000);
     var a = 50 + ~~(Math.random() * (vysledek / 3));
     var b = vysledek - a;
-    C
     var priklad = a + " + " + b + " = ";
 
     if (Date.now() % 2) {
@@ -3331,7 +3330,7 @@ soubojCommand: {
                             var msg = chat.message;
                             var space = msg.indexOf(' ');
                             if (space === -1) {
-                                API.sendChat("[ DUEL | @" + chat.un + " ] Je minihra, ve které můžeš vyzvat někoho z uživatelů na souboj o QPoints! Vyzvi někoho pomocí !duel 'sázka' @meno ");
+                                API.sendChat("[ DUEL | @" + chat.un + " ] Je minihra, ve které můžeš vyzvat někoho z uživatelů na souboj o QPoints! Vyzvi někoho pomocí !duel 'sázka' @meno");
                                 return false;
                             } else {
                                 var name = msg.substring(msg.indexOf("@") + 1);                            
@@ -4306,6 +4305,21 @@ msg.indexOf("Špatná odpověď") !== -1 ||
 msg.indexOf("Špatné číslo") !== -1){
 if(fromID == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 milisekund = 20 sekund
+}
+}
+    
+if(
+msg.indexOf("Je minihra, ve které můžeš vyzvat někoho z uživatelů na souboj o QPoints! Vyzvi někoho pomocí !duel") !== -1 ||
+msg.indexOf("Tento uživatel se nenachází v místnosti!") !== -1 ||
+msg.indexOf("Nemůžeš vyzvat sám sebe na duel!") !== -1 ||
+msg.indexOf("K zahájení duelu potřebuješ mít") !== -1 ||
+msg.indexOf("Výzvu můžeš přijmout pomocí !ok") !== -1 ||
+msg.indexOf("neodpověděl na vaší pozvánku k duelu!") !== -1 ||
+msg.indexOf("Duel právě probíhá!") !== -1 ||
+msg.indexOf("K přijmutí duelu potřebujete") !== -1 ||
+msg.indexOf("Za chvíli proběhne duel mezi") !== -1){
+if(fromID == "23843691"){
+setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 30000); // 30 000 milisekund = 30 sekund
 }
 }
 
