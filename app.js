@@ -347,7 +347,7 @@ room: {
                  var loseqp = parseInt(player2QP, 10) - parseInt(qpoints, 10);
                     localStorage.setItem(player1, winqp);
                     localStorage.setItem(player2, loseqp);
-                API.sendChat("/me [ DUEL ] Uživatel " + win.username + " vyhrál " + basicBot.room.duel.sazka + " od uživatele" + loser.username + "");
+                API.sendChat("[ DUEL ] Uživatel " + win.username + " vyhrál " + basicBot.room.duel.sazka + " QPoints od uživatele " + loser.username + "");
                 for (var a = 0; a < basicBot.room.users.length; a++) {
                     if (basicBot.room.users[a].id === loser.id) {
                         ind = a;
