@@ -325,38 +325,66 @@ room: {
             start: function() {
                 basicBot.room.duel.time = setTimeout(function() {
                     basicBot.room.duel.end();
-                }, 30 * 1000);
+                }, 60 * 1000);
             },
             end: function() {
-                var random = Math.floor(Math.random() * basicBot.room.duel.users.length);
-                var win = basicBot.userUtilities.lookupUser(basicBot.room.duel.users[random]);
-                var loser;
-                var msg = basicBot.room.duel.vyhratDuel();
-                for (var i in basicBot.room.duel.users) {
-                    if (win.id != basicBot.room.duel.users[i]) {
-                        loser = basicBot.userUtilities.lookupUser(basicBot.room.duel.users[i]);
-                    }
-                }
-                var ind;
+                var player1_duel = Math.floor(Math.random() * ((6 - 1) + 1) + 1);
+                var player2_duel = Math.floor(Math.random() * ((6 - 1) + 1) + 1);
+                var cislo1 = player1_duel;
+                var cislo2 = player2_duel;
+                if (player1_duel > player2_duel) {
+                player1_duel = basicBot.room.duel.users[0];
+                player2_duel = basicBot.room.duel.users[1];
+                var win = basicBot.userUtilities.lookupUser(player1_duel);
+                var lose = basicBot.userUtilities.lookupUser(player2_duel);
+                
                  var qpoints = basicBot.room.duel.sazka;
                  var player1 = win.username;
                  var player1QP = validateTokens(player1);
                  var winqp = parseInt(player1QP, 10) + parseInt(qpoints, 10);
-                 var player2 = loser.username;
+                 var player2 = lose.username;
                  var player2QP = validateTokens(player2);
                  var loseqp = parseInt(player2QP, 10) - parseInt(qpoints, 10);
                     localStorage.setItem(player1, winqp);
                     localStorage.setItem(player2, loseqp);
-                API.sendChat("[ DUEL ] Uživatel " + win.username + " vyhrál " + basicBot.room.duel.sazka + " QPoints od uživatele " + loser.username + "");
-                for (var a = 0; a < basicBot.room.users.length; a++) {
-                    if (basicBot.room.users[a].id === loser.id) {
-                        ind = a;
-                    }
-                }
+                API.sendChat("[ KOSTKY ] " + win.username + " hodil " + cislo1 + " | " + lose.username + " hodil " + cislo2 + " | Vyhrává " + win.username + " a bere si " + basicBot.room.duel.sazka + " QPoints!");
                 basicBot.room.duel.stats = false;
-                basicBot.room.duel.users = [];
-            }
-            
+                basicBot.room.duel.users = [];    
+                }
+                
+                else if (player1_duel < player2_duel) {
+                player1_duel = basicBot.room.duel.users[0];
+                player2_duel = basicBot.room.duel.users[1];
+                var win = basicBot.userUtilities.lookupUser(player2_duel);
+                var lose = basicBot.userUtilities.lookupUser(player1_duel);
+                
+                 var qpoints = basicBot.room.duel.sazka;
+                 var player1 = win.username;
+                 var player1QP = validateTokens(player1);
+                 var winqp = parseInt(player1QP, 10) + parseInt(qpoints, 10);
+                 var player2 = lose.username;
+                 var player2QP = validateTokens(player2);
+                 var loseqp = parseInt(player2QP, 10) - parseInt(qpoints, 10);
+                    localStorage.setItem(player1, winqp);
+                    localStorage.setItem(player2, loseqp);
+                 API.sendChat("[ KOSTKY ] " + win.username + " hodil " + cislo2 + " | " + lose.username + " hodil " + cislo1 + " | Vyhrává " + win.username + " a bere si " + basicBot.room.duel.sazka + " QPoints!");
+                basicBot.room.duel.stats = false;
+                basicBot.room.duel.users = [];   
+                }
+                else if (player1_duel == player2_duel) {
+                var drawplayer1 = basicBot.userUtilities.lookupUser(basicBot.room.duel.users[0]);
+                var drawplayer2 = basicBot.userUtilities.lookupUser(basicBot.room.duel.users[1]);
+                var player1 = drawplayer1.username; 
+                var player2 = drawplayer2.username;
+                 API.sendChat("[ KOSTKY ] " + drawplayer1.username + " a " + drawplayer2.username + " hodili " + cislo1 + " | Duel končí remízou!");
+                 basicBot.room.duel.stats = false;
+                basicBot.room.duel.users = [];   
+                }
+               else {
+             }   
+           }  
+                
+      
 },
         tipovacka: {
                 currentNumber: 0,
@@ -2297,23 +2325,23 @@ var bronze4 = 4000;
 var bronze5 = 4500;
 
 if(tokens >= bronze1 && tokens <= 1999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Bronze I \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Bronze I !");
 }
 
 else if(tokens >= bronze2 && tokens <= 2499){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Bronze II \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Bronze II !");
 }
 
 else if(tokens >= bronze3 && tokens <= 3999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Bronze III \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Bronze III !");
 }
 
 else if(tokens >= bronze4 && tokens <= 4499){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Bronze IV \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Bronze IV !");
 }
 
 else if(tokens >= bronze5 && tokens <= 5999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Bronze V \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Bronze V !");
 }
 
 // Silver
@@ -2324,23 +2352,23 @@ var silver4 = 8500;
 var silver5 = 10000;
 
 if(tokens >= silver1 && tokens <= 6499){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Silver I \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Silver I !");
 }
 
 else if(tokens >= silver2 && tokens <= 7999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Silver II \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Silver II !");
 }
 
 else if(tokens >= silver3 && tokens <= 8499){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Silver III \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Silver III !");
 }
 
 else if(tokens >= silver4 && tokens <= 9999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Silver IV \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Silver IV !");
 }
 
 else if(tokens >= silver5 && tokens <= 10499){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Silver V \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Silver V !");
 }
 
 //  Gold
@@ -2351,23 +2379,23 @@ var gold4 = 14000;
 var gold5 = 14500;
 
 if(tokens >= gold1 && tokens <= 11999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Gold I \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Gold I !");
 }
 
 else if(tokens >= gold2 && tokens <= 12499){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Gold II \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Gold II !");
 }
 
 else if(tokens >= gold3 && tokens <= 13999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Gold III \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Gold III !");
 }
 
 else if(tokens >= gold4 && tokens <= 14499){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Gold IV \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Gold IV !");
 }
 
 else if(tokens >= gold5 && tokens <= 15999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Gold V \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Gold V !");
 }
 
 // Platinum
@@ -2378,23 +2406,23 @@ var plat4 = 18500;
 var plat5 = 20000;
 
 if(tokens >= plat1 && tokens <= 16499){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Platinum I \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Platinum I !");
 }
 
 else if(tokens >= plat2 && tokens <= 17999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Platinum II \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Platinum II !");
 }
 
 else if(tokens >= plat3 && tokens <= 18499){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Platinum III \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Platinum III !");
 }
 
 else if(tokens >= plat4 && tokens <= 19999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Platinum IV \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Platinum IV !");
 }
 
 else if(tokens >= plat5 && tokens <= 20499){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Platinum V \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Platinum V !");
 }
 
 // Diamond
@@ -2405,23 +2433,23 @@ var dia4 = 24000;
 var dia5 = 24500;
 
 if(tokens >= dia1 && tokens <= 21999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Diamond I \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Diamond I !");
 }
 
 else if(tokens >= dia2 && tokens <= 22499){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Diamond II \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Diamond II !");
 }
 
 else if(tokens >= dia3 && tokens <= 23999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Diamond III \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Diamond III !");
 }
 
 else if(tokens >= dia4 && tokens <= 24499){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Diamond IV \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Diamond IV !");
 }
 
 else if(tokens >= dia5 && tokens <= 29999){
-API.sendChat("[@"+ user +"] Tvoj aktuálny rank je \" Diamond V \"!");
+API.sendChat("[@"+ user +"] Tvoj aktuálny rank je Diamond V !");
 }
 
 // Global Elite
@@ -3252,7 +3280,7 @@ API.sendChat("[ QPoints ] "+ current_dj +" dostane za túto pesničku "+ double_
 }
 },
 soubojCommand: {
-                command: ['duel', 'vyzvat', 'souboj'],
+                command: ['duel', 'vyzvat', 'souboj', 'kostky', 'kocky'],
                 rank: 'user',
                 type: 'startsWith',
                 functionality: function(chat, cmd) {
@@ -3265,7 +3293,7 @@ soubojCommand: {
                             var msg = chat.message;
                             var space = msg.indexOf(' ');
                             if (space === -1) {
-                                API.sendChat("[ DUEL | @" + chat.un + " ] Je minihra, ve které můžeš vyzvat někoho z uživatelů na souboj o QPoints! Vyzvi někoho pomocí !duel 'sázka' @meno");
+                                API.sendChat("[ KOSTKY | @" + chat.un + " ] To je minihra, kde můžeš vyzvat někoho z uživatelů na souboj o QPoints! Vyhrává hráč, který hodí na kostce vyšší číslo! Vyzvi někoho pomocí !duel 'sázka' @meno");
                                 return false;
                             } else {
                                 var name = msg.substring(msg.indexOf("@") + 1);                            
@@ -3279,17 +3307,17 @@ soubojCommand: {
                                 var to = user.id;
 
                                     if (user === false || !user.inRoom) {
-                                        return API.sendChat("[ DUEL | @" + chat.un + " ] Tento uživatel se nenachází v místnosti!");
+                                        return API.sendChat("[ KOSTKY | @" + chat.un + " ] Tento uživatel se nenachází v místnosti!");
                                     } else if (user.username === chat.un) {
-                                        return API.sendChat("[ DUEL | @" + chat.un + " ] Nemůžeš vyzvat sám sebe na duel!");
+                                        return API.sendChat("[ KOSTKY | @" + chat.un + " ] Nemůžeš vyzvat sám sebe na kostky!");
                                     } else if (player1QP < sazka_format) {
-                                        return API.sendChat("[ DUEL | @" + chat.un + " ] K zahájení duelu potřebuješ mít " + basicBot.room.duel.sazka + " QPoints!");
+                                        return API.sendChat("[ KOSTKY | @" + chat.un + " ] Nemáš tolik QPoints, abys o ně mohl hrát v kostkách! Vsaď méně!");
                                     } else {
-                                        API.sendChat("[ DUEL | @" + user.username + " ] Uživatel @" + chat.un + " tě vyzval na duel o " + basicBot.room.duel.sazka + " QPoints. Výzvu můžeš přijmout pomocí !ok");
+                                        API.sendChat("[ KOSTKY | @" + user.username + " ]  @" + chat.un + " tě vyzval na duel v kostkách o " + basicBot.room.duel.sazka + " QPoints. Výzvu můžeš přijmout pomocí !ok");
                                         basicBot.room.duel.stats = true;
                                         basicBot.room.duel.users.push(from, to);
                                         basicBot.room.duel.waiting = setTimeout(function() {
-                                            API.sendChat("[ DUEL | @" + chat.un + " ] Uživatel " + user.username + " neodpověděl na vaší pozvánku k duelu!");
+                                            API.sendChat("[ KOSTKY | @" + chat.un + " ] Uživatel " + user.username + " neodpověděl na vaší pozvánku k duelu!");
                                             basicBot.room.duel.stats = false;
                                             basicBot.room.duel.users = [];
                                         }, 30 * 1000);
@@ -3312,22 +3340,25 @@ soubojCommand: {
                         var player2 = chat.un;
                         var player2QP = validateTokens(player2);
                         if (player2QP < basicBot.room.duel.sazka) {
-                        API.sendChat("[ DUEL | @" + chat.un + " ] K přijmutí duelu potřebujete " + basicBot.room.duel.sazka + " QPoints!");
+                        API.sendChat("[ KOSTKY | @" + chat.un + " ] Nemáš tolik QPoints, abys mohl hrát kostky s tímto uživatelem!");
                         }
+                        else {
                         if (basicBot.room.duel.users[0] != chat.uid) {
                             for (var i in basicBot.room.duel.users) {
                                 if (chat.uid == basicBot.room.duel.users[i]) {
                                     clearTimeout(basicBot.room.duel.waiting);
                                     var from = basicBot.room.duel.users[i - 1];
                                     var user = basicBot.userUtilities.lookupUser(from);
-                                    API.sendChat("[ DUEL ] Za chvíli proběhne duel mezi " + user.username + " a " + chat.un + " o " + basicBot.room.duel.sazka + " QPoints!");
+                                    API.sendChat("[ KOSTKY ] Za minutu proběhne duel v kostkách mezi " + user.username + " a " + chat.un + " o " + basicBot.room.duel.sazka + " QPoints!");
                                     basicBot.room.duel.start();
                                 }
+                            }
                             }
                         }
                     }
                 }
             },
+ 
 
           
 jaCommand: {
@@ -4244,14 +4275,14 @@ setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 20000); // 20 000 mi
 }
     
 if(
-msg.indexOf("Je minihra, ve které můžeš vyzvat někoho z uživatelů na souboj o QPoints! Vyzvi někoho pomocí !duel") !== -1 ||
+msg.indexOf("Vyzvi někoho pomocí !duel") !== -1 ||
 msg.indexOf("Tento uživatel se nenachází v místnosti!") !== -1 ||
-msg.indexOf("Nemůžeš vyzvat sám sebe na duel!") !== -1 ||
-msg.indexOf("K zahájení duelu potřebuješ mít") !== -1 ||
+msg.indexOf("Nemůžeš vyzvat sám sebe") !== -1 ||
+msg.indexOf("Vsaď méně!") !== -1 ||
+msg.indexOf("a bere si") !== -1 ||
 msg.indexOf("Výzvu můžeš přijmout pomocí !ok") !== -1 ||
 msg.indexOf("neodpověděl na vaší pozvánku k duelu!") !== -1 ||
 msg.indexOf("Duel právě probíhá!") !== -1 ||
-msg.indexOf("K přijmutí duelu potřebujete") !== -1 ||
 msg.indexOf("Za chvíli proběhne duel mezi") !== -1){
 if(fromID == "23843691"){
 setTimeout(function(){ API.moderateDeleteChat(chat.cid); }, 30000); // 30 000 milisekund = 30 sekund
