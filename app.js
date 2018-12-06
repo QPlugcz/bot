@@ -92,7 +92,7 @@ ROOM»                        plug.dj/qplug-czsk
     var loadChat = function (cb) {
         if (!cb) cb = function () {
         };
-        $.get("https://rawgit.com/qplugcz/bot/master/package/languages.json", function (json) {
+        $.get("https://cdn.jsdelivr.net/gh/qplugcz/bot/package/languages.json", function (json) {
             var link = basicBot.chatLink;
             if (json !== null && typeof json !== "undefined") {
                 langIndex = json;
@@ -230,9 +230,9 @@ version: "1.9",
 status: false,
 name: "QPlug.cz Bot",
 loggedInID: null,
-scriptLink: "https://rawgit.com/qplugcz/bot/master/app.js",
+scriptLink: "https://cdn.jsdelivr.net/gh/qplugcz/bot/app.js",
 cmdLink: "http://qplug.funsite.cz/bot/prikazy",
-chatLink: "https://rawgit.com/qplugcz/bot/master/package/qplugcz.json",
+chatLink: "https://cdn.jsdelivr.net/gh/qplugcz/bot/package/qplugcz.json",
 chat: null,
 loadChat: loadChat,
 retrieveSettings: retrieveSettings,
@@ -241,8 +241,8 @@ retrieveFromStorage: retrieveFromStorage,
 settings: {
 botName: "QPlug.cz Bot",
 language: "qplugcz",
-chatLink: "https://rawgit.com/qplugcz/bot/master/package/qplugcz.json",
-scriptLink: "https://rawgit.com/qplugcz/bot/master/app.js",
+chatLink: "https://cdn.jsdelivr.net/gh/qplugcz/bot/package/qplugcz.json",
+scriptLink: "https://cdn.jsdelivr.net/gh/qplugcz/bot/app.js",
 roomLock: false, // Requires an extension to re-load the script
 joinedCount: 0,
 startupCap: 1, // 1-200

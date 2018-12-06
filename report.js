@@ -109,7 +109,7 @@
 	localStorage.setItem("basicBotsettings", JSON.stringify({
 		 botName: "MFEBOT",
             language: "qplugcz",
-            chatLink: "https://rawgit.com/QPlugcz/QBot/master/package/qplugcz.json",
+            chatLink: "https://cdn.jsdelivr.net/gh/QPlugcz/QBot/package/qplugcz.json",
             scriptLink: "https://rawgit.com/QPlugcz/QBot/master/bot.js",
             roomLock: false, // Requires an extension to re-load the script
             startupCap: 1, // 1-200
